@@ -25,6 +25,7 @@ gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'mysql2'
+gem 'devise', '~> 2.1.2'
 
 
 group :development, :test do
