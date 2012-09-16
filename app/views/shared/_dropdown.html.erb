@@ -1,0 +1,11 @@
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <%= title %>
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <% links.each do |link, url| %>
+        <%= "<a href='#{url}'>#{link}</a>".html_safe %>
+    <% end %>
+  </ul>
+</li>

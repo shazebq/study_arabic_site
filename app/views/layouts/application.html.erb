@@ -5,13 +5,50 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<p id="notice"><%= notice %></p>
-<p id="notice"><%= alert %></p>
+<div class="container">
 
-<%= yield %>
+  <div class ="row">
+    <div class="row">
+
+      <div class="span12 logo_container">
+        <h1>Logo Here</h1>
+
+
+        <ul class="nav nav-tabs">
+
+          <%= render(partial: "shared/dropdown", locals: { title: "Study Abroad",
+                                                           links: { "Egypt" => "http://www.egypt.com",
+                                                                    "Jordan" => "www.jordan.com"}  }) %>
+
+          <%= render(partial: "shared/dropdown", locals: { title: "Books",
+                                                           links: { "Reviews" => "http://www.egypt.com",
+                                                                    "Ratings" => "www.jordan.com"}  }) %>
+        </ul>
+
+      </div>
+
+
+    </div>
+
+    <div class="span12">
+      <div class="row">
+        <div class="span8">
+          <p id="notice"><%= notice %></p>
+          <p id="notice"><%= alert %></p>
+          <%= yield %>
+        </div>
+        <div class="span4">
+          Nam et augue erat. Sed placerat hendrerit sem, in fringilla metus consequat sed. Morbi faucibus tortor in sapien varius id egestas ipsum pellentesque. Cras id metus quis sem molestie iaculis in ut metus. Duis pulvinar condimentum sapien, eu mattis dui aliquet eu. Duis placerat est at quam sodales vehicula.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>
