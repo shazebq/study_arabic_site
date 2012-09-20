@@ -1,7 +1,7 @@
 class ForumPostsController < ApplicationController
 
   def create
-    return render text: "hell"
+    return render text: "hello"
   end
 
 end
