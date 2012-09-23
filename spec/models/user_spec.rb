@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe User do
-  it "is a test" do
-    5.should == 5
+  before :each do
+    @user = FactoryGirl.build(:user)
   end
 
-  it "is another test" do
-    10.should == 10
-  end
+  subject {@user}
+
+  it { should respond_to(:forum_posts) }
+
 end

@@ -8,9 +8,5 @@ describe Category do
   subject { @category }
 
   it { should respond_to(:forum_posts) }
-  it { should respond_to(:parent_category) }
-
-
-
 
 end

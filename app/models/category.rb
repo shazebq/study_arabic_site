@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
-  has_many :forum_posts
-  belongs_to :parent_category
-
   attr_accessible :name, :parent_category_id
+
+  has_many :categories_forum_posts
+  has_many :forum_posts, through: :categories_forum_posts
 end

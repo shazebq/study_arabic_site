@@ -8,7 +8,7 @@ describe ForumPost do
   subject { @forum_post }
 
   it { should respond_to(:user) }
-  it { should respond_to(:category) }
+  it { should respond_to(:categories) }
 
   # comment
 
