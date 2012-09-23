@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-count = [ "Egypt", "Jordan", "Yemen", "Morocco" ]
+category_names = [ "Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
+              "United States", "United Kingdom", "Study Abroad", "Other Country",
+              "Arabic Centers", "Books", "Housing", "Universities", "Traveling Abroad",
+              "Sightseeing", "Study Advice", "Roommates", "Getting Around", "Tutoring"]
 
-#Category.create!(name)
+category_names.each do |category_name|
+  Category.create!(name: category_name)
+end
