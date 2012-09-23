@@ -2,7 +2,10 @@ ArabicProject::Application.routes.draw do
 
   devise_for :users
 
-  root(to: "forum_posts#create")
+  #root(to: "forum_posts#create")
+
+  resources :categories, only: [:index]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
