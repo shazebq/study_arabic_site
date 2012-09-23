@@ -1,5 +1,16 @@
 require 'spec_helper'
 
 describe Category do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :each do
+    @category = FactoryGirl.build(:category)
+  end
+
+  subject { @category }
+
+  it { should respond_to(:forum_posts) }
+  it { should respond_to(:parent_category) }
+
+
+
+
 end
