@@ -6,11 +6,27 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-category_names = [ "Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
-              "United States", "United Kingdom", "Study Abroad", "Other Country",
-              "Arabic Centers", "Books", "Housing", "Universities", "Traveling Abroad",
-              "Sightseeing", "Study Advice", "Roommates", "Getting Around", "Tutoring"]
+categories_all = ["Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
+                  "United States", "United Kingdom", "Other Country",  "Arabic Centers",
+                  "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", "Housing",
+                  "Books", "Universities", "Study Advice", "Tutoring", "Grammar", "Vocabulary", "Morphology",
+                  "Countries", "Study Abroad", "Arabic Language"]
 
-category_names.each do |category_name|
-  Category.create!(name: category_name)
+categories_all.each { |category_name| Category.create(name: category_name)}
+
+
+category_set = [ [ "Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
+                    "United States", "United Kingdom", "Other Country" ],
+                 [ "Arabic Centers", "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", "Housing" ],
+                 [ "Books", "Universities", "Study Advice", "Tutoring", "Grammar", "Vocabulary", "Morphology"] ]
+
+parents = [ "Countries", "Study Abroad", "Arabic Language" ]
+
+count = 0
+category_set.each do |set|
+  parent = parents[count]
+  set.each do |name|
+    Category.find_by_name(name).update_attributes(category_parent_id: Category.find_by_name(parent).id)
+  end
+  count += 1
 end

@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :category do
     name "MyString"
+    category_parent_id 1
   end
 end

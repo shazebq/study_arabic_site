@@ -9,4 +9,8 @@ describe Category do
 
   it { should respond_to(:forum_posts) }
 
+  it { should respond_to(:category_parent)}
+
+  it { should respond_to(:category_parent)}
+
 end
