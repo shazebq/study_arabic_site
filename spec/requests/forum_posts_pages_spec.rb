@@ -1,11 +1,23 @@
 require 'spec_helper'
 
 describe User do
-  it "is a test" do
-    5.should == 5
+
+  subject { page }
+
+  describe "new forum post page" do
+    before do
+      visit new_forum_post_path
+    end
+
+    it { should have_selector("title", text: "Post a Question") }
+
+    it { should have_selector("form")}
+
+
+
+
+
+
   end
 
-  it "is another test" do
-    10.should == 10
-  end
 end

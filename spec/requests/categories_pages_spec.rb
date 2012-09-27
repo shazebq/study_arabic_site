@@ -13,7 +13,7 @@ describe "Category Pages" do
     let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
 
     before do
-      visit '/categories'
+      visit categories_path
     end
 
     it { should have_selector("title", text: "Forum Categories") }

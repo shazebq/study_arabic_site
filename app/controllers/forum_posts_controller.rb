@@ -4,4 +4,8 @@ class ForumPostsController < ApplicationController
     return render text: "hello"
   end
 
+  def new
+    @forum_post = ForumPost.new
+  end
+
 end
