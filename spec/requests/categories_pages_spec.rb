@@ -13,9 +13,6 @@ describe "Category Pages" do
     let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
 
     before do
-      #parent_categories = ["Countries", "Arabic Language", "Study Abroad"]
-      #other_categories = ["Egypt", "Books", "Arabic Centers"]
-
       visit '/categories'
     end
 

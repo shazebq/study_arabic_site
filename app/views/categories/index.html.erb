@@ -4,29 +4,23 @@
 
 <div class="row categories_div">
   <div class="span3">
-    <p>Arabic Language</p>
 
-    <% CategoryParent.find_by_name("Arabic Language").categories.each do |cat| %>
-        <%=  cat.name %><br />
-    <% end %>
+    <%= render :partial => 'category_list', locals: { :category_title => "Arabic Language",
+                                                      :parent_name => "Arabic Language" } %>
 
   </div>
 
   <div class="span3">
-    <p>Study Abroad (General)</p>
 
-    <% CategoryParent.find_by_name("Study Abroad").categories.each do |cat| %>
-        <%=  cat.name %><br />
-    <% end %>
+    <%= render :partial => 'category_list', locals: { :category_title => "Study Abroad (General)",
+                                                      :parent_name => "Study Abroad" } %>
 
   </div>
 
   <div class="span3">
-    <p>Study Abroad (Country Specific)</p>
 
-    <% CategoryParent.find_by_name("Countries").categories.each do |cat| %>
-        <%=  cat.name %><br />
-    <% end %>
+    <%= render :partial => 'category_list', locals: { :category_title => "Study Abroad (Country Specific)",
+                                                      :parent_name => "Countries" } %>
 
   </div>
 
