@@ -13,6 +13,19 @@ describe User do
 
     it { should have_selector("form")}
 
+    describe "creating a new post" do
+
+      # try filling out the form and adding the category?
+
+      it "should create a forum post" do
+        expect { click_button "Submit" }.should change(ForumPost, :count)
+        #puts ForumPost.first.categories.count
+      end
+
+
+
+    end
+
 
 
 

@@ -18,10 +18,7 @@
         <%= f.text_field :title %>
     </div>
 
-    <div class="field">
-      <%= f.label "Category"  %>
-      <%= f.text_field :category_id %>
-    </div>
+    <%= f.select :category_ids, Category.all.collect {|x|[x.name, x.id]},{},:multiple =>true %>
 
     <div class="field">
       <%= f.label "Question"  %>
