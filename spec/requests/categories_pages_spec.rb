@@ -5,12 +5,7 @@ describe "Category Pages" do
   subject { page }
 
   describe "index page" do
-    let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
-    let!(:parent1) { FactoryGirl.create(:category, name: "Study Abroad") }
-    let!(:parent2) { FactoryGirl.create(:category, name: "Countries") }
-    let!(:child) { FactoryGirl.create(:category, name: "Books", category_parent_id: parent.id) }
-    let!(:child1) { FactoryGirl.create(:category, name: "Arabic Centers", category_parent_id: parent1.id) }
-    let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
+    create_categories
 
     before do
       visit categories_path

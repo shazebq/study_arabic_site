@@ -47,6 +47,15 @@ Spork.prefork do
     FactoryGirl.reload
   end
 
+  def create_categories
+    let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
+    let!(:parent1) { FactoryGirl.create(:category, name: "Study Abroad") }
+    let!(:parent2) { FactoryGirl.create(:category, name: "Countries") }
+    let!(:child) { FactoryGirl.create(:category, name: "Books", category_parent_id: parent.id) }
+    let!(:child1) { FactoryGirl.create(:category, name: "Arabic Centers", category_parent_id: parent1.id) }
+    let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
+  end
+
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
 # block.

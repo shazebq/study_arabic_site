@@ -1,0 +1,5 @@
+<optgroup label="<%= label %>">
+  <%= get_categories(category_name).each do |alc| %>
+      <option value=<%= alc.id %>><%= alc.name %></option>
+  <% end %>
+</optgroup>
