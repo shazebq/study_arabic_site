@@ -3,7 +3,17 @@
 
 .span3
 {
-  margin-left: 0;
+  margin-left: 0px;
   padding-left: 19px;
   border-left: 1px solid #eee;
+}
+
+textarea, input[type=text], select
+{
+  width: 90%;
+}
+
+textarea
+{
+  height: 300px;
 }

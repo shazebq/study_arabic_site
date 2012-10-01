@@ -18,10 +18,9 @@ describe User do
     describe "creating a new post" do
 
       context "with valid information" do
-
-        # try filling out the form and adding the category?
         before do
           fill_in "forum_post_title", with: "living abroad in cairo"
+          fill_in "forum_post_content", with: "some stuff about cairo"
           select "Egypt", from: "forum_post_category_ids"
           select "Arabic Centers", from: "forum_post_category_ids"
         end
@@ -38,8 +37,31 @@ describe User do
 
       end
 
+      context "with missing information" do
+        before do
+          fill_in "forum_post_title", with: "living abroad in cairo"
+          select "Arabic Centers", from: "forum_post_category_ids"
+        end
+
+        it "should not create a forum post" do
+          expect { click_button "Submit" }.should_not change(ForumPost, :count)
+          page.should have_selector(".alert-error", text: "Your post could not be submitted.")
+        end
+
+      end
+
       context "with invalid information" do
-        # leave some things out here
+        before do
+          fill_in "forum_post_title", with: ("a" * 70)
+          fill_in "forum_post_content", with: "some stuff about cairo"
+          select "Egypt", from: "forum_post_category_ids"
+          select "Arabic Centers", from: "forum_post_category_ids"
+        end
+
+        it "should not create a forum post" do
+          expect { click_button "Submit" }.should_not change(ForumPost, :count)
+          page.should have_selector(".alert-error", text: "Your post could not be submitted.")
+        end
 
       end
 

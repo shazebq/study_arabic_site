@@ -10,7 +10,7 @@ class ForumPostsController < ApplicationController
       flash[:success] = "Your post has been added"
       redirect_to forum_post_path(@forum_post)
     else
-      redirect_to :back
+      render action: "new"
     end
   end
 
