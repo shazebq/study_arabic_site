@@ -5,6 +5,7 @@ class ForumPost < ActiveRecord::Base
   belongs_to :user
   has_many :categories_forum_posts
   has_many :categories, through: :categories_forum_posts
+  has_many :votes
 
   validates :title, :content, :category_ids, presence: true
 
