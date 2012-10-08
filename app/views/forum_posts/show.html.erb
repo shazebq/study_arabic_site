@@ -1,3 +1,12 @@
 <% provide :title, @forum_post.title %>
 
-<h1><%= @forum_post.title %></h1>
+<h3><%= @forum_post.title %></h3>
+
+<div class="post_content"><%=  @forum_post.content %></div>
+
+<% content_for :side_bar do %>
+    Post Stats:<br />
+    123 views<br />
+    23 up votes<br /><br />
+<% end %>
+

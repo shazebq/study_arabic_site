@@ -12,7 +12,6 @@ describe User do
     end
 
     it { should have_selector("title", text: "Post a Question") }
-
     it { should have_selector("form")}
 
     describe "creating a new post" do
@@ -66,6 +65,25 @@ describe User do
       end
 
     end
+
+  end
+
+
+  describe "forum post show page" do
+    let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
+    let!(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
+                                     content: "what is the best arabic center in cairo?",
+                                     category_ids: [parent.id]) }
+
+    before do
+      @views = post.views_count
+      visit forum_post_path(post)
+    end
+
+    it { should have_selector("title", text: post.title)}
+    it { should have_selector(".post_content", text: post.content)}
+
+    specify {  }
 
   end
 

@@ -1,4 +1,5 @@
 class ForumPostsController < ApplicationController
+  #after_filter :add_views, only: :show
 
   def new
     @forum_post = ForumPost.new
@@ -17,5 +18,4 @@ class ForumPostsController < ApplicationController
   def show
     @forum_post = ForumPost.find(params[:id])
   end
-
 end
