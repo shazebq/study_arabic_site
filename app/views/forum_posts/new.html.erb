@@ -1,5 +1,7 @@
 <% provide :title, "Post a Question" %>
 
+<i class="icon-camera-retro"></i>
+
 <%= form_for(@forum_post) do |f| %>
     <% if @forum_post.errors.any? %>
         <div id="error_explanation" class="alert alert-error">

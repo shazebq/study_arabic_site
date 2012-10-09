@@ -1,6 +1,8 @@
 // load bootstrap here
 @import "bootstrap";
 
+@import 'font-awesome';
+
 .span3
 {
   margin-left: 0px;
@@ -37,5 +39,10 @@ h3
 .vote_icon
 {
   margin-top: -3px;
+}
+
+.large
+{
+  font-size: 40px;
 }
 

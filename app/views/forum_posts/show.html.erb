@@ -1,5 +1,9 @@
 <% provide :title, @forum_post.title %>
 
+<div style="font-size: 20px;">
+  <i class="icon-wrench"></i>
+</div>
+
 <h3><%= @forum_post.title %>
     <%=  image_tag("icons/glyphicons_190_circle_plus.png", class: "vote_icon") %>
     <%=  image_tag("icons/glyphicons_191_circle_minus.png", class: "vote_icon") %>
