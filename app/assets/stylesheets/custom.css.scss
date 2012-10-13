@@ -47,3 +47,31 @@ h3
   margin-right: -10px;
 }
 
+
+// Voting Arrows
+
+@mixin vote_base
+{
+  font-size: 30px;
+  color: gray;
+}
+
+.vote
+{
+  @include vote_base;
+}
+
+.up_vote
+{
+  @include vote_base;
+  color: green;
+}
+
+.down_vote
+{
+  @include vote_base;
+  color: red;
+}
+
+
+

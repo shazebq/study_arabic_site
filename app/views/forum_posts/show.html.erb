@@ -1,10 +1,14 @@
+<%=  current_user.email %>
+
 <% provide :title, @forum_post.title %>
 
 <div class="row">
   <div class="span1">
    <div class="arrows">
-    <div style="font-size: 30px; color: #5897fb"><i class="icon-caret-up vote_up" data-post_id=<%= @forum_post.id %>></i></div>
-    <div style="font-size: 30px; color: #5897fb;"><i class="icon-caret-down vote_down" data-post_id=<%= @forum_post.id %>></i></div>
+
+      <i class="icon-caret-up vote" data-type="up" data-post_id=<%= @forum_post.id %>></i>
+      <i class="icon-caret-down vote" data-type="down" data-post_id=<%= @forum_post.id %>></i>
+
    </div>
   </div>
 

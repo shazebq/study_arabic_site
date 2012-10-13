@@ -21,9 +21,9 @@ class ForumPostsController < ApplicationController
   end
 
   def vote
-    vote_count = ForumPost.count_vote(params[:id], params[:type])
+    vote_count = ForumPost.count_vote(params[:forum_post_id], current_user.id, params[:type])
     respond_to do |format|
-      format.json
+      format.json { render :json => vote_count }
     end
   end
 end
