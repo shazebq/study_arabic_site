@@ -1,18 +1,27 @@
 <% provide :title, @forum_post.title %>
 
-<div style="font-size: 20px;">
-  <i class="icon-wrench"></i>
+<div class="row">
+  <div class="span1">
+   <div class="arrows">
+    <div style="font-size: 30px; color: #5897fb"><i class="icon-caret-up vote_up" data-post_id=<%= @forum_post.id %>></i></div>
+    <div style="font-size: 30px; color: #5897fb;"><i class="icon-caret-down vote_down" data-post_id=<%= @forum_post.id %>></i></div>
+   </div>
+  </div>
+
+  <div class="span8">
+    <h3><%= @forum_post.title %>
+
+    </h3>
+
+    <div class="post_content">
+      <div class="votes">10 Votes</div>
+      <span class="subtitles">Posted on <%= @forum_post.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span><br />
+      <%=  @forum_post.content %>
+    </div>
+  </div>
+
 </div>
 
-<h3><%= @forum_post.title %>
-    <%=  image_tag("icons/glyphicons_190_circle_plus.png", class: "vote_icon") %>
-    <%=  image_tag("icons/glyphicons_191_circle_minus.png", class: "vote_icon") %>
-</h3>
-
-<div class="post_content">
-  <span class="subtitles">Posted on <%= @forum_post.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span><br />
-  <%=  @forum_post.content %>
-</div>
 
 <% content_for :side_bar do %>
     Post Stats:<br />

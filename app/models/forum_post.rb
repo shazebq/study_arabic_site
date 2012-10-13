@@ -16,4 +16,13 @@ class ForumPost < ActiveRecord::Base
     self.views_count ||= 0
     self.votes_count ||= 0
   end
+
+  def self.count_vote(forum_post, type)
+    if type == "up"
+      new_vote = Vote.create!(user_id: 4, forum_post_id: 3)
+    else
+      Vote.where("user_id = ? AND forum_post_id = ?", 1, 3).first.destroy
+    end
+    return Vote.where("forum_post_id = 3").count
+  end
 end
