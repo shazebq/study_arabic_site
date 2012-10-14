@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Devise::TestHelpers
 
 describe User do
 
@@ -6,13 +7,17 @@ describe User do
 
   describe "new forum post page" do
     create_categories
+    let!(:user) { FactoryGirl.create(:user)}
 
     before do
+      # just do it the regular way!!!
       visit new_forum_post_path
+      puts page.body
     end
 
     it { should have_selector("title", text: "Post a Question") }
     it { should have_selector("form")}
+    #it { should have_content("Sign Out")}
 
     describe "creating a new post" do
 

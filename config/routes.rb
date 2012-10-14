@@ -2,13 +2,15 @@ ArabicProject::Application.routes.draw do
 
   devise_for :users
 
-  #root(to: "forum_posts#create")
+  root(to: "categories#index")
 
   match "forum_posts/vote" => "forum_posts#vote"
 
   resources :categories, only: [:index]
 
   resources :forum_posts
+
+
 
 
   # The priority is based upon order of creation:

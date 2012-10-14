@@ -56,6 +56,10 @@ Spork.prefork do
     let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
   end
 
+  def sign_in(user)
+    post_via_redirect user_session_path, 'user[email]' => user.email, 'user[password]' => user.password
+  end
+
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
 # block.
