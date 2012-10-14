@@ -21,8 +21,9 @@ class ForumPost < ActiveRecord::Base
     if type == "up"
       new_vote = Vote.create(forum_post_id: forum_post_id, user_id: user_id)
     else
-      Vote.where("forum_post_id = ? AND user_id = ?", forum_post_id, user_id).first.destroy
+      down_vote = Vote.where("forum_post_id = ? AND user_id = ?", forum_post_id, user_id).first
+      down_vote.destroy if down_vote
     end
-    return Vote.where("forum_post_id = 3").count
+    return ForumPost.find(forum_post_id).votes.count
   end
 end

@@ -7,8 +7,10 @@ $(document).ready ->
         forum_post_id: $(this).attr("data-post_id")
         type: $(this).attr("data-type")
       dataType: "json"
-      success: (data) ->
-        # change color or arrow
+      success: (data) =>
+        #change color of arrow
+        $(".vote").removeClass("selected_vote")
+        $(this).addClass("selected_vote")
+        $(".vote_count").html("+" + data)
         # change vote count on show page
-        alert("vote count is now: " + data)
   )

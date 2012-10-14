@@ -1,5 +1,3 @@
-<%=  current_user.email %>
-
 <% provide :title, @forum_post.title %>
 
 <div class="row">
@@ -13,14 +11,16 @@
   </div>
 
   <div class="span8">
-    <h3><%= @forum_post.title %>
-
+    <h3>
+      <%= @forum_post.title %><span class="vote_count">+<%= @forum_post.votes.count %></span>
     </h3>
 
     <div class="post_content">
-      <div class="votes">10 Votes</div>
-      <span class="subtitles">Posted on <%= @forum_post.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span><br />
-      <%=  @forum_post.content %>
+      <span class="subtitle">Posted on <%= @forum_post.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span>
+
+      <div class="post">
+        <%=  @forum_post.content %>
+      </div>
     </div>
   </div>
 
@@ -28,8 +28,10 @@
 
 
 <% content_for :side_bar do %>
+  <div>
     Post Stats:<br />
     123 views<br />
     23 up votes<br /><br />
+  </div>
 <% end %>
 

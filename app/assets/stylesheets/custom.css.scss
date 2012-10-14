@@ -3,12 +3,13 @@
 
 @import 'font-awesome';
 
-.span3
+.sidebar
 {
   margin-left: 0px;
   padding-left: 19px;
   border-left: 1px solid #eee;
 }
+
 
 textarea, input[type=text], select
 {
@@ -20,20 +21,47 @@ textarea
   height: 300px;
 }
 
-.subtitles
+.subtitle
 {
   font-size: 80%;
   color: #999999;
 }
 
+.subtitle_bold
+{
+  //font-size: 80%;
+  font-weight: bold;
+  color: #00008b;
+}
+
+.number
+{
+  font-size: 20px;
+}
+
 h3
 {
-  margin: 0;
+  margin-top: 0px;
+}
+
+.vote_count
+{
+  @extend .badge;
+  font-size: 18px;
+  line-height: 40px;
+  margin-left: 10px;
+  background-color: #5897fb;
+  vertical-align: top;
 }
 
 .post_content
 {
-  margin-top: -10px
+  margin-top: -20px
+}
+
+.post
+{
+  margin-top: 10px;
 }
 
 .large
@@ -54,6 +82,11 @@ h3
 {
   font-size: 30px;
   color: gray;
+  &:hover
+  {
+    color: red;
+    cursor: pointer;
+  }
 }
 
 .vote
@@ -61,13 +94,7 @@ h3
   @include vote_base;
 }
 
-.up_vote
-{
-  @include vote_base;
-  color: green;
-}
-
-.down_vote
+.selected_vote
 {
   @include vote_base;
   color: red;
