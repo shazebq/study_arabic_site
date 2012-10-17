@@ -3,8 +3,4 @@ module ApplicationHelper
     CategoryParent.find_by_name(category_name).categories
   end
 
-  def sign_in_user()
-    "hello there"
-  end
-
 end
