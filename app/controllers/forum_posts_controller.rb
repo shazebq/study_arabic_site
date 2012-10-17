@@ -1,5 +1,6 @@
 class ForumPostsController < ApplicationController
   #after_filter :add_views, only: :show
+  before_filter :require_sign_in, only: :new
 
   def new
     @forum_post = ForumPost.new
@@ -24,6 +25,12 @@ class ForumPostsController < ApplicationController
     vote_count = ForumPost.count_vote(params[:forum_post_id], current_user.id, params[:type])
     respond_to do |format|
       format.json { render :json => vote_count }
+    end
+  end
+
+  def require_sign_in
+    unless user_signed_in?
+      redirect_to new_user_session_path
     end
   end
 end

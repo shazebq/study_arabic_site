@@ -11,7 +11,7 @@ describe User do
 
     before do
       # just do it the regular way!!!
-      sign_in()
+      sign_in
       visit new_forum_post_path
     end
 
