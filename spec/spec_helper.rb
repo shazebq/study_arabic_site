@@ -56,8 +56,12 @@ Spork.prefork do
     let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
   end
 
-  def sign_in(user)
-    post_via_redirect user_session_path, 'user[email]' => user.email, 'user[password]' => user.password
+  def sign_in()
+    @user = FactoryGirl.create(:user, email: "shazebq@gmail.com", password: "cool123")
+    visit new_user_session_path
+    fill_in("user_email", with: @user.email)
+    fill_in("user_password", with: @user.password)
+    click_button("Sign in")
   end
 
 # --- Instructions ---
