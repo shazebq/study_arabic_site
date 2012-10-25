@@ -37,16 +37,6 @@ h3
   margin-top: 0px;
 }
 
-.vote_count
-{
-  @extend .badge;
-  font-size: 18px;
-  line-height: 40px;
-  margin-left: 10px;
-  background-color: #5897fb;
-  vertical-align: top;
-}
-
 .post_content
 {
   margin-top: -20px
@@ -68,4 +58,27 @@ h3
   margin-right: -10px;
 }
 
+.no_left_margin
+{
+  margin-left: 0;
+}
 
+// vote badge
+
+.vote_count
+{
+  @extend .badge;
+  font-size: 18px;
+  line-height: 40px;
+  margin-left: 10px;
+  background-color: #5897fb;
+  vertical-align: top;
+}
+
+.vote_count_small
+{
+  @extend .vote_count;
+  font-size: 10px;
+  line-height: 0;
+  vertical-align: middle;
+}

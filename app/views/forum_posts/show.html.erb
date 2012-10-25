@@ -3,17 +3,15 @@
 <div class="row">
   <div class="span1">
    <div class="arrows">
-
       <i class="icon-caret-up vote" data-type="up" data-post_id=<%= @forum_post.id %>></i>
       <i class="icon-caret-down vote" data-type="down" data-post_id=<%= @forum_post.id %>></i>
-
    </div>
   </div>
 
 
   <div class="span8">
     <h3>
-      <%= @forum_post.title %><span class="vote_count">+<%= @forum_post.votes.count %></span>
+      <%= @forum_post.title %><span class="vote_count"><%= "+#{@forum_post.votes.count}" %></span>
     </h3>
 
     <div class="post_content">
@@ -25,16 +23,23 @@
     </div>
 
     <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
-    <div>
-      <% @forum_post.answers.each do |answer| %>
-        <div class="well well-small">
+
+    <% @forum_post.answers.each do |answer| %>
+        <div class="row well well-small no_left_margin">
+          <div class="span1">
+            <i class="icon-caret-up vote_small" data-type="up" data-post_id=<%= @forum_post.id %>></i>
+            <i class="icon-caret-down vote_small" data-type="down" data-post_id=<%= @forum_post.id %>></i>
+          </div>
+          <div class="span7">
             <span class="info"><%= "#{answer.user.email} said:" %></span>
+            <span class="vote_count_small">+13</span>
             <div><%= answer.content %></div>
             <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
+          </div>
 
         </div>
-      <% end %>
-    </div>
+    <% end %>
+
   </div>
 
 
