@@ -22,6 +22,14 @@
         <%=  @forum_post.content %>
       </div>
     </div>
+
+    <div>
+      <% @forum_post.answers.each do |answer| %>
+        <p><%= answer.content %></p>
+      <% end %>
+    </div>
+
+
   </div>
 
 </div>

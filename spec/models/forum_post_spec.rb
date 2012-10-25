@@ -22,7 +22,7 @@ describe ForumPost do
     end
 
     it "makes no change if the user has not voted the post up" do
-      expect { ForumPost.count_vote(forum_post.id, 1, "down") }.should_not change(Vote, :count)
+      expect { ForumPost.count_vote(forum_post.id, 1, "down") }.to_not change(Vote, :count)
     end
 
     it "returns the number of votes of the post" do

@@ -30,7 +30,7 @@ describe User do
         end
 
         it "should create a forum post" do
-          expect { click_button "Submit" }.should change(ForumPost, :count)
+          expect { click_button "Submit" }.to change(ForumPost, :count)
           ForumPost.first.categories.count.should == 2
         end
 
@@ -48,7 +48,7 @@ describe User do
         end
 
         it "should not create a forum post" do
-          expect { click_button "Submit" }.should_not change(ForumPost, :count)
+          expect { click_button "Submit" }.to_not change(ForumPost, :count)
           page.should have_selector(".alert-error", text: "Your post could not be submitted.")
         end
 
@@ -63,7 +63,7 @@ describe User do
         end
 
         it "should not create a forum post" do
-          expect { click_button "Submit" }.should_not change(ForumPost, :count)
+          expect { click_button "Submit" }.to_not change(ForumPost, :count)
           page.should have_selector(".alert-error", text: "Your post could not be submitted.")
         end
 
@@ -73,12 +73,13 @@ describe User do
 
   end
 
-
   describe "forum post show page" do
-    let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
-    let!(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
+    let(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
+    let(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
                                      content: "what is the best arabic center in cairo?",
                                      category_ids: [parent.id]) }
+    let(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", user_id: post.id) }
+
 
     before do
       @views = post.views_count
@@ -87,9 +88,9 @@ describe User do
 
     it { should have_selector("title", text: post.title)}
     it { should have_selector(".post_content", text: post.content)}
-
-    specify {  }
+    it { should have_content(answer.content)}
 
   end
+
 
 end

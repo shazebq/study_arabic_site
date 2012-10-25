@@ -1,0 +1,23 @@
+// Voting Arrows
+
+@mixin vote_base
+{
+  font-size: 30px;
+  color: gray;
+  &:hover
+  {
+    color: red;
+    cursor: pointer;
+  }
+}
+
+.vote
+{
+  @include vote_base;
+}
+
+.selected_vote
+{
+  @include vote_base;
+  color: red;
+}
