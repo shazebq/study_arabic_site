@@ -2,12 +2,11 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe User do
-
+  let!(:user) { FactoryGirl.create(:user)}
   subject { page }
 
   describe "new forum post page" do
     create_categories
-    let!(:user) { FactoryGirl.create(:user)}
 
     before do
       # just do it the regular way!!!
@@ -74,12 +73,12 @@ describe User do
   end
 
   describe "forum post show page" do
-    let(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
-    let(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
+    let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
+    let!(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
                                      content: "what is the best arabic center in cairo?",
                                      category_ids: [parent.id]) }
-    let(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", user_id: post.id) }
-
+    let!(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: post.id,
+                                      user_id: User.first.id) }
 
     before do
       @views = post.views_count
@@ -88,8 +87,9 @@ describe User do
 
     it { should have_selector("title", text: post.title)}
     it { should have_selector(".post_content", text: post.content)}
-    it { should have_content(answer.content)}
-
+    it "displays answers" do
+      page.should have_content(answer.content)
+    end
   end
 
 

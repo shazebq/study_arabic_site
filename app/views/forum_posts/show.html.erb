@@ -10,6 +10,7 @@
    </div>
   </div>
 
+
   <div class="span8">
     <h3>
       <%= @forum_post.title %><span class="vote_count">+<%= @forum_post.votes.count %></span>
@@ -23,14 +24,20 @@
       </div>
     </div>
 
+    <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
     <div>
       <% @forum_post.answers.each do |answer| %>
-        <p><%= answer.content %></p>
+        <div class="well well-small">
+            <span class="info"><%= "#{answer.user.email} said:" %></span>
+            <div><%= answer.content %></div>
+            <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
+
+        </div>
       <% end %>
     </div>
-
-
   </div>
+
+
 
 </div>
 
