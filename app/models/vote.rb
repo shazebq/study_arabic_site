@@ -1,7 +1,7 @@
 class Vote < ActiveRecord::Base
-  attr_accessible :forum_post_id, :user_id
+  attr_accessible :user_id, :voteable_id, :voteable_type
 
-  belongs_to :forum_post
+  belongs_to :voteable, polymorphic: true
 
-  validates_uniqueness_of :user_id, :scope => [:forum_post_id]
+  validates_uniqueness_of :user_id, :scope => [:voteable_id, :voteable_type]
 end
