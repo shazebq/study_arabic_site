@@ -1,10 +1,12 @@
 <% provide :title, @forum_post.title %>
 
+<%=  vote_forum_post_path %>
+
 <div class="row">
   <div class="span1">
    <div class="arrows">
-      <i class="icon-caret-up vote" data-type="up" data-post_id=<%= @forum_post.id %>></i>
-      <i class="icon-caret-down vote" data-type="down" data-post_id=<%= @forum_post.id %>></i>
+      <i class="icon-caret-up vote" id="up_vote" data-type="up" data-post_id=<%= @forum_post.id %>></i>
+      <i class="icon-caret-down vote" id="down_vote" data-type="down" data-post_id=<%= @forum_post.id %>></i>
    </div>
   </div>
 

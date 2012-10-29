@@ -9,7 +9,6 @@ describe User do
     create_categories
 
     before do
-      # just do it the regular way!!!
       sign_in
       visit new_forum_post_path
     end
@@ -85,11 +84,24 @@ describe User do
       visit forum_post_path(post)
     end
 
-    it { should have_selector("title", text: post.title)}
-    it { should have_selector(".post_content", text: post.content)}
-    it "displays answers" do
-      page.should have_content(answer.content)
+    describe "general content" do
+      it { should have_selector("title", text: post.title)}
+      it { should have_selector(".post_content", text: post.content)}
+      it "displays answers" do
+        page.should have_content(answer.content)
+      end
     end
+
+    #describe "vote up for post", :js => true do
+    #  it "is a test" do
+    #    find("#up_vote").click
+    #    #page.should have_selector(".vote_count", text: "+1")
+    #    page.should have_selector("#greeting")
+    #  end
+    #end
+
+
+
   end
 
 
