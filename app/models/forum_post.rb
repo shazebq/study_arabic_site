@@ -1,4 +1,5 @@
 class ForumPost < ActiveRecord::Base
+  include Voting
   attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids
   after_initialize :init
 
@@ -27,4 +28,6 @@ class ForumPost < ActiveRecord::Base
     end
     return ForumPost.find(voteable_id).votes.count
   end
+
+
 end
