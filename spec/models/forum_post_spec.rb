@@ -17,16 +17,20 @@ describe ForumPost do
     let(:forum_post) { FactoryGirl.create(:forum_post, category_ids: parent.id) }
 
     it "adds the vote to the forum if it is voted up and removes the vote if it is voted down" do
-      expect { ForumPost.count_vote(forum_post.id, 1, "up") }.should change(Vote, :count).by(1)
-      expect { ForumPost.count_vote(forum_post.id, 1, "down") }.should change(Vote, :count).by(-1)
+      expect { forum_post.count_vote(forum_post.id, "ForumPost", 1, "up") }.should change(forum_post.votes, :count).by(1)
+    end
+
+    it "subtracts the vote only if it was already voted for by the same user" do
+      forum_post.count_vote(forum_post.id, "ForumPost", 1, "up")
+      expect { forum_post.count_vote(forum_post.id, "ForumPost", 1, "down") }.should change(forum_post.votes, :count).by(-1)
     end
 
     it "makes no change if the user has not voted the post up" do
-      expect { ForumPost.count_vote(forum_post.id, 1, "down") }.to_not change(Vote, :count)
+      expect { forum_post.count_vote(forum_post.id, "ForumPost", 1, "down") }.to_not change(Vote, :count)
     end
 
     it "returns the number of votes of the post" do
-      ForumPost.count_vote(forum_post.id, 1, "up")
+      forum_post.count_vote(forum_post.id, "ForumPost", 1, "up")
       forum_post.votes.count.should == 1
     end
   end

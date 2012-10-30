@@ -22,13 +22,11 @@ class ForumPostsController < ApplicationController
   end
 
   def vote
-
-
-
-    #vote_count = ForumPost.count_vote(params[:id], current_user.id, params[:type])
-    #respond_to do |format|
-    #  format.json { render :json => vote_count }
-    #end
+    @forum_post = ForumPost.find(params[:id])
+    vote_count = @forum_post.count_vote(params[:id], params[:voteable_type], current_user.id, params[:type])
+    respond_to do |format|
+      format.json { render :json => vote_count }
+    end
   end
 
   def require_sign_in

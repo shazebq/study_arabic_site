@@ -5,6 +5,7 @@ $(document).ready ->
       type: "POST"
       data:
         type: $(this).attr("data-type")
+        voteable_type: "ForumPost"
       dataType: "json"
       success: (data) =>
         #change color of arrow

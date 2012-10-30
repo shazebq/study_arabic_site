@@ -19,15 +19,15 @@ class ForumPost < ActiveRecord::Base
     self.votes_count ||= 0
   end
 
-  def self.count_vote(voteable_id, user_id, type)
-    if type == "up"
-      new_vote = Vote.create(voteable_id: voteable_id, voteable_type: "ForumPost", user_id: user_id)
-    else
-      down_vote = Vote.where("voteable_id = ? AND voteable_type = ? AND user_id = ?", voteable_id, "ForumPost", user_id).first
-      down_vote.destroy if down_vote
-    end
-    return ForumPost.find(voteable_id).votes.count
-  end
+  #def self.count_vote(voteable_id, user_id, type)
+  #  if type == "up"
+  #    new_vote = Vote.create(voteable_id: voteable_id, voteable_type: "ForumPost", user_id: user_id)
+  #  else
+  #    down_vote = Vote.where("voteable_id = ? AND voteable_type = ? AND user_id = ?", voteable_id, "ForumPost", user_id).first
+  #    down_vote.destroy if down_vote
+  #  end
+  #  return ForumPost.find(voteable_id).votes.count
+  #end
 
 
 end
