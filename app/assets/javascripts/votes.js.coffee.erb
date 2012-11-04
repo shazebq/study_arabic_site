@@ -1,6 +1,5 @@
 $(document).ready ->
   $(".vote").bind("click", ->
-
     # Answer or ForumPost
     type = $(this).attr("data-voteable_type")
 
@@ -17,7 +16,7 @@ $(document).ready ->
             type: $(this).attr("data-type")
             voteable_type: $(this).attr("data-voteable_type")
           dataType: "json"
-          success: (data) =>
+          success: (data, textStatus) =>
             #change color of arrow
             $(this).parent().find(".vote").removeClass("selected_arrow")
             $(this).addClass("selected_arrow")
@@ -26,5 +25,8 @@ $(document).ready ->
                 ($(this).parent().parent()).find(".vote_count_small").html("+" + data)
             else if type == "ForumPost"
                 $(".vote_count").html("+" + data)
+          error: (data, textStatus) =>
+            alert("Sign in or sign up to vote!")
+
   )
 

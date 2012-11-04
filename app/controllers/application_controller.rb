@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :check_if_signed_in, only: :vote
+
   def vote
     if params[:voteable_type] == "ForumPost"
       item = ForumPost.find(params[:id])
@@ -13,4 +15,15 @@ class ApplicationController < ActionController::Base
       format.json { render :json => vote_count }
     end
   end
+
+  def check_if_signed_in
+    # 401 means an unauthorized request
+    unless user_signed_in?
+      respond_to do |format|
+        format.json { render(json: { status: :error }, status: 401) }
+      end
+    end
+  end
+
+
 end
