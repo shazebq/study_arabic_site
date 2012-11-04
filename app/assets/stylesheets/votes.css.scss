@@ -16,20 +16,13 @@
   @include vote_base;
 }
 
-.selected_vote
-{
-  @include vote_base;
-  color: red;
-}
-
 .vote_small
 {
   @include vote_base;
   font-size: 20px;
 }
 
-.selected_vote_small
+.selected_arrow
 {
-  @include vote_base;
-  font-size: 20px;
+  color: red;
 }

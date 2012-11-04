@@ -1,15 +1,30 @@
 $(document).ready ->
   $(".vote").bind("click", ->
-    $.ajax
-      url: "/forum_posts/#{$(this).attr("data-post_id")}/vote"
-      type: "POST"
-      data:
-        type: $(this).attr("data-type")
-        voteable_type: "ForumPost"
-      dataType: "json"
-      success: (data) =>
-        #change color of arrow
-        $(".vote").removeClass("selected_vote")
-        $(this).addClass("selected_vote")
-        $(".vote_count").html("+" + data)
+
+    # Answer or ForumPost
+    type = $(this).attr("data-voteable_type")
+
+    if type == "Answer"
+      url = "/forum_posts/#{$(this).attr("data-post_id")}/answers/#{$(this).attr("data-answer_id")}/vote"
+    else if type == "ForumPost"
+      url = "/forum_posts/#{$(this).attr("data-post_id")}/vote"
+
+    if url
+        $.ajax
+          url: url
+          type: "POST"
+          data:
+            type: $(this).attr("data-type")
+            voteable_type: $(this).attr("data-voteable_type")
+          dataType: "json"
+          success: (data) =>
+            #change color of arrow
+            $(this).parent().find(".vote").removeClass("selected_arrow")
+            $(this).addClass("selected_arrow")
+            # change the number of votes displayed
+            if type == "Answer"
+                ($(this).parent().parent()).find(".vote_count_small").html("+" + data)
+            else if type == "ForumPost"
+                $(".vote_count").html("+" + data)
   )
+

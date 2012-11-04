@@ -1,12 +1,10 @@
 <% provide :title, @forum_post.title %>
 
-<%=  vote_forum_post_path %>
-
 <div class="row">
   <div class="span1">
    <div class="arrows">
-      <i class="icon-caret-up vote" id="up_vote" data-type="up" data-post_id=<%= @forum_post.id %>></i>
-      <i class="icon-caret-down vote" id="down_vote" data-type="down" data-post_id=<%= @forum_post.id %>></i>
+      <i class="icon-caret-up vote" id="up_vote" data-voteable_type="ForumPost" data-type="up" data-post_id=<%= @forum_post.id %>></i>
+      <i class="icon-caret-down vote" id="down_vote" data-voteable_type="ForumPost" data-type="down" data-post_id=<%= @forum_post.id %>></i>
    </div>
   </div>
 
@@ -27,14 +25,16 @@
     <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
 
     <% @forum_post.answers.each do |answer| %>
-        <div class="row well well-small no_left_margin">
+        <div class="row well well-small no_left_margin cool">
           <div class="span1">
-            <i class="icon-caret-up vote_small" data-type="up" data-post_id=<%= @forum_post.id %>></i>
-            <i class="icon-caret-down vote_small" data-type="down" data-post_id=<%= @forum_post.id %>></i>
+            <i class="icon-caret-up vote vote_small" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
+                    data-answer_id=<%= answer.id %>></i>
+            <i class="icon-caret-down vote vote_small" data-voteable_type="Answer" data-type="down" data-post_id=<%= @forum_post.id %>
+                    data-answer_id=<%= answer.id %>></i>
           </div>
           <div class="span7">
             <span class="info"><%= "#{answer.user.email} said:" %></span>
-            <span class="vote_count_small">+13</span>
+            <span class="vote_count_small"><%= "+#{answer.votes.count}" %></span>
             <div><%= answer.content %></div>
             <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
           </div>
