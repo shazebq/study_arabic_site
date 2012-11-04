@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     # 401 means an unauthorized request
     unless user_signed_in?
       respond_to do |format|
-        format.json { render(json: { status: :error }, status: 401) }
+        format.json { render(json: "unauthorized action", status: 401) }
       end
     end
   end
