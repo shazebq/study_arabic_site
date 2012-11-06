@@ -27,12 +27,17 @@ describe User do
           select "Arabic Centers", from: "forum_post_category_ids"
         end
 
-        it "should create a forum post" do
+        specify "clicking submit button should create a forum post" do
           expect { click_button "Submit" }.to change(ForumPost, :count)
           ForumPost.first.categories.count.should == 2
         end
 
-        it "should redirect to the forum post detail page" do
+        specify "the new forum post should be the current user's" do
+          click_button "Submit"
+          ForumPost.first.user.email.should == "shazebq@gmail.com"
+        end
+
+        specify "page should redirect to the forum post detail page" do
           click_button "Submit"
           current_path.should == forum_post_path(ForumPost.first)
         end
@@ -99,6 +104,19 @@ describe User do
     #    page.should have_selector("#greeting")
     #  end
     #end
+  end
+
+  describe "forum post index page" do
+
+    before do
+      visit forum_posts_path
+    end
+
+    describe "general content" do
+      it { should have_selector("title", text: "Arabic Forums") }
+    end
+
+
 
 
 

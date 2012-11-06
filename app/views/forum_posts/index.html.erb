@@ -1,0 +1,7 @@
+<% provide :title, "Arabic Forums" %>
+
+<ul>
+  <% @forum_posts.each do |forum_post| %>
+    <li><%= forum_post.title %></li>
+  <% end %>
+</ul>
