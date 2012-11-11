@@ -29,17 +29,17 @@ describe User do
 
         specify "clicking submit button should create a forum post" do
           expect { click_button "Submit" }.to change(ForumPost, :count)
-          ForumPost.first.categories.count.should == 2
+          ForumPost.find_by_title("living abroad in cairo").categories.count.should == 2
         end
 
         specify "the new forum post should be the current user's" do
           click_button "Submit"
-          ForumPost.first.user.email.should == "shazebq@gmail.com"
+          ForumPost.find_by_title("living abroad in cairo").user.email.should == "shazebq@gmail.com"
         end
 
         specify "page should redirect to the forum post detail page" do
           click_button "Submit"
-          current_path.should == forum_post_path(ForumPost.first)
+          current_path.should == forum_post_path(ForumPost.find_by_title("living abroad in cairo"))
         end
 
       end
