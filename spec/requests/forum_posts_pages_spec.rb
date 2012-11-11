@@ -3,6 +3,12 @@ include Devise::TestHelpers
 
 describe User do
   let!(:user) { FactoryGirl.create(:user)}
+  let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
+  let!(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
+                                   content: "what is the best arabic center in cairo?",
+                                   category_ids: [parent.id]) }
+  let!(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: post.id,
+                                     user_id: User.first.id) }
   subject { page }
 
   describe "new forum post page" do
@@ -77,12 +83,6 @@ describe User do
   end
 
   describe "forum post show page" do
-    let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
-    let!(:post) { FactoryGirl.create(:forum_post, title: "Arabic Centers in Cairo",
-                                     content: "what is the best arabic center in cairo?",
-                                     category_ids: [parent.id]) }
-    let!(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: post.id,
-                                      user_id: User.first.id) }
 
     before do
       @views = post.views_count
@@ -107,6 +107,7 @@ describe User do
   end
 
   describe "forum post index page" do
+    let(:forum_post) { FactoryGirl.create() }
 
     before do
       visit forum_posts_path
@@ -116,10 +117,11 @@ describe User do
       it { should have_selector("title", text: "Arabic Forums") }
     end
 
-
-
-
-
+    describe "forum post items" do
+      it { should have_content(post.title)}
+      it { should have_content(post.categories.first.name)}
+      it { should have_content(post.votes.count)}
+    end
   end
 
 

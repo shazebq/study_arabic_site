@@ -2,6 +2,6 @@
 
 <ul>
   <% @forum_posts.each do |forum_post| %>
-    <li><%= forum_post.title %></li>
+    <li><%= forum_post.title %> | Votes: <%= forum_post.votes.count %></li>
   <% end %>
 </ul>
