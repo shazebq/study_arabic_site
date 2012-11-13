@@ -1,7 +1,22 @@
 <% provide :title, "Arabic Forums" %>
 
-<ul>
-  <% @forum_posts.each do |forum_post| %>
-    <li><%= forum_post.title %> | Votes: <%= forum_post.votes.count %></li>
-  <% end %>
-</ul>
+  <div class="row">
+    <% @forum_posts.each do |forum_post| %>
+    <div class="span6">
+      <%= forum_post.title %>
+      <div>
+        <span class="label">study abroad</span>
+        <span class="label">grammar</span>
+      </div>
+    </div>
+    <div class="span3">
+      <% forum_post.votes.count %>
+      <div class="row">
+        <div class="span2">Votes</div>
+        <div class="span2">Views</div>
+        <div class="span2">Answers</div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
