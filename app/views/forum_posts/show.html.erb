@@ -1,7 +1,7 @@
 <% provide :title, @forum_post.title %>
 
 <div class="row">
-  <div class="span1">
+  <div class="vote_arrow_div">
    <div class="arrows">
       <i class="icon-caret-up vote" id="up_vote" data-voteable_type="ForumPost" data-type="up" data-post_id=<%= @forum_post.id %>></i>
       <i class="icon-caret-down vote" id="down_vote" data-voteable_type="ForumPost" data-type="down" data-post_id=<%= @forum_post.id %>></i>
@@ -26,7 +26,7 @@
 
     <% @forum_post.answers.each do |answer| %>
         <div class="row well well-small no_left_margin cool">
-          <div class="span1">
+          <div class="vote_arrow_div">
             <i class="icon-caret-up vote vote_small" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>
             <i class="icon-caret-down vote vote_small" data-voteable_type="Answer" data-type="down" data-post_id=<%= @forum_post.id %>

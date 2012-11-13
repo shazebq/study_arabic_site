@@ -52,15 +52,13 @@ h3
   font-size: 40px;
 }
 
-.span1
+.vote_arrow_div
 {
+  //@extend .span1;
   width: 20px;
   margin-right: -10px;
+  float: left;
 }
-
-
-
-
 
 .no_left_margin
 {
