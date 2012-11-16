@@ -10,18 +10,17 @@
       </div>
     </div>
     <div class="span3 post_row">
-      <% forum_post.votes.count %>
       <div class="row">
         <div class="avv_div">
           10<br />
           <span class="info">Views</span>
         </div>
         <div class="avv_div">
-          8<br />
+          <%= forum_post.votes.count %><br />
           <span class="info">Votes</span>
         </div>
         <div class="avv_div">
-          4<br />
+          <%=  forum_post.answers.count %><br />
           <span class="info">Answers</span>
         </div>
       </div>
