@@ -1,6 +1,7 @@
 class ForumPostsController < ApplicationController
   #after_filter :add_views, only: :show
   before_filter :require_sign_in, only: :new
+  before_filter :count_view, only: :show
 
   def index
     @forum_posts = ForumPost.order("created_at DESC")

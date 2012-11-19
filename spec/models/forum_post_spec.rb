@@ -12,6 +12,7 @@ describe ForumPost do
   it { should respond_to(:votes) }
   it { should respond_to(:answers)}
   it { should respond_to(:views)}
+  #comment
 
   describe "count_vote" do
     let(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }

@@ -1,15 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
   before_filter :check_if_signed_in, only: :vote
 
+  # ajax call to vote is directed to this action
   def vote
-    if params[:voteable_type] == "ForumPost"
-      item = ForumPost.find(params[:id])
-    elsif params[:voteable_type] == "Answer"
-      item = Answer.find(params[:id])
-    end
-
+    item = params[:voteable_type].constantize.find(params[:id])
     vote_count = item.count_vote(params[:id], params[:voteable_type], current_user.id, params[:type])
     respond_to do |format|
       format.json { render :json => vote_count }
@@ -25,5 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  def count_view
+    ForumPost.find(params[:id]).views.create(ip_address: request.remote_ip, session_id: session[:session_id])
+  end
 end

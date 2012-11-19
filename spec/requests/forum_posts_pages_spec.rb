@@ -97,6 +97,12 @@ describe User do
       end
     end
 
+    describe "visiting a post page" do
+      it "should increment the number of views" do
+        post.views.count.should == 1
+      end
+    end
+
     #describe "vote up for post", :js => true do
     #  it "is a test" do
     #    find("#up_vote").click
@@ -110,6 +116,8 @@ describe User do
     let(:forum_post) { FactoryGirl.create() }
 
     before do
+      FactoryGirl.create(:view, viewable_id: post.id, viewable_type: "ForumPost")
+      FactoryGirl.create(:view, viewable_id: post.id, viewable_type: "ForumPost", session_id: "abc345")
       visit forum_posts_path
     end
 
@@ -121,6 +129,7 @@ describe User do
       it { should have_content(post.title)}
       it { should have_content(post.categories.first.name)}
       it { should have_content(post.votes.count)}
+
     end
   end
 
