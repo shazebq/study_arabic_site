@@ -5,9 +5,11 @@
     <div class="span6 post_row">
       <%= forum_post.title %>
       <div>
-        <span class="label">study abroad</span>
-        <span class="label">grammar</span>
+        <% forum_post.categories.each do |category| %>
+          <span class="label"><%= category.name %></span>
+        <% end %>
       </div>
+      <hr></hr>
     </div>
     <div class="span3 post_row">
       <div class="row">
@@ -24,9 +26,9 @@
           <span class="info">Answers</span>
         </div>
       </div>
+      <hr></hr>
     </div>
     <% end %>
   </div>
-
 
 
