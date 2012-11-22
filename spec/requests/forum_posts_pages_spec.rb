@@ -113,8 +113,6 @@ describe User do
   end
 
   describe "forum post index page" do
-    let(:forum_post) { FactoryGirl.create() }
-
     before do
       FactoryGirl.create(:view, viewable_id: post.id, viewable_type: "ForumPost")
       FactoryGirl.create(:view, viewable_id: post.id, viewable_type: "ForumPost", session_id: "abc345")
@@ -130,7 +128,15 @@ describe User do
       it { should have_content(post.categories.first.name)}
       it { should have_content(post.votes.count)}
 
+      describe "forum post title" do
+        it "should be a link to the show page of the forum post" do
+          click_link post.title
+          current_path.should == forum_post_path(post)
+        end
+      end
     end
+
+
   end
 
 

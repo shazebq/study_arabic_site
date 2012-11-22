@@ -3,7 +3,7 @@
   <div class="row">
     <% @forum_posts.each do |forum_post| %>
     <div class="span6 post_row">
-      <%= forum_post.title %>
+      <%= link_to(forum_post.title, forum_post) %>
       <div>
         <% forum_post.categories.each do |category| %>
           <span class="label"><%= category.name %></span>
