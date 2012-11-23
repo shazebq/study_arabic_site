@@ -4,8 +4,6 @@ ArabicProject::Application.routes.draw do
 
   root(to: "categories#index")
 
-  #match "forum_posts/vote" => "forum_posts#vote"
-
   resources :categories, only: [:index]
 
   resources :forum_posts do

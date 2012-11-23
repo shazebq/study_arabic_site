@@ -103,6 +103,12 @@ describe User do
       end
     end
 
+    describe "posting an answer to a post" do
+      it "should create an answer when an answer is submitted" do
+        expect { click_button("Submit Answer") }.should change(Answer, :count).by(1)
+      end
+    end
+
     #describe "vote up for post", :js => true do
     #  it "is a test" do
     #    find("#up_vote").click
