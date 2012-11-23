@@ -23,6 +23,12 @@
     </div>
 
 
+    <h4>Answer this question:</h4>
+    <%= form_for([@forum_post, @answer]) do |f| %>
+        <%= f.text_area :content %>
+        <%= f.submit "Submit Answer" %>
+    <% end %>
+
 
     <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
 
@@ -35,12 +41,11 @@
                     data-answer_id=<%= answer.id %>></i>
           </div>
           <div class="span7">
-            <span class="info"><%= "#{answer.user.email} said:" %></span>
+
             <span class="vote_count_small"><%= "+#{answer.votes.count}" %></span>
             <div><%= answer.content %></div>
             <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
           </div>
-
         </div>
     <% end %>
 

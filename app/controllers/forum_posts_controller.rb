@@ -25,7 +25,7 @@ class ForumPostsController < ApplicationController
 
   def show
     @forum_post = ForumPost.find(params[:id])
-    @testing = @forum_post.answers.new
+    @answer = ForumPost.find(@forum_post.id).answers.new
   end
 
   def require_sign_in
