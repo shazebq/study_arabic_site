@@ -17,15 +17,19 @@ describe Answer do
 
   describe "answers array" do
     before :each do
+      #
       answer1.votes.create()
+      answer.votes.create()
+      answer2.votes.create()
     end
 
-    it "should order answers by number of votes descending" do
-      Answer.by_votes.first.should == answer1
-    end
+    #it "should order answers by number of votes descending" do
+    #  Answer.by_votes.first.should == answer1
+    #end
 
     it "should secondarily order answers by created_at descending" do
-      puts Answer.by_votes.all.count
+      puts Answer.by_votes.first.vote_count
+      #puts Answer.count
     end
   end
 
