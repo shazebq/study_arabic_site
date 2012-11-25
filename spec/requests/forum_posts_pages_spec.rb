@@ -109,6 +109,19 @@ describe User do
       end
     end
 
+    describe "clicking delete link of an answer" do
+      it "should delete the answer" do
+        expect { click_link("delete_answer#{answer.id}") }.should change(Answer, :count).by(-1)
+      end
+    end
+
+    describe "clicking update link of an answer" do
+      it "should redirect to the edit page of the answer" do
+        click_link("edit_answer#{answer.id}")
+        current_path.should == edit_forum_post_answer_path(post, answer)
+      end
+    end
+
     #describe "vote up for post", :js => true do
     #  it "is a test" do
     #    find("#up_vote").click
@@ -116,6 +129,8 @@ describe User do
     #    page.should have_selector("#greeting")
     #  end
     #end
+
+    #comment
   end
 
   describe "forum post index page" do

@@ -11,7 +11,7 @@ ArabicProject::Application.routes.draw do
       post "vote"
     end
 
-    resources :answers, only: [:create] do
+    resources :answers do
       member do
         post "vote"
       end

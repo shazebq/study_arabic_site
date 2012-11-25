@@ -24,15 +24,12 @@
 
 
     <h4>Answer this question:</h4>
-    <%= form_for([@forum_post, @answer]) do |f| %>
-        <%= f.text_area :content %>
-        <%= f.submit "Submit Answer" %>
-    <% end %>
+    <%= render "answers/form" %>
 
 
     <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
 
-    <% @forum_post.answers.each do |answer| %>
+    <% @forum_post.answers.by_votes.each do |answer| %>
         <div class="row well well-small no_left_margin">
           <div class="vote_arrow_div">
             <i class="icon-caret-up vote vote_small" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
@@ -43,14 +40,26 @@
           <div class="span7">
 
             <span class="vote_count_small"><%= "+#{answer.votes.count}" %></span>
-            <div><%= answer.content %></div>
+            <div>
+                <span class="info">Posted by <%= answer.user.email if answer.user %></span><br />
+                <%= answer.content %>
+            </div>
             <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
+
+            <div class="info">
+                <span><%= link_to("Delete", forum_post_answer_path(@forum_post, answer),
+                                               confirm: "Are you sure?", method: :delete, id: "delete_answer#{answer.id}") %>
+                </span>
+                <span><%= link_to("Edit", edit_forum_post_answer_path(@forum_post, answer),
+                              id: "edit_answer#{answer.id}") %>
+                </span>
+            </div>
+
+
           </div>
         </div>
     <% end %>
-
   </div>
-
 </div>
 
 
