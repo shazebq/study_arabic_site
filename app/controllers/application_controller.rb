@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
   def count_view
     ForumPost.find(params[:id]).views.create(ip_address: request.remote_ip, session_id: session[:session_id])
   end
+
+  def require_sign_in
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+
 end

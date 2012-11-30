@@ -27,10 +27,4 @@ class ForumPostsController < ApplicationController
     @forum_post = ForumPost.find(params[:id])
     @answer = ForumPost.find(@forum_post.id).answers.new
   end
-
-  def require_sign_in
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
-  end
 end

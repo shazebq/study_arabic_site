@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_filter :require_sign_in, only: :destroy
 
   def index
 

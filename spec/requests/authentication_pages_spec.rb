@@ -12,16 +12,12 @@ describe "Authentication Pages" do
         specify { current_path.should == new_user_session_path }
       end
 
+
+
     end
 
   end
 
-
-
-
-
-
-
-
-
 end
+
+# comment

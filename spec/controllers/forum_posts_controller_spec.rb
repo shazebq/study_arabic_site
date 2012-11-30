@@ -11,3 +11,6 @@ describe ForumPostsController do
     end
   end
 end
+
+
+
