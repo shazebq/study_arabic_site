@@ -11,9 +11,9 @@ describe User do
                                      user_id: User.first.id) }
   subject { page }
 
-  describe "new forum post page" do
-    create_categories
+  create_categories
 
+  describe "new forum post page" do
     before do
       sign_in
       visit new_forum_post_path
@@ -85,6 +85,7 @@ describe User do
   describe "forum post show page" do
 
     before do
+      sign_in()
       @views = post.views_count
       visit forum_post_path(post)
     end

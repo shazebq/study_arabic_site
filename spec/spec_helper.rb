@@ -42,28 +42,6 @@ Spork.prefork do
     #load "#{Rails.root}/db/seeds.rb"
   end
 
-  Spork.each_run do
-    # This code will be run each time you run your specs.
-    FactoryGirl.reload
-  end
-
-  def create_categories
-    let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
-    let!(:parent1) { FactoryGirl.create(:category, name: "Study Abroad") }
-    let!(:parent2) { FactoryGirl.create(:category, name: "Countries") }
-    let!(:child) { FactoryGirl.create(:category, name: "Books", category_parent_id: parent.id) }
-    let!(:child1) { FactoryGirl.create(:category, name: "Arabic Centers", category_parent_id: parent1.id) }
-    let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
-  end
-
-  def sign_in()
-    @user = FactoryGirl.create(:user, email: "shazebq@gmail.com", password: "cool123")
-    visit new_user_session_path
-    fill_in("user_email", with: @user.email)
-    fill_in("user_password", with: @user.password)
-    click_button("Sign in")
-  end
-
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
 # block.
@@ -94,3 +72,35 @@ Spork.prefork do
 # free to delete them.
 
 end
+
+Spork.each_run do
+  # This code will be run each time you run your specs.
+  FactoryGirl.reload
+end
+
+def create_categories
+  let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
+  let!(:parent1) { FactoryGirl.create(:category, name: "Study Abroad") }
+  let!(:parent2) { FactoryGirl.create(:category, name: "Countries") }
+  let!(:child) { FactoryGirl.create(:category, name: "Books", category_parent_id: parent.id) }
+  let!(:child1) { FactoryGirl.create(:category, name: "Arabic Centers", category_parent_id: parent1.id) }
+  let!(:child2) { FactoryGirl.create(:category, name: "Egypt", category_parent_id: parent2.id) }
+end
+
+def initialize_records
+  let!(:user) { FactoryGirl.create(:user)}
+  let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
+  let!(:forum_post) { FactoryGirl.create(:forum_post, category_ids: [parent.id]) }
+  let!(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: forum_post.id,
+                                     user_id: user.id) }
+end
+
+def sign_in()
+  @user = FactoryGirl.create(:user, email: "shazebq@gmail.com", password: "cool123")
+  visit new_user_session_path
+  fill_in("user_email", with: @user.email)
+  fill_in("user_password", with: @user.password)
+  click_button("Sign in")
+end
+
+

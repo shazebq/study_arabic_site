@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_filter :require_sign_in, only: :destroy
+  before_filter(:only => [:destroy]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def index
 

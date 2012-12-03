@@ -1,5 +1,7 @@
 require "spec_helper"
 
+include Devise::TestHelpers
+
 describe "Authentication" do
   create_categories
   let(:user) { FactoryGirl.create(:user)}
@@ -29,19 +31,5 @@ describe "Authentication" do
         end
       end
     end
-
-    describe "deleting or editing an answer" do
-      before :each do
-        sign_in()
-      end
-
-      context "when user is not signed in" do
-        before { delete(forum_post_answer_path(forum_post, answer)) }
-        specify { response.should redirect_to(new_user_session_path)}
-      end
-
-    end
-
   end
-
 end
