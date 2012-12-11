@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user_is_owner(controller, id)
-    resource = controller.singularize.capitalize.constantize.find(id)
+    resource = controller.classify.constantize.find(id)
     unless resource.user == current_user
       redirect_to new_user_session_path
     end

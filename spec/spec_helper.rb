@@ -90,12 +90,12 @@ end
 def initialize_records
   let!(:user) { FactoryGirl.create(:user)}
   let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
-  let!(:forum_post) { FactoryGirl.create(:forum_post, category_ids: [parent.id]) }
+  let!(:forum_post) { FactoryGirl.create(:forum_post, category_ids: [parent.id], user_id: user.id) }
   let!(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: forum_post.id,
                                      user_id: user.id) }
 end
 
-def sign_in()
+def sign_in_user()
   @user = FactoryGirl.create(:user, email: "shazebq@gmail.com", password: "cool123")
   visit new_user_session_path
   fill_in("user_email", with: @user.email)

@@ -1,6 +1,7 @@
 class ForumPostsController < ApplicationController
   #after_filter :add_views, only: :show
-  before_filter :require_sign_in, only: :new
+  before_filter :require_sign_in, only: [:new, :update, :destroy]
+  before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
 
   def index
@@ -27,4 +28,21 @@ class ForumPostsController < ApplicationController
     @forum_post = ForumPost.find(params[:id])
     @answer = ForumPost.find(@forum_post.id).answers.new
   end
+
+  def update
+    @forum_post = ForumPost.find(params[:id])
+    @forum_post.update_attributes(params[:forum_post])
+    redirect_to @forum_post
+  end
+
+  def destroy
+    @forum_post = ForumPost.find(params[:id]).destroy
+    redirect_to forum_posts_path()
+  end
+
+
+
+
 end
+
+# commentss

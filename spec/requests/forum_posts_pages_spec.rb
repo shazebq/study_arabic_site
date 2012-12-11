@@ -1,6 +1,8 @@
 require 'spec_helper'
 include Devise::TestHelpers
 
+#comments
+
 describe User do
   let!(:user) { FactoryGirl.create(:user)}
   let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
@@ -15,7 +17,7 @@ describe User do
 
   describe "new forum post page" do
     before do
-      sign_in
+      sign_in_user
       visit new_forum_post_path
     end
 
@@ -85,8 +87,10 @@ describe User do
   describe "forum post show page" do
 
     before do
-      sign_in()
+      sign_in_user
       @views = post.views_count
+      @answer1 = FactoryGirl.create(:answer, content: "Another answer to the post", forum_post_id: post.id,
+                                   user_id: User.find_by_email("shazebq@gmail.com").id)
       visit forum_post_path(post)
     end
 
@@ -96,6 +100,29 @@ describe User do
       it "displays answers" do
         page.should have_content(answer.content)
       end
+
+      describe "delete links" do
+        it "should not appear for answers that do not belong to the logged in user" do
+          page.should_not have_selector("#delete_answer#{answer.id}")
+        end
+
+        it "should appear for answers that do belong to the logged in user" do
+          page.should have_selector("#delete_answer#{@answer1.id}")
+        end
+
+      end
+
+      describe "edit links" do
+        it "should not appear for answers that do not belong to the logged in user" do
+          page.should_not have_selector("#edit_answer#{answer.id}")
+        end
+
+        it "should appear for answers that do belong to the logged in user" do
+          page.should have_selector("#edit_answer#{@answer1.id}")
+        end
+      end
+
+
     end
 
     describe "visiting a post page" do
@@ -106,20 +133,20 @@ describe User do
 
     describe "posting an answer to a post" do
       it "should create an answer when an answer is submitted" do
-        expect { click_button("Submit Answer") }.should change(Answer, :count).by(1)
+        expect { click_button("Submit Answer") }.to change(Answer, :count).by(1)
       end
     end
 
     describe "clicking delete link of an answer" do
       it "should delete the answer" do
-        expect { click_link("delete_answer#{answer.id}") }.should change(Answer, :count).by(-1)
+        expect { click_link("delete_answer#{@answer1.id}") }.to change(Answer, :count).by(-1)
       end
     end
 
     describe "clicking update link of an answer" do
       it "should redirect to the edit page of the answer" do
-        click_link("edit_answer#{answer.id}")
-        current_path.should == edit_forum_post_answer_path(post, answer)
+        click_link("edit_answer#{@answer1.id}")
+        current_path.should == edit_forum_post_answer_path(post, @answer1)
       end
     end
 

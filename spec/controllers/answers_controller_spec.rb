@@ -4,11 +4,16 @@ describe AnswersController do
   initialize_records()
 
   describe "Authorization" do
-    describe "deleting an answer" do
+    describe "deleting and update an answer" do
 
       context "when user is not signed in" do
         it "should not delete the answer" do
           delete :destroy, id: answer.id, forum_post_id: forum_post.id
+          response.should redirect_to(new_user_session_path)
+        end
+
+        it "should not update an answer" do
+          put :update, id: answer.id, forum_post_id: forum_post.id
           response.should redirect_to(new_user_session_path)
         end
       end
@@ -18,8 +23,14 @@ describe AnswersController do
           @different_user = FactoryGirl.create(:user, email: "bob@gmail.com")
           sign_in(@different_user)
         end
+
         it "should not delete the answer" do
           delete :destroy, id: answer.id, forum_post_id: forum_post.id
+          response.should redirect_to(new_user_session_path)
+        end
+
+        it "should not delete the answer" do
+          put :update, id: answer.id, forum_post_id: forum_post.id
           response.should redirect_to(new_user_session_path)
         end
       end
@@ -37,4 +48,4 @@ describe AnswersController do
   end
 end
 
-# comment
+# comments

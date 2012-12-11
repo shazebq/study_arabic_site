@@ -47,12 +47,14 @@
             <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
 
             <div class="info">
+              <% if current_user == answer.user %>
                 <span><%= link_to("Delete", forum_post_answer_path(@forum_post, answer),
-                                               confirm: "Are you sure?", method: :delete, id: "delete_answer#{answer.id}") %>
+                                               data: {confirm: "Are you sure?"}, method: :delete, id: "delete_answer#{answer.id}") %>
                 </span>
                 <span><%= link_to("Edit", edit_forum_post_answer_path(@forum_post, answer),
                               id: "edit_answer#{answer.id}") %>
                 </span>
+              <% end %>
             </div>
 
 
@@ -61,7 +63,6 @@
     <% end %>
   </div>
 </div>
-
 
 <% content_for :side_bar do %>
   <div>

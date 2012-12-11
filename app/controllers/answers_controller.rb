@@ -1,12 +1,13 @@
 class AnswersController < ApplicationController
-  before_filter :require_sign_in, only: :destroy
-  before_filter(:only => [:destroy]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
+  before_filter :require_sign_in, only: [:destroy, :update]
+  before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def index
 
   end
 
   def create
+    params[:answer][:user_id] = current_user.id
     @forum_post = ForumPost.find(params[:forum_post_id])
     @answer = @forum_post.answers.create(params[:answer])
     redirect_to forum_post_path(@forum_post)
