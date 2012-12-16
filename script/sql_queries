@@ -1,0 +1,11 @@
+USE arabic_project_test;
+
+SELECT * FROM categories
+
+SELECT * FROM forum_posts
+
+SELECT * FROM users
+
+# need this in order to deletes
+SET SQL_SAFE_UPDATES=0;
+DELETE FROM forum_posts
