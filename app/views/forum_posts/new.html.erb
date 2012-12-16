@@ -1,44 +1,5 @@
 <% provide :title, "Post a Question" %>
 
-<i class="icon-camera-retro"></i>
-
-<%= form_for(@forum_post) do |f| %>
-    <% if @forum_post.errors.any? %>
-        <div id="error_explanation" class="alert alert-error">
-          <% pluralize(@forum_post.errors.count, "error") %>
-          Your post could not be submitted.
-          <ul>
-            <% @forum_post.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <div class="field">
-        <%= f.label :title  %>
-        <%= f.text_field :title %>
-    </div>
-
-    <div class="field">
-        <%= f.label "Category" %>
-        <select id="forum_post_category_ids" name="forum_post[category_ids][]" data-placeholder="Categories"
-                class="chzn-select" multiple tabindex="6"  multiple="multiple">
-          <option value=""></option>
-          <%= render :partial => 'chosen_categories', locals: {:category_name => "Arabic Language", :label => "Arabic Language" } %>
-          <%= render :partial => 'chosen_categories', locals: {:category_name => "Study Abroad" , :label => "Study Abroad (general)" } %>
-          <%= render :partial => 'chosen_categories', locals: {:category_name => "Countries" , :label => "Study Abroad (country specific)" } %>
-        </select>
-    </div>
-
-    <div class="field">
-      <%= f.label "Question"  %>
-      <%= f.text_area :content %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit("Submit") %>
-    </div>
-<% end %>
+<%= render :partial => 'form', locals: { submit_text: "Submit" } %>
 
 

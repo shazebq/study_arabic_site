@@ -29,6 +29,10 @@ class ForumPostsController < ApplicationController
     @answer = ForumPost.find(@forum_post.id).answers.new
   end
 
+  def edit
+    @forum_post = ForumPost.find(params[:id])
+  end
+
   def update
     @forum_post = ForumPost.find(params[:id])
     @forum_post.update_attributes(params[:forum_post])
@@ -45,4 +49,4 @@ class ForumPostsController < ApplicationController
 
 end
 
-# commentss
+# commentsss
