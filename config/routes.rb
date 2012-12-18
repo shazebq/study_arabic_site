@@ -4,8 +4,6 @@ ArabicProject::Application.routes.draw do
 
   root(to: "categories#index")
 
-  resources :categories, only: [:index]
-
   resources :forum_posts do
     member do
       post "vote"
@@ -16,10 +14,11 @@ ArabicProject::Application.routes.draw do
         post "vote"
       end
     end
-
   end
 
-
+  resources :categories, only: [:index] do
+    resources :forum_posts
+  end
 
 
   # The priority is based upon order of creation:

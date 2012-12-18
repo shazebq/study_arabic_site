@@ -1,4 +1,4 @@
-USE arabic_project_test;
+USE arabic_project_dev;
 
 SELECT * FROM categories
 

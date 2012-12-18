@@ -5,7 +5,21 @@ class ForumPostsController < ApplicationController
   before_filter :count_view, only: :show
 
   def index
-    @forum_posts = ForumPost.order("created_at DESC")
+    if params[:category_id]
+      @category = CategoryParent.find(params[:category_id])
+        if @category.categories.any?
+          @forum_posts = @category.collect_all_posts
+        else
+          @forum_posts = @category.forum_posts
+        end
+    else
+      @forum_posts = ForumPost.order("created_at DESC")
+    end
+
+    #id = 50
+    #@forum_posts = ParentCategory.find(id).categories.select do |category|
+    #  category.forum_posts
+    #end
   end
 
   def new
