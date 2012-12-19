@@ -5,6 +5,7 @@ class ForumPostsController < ApplicationController
   before_filter :count_view, only: :show
 
   def index
+    #order_by = params[:order_by] || "created_at DESC"
     if params[:category_id]
       @category = CategoryParent.find(params[:category_id])
         if @category.categories.any?
@@ -15,11 +16,6 @@ class ForumPostsController < ApplicationController
     else
       @forum_posts = ForumPost.order("created_at DESC")
     end
-
-    #id = 50
-    #@forum_posts = ParentCategory.find(id).categories.select do |category|
-    #  category.forum_posts
-    #end
   end
 
   def new
@@ -57,9 +53,6 @@ class ForumPostsController < ApplicationController
     @forum_post = ForumPost.find(params[:id]).destroy
     redirect_to forum_posts_path()
   end
-
-
-
 
 end
 

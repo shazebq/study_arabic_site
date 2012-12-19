@@ -17,7 +17,4 @@ describe CategoryParent do
       @category_parent.collect_all_posts.should == [@forum_post1, @forum_post2]
     end
   end
-
-
-
 end
