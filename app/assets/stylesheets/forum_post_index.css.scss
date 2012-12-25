@@ -15,3 +15,17 @@ hr
   margin-top: 15px;
   margin-bottom: 0px;
 }
+
+// pills for filtering index
+
+.custom .active a,
+.custom .active a:hover
+{
+  background-color: #6A0AB7;
+}
+
+.custom .not_active a:hover
+{
+  background-color: #DAADFF;
+  color: white;
+}

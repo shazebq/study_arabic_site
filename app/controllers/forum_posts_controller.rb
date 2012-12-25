@@ -5,16 +5,18 @@ class ForumPostsController < ApplicationController
   before_filter :count_view, only: :show
 
   def index
-    #order_by = params[:order_by] || "created_at DESC"
+    @scopes = ["most_recent", "most_views", "most_votes", "most_answers", "unanswered"]
+    @current_scope = params[:order_by] || "most_recent"  # default the scope to most_recent
     if params[:category_id]
       @category = CategoryParent.find(params[:category_id])
         if @category.categories.any?
-          @forum_posts = @category.collect_all_posts
+          @forum_posts = @category.collect_all_posts.send(@current_scope)  # TODO: make it an active record relation
         else
-          @forum_posts = @category.forum_posts
+          @forum_posts = @category.forum_posts.send(@current_scope)
         end
     else
-      @forum_posts = ForumPost.order("created_at DESC")
+      # call appropriate scope here
+      @forum_posts = ForumPost.send(@current_scope)
     end
   end
 
@@ -53,7 +55,6 @@ class ForumPostsController < ApplicationController
     @forum_post = ForumPost.find(params[:id]).destroy
     redirect_to forum_posts_path()
   end
-
 end
 
 # commentsss

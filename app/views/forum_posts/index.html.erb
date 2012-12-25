@@ -1,5 +1,7 @@
 <% provide :title, "Arabic Forums" %>
 
+<%= render :partial => 'filter_links' %>
+
   <div class="row">
     <% @forum_posts.each do |forum_post| %>
     <div class="span6 post_row">
