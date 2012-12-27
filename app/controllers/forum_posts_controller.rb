@@ -5,7 +5,7 @@ class ForumPostsController < ApplicationController
   before_filter :count_view, only: :show
 
   def index
-    @scopes = ["most_recent", "most_views", "most_votes", "most_answers", "unanswered"]
+    @scopes = ForumPost::SCOPES
     @current_scope = params[:order_by] || "most_recent"  # default the scope to most_recent
     if params[:category_id]
       @category = CategoryParent.find(params[:category_id])

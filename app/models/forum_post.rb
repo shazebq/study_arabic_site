@@ -21,6 +21,8 @@ class ForumPost < ActiveRecord::Base
   scope :most_answers, order("answers_count DESC, created_at DESC")
   scope :unanswered, where("answers_count = ?", 0).order("created_at DESC")
 
+  SCOPES = ["most_recent", "most_views", "most_votes", "most_answers", "unanswered"]
+
   def init
     self.views_count ||= 0
     self.votes_count ||= 0
