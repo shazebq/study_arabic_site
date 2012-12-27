@@ -10,7 +10,7 @@ class ForumPostsController < ApplicationController
     if params[:category_id]
       @category = CategoryParent.find(params[:category_id])
         if @category.categories.any?
-          @forum_posts = @category.collect_all_posts.send(@current_scope)  # TODO: make it an active record relation
+          @forum_posts = @category.collect_all_posts.send(@current_scope)
         else
           @forum_posts = @category.forum_posts.send(@current_scope)
         end
@@ -18,6 +18,8 @@ class ForumPostsController < ApplicationController
       # call appropriate scope here
       @forum_posts = ForumPost.send(@current_scope)
     end
+
+
   end
 
   def new
