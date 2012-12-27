@@ -1,13 +1,11 @@
 <ul class="nav nav-pills custom">
-  <% if @category %>
-      <% @scopes.each do |scope| %>
-          <li class="<%= @current_scope == scope ? 'active' : 'not_active' %>">
-            <%= link_to(scope_name_to_link_text(scope), category_forum_posts_path(@category, order_by: scope)) %></li>
+  <% @scopes.each do |scope| %>
+      <li class="<%= @current_scope == scope ? 'active' : 'not_active' %>">
+      <% if @category %>
+        <%= link_to(scope_name_to_link_text(scope), category_forum_posts_path(@category, order_by: scope)) %>
+      <% else %>
+        <%= link_to(scope_name_to_link_text(scope), forum_posts_path(order_by: scope)) %>
       <% end %>
-  <% else %>
-      <% @scopes.each do |scope| %>
-          <li class="<%= @current_scope == scope ? 'active' : 'not_active' %>">
-            <%= link_to(scope_name_to_link_text(scope), forum_posts_path(order_by: scope)) %></li>
-      <% end %>
+      </li>
   <% end %>
 </ul>
