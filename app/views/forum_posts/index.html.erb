@@ -33,5 +33,21 @@
     <% end %>
   </div>
 
+<% content_for(:side_bar) do %>
+    <%= render :partial => 'categories/category_list', locals: { :category_title => "Arabic Language",
+                                                      :parent_name => "Arabic Language" } %>
+
+    <br />
+    <%= render :partial => 'categories/category_list', locals: { :category_title => "Study Abroad (General)",
+                                                      :parent_name => "Study Abroad" } %>
+
+    <br />
+    <%= render :partial => 'categories/category_list', locals: { :category_title => "Study Abroad (Country Specific)",
+                                                      :parent_name => "Countries" } %>
+
+
+
+<% end %>
+
 
 <%= params %>

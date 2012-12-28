@@ -28,7 +28,4 @@ class ForumPost < ActiveRecord::Base
     self.views_count ||= 0
     self.votes_count ||= 0
   end
-
-
-
 end
