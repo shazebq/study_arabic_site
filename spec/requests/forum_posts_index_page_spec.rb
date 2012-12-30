@@ -109,6 +109,20 @@ describe "forum post index page" do
     it "should have links to each category" do
       page.should(have_selector("a", text: "Arabic Centers"))
     end
+
+    describe "clicking a on a forum category" do
+      it "should redirect the forum post index page with categories that belong to clicked category" do
+        click_link("Arabic Centers")
+        current_path.should == category_forum_posts_path(Category.find_by_name("Arabic Centers"))
+      end
+
+      it "should ensure that the currently selected filter option remains intact" do
+        click_link("Most Votes")
+        click_link("Arabic Centers")
+        uri = URI.parse(current_url)
+        "#{uri.path}?#{uri.query}".should == category_forum_posts_path(Category.find_by_name("Arabic Centers"), :order_by => 'most_votes')
+      end
+    end
   end
 end
 
