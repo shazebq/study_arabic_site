@@ -1,10 +1,16 @@
 <ul class="nav nav-pills nav-stacked">
-  <li class="active">
-    <a href="#">Home</a>
-  </li>
-  <!--<p><%= category_title %></p>-->
+  <% li_class = @category.id == CategoryParent.find_by_name(parent_name).id ? 'active' : 'not_active' if @category %>
+  <li class="<%= li_class %>"><%= link_to(category_title, category_forum_posts_path(CategoryParent.find_by_name(parent_name), order_by: @current_scope)) %></li>
+
+
   <% CategoryParent.find_by_name(parent_name).categories.each do |cat| %>
-      <li><%= link_to(cat.name, category_forum_posts_path(cat, order_by: @current_scope))   %></li>
+      <!--check which category is selected and make its li active-->
+      <% li_class = @category.id == cat.id ? 'active' : 'not_active' if @category %>
+      <li class="<%= li_class %>"><%= link_to(cat.name, category_forum_posts_path(cat, order_by: @current_scope))   %></li>
   <% end %>
 </ul>
+
+
+
+
 
