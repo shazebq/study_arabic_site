@@ -35,19 +35,20 @@
 
 <% content_for(:side_bar) do %>
     <h4>Forum Categories</h4>
+    <!--link to all categories-->
+    <ul class="nav nav-pills nav-stacked">
+      <% li_class1 = "active" unless @category %>
+      <li class="<%= li_class1 %> parent_links"><%= link_to("All Categories", forum_posts_path(order_by: @current_scope)) %></li>
+    </ul>
 
     <%= render :partial => 'categories/category_pills', locals: { :category_title => "Arabic Language",
                                                       :parent_name => "Arabic Language" } %>
 
-    <br />
     <%= render :partial => 'categories/category_pills', locals: { :category_title => "Study Abroad (General)",
                                                       :parent_name => "Study Abroad" } %>
 
-    <br />
     <%= render :partial => 'categories/category_pills', locals: { :category_title => "Study Abroad (Country Specific)",
                                                       :parent_name => "Countries" } %>
-
-
 
 <% end %>
 

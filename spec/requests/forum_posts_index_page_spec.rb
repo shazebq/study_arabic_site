@@ -110,6 +110,10 @@ describe "forum post index page" do
       page.should(have_selector("a", text: "Arabic Centers"))
     end
 
+    it "should have the all categories link as part of the active class by default" do
+      page.should(have_selector(".active", text: "All Categories"))
+    end
+
     describe "clicking a on a forum category" do
       it "should redirect the forum post index page with categories that belong to clicked category" do
         click_link("Arabic Centers")
