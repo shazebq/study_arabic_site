@@ -234,6 +234,7 @@ DEPENDENCIES
   libnotify (= 0.5.9)
   listen!
   mysql2
+  nokogiri
   rails (= 3.2.6)
   rb-inotify (= 0.8.8)
   rspec

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218053704) do
+ActiveRecord::Schema.define(:version => 20130101053446) do
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(:version => 20121218053704) do
     t.integer  "category_parent_id"
   end
 
-  create_table "categories_forum_posts", :force => true do |t|
+  create_table "categories_categorizables", :force => true do |t|
     t.integer  "category_id"
-    t.integer  "forum_post_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "categorizable_id"
+    t.string   "categorizable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "forum_posts", :force => true do |t|
@@ -52,6 +53,18 @@ ActiveRecord::Schema.define(:version => 20121218053704) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.integer  "answers_count", :default => 0
+  end
+
+  create_table "resources", :force => true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "downloads_count"
+    t.integer  "views_count"
+    t.integer  "votes_count"
+    t.integer  "difficulty_level"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|

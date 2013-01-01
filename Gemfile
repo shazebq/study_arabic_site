@@ -28,6 +28,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'mysql2'
 gem 'devise', '~> 2.1.2'
+gem 'nokogiri'
 
 
 group :development, :test do

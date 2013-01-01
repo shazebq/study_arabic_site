@@ -4,8 +4,10 @@ class ForumPost < ActiveRecord::Base
   after_initialize :init
 
   belongs_to :user
-  has_many :categories_forum_posts
-  has_many :categories, through: :categories_forum_posts
+
+  has_many :categories_categorizables, as: :categorizable, dependent: :destroy
+  has_many :categories, through: :categories_categorizables
+
   has_many :votes, as: :voteable
   has_many :views, as: :viewable
   has_many :answers
