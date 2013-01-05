@@ -8,8 +8,4 @@ class Category < ActiveRecord::Base
 
   belongs_to :category_parent
 
-  #scope :arabic_language, where("category_parent_id = ?", Category.find_by_name("Arabic Language").id)
-  #scope :study_abroad, where("category_parent_id = ?", Category.find_by_name("Study Abroad").id)
-  #scope :countries, where("category_parent_id = ?", Category.find_by_name("Countries").id)
-
 end

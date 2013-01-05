@@ -24,7 +24,7 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   watch('spec/spec_helper.rb')  { "spec" }
 
   # Rails example
-  # recall m is equal to what is matchd in parenthesis
+  # recall m is equal to what is matched in parenthesis
 
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
@@ -36,5 +36,12 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
   # Capybara request specs
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
+  #watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
+
+  # view changes should trigger the specific spec associated with the controller
+  watch(%r{^app/views/(.+)/(.+)\.html\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_#{m[2]}_page_spec.rb" }
+
+
+
+
 end

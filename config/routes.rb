@@ -16,8 +16,11 @@ ArabicProject::Application.routes.draw do
     end
   end
 
+  resources :resources
+
   resources :categories, only: [:index] do
     resources :forum_posts
+    resources :resources
   end
 
 

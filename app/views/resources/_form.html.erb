@@ -1,0 +1,43 @@
+<%= form_for(@resource, :html => { :multipart => true }) do |f| %>
+    <% if @resource.errors.any? %>
+        <div id="error_explanation" class="alert alert-error">
+          <% pluralize(@resource.errors.count, "error") %>
+          Your resource could not be submitted.
+          <ul>
+            <% @resource.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title  %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Category" %>
+      <select id="resource_category_ids" name="resource[category_ids][]" data-placeholder="Categories"
+              class="chzn-select" multiple tabindex="6"  multiple="multiple">
+        <option value=""></option>
+        <%= render :partial => 'forum_posts/chosen_categories', locals: {:category_name => "Arabic Language", :label => "" } %>
+      </select>
+    </div>
+
+    <div class="field">
+      <%= f.label :description  %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Upload Resource" %>
+      <%= f.file_field :resource_file %>
+    </div>
+
+    <br />
+
+    <div class="actions">
+      <%= f.submit("Submit") %>
+    </div>
+<% end %>

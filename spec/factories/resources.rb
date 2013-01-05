@@ -10,4 +10,10 @@ FactoryGirl.define do
     difficulty_level 1
     user_id 1
   end
+
+  factory :resource_with_categories_categorizable do
+    after_create do |forum_post|
+      FactoryGirl.create(:category, :resource => resource)
+    end
+  end
 end

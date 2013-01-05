@@ -29,6 +29,7 @@ gem 'bootstrap-will_paginate'
 gem 'mysql2'
 gem 'devise', '~> 2.1.2'
 gem 'nokogiri'
+gem 'paperclip'
 
 
 group :development, :test do

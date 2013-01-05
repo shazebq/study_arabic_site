@@ -6,27 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-categories_all = ["Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
-                  "United States", "United Kingdom", "Other Country",  "Arabic Centers",
-                  "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", "Housing",
-                  "Books", "Universities", "Study Advice", "Tutoring", "Grammar", "Vocabulary", "Morphology",
-                  "Countries", "Study Abroad", "Arabic Language"]
+# seeds for whenever dev db data is recreated or pushing to production for the first time
 
-categories_all.each { |category_name| Category.create(name: category_name)}
+#category_set = [ [ "Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
+#                    "United States", "United Kingdom", "Other Countries" ],
+
+#                 [ "Arabic Centers", "Traveling Abroad", "Sightseeing", "Find Roommates", "Getting Around", "Housing" ],
+
+#                 [ "Books", "Universities", "Study Advice", "Tutoring", "Grammar", "Vocabulary", "Morphology",
+#                   "Verbs", "Exercises", "Rhetoric", "Poetry", "Classical Arabic", "Islamic Texts"] ]
+#
+#parents = [ "Countries", "Study Abroad", "Arabic Language" ]
+#
+#count = 0
+#category_set.each do |set|
+#  parent = parents[count]
+#  set.each do |name|
+#    Category.create(name: name, category_parent_id: Category.find_by_name(parent).id)
+#  end
+#  count += 1
+#end
 
 
-category_set = [ [ "Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
-                    "United States", "United Kingdom", "Other Country" ],
-                 [ "Arabic Centers", "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", "Housing" ],
-                 [ "Books", "Universities", "Study Advice", "Tutoring", "Grammar", "Vocabulary", "Morphology"] ]
-
-parents = [ "Countries", "Study Abroad", "Arabic Language" ]
-
-count = 0
-category_set.each do |set|
-  parent = parents[count]
-  set.each do |name|
-    Category.find_by_name(name).update_attributes(category_parent_id: Category.find_by_name(parent).id)
-  end
-  count += 1
-end

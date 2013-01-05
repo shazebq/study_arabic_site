@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101053446) do
+ActiveRecord::Schema.define(:version => 20130101224254) do
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -63,8 +63,12 @@ ActiveRecord::Schema.define(:version => 20130101053446) do
     t.integer  "votes_count"
     t.integer  "difficulty_level"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "resource_file_file_name"
+    t.string   "resource_file_content_type"
+    t.integer  "resource_file_file_size"
+    t.datetime "resource_file_updated_at"
   end
 
   create_table "users", :force => true do |t|
