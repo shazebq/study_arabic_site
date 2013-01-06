@@ -6,10 +6,14 @@
 .sidebar
 {
   margin-left: 0px;
-  padding-left: 19px;
-  border-left: 1px solid #eee;
+  padding-left: 9px;
+  border-left: 1px solid #cccccc;
 }
 
+.main_content
+{
+  padding-right: 9px;
+}
 
 textarea, input[type=text], select
 {
@@ -19,12 +23,6 @@ textarea, input[type=text], select
 textarea
 {
   height: 300px;
-}
-
-.subtitle
-{
-  font-size: 80%;
-  color: #999999;
 }
 
 .number
