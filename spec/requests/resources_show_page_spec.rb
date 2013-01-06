@@ -3,7 +3,8 @@ include Devise::TestHelpers
 
 describe "show resource page" do
   let(:category) { FactoryGirl.create(:category) }
-  let(:resource) { FactoryGirl.create(:resource, title: "A new resource", category_ids: [category.id])}
+  let(:resource) { FactoryGirl.create(:resource, title: "Colors",
+                                      description: "colors vocabulary worksheet", category_ids: [category.id])}
 
   before do
     visit resource_path(resource)
@@ -13,6 +14,15 @@ describe "show resource page" do
 
   describe "general contents" do
     it { should have_selector("title", text: resource.title) }
+    it { should have_selector("h3", text: resource.title)}
+    it { should have_content("colors vocabulary worksheet")}
+  end
+
+
+  describe "edit and delete links" do
+    #it { should have_selector("a", text: "edit")}
+    #
+    #it { should have_selector("a", text: "delete")}
   end
 end
 

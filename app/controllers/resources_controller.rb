@@ -23,6 +23,7 @@ class ResourcesController < ApplicationController
 
   def update
 
+
   end
 
   def destroy

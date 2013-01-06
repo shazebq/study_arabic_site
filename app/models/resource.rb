@@ -7,10 +7,13 @@ class Resource < ActiveRecord::Base
   has_many :categories, through: :categories_categorizables
   belongs_to :user
   # need this for paper clip
-  has_attached_file :resource_file
+  has_attached_file :resource_file, :styles => { :thumb => ["550x425", :png], :medium => ["1100x8500", :png] }
 
   validates :title, :description, :category_ids, presence: true
 
   validates :title, length: { maximum: 65 }
-  validates :description, length: {maximum: 5000 }
+  validates :description, length: { maximum: 5000 }
 end
+
+
+# validates_attachment_content_type :uploaded_file, :content_type =>['application/pdf']
