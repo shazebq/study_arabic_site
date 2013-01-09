@@ -2,7 +2,7 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe "show resource page" do
-  let(:category) { FactoryGirl.create(:category) }
+  let(:category) { FactoryGirl.create(:category, name: "Vocabulary") }
   let(:resource) { FactoryGirl.create(:resource, title: "Colors",
                                       description: "colors vocabulary worksheet", category_ids: [category.id])}
 
@@ -16,6 +16,10 @@ describe "show resource page" do
     it { should have_selector("title", text: resource.title) }
     it { should have_selector("h3", text: resource.title)}
     it { should have_content("colors vocabulary worksheet")}
+  end
+
+  describe "side bar" do
+    it { should have_content("Vocabulary")}   # category name
   end
 
 

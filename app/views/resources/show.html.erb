@@ -26,13 +26,29 @@
 </div>
 
 <% content_for(:side_bar) do %>
-    <ul>
-      <li>Category</li>
-      <li>Posted by</li>
-      <li>Views</li>
-      <li>Votes</li>
-      <li>Downloads</li>
-    </ul>
+    <span class="subtitle_large">Categories</span><br />
+    <% @resource.categories.each do |category| %>
+        <span class="label"><%= category.name %></span><br />
+    <% end %>
+
+    <br />
+
+    <span class="subtitle_large">Posted By</span><br />
+
+    <div class="row">
+      <div class="span1">
+        <br /><i class='icon-sign-blank' style="font-size: 75px; color: #f5f5dc;"></i>
+      </div>
+      <div class="span1">
+        <span class="gray_bold"><%= @resource.user.email.split("@")[0] %></span><br />
+        <span class="general_label reputation"><i class="icon-plus"></i> 234</span>
+      </div>
+    </div>
+
+      <!--<li>Posted by</li>-->
+      <!--<li>Views</li>-->
+      <!--<li>Votes</li>-->
+      <!--<li>Downloads</li>-->
 <% end %>
 
 
