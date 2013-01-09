@@ -4,10 +4,16 @@
 
 <div class="row">
   <div class="span3 preview_div">
-    <div id="resource_thumbnail">
-      <%= link_to(image_tag(@resource.resource_file.url(:thumb)), @resource.resource_file.url(:medium)) %>
-    </div>
-    <div class="centered"><%= link_to("Preview", @resource.resource_file.url(:medium)) %></div>
+    <% if @resource.resource_file.content_type == "application/msword" || @resource.resource_file.content_type == "text/plain" %>
+        <div id="resource_thumbnail">
+          <div style="height: 250px; background-color: #d4d4d4;"></div>
+        </div>
+    <% else %>
+        <div id="resource_thumbnail">
+          <%= link_to(image_tag(@resource.resource_file.url(:thumb)), @resource.resource_file.url(:medium)) %>
+        </div>
+        <div class="centered"><%= link_to("Preview", @resource.resource_file.url(:medium)) %></div>
+    <% end %>
   </div>
 
   <div class="span6">

@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   before_filter :require_sign_in, only: [:new, :update, :destroy]
+  #before_filter :check_file_type, only: [:new, :update]
 
   def index
     @resources = Resource.all
@@ -33,6 +34,11 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find(params[:id])
   end
+
+  #def check_file_type
+  #  return render text: params
+  #
+  #end
 
 
 end
