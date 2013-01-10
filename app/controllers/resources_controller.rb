@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   before_filter :require_sign_in, only: [:new, :update, :destroy]
-  #before_filter :check_file_type, only: [:new, :update]
+  before_filter :count_view, only: :show
 
   def index
     @resources = Resource.all

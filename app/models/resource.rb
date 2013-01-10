@@ -5,7 +5,12 @@ class Resource < ActiveRecord::Base
   has_many :categories_categorizables, as: :categorizable, dependent: :destroy
   # just like regular join table
   has_many :categories, through: :categories_categorizables
+
+  has_many :votes, as: :voteable
+  has_many :views, as: :viewable
+
   belongs_to :user
+
   # need this for paper clip
   #has_attached_file :resource_file #, :styles => { :thumb => ["550x425", :png], :medium => ["1100x8500", :png] }
 

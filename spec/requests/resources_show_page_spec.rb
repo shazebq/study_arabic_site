@@ -24,12 +24,18 @@ describe "show resource page" do
     it { should have_content("Views")}
   end
 
+  describe "visiting a resource page" do
+    it "should increment the number of views" do
+      resource.views.count.should == 1
+    end
+  end
 
   describe "edit and delete links" do
     #it { should have_selector("a", text: "edit")}
     #
     #it { should have_selector("a", text: "delete")}
   end
+
 end
 
 #comment
