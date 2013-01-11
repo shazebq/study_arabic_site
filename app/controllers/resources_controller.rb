@@ -24,7 +24,6 @@ class ResourcesController < ApplicationController
 
   def update
 
-
   end
 
   def destroy
@@ -35,10 +34,12 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
 
-  #def check_file_type
-  #  return render text: params
-  #
-  #end
-
+  def download
+    @resource = Resource.find(params[:id])
+    @resource.downloads_count += 1
+    @resource.save
+    # serve the paperclip file through the controller rather than the default way
+    send_file @resource.resource_file.path, :type => @resource.resource_file.content_type
+  end
 
 end

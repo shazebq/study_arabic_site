@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
   include Voting
+  after_initialize :init
   attr_accessible :content, :forum_post_id, :user_id
 
   belongs_to :user
@@ -8,6 +9,10 @@ class Answer < ActiveRecord::Base
 
   # orders by number of votes
   scope :by_votes, order("votes_count desc, id desc")
+
+  def init
+    self.votes_count ||= 0
+  end
 end
 
 

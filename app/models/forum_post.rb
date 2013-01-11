@@ -29,5 +29,6 @@ class ForumPost < ActiveRecord::Base
   def init
     self.views_count ||= 0
     self.votes_count ||= 0
+    self.answers_count ||= 0
   end
 end

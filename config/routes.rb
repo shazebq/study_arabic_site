@@ -16,13 +16,14 @@ ArabicProject::Application.routes.draw do
     end
   end
 
+  match 'resources/:id/download' => 'resources#download', :via => :get
+
   resources :resources
 
   resources :categories, only: [:index] do
     resources :forum_posts
     resources :resources
   end
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

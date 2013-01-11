@@ -21,7 +21,7 @@
       <span class="subtitle_large">Description</span><br />
       <%= @resource.description %>
     </p>
-    <div class="download_link"><%= link_to "<i class='icon-download'></i>".html_safe, @resource.resource_file.url %> <%= link_to "Download Resource", @resource.resource_file.url %></div>
+    <div class="download_link"><%= link_to "Download Resource", "/resources/#{@resource.id}/download" %></div>
   </div>
 </div>
 
@@ -57,7 +57,7 @@
         </tr>
         <tr>
           <td><span class="subtitle_large padded_cell">Downloads</span></td>
-          <td><span class="stats">223</span></td>
+          <td><span class="stats"><%=  @resource.downloads_count %></span></td>
         </tr>
       </table>
 

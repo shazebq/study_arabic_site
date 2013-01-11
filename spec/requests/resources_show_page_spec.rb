@@ -21,9 +21,8 @@ describe "show resource page" do
 
   describe "side bar" do
     it { should have_content("Vocabulary")}   # category name
-
-    it { should have_selector(".stats", text: resource.votes_count.to_s)}  # number of views
-
+    it { should have_selector(".stats", text: resource.votes_count.to_s)}  # number of votes
+    it { should have_selector(".stats", text: resource.downloads_count.to_s)}  # number of downloads
   end
 
   describe "visiting a resource page" do
@@ -40,4 +39,4 @@ describe "show resource page" do
 
 end
 
-#comments
+#commentss
