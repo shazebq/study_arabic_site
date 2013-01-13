@@ -5,7 +5,7 @@ describe "new resource page" do
   create_categories
 
   before do
-    sign_in_user
+    sign_in_user( FactoryGirl.create(:user, email: "shazebq@gmail.com") )
     visit new_resource_path
   end
 
@@ -38,6 +38,7 @@ describe "new resource page" do
         fill_in "resource_title", with: "fruit vocabulary"
         fill_in "resource_description", with: "a simple vocab sheet that has common fruit names with Arabic translations"
         select "Books", from: "resource_category_ids"
+        #page.attach_file("resource_resource_file", '/home/shazeb/Documents/test.txt')  # attach file
       end
 
       specify "clicking submit button should create a resource" do

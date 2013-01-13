@@ -32,11 +32,10 @@ describe "show resource page" do
   end
 
   describe "edit and delete links" do
-    #it { should have_selector("a", text: "edit")}
-    #
+    it { should have_selector("a", text: "edit")}
     #it { should have_selector("a", text: "delete")}
   end
 
 end
 
-#commentss
+#comment

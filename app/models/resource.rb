@@ -14,9 +14,6 @@ class Resource < ActiveRecord::Base
 
   # need this for paper clip
   #has_attached_file :resource_file #, :styles => { :thumb => ["550x425", :png], :medium => ["1100x8500", :png] }
-
-  #has_attached_file :resource_file
-
   # if the file is not a pdf or image, then don't create the specified styles (i.e. if it's a word or text doc)
   has_attached_file :resource_file, styles: lambda { |attachment|
                                               if attachment.instance.resource_file_content_type != "application/msword" && attachment.instance.resource_file_content_type != "text/plain"

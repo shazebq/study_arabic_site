@@ -17,7 +17,7 @@ end
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
+guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb', :all_on_start => false do
 
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
@@ -39,9 +39,5 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   #watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
 
   # view changes should trigger the specific spec associated with the controller
-  watch(%r{^app/views/(.+)/(.+)\.html\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_#{m[2]}_page_spec.rb" }
-
-
-
-
+  watch(%r{^app/views/(.+)/(\w+)\.html\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_#{m[2]}_page_spec.rb" }
 end
