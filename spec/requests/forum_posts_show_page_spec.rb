@@ -43,13 +43,13 @@ describe "forum post show page" do
     describe "post links" do
       describe "delete post link" do
         it "should appear for posts that belong to the logged in user" do
-          page.should have_selector("#delete_post")
+          page.should have_selector("#delete")
         end
       end
 
       describe "edit post link" do
         it "should appear for post that belong to the logged in user" do
-          page.should have_selector("#edit_post")
+          page.should have_selector("#edit")
         end
       end
     end
@@ -87,13 +87,14 @@ describe "forum post show page" do
 
     describe "clicking delete link of the post" do
       it "should delete the answer" do
-        expect { click_link("delete_post") }.to change(ForumPost, :count).by(-1)
+        expect { click_link("delete") }.to change(ForumPost, :count).by(-1)
       end
     end
 
+
     describe "clicking edit link of the post" do
       it "should redirect user to edit post page" do
-        click_link("edit_post")
+        click_link("edit")
         current_path.should == edit_forum_post_path(forum_post)
       end
     end

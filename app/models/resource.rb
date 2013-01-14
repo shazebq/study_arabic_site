@@ -10,6 +10,8 @@ class Resource < ActiveRecord::Base
   has_many :votes, as: :voteable
   has_many :views, as: :viewable
 
+  has_many :reviews, as: :reviewable
+
   belongs_to :user
 
   # need this for paper clip

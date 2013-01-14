@@ -27,7 +27,8 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-
+    Resource.find(params[:id]).destroy
+    redirect_to resources_path
   end
 
   def show

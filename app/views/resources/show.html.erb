@@ -2,7 +2,7 @@
 
 <h3><%= @resource.title %></h3>
 <div class="post_content">
-  <span class="subtitle">Posted on <%= @resource.created_at.strftime("%b %d, %Y") %> by Bob Smith</span><br />
+  <%=  render partial: 'shared/delete_edit_links', locals: { item: @resource } %>
 </div>
 
 <div class="row">

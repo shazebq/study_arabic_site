@@ -1,5 +1,10 @@
-<span class="subtitle">Posted on <%= @forum_post.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span><br />
+<% if user_signed_in? %>
+  <% if current_user.id == item.user.id %>
+    <span class="subtitle">Posted on <%= item.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span><br />
 
-<%= link_to "Edit", edit_forum_post_path(@forum_post), id: "edit_post", class: "subtitle" %>
-<span class="subtitle"> | </span>
-<%= link_to "Delete", forum_post_path(@forum_post), data: {confirm: "Are you sure?"}, method: :delete, id: "delete_post", class: "subtitle" %>
+    <%= link_to "Edit", send("edit_#{item.class.to_s.underscore}_path", item), id: "edit", class: "subtitle" %>
+    <span class="subtitle"> | </span>
+    <%= link_to "Delete", send("#{item.class.to_s.underscore}_path", item), data: {confirm: "Are you sure?"}, method: :delete, id: "delete", class: "subtitle" %>
+  <% end %>
+<% end %>
+

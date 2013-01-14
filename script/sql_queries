@@ -1,11 +1,30 @@
 USE arabic_project_dev;
 
-SELECT * FROM categories
 
-SELECT * FROM forum_posts
 
-SELECT * FROM users
 
-# need this in order to deletes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# need this in order to delete
 SET SQL_SAFE_UPDATES=0;
-DELETE FROM forum_posts

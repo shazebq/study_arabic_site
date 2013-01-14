@@ -15,7 +15,7 @@
     </h3>
 
     <div class="post_content">
-      <%= render "shared/delete_edit_links", locals: { item: @forum_post } %>
+      <%= render partial: "shared/delete_edit_links", locals: { item: @forum_post } %>
       <div class="post">
         <%=  @forum_post.content %>
       </div>

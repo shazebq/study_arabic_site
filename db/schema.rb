@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101224254) do
+ActiveRecord::Schema.define(:version => 20130114012227) do
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(:version => 20130101224254) do
     t.string   "resource_file_content_type"
     t.integer  "resource_file_file_size"
     t.datetime "resource_file_updated_at"
+    t.integer  "reviews_count"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.text     "title"
+    t.text     "content"
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "users", :force => true do |t|

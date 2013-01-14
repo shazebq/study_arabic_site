@@ -54,7 +54,7 @@ class ForumPostsController < ApplicationController
   end
 
   def destroy
-    @forum_post = ForumPost.find(params[:id]).destroy
+    ForumPost.find(params[:id]).destroy
     redirect_to forum_posts_path()
   end
 end

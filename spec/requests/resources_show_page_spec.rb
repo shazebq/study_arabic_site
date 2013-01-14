@@ -32,8 +32,37 @@ describe "show resource page" do
   end
 
   describe "edit and delete links" do
-    it { should have_selector("a", text: "edit")}
-    #it { should have_selector("a", text: "delete")}
+    before :each do
+      sign_in_user(user)
+      visit resource_path(resource)
+    end
+
+    it { should have_selector("a", text: "Edit")}
+    it { should have_selector("a", text: "Delete")}
+
+    describe "clicking resource links" do
+      describe "clicking delete link of the resource" do
+        it "should delete the resource" do
+          expect { click_link("delete") }.to change(Resource, :count).by(-1)
+        end
+      end
+
+      describe "clicking edit link of the post" do
+        it "should redirect user to edit post page" do
+          click_link("edit")
+          current_path.should == edit_resource_path(resource)
+        end
+      end
+    end
+  end
+
+  describe "resource links" do
+    context "when the user is not signed in" do
+      it "should not display delete or edit links" do
+        page.should_not have_selector("a", text: "Edit")
+        page.should_not have_selector("a", text: "Delete")
+      end
+    end
   end
 
 end

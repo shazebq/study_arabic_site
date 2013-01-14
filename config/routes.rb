@@ -2,7 +2,7 @@ ArabicProject::Application.routes.draw do
 
   devise_for :users
 
-  root(to: "categories#index")
+  #root(to: "forum_posts#new")
 
   resources :forum_posts do
     member do
