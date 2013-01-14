@@ -18,7 +18,9 @@ ArabicProject::Application.routes.draw do
 
   match 'resources/:id/download' => 'resources#download', :via => :get
 
-  resources :resources
+  resources :resources do
+    resources :reviews
+  end
 
   resources :categories, only: [:index] do
     resources :forum_posts

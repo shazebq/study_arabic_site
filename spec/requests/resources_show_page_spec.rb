@@ -65,6 +65,12 @@ describe "show resource page" do
     end
   end
 
+  describe "clicking review button" do
+    it "should redirect to new review page" do
+      click_button("Review this resource")
+      current_path.should == new_resource_review_path(resource)
+    end
+  end
 end
 
-#comment
+#comments

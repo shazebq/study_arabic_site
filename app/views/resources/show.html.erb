@@ -26,6 +26,12 @@
     </p>
     <div class="download_link"><%= link_to "Download Resource", "/resources/#{@resource.id}/download" %></div>
   </div>
+
+</div>
+  <%= button_to("Review this resource", new_resource_review_path(@resource), class: "btn btn-primary", method: :get) %>
+
+<div>
+
 </div>
 
 <% content_for(:side_bar) do %>
@@ -65,11 +71,6 @@
       </table>
 
     </div>
-
-      <!--<li>Posted by</li>-->
-      <!--<li>Views</li>-->
-      <!--<li>Votes</li>-->
-      <!--<li>Downloads</li>-->
 <% end %>
 
 
