@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'pg'
+gem 'mysql2'
 
 
 group :assets do
@@ -26,7 +28,6 @@ gem 'therubyracer', :platform => :ruby
 gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'mysql2'
 gem 'devise', '~> 2.1.2'
 gem 'nokogiri'
 gem 'paperclip'
@@ -52,6 +53,5 @@ group :test do
   gem "launchy", "~> 2.1.0"
   gem "guard-spork"
   gem 'rb-inotify', '0.8.8'
-  gem 'libnotify', '0.5.9'
-  gem 'listen', :github => 'guard/listen', :branch => 'linux_events'
+  #gem 'listen', :github => 'guard/listen', :branch => 'linux_events'
 end
