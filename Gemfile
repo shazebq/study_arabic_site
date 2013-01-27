@@ -31,6 +31,7 @@ gem 'bootstrap-will_paginate'
 gem 'devise', '~> 2.1.2'
 gem 'nokogiri'
 gem 'paperclip'
+gem 'rb-fsevent', '~> 0.9.1'
 
 
 group :development, :test do
@@ -52,6 +53,5 @@ group :test do
   gem 'database_cleaner'
   gem "launchy", "~> 2.1.0"
   gem "guard-spork"
-  gem 'rb-inotify', '0.8.8'
-  #gem 'listen', :github => 'guard/listen', :branch => 'linux_events'
+  # gem 'listen', :github => 'guard/listen', :branch => 'linux_events'
 end
