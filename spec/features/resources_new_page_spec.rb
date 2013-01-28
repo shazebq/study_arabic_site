@@ -10,7 +10,11 @@ describe "new resource page" do
   end
 
   subject { page }
-  it { should have_selector("title", text: "Submit a Resource")}
+  describe "page title" do
+    it "has the title Forum Categories" do
+      page.html.should have_selector("title", text: "Submit a Resource")
+    end
+  end
   it { should have_selector("#resource_title")}
   it { should have_selector("#resource_description")}
   it { should have_selector("#resource_resource_file")}

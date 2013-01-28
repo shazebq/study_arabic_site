@@ -14,7 +14,12 @@ describe "forum post show page" do
   subject { page }
 
   describe "general content" do
-    it { should have_selector("title", text: forum_post.title)}
+    describe "page title" do
+      it "has the title Forum Categories" do
+        page.html.should have_selector("title", text: forum_post.title)
+      end
+    end
+
     it { should have_selector(".post_content", text: forum_post.content)}
     it "displays answers" do
       page.should have_content(answer.content)

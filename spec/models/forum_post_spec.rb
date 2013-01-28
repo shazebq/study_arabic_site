@@ -39,7 +39,7 @@ describe ForumPost do
 
   describe "scopes" do
     let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
-    let!(:forum_post1) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 2, votes_count:3, answers_count: 0) }
+    let!(:forum_post1) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 2, votes_count:4, answers_count: 0) }
     let!(:forum_post2) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 5, votes_count:2, answers_count: 8) }
     let!(:forum_post3) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 9, votes_count: 3, answers_count: 4) }
 

@@ -12,7 +12,12 @@ describe User do
       visit new_forum_post_path
     end
 
-    it { should have_selector("title", text: "Post a Question") }
+    describe "page title" do
+      it "has the title Forum Categories" do
+        page.html.should have_selector("title", text: "Post a Question")
+      end
+    end
+
     it { should have_selector("form")}
     it { should have_content("Sign Out")}
 

@@ -11,7 +11,11 @@ describe "Category Pages" do
       visit categories_path
     end
 
-    it { should have_selector("title", text: "Forum Categories") }
+    describe "page title" do
+      it "has the title Forum Categories" do
+        page.html.should have_selector("title", text: "Forum Categories")
+      end
+    end
 
     it { should have_selector("h3", text: "Forum Categories")}
 
@@ -47,3 +51,6 @@ describe "Category Pages" do
 
 
 end
+
+
+#comments

@@ -12,8 +12,10 @@ describe "forum post index page" do
     visit forum_posts_path
   end
 
-  describe "general content" do
-    it { should have_selector("title", text: "Arabic Forums") }
+  describe "page title" do
+    it "has the title Forum Categories" do
+      page.html.should have_selector("title", text: "Arabic Forums")
+    end
   end
 
   describe "forum forum_post items" do

@@ -14,7 +14,12 @@ describe "show resource page" do
   subject { page }
 
   describe "general contents" do
-    it { should have_selector("title", text: resource.title) }
+    describe "page title" do
+      it "has the title Forum Categories" do
+        page.html.should have_selector("title", text: resource.title)
+      end
+    end
+
     it { should have_selector("h3", text: resource.title)}
     it { should have_content("colors vocabulary worksheet")}
   end
@@ -73,4 +78,4 @@ describe "show resource page" do
   end
 end
 
-#comments
+#commentsss

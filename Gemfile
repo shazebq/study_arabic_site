@@ -30,8 +30,10 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'devise', '~> 2.1.2'
 gem 'nokogiri'
-gem 'paperclip'
+gem 'paperclip', '= 3.0.4'
 gem 'rb-fsevent', '~> 0.9.1'
+gem 'hirb'
+gem 'cocaine', '= 0.3.2'
 
 
 group :development, :test do
