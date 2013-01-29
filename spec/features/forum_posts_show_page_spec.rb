@@ -113,5 +113,5 @@ describe "forum post show page" do
   #    page.should have_selector("#greeting")
   #  end
   #end
-  #comments
+  #commentsss
 end

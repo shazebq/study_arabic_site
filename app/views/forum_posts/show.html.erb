@@ -36,28 +36,9 @@
             <i class="icon-caret-down vote vote_small" data-voteable_type="Answer" data-type="down" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>
           </div>
-          <div class="span7">
 
-            <span class="vote_count_small"><%= "+#{answer.votes.count}" %></span>
-            <div>
-                <span class="info">Posted by <%= answer.user.email if answer.user %></span><br />
-                <%= answer.content %>
-            </div>
-            <span class="info"><%= "#{distance_of_time_in_words(answer.created_at, Time.now.in_time_zone)} ago" %></span>
+          <%= render partial: "shared/nested_item_view", locals: { item: answer, parent: @forum_post } %>
 
-            <div class="info">
-              <% if current_user == answer.user %>
-                <span><%= link_to("Delete", forum_post_answer_path(@forum_post, answer),
-                                               data: {confirm: "Are you sure?"}, method: :delete, id: "delete_answer#{answer.id}") %>
-                </span>
-                <span><%= link_to("Edit", edit_forum_post_answer_path(@forum_post, answer),
-                              id: "edit_answer#{answer.id}") %>
-                </span>
-              <% end %>
-            </div>
-
-
-          </div>
         </div>
     <% end %>
   </div>
@@ -71,3 +52,4 @@
   </div>
 <% end %>
 
+<!--comme-->

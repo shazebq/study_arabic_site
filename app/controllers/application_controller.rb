@@ -36,4 +36,16 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+
+  # necessary because reviews are polymorphic
+  def get_reviewable(params)
+    params.each do |key, value|
+      if key =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+  end
+
+  #{"action"=>"new", "controller"=>"reviews", "resource_id"=>"2"}
 end
+

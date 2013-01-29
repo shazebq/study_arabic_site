@@ -1,6 +1,7 @@
 <% provide :title, @resource.title %>
 
 <h3><%= @resource.title %></h3>
+<br />
 <div class="post_content">
   <%=  render partial: 'shared/delete_edit_links', locals: { item: @resource } %>
 </div>
@@ -30,7 +31,12 @@
 </div>
   <%= button_to("Review this resource", new_resource_review_path(@resource), class: "btn btn-primary", method: :get) %>
 
-<div>
+<div class="bottom_border_div">
+  <h4>Reviews</h4>
+  <div>
+
+  </div>
+
 
 </div>
 

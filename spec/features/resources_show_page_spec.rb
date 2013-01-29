@@ -6,6 +6,7 @@ describe "show resource page" do
   let(:category) { FactoryGirl.create(:category, name: "Vocabulary") }
   let(:resource) { FactoryGirl.create(:resource, title: "Colors",
                                       description: "colors vocabulary worksheet", category_ids: [category.id], user_id: user.id)}
+  let(:review) { FactoryGirl.create(:review, title: "excellent vocab sheet", content: "more details here", reviewable_id: resource.id, reviewable_type: "Resource") }
 
   before do
     visit resource_path(resource)
@@ -74,6 +75,12 @@ describe "show resource page" do
     it "should redirect to new review page" do
       click_button("Review this resource")
       current_path.should == new_resource_review_path(resource)
+    end
+  end
+
+  describe "reviews" do
+    it "should display all of the resource's reviews" do
+      #page.should have_content(review.title)
     end
   end
 end

@@ -1,0 +1,21 @@
+<div class="span7">
+
+  <span class="vote_count_small"><%= "+#{item.try(:votes).count}" %></span>
+
+  <div>
+    <span class="info">Posted by <%= item.user.email if item.user %></span><br />
+    <%= item.content %>
+  </div>
+  <span class="info"><%= "#{distance_of_time_in_words(item.created_at, Time.now.in_time_zone)} ago" %></span>
+
+  <div class="info">
+    <% if current_user == item.user %>
+                <span><%= link_to("Delete", forum_post_answer_path(@forum_post, item),
+                                  data: {confirm: "Are you sure?"}, method: :delete, id: "delete_answer#{item.id}") %>
+                </span>
+                <span><%= link_to("Edit", edit_forum_post_answer_path(@forum_post, item),
+                                  id: "edit_answer#{item.id}") %>
+                </span>
+    <% end %>
+  </div>
+</div>

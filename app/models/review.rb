@@ -3,4 +3,9 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :resource, polymorphic: true, counter_cache: true
+
+  validates :title, :content, presence: true
+
+  validates :title, length: { maximum: 65 }
+  validates :content, length: { maximum: 5000 }
 end

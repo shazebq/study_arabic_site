@@ -1,0 +1,36 @@
+<%= form_for([@reviewable, @review]) do |f| %>
+    <% if @review.errors.any? %>
+        <div id="error_explanation" class="alert alert-error">
+          <% pluralize(@review.errors.count, "error") %>
+          Your review could not be submitted.
+          <ul>
+            <% @review.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title  %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :content  %>
+      <%= f.text_area :content %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rating  %>
+      <%= f.select :rating, Hash[(1..10).to_a.map { |i| [i, i] }] %>
+    </div>
+
+    <br />
+
+    <div class="actions">
+      <%= f.submit("Submit") %>
+    </div>
+<% end %>
+
+<!--comments-->
