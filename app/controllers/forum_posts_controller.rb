@@ -1,6 +1,6 @@
 class ForumPostsController < ApplicationController
   #after_filter :add_views, only: :show
-  before_filter :require_sign_in, only: [:new, :update, :destroy]
+  before_filter :require_sign_in, only: [:new, :update, :destroy, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
 

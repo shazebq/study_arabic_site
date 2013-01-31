@@ -37,7 +37,10 @@
                     data-answer_id=<%= answer.id %>></i>
           </div>
 
-          <%= render partial: "shared/nested_item_view", locals: { item: answer, parent: @forum_post } %>
+          <div class="span7">
+            <span class="vote_count_small"><%= "+#{answer.votes.count}" %></span>
+            <%= render partial: "shared/nested_item_view", locals: { item: answer, parent: @forum_post } %>
+          </div>
 
         </div>
     <% end %>
@@ -52,4 +55,4 @@
   </div>
 <% end %>
 
-<!--comme-->
+<!--comments-->

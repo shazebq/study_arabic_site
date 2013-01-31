@@ -33,12 +33,16 @@
 
 <div class="bottom_border_div">
   <h4>Reviews</h4>
-  <div>
-
-  </div>
-
-
 </div>
+
+  <div>
+    <% @resource.reviews.each do |review| %>
+     <div class="well">
+        <h6><%= review.title %></h6>
+        <%= render partial: "shared/nested_item_view", locals: { item: review, parent: @resource } %>
+     </div>
+    <% end %>
+  </div>
 
 <% content_for(:side_bar) do %>
     <span class="subtitle_large">Categories</span><br />
@@ -75,8 +79,9 @@
           <td><span class="stats"><%=  @resource.downloads_count %></span></td>
         </tr>
       </table>
-
     </div>
+
+
 <% end %>
 
 

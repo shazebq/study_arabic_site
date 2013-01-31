@@ -2,11 +2,11 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe "show resource page" do
-  let(:user) { FactoryGirl.create(:user)}
-  let(:category) { FactoryGirl.create(:category, name: "Vocabulary") }
-  let(:resource) { FactoryGirl.create(:resource, title: "Colors",
+  let!(:user) { FactoryGirl.create(:user)}
+  let!(:category) { FactoryGirl.create(:category, name: "Vocabulary") }
+  let!(:resource) { FactoryGirl.create(:resource, title: "Colors",
                                       description: "colors vocabulary worksheet", category_ids: [category.id], user_id: user.id)}
-  let(:review) { FactoryGirl.create(:review, title: "excellent vocab sheet", content: "more details here", reviewable_id: resource.id, reviewable_type: "Resource") }
+  let!(:review) { FactoryGirl.create(:review, title: "excellent vocab sheet", content: "more details here", reviewable_id: resource.id, reviewable_type: "Resource") }
 
   before do
     visit resource_path(resource)
@@ -80,9 +80,9 @@ describe "show resource page" do
 
   describe "reviews" do
     it "should display all of the resource's reviews" do
-      #page.should have_content(review.title)
+      page.should have_content(review.title)
     end
   end
 end
 
-#commentsss
+#comments
