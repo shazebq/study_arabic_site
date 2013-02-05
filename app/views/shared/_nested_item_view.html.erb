@@ -9,10 +9,10 @@
   <div class="info">
     <% if (user_signed_in?) && (current_user == item.user) %>
                 <span><%= link_to("Delete", send("#{parent.class.name.underscore}_#{item.class.name.underscore}_path", parent, item),
-                                  data: {confirm: "Are you sure?"}, method: :delete, id: "delete_answer#{item.id}") %>
+                                  data: {confirm: "Are you sure?"}, method: :delete, id: "delete_#{item.class.name.downcase}#{item.id}") %>
                 </span>
                 <span><%= link_to("Edit", send("edit_#{parent.class.name.underscore}_#{item.class.name.underscore}_path", parent, item),
-                                  id: "edit_answer#{item.id}") %>
+                                  id: "edit_#{item.class.name.downcase}#{item.id}") %>
                 </span>
     <% end %>
   </div>

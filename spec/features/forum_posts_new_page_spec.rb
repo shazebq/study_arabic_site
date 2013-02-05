@@ -1,5 +1,7 @@
 require 'spec_helper'
 include Devise::TestHelpers
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe User do
   initialize_records
@@ -9,6 +11,7 @@ describe User do
   describe "new forum post page" do
     before :each do
       sign_in_user(user)
+      #login_as(user, :scope => :user)  this also works to login user with out filling out form etc
       visit new_forum_post_path
     end
 
@@ -79,3 +82,5 @@ describe User do
     end
   end
 end
+
+# comment

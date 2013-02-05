@@ -31,7 +31,7 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb', :all_on
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/controllers/#{m[1]}_controller_spec.rb" }
 
-  #watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
+  # watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
@@ -40,4 +40,7 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb', :all_on
 
   # view changes should trigger the specific spec associated with the controller
   watch(%r{^app/views/(.+)/(\w+)\.html\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_#{m[2]}_page_spec.rb" }
+
+  # watch helper files
+  watch(%r{^app/helpers/(.+)_(helper)\.rb$})  { |m| "spec/helper/#{m[1]}_helper_spec.rb" }
 end

@@ -34,6 +34,7 @@ gem 'paperclip', '= 3.0.4'
 gem 'rb-fsevent', '~> 0.9.1'
 gem 'hirb'
 gem 'cocaine', '= 0.3.2'
+gem 'warden'
 
 
 group :development, :test do

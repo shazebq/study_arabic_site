@@ -6,7 +6,7 @@ describe "show resource page" do
   let!(:category) { FactoryGirl.create(:category, name: "Vocabulary") }
   let!(:resource) { FactoryGirl.create(:resource, title: "Colors",
                                       description: "colors vocabulary worksheet", category_ids: [category.id], user_id: user.id)}
-  let!(:review) { FactoryGirl.create(:review, title: "excellent vocab sheet", content: "more details here", reviewable_id: resource.id, reviewable_type: "Resource") }
+  let!(:review) { FactoryGirl.create(:review, title: "excellent vocab sheet", content: "more details here", reviewable_id: resource.id, reviewable_type: "Resource", user_id: user.id) }
 
   before do
     visit resource_path(resource)
@@ -69,6 +69,26 @@ describe "show resource page" do
         page.should_not have_selector("a", text: "Delete")
       end
     end
+
+    context "when the user is signed in" do
+      before :each do
+        sign_in_user(user)
+        visit resource_path(resource)
+      end
+
+      it "should display delete and edit links" do
+        page.should have_selector("#delete_review#{review.id}", text: "Delete")
+        page.should have_selector("#edit_review#{review.id}", text: "Edit")
+      end
+
+      describe "clicking edit review link" do
+
+      end
+
+      describe "clicking delete review link" do
+
+      end
+    end
   end
 
   describe "clicking review button" do
@@ -85,4 +105,4 @@ describe "show resource page" do
   end
 end
 
-#comments
+#commentsss
