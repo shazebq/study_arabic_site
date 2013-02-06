@@ -8,4 +8,5 @@ class Review < ActiveRecord::Base
 
   validates :title, length: { maximum: 65 }
   validates :content, length: { maximum: 5000 }
+
 end

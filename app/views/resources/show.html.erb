@@ -69,6 +69,11 @@
     <div>
       <table>
         <tr>
+          <td><span class="subtitle_large padded_cell">Average Rating</span></td>
+          <td><span class="rating_font"><%= generate_stars(@resource.reviews.average("rating").round_point5).html_safe %></span></td>
+        </tr>
+
+        <tr>
           <td><span class="subtitle_large padded_cell">Views</span></td>
           <td><span class="stats"><%= @resource.views_count %></span></td>
         </tr>

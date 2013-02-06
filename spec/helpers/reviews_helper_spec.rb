@@ -19,7 +19,6 @@ describe ReviewsHelper do
         generate_stars(1.5).should == "<i class='icon-star'></i><i class='icon-star-half'></i>"
       end
     end
-
   end
 end
 
