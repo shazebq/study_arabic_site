@@ -82,11 +82,21 @@ describe "show resource page" do
       end
 
       describe "clicking edit review link" do
-
+        it "should redirect to the edit page of the review" do
+          click_link("edit_review#{review.id}")
+          current_path.should == edit_resource_review_path(resource, review)
+        end
       end
 
       describe "clicking delete review link" do
+        it "should delete the review" do
+          expect { click_link("delete_review#{review.id}") }.to change(Review, :count).by(-1)
+        end
 
+        it "should redirect to the resource page" do
+          click_link("delete_review#{review.id}")
+          current_path.should == resource_path(resource)
+        end
       end
     end
   end

@@ -21,6 +21,14 @@ class ReviewsController < ApplicationController
 
   end
 
+  def edit
+    @review = Review.find(params[:id])
+  end
 
-
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to(Resource.find(params[:resource_id]))
+  end
 end
+
+#comments
