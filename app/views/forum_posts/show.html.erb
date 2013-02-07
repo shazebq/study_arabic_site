@@ -1,13 +1,7 @@
 <% provide :title, @forum_post.title %>
 
 <div class="row">
-  <div class="vote_arrow_div">
-   <div class="arrows">
-      <i class="icon-caret-up vote" id="up_vote" data-voteable_type="ForumPost" data-type="up" data-post_id=<%= @forum_post.id %>></i>
-      <i class="icon-caret-down vote" id="down_vote" data-voteable_type="ForumPost" data-type="down" data-post_id=<%= @forum_post.id %>></i>
-   </div>
-  </div>
-
+  <%= render partial: "shared/vote_arrows", locals: { item: @forum_post } %>
 
   <div class="span8">
     <h3>

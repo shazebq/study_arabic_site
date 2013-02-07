@@ -1,50 +1,55 @@
 <% provide :title, @resource.title %>
 
-<h3><%= @resource.title %></h3>
-<br />
-<div class="post_content">
-  <%=  render partial: 'shared/delete_edit_links', locals: { item: @resource } %>
-</div>
-
 <div class="row">
-  <div class="span3 preview_div">
-    <% if @resource.resource_file.content_type == "application/msword" || @resource.resource_file.content_type == "text/plain" %>
-        <div id="resource_thumbnail">
-          <div style="height: 250px; background-color: #d4d4d4;"></div>
+  <%= render partial: "shared/vote_arrows", locals: { item: @resource } %>
+ <div class="span8">
+    <h3><%= @resource.title %></h3>
+    <br />
+    <div class="post_content">
+    <%= render partial: 'shared/delete_edit_links', locals: { item: @resource } %>
+    </div>
+
+    <div class="row">
+    <div class="span3 preview_div">
+      <% if @resource.resource_file.content_type == "application/msword" || @resource.resource_file.content_type == "text/plain" %>
+          <div id="resource_thumbnail">
+            <div style="height: 250px; background-color: #d4d4d4;"></div>
+          </div>
+      <% else %>
+          <div id="resource_thumbnail">
+            <%= link_to(image_tag(@resource.resource_file.url(:thumb)), @resource.resource_file.url(:medium)) %>
+          </div>
+          <div class="centered"><%= link_to("Preview", @resource.resource_file.url(:medium)) %></div>
+      <% end %>
+    </div>
+
+    <div class="span5">
+      <p>
+        <span class="subtitle_large">Description</span><br />
+        <%= @resource.description %>
+      </p>
+      <div class="download_link"><%= link_to "Download Resource", "/resources/#{@resource.id}/download" %></div>
+    </div>
+
+    </div>
+    <%= button_to("Review this resource", new_resource_review_path(@resource), class: "btn btn-primary", method: :get) %>
+
+    <div class="bottom_border_div">
+    <h4>Reviews</h4>
+    </div>
+
+    <div>
+      <% @resource.reviews.each do |review| %>
+        <div class="well">
+          <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
+          <span class="subtitle_large"><%= review.title %></span>
+
+          <%= render partial: "shared/nested_item_view", locals: { item: review, parent: @resource } %>
         </div>
-    <% else %>
-        <div id="resource_thumbnail">
-          <%= link_to(image_tag(@resource.resource_file.url(:thumb)), @resource.resource_file.url(:medium)) %>
-        </div>
-        <div class="centered"><%= link_to("Preview", @resource.resource_file.url(:medium)) %></div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-
-  <div class="span6">
-    <p>
-      <span class="subtitle_large">Description</span><br />
-      <%= @resource.description %>
-    </p>
-    <div class="download_link"><%= link_to "Download Resource", "/resources/#{@resource.id}/download" %></div>
-  </div>
-
 </div>
-  <%= button_to("Review this resource", new_resource_review_path(@resource), class: "btn btn-primary", method: :get) %>
-
-<div class="bottom_border_div">
-  <h4>Reviews</h4>
-</div>
-
-  <div>
-    <% @resource.reviews.each do |review| %>
-     <div class="well">
-        <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
-        <span class="subtitle_large"><%= review.title %></span>
-
-        <%= render partial: "shared/nested_item_view", locals: { item: review, parent: @resource } %>
-     </div>
-    <% end %>
-  </div>
 
 <% content_for(:side_bar) do %>
     <span class="subtitle_large">Categories</span><br />

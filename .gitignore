@@ -16,6 +16,7 @@
 
 .idea/*
 .idea
-
+*.swp
+*.un~
 # Ignore files uploaded
 public/system/*
