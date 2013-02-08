@@ -19,7 +19,6 @@ class ForumPostsController < ApplicationController
       @forum_posts = ForumPost.send(@current_scope)
     end
 
-
   end
 
   def new

@@ -1,4 +1,5 @@
 class Resource < ActiveRecord::Base
+  include Voting
   after_initialize :init
   attr_accessible :description, :difficulty_level, :downloads_count, :title, :user_id, :views_count, :votes_count, :resource_file, :category_ids
 

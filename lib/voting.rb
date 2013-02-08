@@ -12,11 +12,7 @@ module Voting
   end
 
   def get_item_votes(voteable_type, voteable_id)
-    if voteable_type == "ForumPost"
-      ForumPost.find(voteable_id).votes.count
-    else
-      Answer.find(voteable_id).votes.count
-    end
+    voteable_type.constantize.find(voteable_id).votes.count
   end
 
 end

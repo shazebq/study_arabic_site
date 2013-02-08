@@ -19,6 +19,9 @@ ArabicProject::Application.routes.draw do
   match 'resources/:id/download' => 'resources#download', :via => :get
 
   resources :resources do
+    member do
+      post "vote"
+    end
     resources :reviews
   end
 

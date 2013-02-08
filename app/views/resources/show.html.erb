@@ -3,7 +3,7 @@
 <div class="row">
   <%= render partial: "shared/vote_arrows", locals: { item: @resource } %>
  <div class="span8">
-    <h3><%= @resource.title %></h3>
+   <h3><%= @resource.title %><%= render partial: "shared/vote_count", locals: { item: @resource } %></h3>
     <br />
     <div class="post_content">
     <%= render partial: 'shared/delete_edit_links', locals: { item: @resource } %>
