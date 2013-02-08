@@ -2,36 +2,7 @@
 
 <%= render :partial => 'filter_links' %>
 
-  <div class="row">
-    <% @forum_posts.each do |forum_post| %>
-    <div class="span6 post_row">
-      <%= link_to(forum_post.title, forum_post) %>
-      <div>
-        <% forum_post.categories.each do |category| %>
-          <span class="label"><%= category.name %></span>
-        <% end %>
-      </div>
-      <hr></hr>
-    </div>
-    <div class="span3 post_row">
-      <div class="row">
-        <div class="avv_div">
-          <%= forum_post.views.count %><br />
-          <span class="info">Views</span>
-        </div>
-        <div class="avv_div">
-          <%= forum_post.votes.count %><br />
-          <span class="info">Votes</span>
-        </div>
-        <div class="avv_div">
-          <%=  forum_post.answers.count %><br />
-          <span class="info">Answers</span>
-        </div>
-      </div>
-      <hr></hr>
-    </div>
-    <% end %>
-  </div>
+<%= render partial: "shared/index_list", locals: { items: @forum_posts } %>
 
 <% content_for(:side_bar) do %>
     <h4>Forum Categories</h4>

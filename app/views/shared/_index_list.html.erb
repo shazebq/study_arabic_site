@@ -1,0 +1,35 @@
+  <div class="row">
+    <% items.each do |item| %>
+    <div class="span6 post_row">
+      <%= link_to(item.title, item) %>
+      <div>
+        <% item.categories.each do |category| %>
+          <span class="label"><%= category.name %></span>
+        <% end %>
+      </div>
+      <hr></hr>
+    </div>
+    <div class="span3 post_row">
+      <div class="row">
+        <div class="avv_div">
+          <%= item.views_count %><br />
+          <span class="info">Views</span>
+        </div>
+        <div class="avv_div">
+          <%= item.votes_count %><br />
+          <span class="info">Votes</span>
+        </div>
+        <div class="avv_div">
+          <% if item.class == "Resource".constantize %>
+            <%=  item.downloads_count %><br />
+            <span class="info">Downloads</span>
+          <% else %>
+            <%=  item.answers.count %><br />
+            <span class="info">Answers</span>
+          <% end %>
+        </div>
+      </div>
+      <hr></hr>
+    </div>
+    <% end %>
+  </div>

@@ -75,7 +75,7 @@
       <table>
         <tr>
           <td><span class="subtitle_large padded_cell">Average Rating</span></td>
-          <td><span class="rating_font"><%= generate_stars(@resource.reviews.average("rating").round_point5).html_safe %></span></td>
+          <td><span class="rating_font"><%= generate_stars(@resource.try(:reviews).average("rating").try(:round_point5)).html_safe %></span></td>
         </tr>
 
         <tr>
@@ -96,7 +96,7 @@
 
 <% end %>
 
-
+<!--comments -->
 
 
 

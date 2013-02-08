@@ -1,6 +1,8 @@
 module ReviewsHelper
   def generate_stars(number_of_stars)
-    if number_of_stars % 1 == 0
+    if number_of_stars == nil
+      star_string = get_star_string("star-empty", 5)
+    elsif number_of_stars % 1 == 0
       star_string = get_star_string("star", number_of_stars)
       star_string += get_star_string("star-empty", (5 - number_of_stars))
     else

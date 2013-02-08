@@ -39,7 +39,7 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb', :all_on
   #watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
 
   # view changes should trigger the specific spec associated with the controller
-  watch(%r{^app/views/(.+)/(\w+)\.html\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_#{m[2]}_page_spec.rb" }
+  watch(%r{^app/views/(.+)/(\w+)\.html\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_#{m[2]}_page_spec.rb" }
 
   # watch helper files
   watch(%r{^app/helpers/(.+)_(helper)\.rb$})  { |m| "spec/helper/#{m[1]}_helper_spec.rb" }
