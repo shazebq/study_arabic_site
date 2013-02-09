@@ -18,7 +18,6 @@ class ForumPostsController < ApplicationController
       # call appropriate scope here
       @forum_posts = ForumPost.send(@current_scope)
     end
-
   end
 
   def new

@@ -21,7 +21,7 @@ describe "forum post index page" do
   describe "forum forum_post items" do
     it { should have_content(forum_post.title)}
     it { should have_content(forum_post.categories.first.name)}
-    it { should have_content(forum_post.votes.count)}
+    it { should have_content(forum_post.votes_count)}
 
     describe "forum forum_post title" do
       it "should be a link to the show page of the forum forum_post" do
