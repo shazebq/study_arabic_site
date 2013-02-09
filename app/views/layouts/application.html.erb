@@ -51,6 +51,7 @@
           <p id="notice"><%= notice %></p>
           <p id="notice"><%= alert %></p>
           <%= yield %>
+          <%= debug(params) if Rails.env.development? %> 
         </div>
         <div class="span3 sidebar">
             <%= yield :side_bar %>
@@ -62,6 +63,5 @@
   </div>
 
 </div>
-
 </body>
 </html>

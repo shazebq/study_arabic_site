@@ -34,4 +34,4 @@ describe "resources index page" do
     end
   end
 end
-# comments
+# comment
