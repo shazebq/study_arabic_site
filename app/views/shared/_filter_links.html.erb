@@ -1,0 +1,11 @@
+<ul class="nav nav-pills custom">
+  <% @scopes.each do |scope| %>
+      <li class="<%= @current_scope == scope ? 'active' : 'not_active' %>">
+      <% if @category %>
+        <%= link_to(scope_name_to_link_text(scope), send("category_#{params[:controller]}_path", @category, order_by: scope)) %>
+      <% else %>
+        <%= link_to(scope_name_to_link_text(scope), send("#{params[:controller]}_path", order_by: scope)) %>
+      <% end %>
+      </li>
+  <% end %>
+</ul>

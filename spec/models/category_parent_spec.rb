@@ -14,7 +14,7 @@ describe CategoryParent do
     end
 
     it "returns all the posts of all the child categories" do
-      @category_parent.collect_all_posts.should(include(@forum_post1, @forum_post2))
+      @category_parent.collect_all_posts("forum_posts").should(include(@forum_post1, @forum_post2))
     end
   end
 end

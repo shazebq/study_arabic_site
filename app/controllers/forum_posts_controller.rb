@@ -5,12 +5,12 @@ class ForumPostsController < ApplicationController
   before_filter :count_view, only: :show
 
   def index
-    @scopes = ForumPost::SCOPES
+    @scopes = params[:controller].classify.constantize::SCOPES
     @current_scope = params[:order_by] || "most_recent"  # default the scope to most_recent
     if params[:category_id]
       @category = CategoryParent.find(params[:category_id])
         if @category.categories.any?
-          @forum_posts = @category.collect_all_posts.send(@current_scope)
+          @forum_posts = @category.collect_all_posts(params[:controller]).send(@current_scope) 
         else
           @forum_posts = @category.forum_posts.send(@current_scope)
         end
