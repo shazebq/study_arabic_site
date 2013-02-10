@@ -49,5 +49,12 @@ describe "resources index page" do
       end
     end
   end
+
+  describe "category links" do
+   it "should have links to each category" do
+     page.should have_selector("a", text: "Vocabulary")
+   end
+  end
+
 end
 # comment
