@@ -1,11 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_if_signed_in, only: :vote
-
-
-  def general_index
-
-  end
   
   # ajax call to vote is directed to this action
   def vote

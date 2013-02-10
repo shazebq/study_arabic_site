@@ -1,24 +1,8 @@
-class ForumPostsController < ApplicationController
+class ForumPostsController < CategorizableItemsController
   #after_filter :add_views, only: :show
   before_filter :require_sign_in, only: [:new, :update, :destroy, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
-
-  def index
-    @scopes = params[:controller].classify.constantize::SCOPES
-    @current_scope = params[:order_by] || "most_recent"  # default the scope to most_recent
-    if params[:category_id]
-      @category = CategoryParent.find(params[:category_id])
-        if @category.categories.any?
-          @forum_posts = @category.collect_all_posts(params[:controller]).send(@current_scope) 
-        else
-          @forum_posts = @category.forum_posts.send(@current_scope)
-        end
-    else
-      # call appropriate scope here
-      @forum_posts = ForumPost.send(@current_scope)
-    end
-  end
 
   def new
     @forum_post = ForumPost.new
