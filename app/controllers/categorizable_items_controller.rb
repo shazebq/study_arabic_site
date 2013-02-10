@@ -7,11 +7,11 @@ class CategorizableItemsController < ApplicationController
         if @category.categories.any?
           @items = @category.collect_all_posts(params[:controller]).send(@current_scope) 
         else
-          @items = @category.forum_posts.send(@current_scope)
+          @items = @category.resources.send(@current_scope)
         end
     else
       # call appropriate scope here
-      @items = ForumPost.send(@current_scope)
+      @items = params[:controller].classify.constantize.send(@current_scope)
     end
   end 
 end

@@ -34,6 +34,8 @@ class Resource < ActiveRecord::Base
   validates :title, length: { maximum: 65 }
   validates :description, length: { maximum: 5000 }
 
+  SCOPES = ["most_recent", "most_views", "most_votes", "most_downloads"]
+
   def init
     self.views_count ||= 0
     self.votes_count ||= 0
