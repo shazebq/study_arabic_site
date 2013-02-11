@@ -1,5 +1,8 @@
 ArabicProject::Application.routes.draw do
 
+  match "home" => "static_pages#home", :via => :get
+  match "about_us" => "static_pages#about_us", :via => :get
+
   devise_for :users
 
   #root(to: "forum_posts#new")
