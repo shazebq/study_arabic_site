@@ -1,7 +1,7 @@
 ArabicProject::Application.routes.draw do
 
   match "home" => "static_pages#home", :via => :get
-  match "about_us" => "static_pages#about_us", :via => :get
+  match "about_us" => "static_pages#about_us[", :via => :get
 
   devise_for :users
 

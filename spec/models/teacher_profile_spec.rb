@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe TeacherProfile do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :each do
+    @teacher_profile = FactoryGirl.build(:teacher_profile)
+  end
+
+  subject { @teacher_profile}
+
+  it { should(respond_to :user) }
 end
+
+#commentss

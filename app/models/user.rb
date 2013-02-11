@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :forum_posts
   has_many :answers
   has_many :resources
+  belongs_to :profile, polymorphic: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
