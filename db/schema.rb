@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114012227) do
+ActiveRecord::Schema.define(:version => 20130211184202) do
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(:version => 20130114012227) do
     t.integer  "answers_count", :default => 0
   end
 
+  create_table "levels", :force => true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "years_of_study"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "resources", :force => true do |t|
     t.text     "title"
     t.text     "description"
@@ -83,6 +91,21 @@ ActiveRecord::Schema.define(:version => 20130114012227) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "student_profiles", :force => true do |t|
+    t.integer  "level_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "teacher_profiles", :force => true do |t|
+    t.text     "education"
+    t.boolean  "online"
+    t.boolean  "in_person"
+    t.integer  "years_of_experience"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -96,6 +119,14 @@ ActiveRecord::Schema.define(:version => 20130114012227) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "country_id"
+    t.string   "skype_id"
+    t.integer  "reputation"
+    t.text     "bio"
+    t.integer  "profile_id"
+    t.string   "profile_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

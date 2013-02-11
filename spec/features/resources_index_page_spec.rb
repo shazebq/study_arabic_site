@@ -52,7 +52,7 @@ describe "resources index page" do
 
   describe "category links" do
    it "should have links to each category" do
-     page.should have_selector("a", text: "Vocabulary")
+     page.should have_selector("a", text: "Study Abroad")
    end
   end
 

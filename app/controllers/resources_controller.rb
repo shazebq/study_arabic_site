@@ -1,5 +1,5 @@
 class ResourcesController < CategorizableItemsController
-  before_filter :require_sign_in, only: [:new, :update, :destroy, :create]
+  before_filter :authenticate_user!, only: [:new, :update, :destroy, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
 
@@ -8,7 +8,7 @@ class ResourcesController < CategorizableItemsController
   end
 
   def create
-    #return render text: params
+    #return render text: params testing
     @resource = Resource.new(params[:resource])
     @resource.user_id = current_user.id
     if @resource.save
