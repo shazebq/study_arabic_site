@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :resources
   belongs_to :profile, polymorphic: true
+  belongs_to :country
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -14,3 +15,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :bio
   # attr_accessible :title, :body
 end
+
+
+#comments

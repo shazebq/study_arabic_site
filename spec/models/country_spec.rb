@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe Country do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :each do
+    @country = FactoryGirl.build(:country) 
+  end
+
+  subject { @country }
+
+  it { should respond_to :users }
 end
+
+#comments
