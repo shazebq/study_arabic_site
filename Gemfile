@@ -36,7 +36,6 @@ gem 'hirb'
 gem 'cocaine', '= 0.3.2'
 gem 'warden'
 
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec'

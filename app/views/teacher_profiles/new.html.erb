@@ -8,6 +8,24 @@
     <%= f.label :years_of_experience %><br />
     <%= f.text_field :years_of_experience %>
   </div>
+  <div class="field">
+    Do you offer online classes?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :online, "1" %>
+      <%= f.label "No" %>
+      <%= f.radio_button :online, "2" %>
+    </div><br />
+  </div>
+  <div class="field">
+    Do you offer in person classes?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :in_person, "1" %>
+      <%= f.label "No" %>
+      <%= f.radio_button :in_person, "2" %>
+    </div><br />
+  </div>
   <%= f.fields_for :user do |user_form| %>
     <div class="field"><%= user_form.label :first_name %><br />
     <%= user_form.text_field :first_name %></div>
@@ -19,9 +37,13 @@
     <%= user_form.password_field :password %></div>
     <div class="field"><%= user_form.label :password_confirmation %><br />
     <%= user_form.password_field :password_confirmation %></div>
+    <div class="field"><%= user_form.label "Enter a brief description about yourself" %><br />
+    <%= user_form.text_area :bio %></div>
   <% end %>
 
   <div class="actions">
     <%= f.submit "Create account" %>
   </div>
 <% end %>
+
+<!--comments-->

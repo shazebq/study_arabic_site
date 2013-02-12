@@ -17,11 +17,14 @@ describe "new teacher profile page" do
     before :each do
       fill_in "teacher_profile_education", with: "bachelors degree in Arabic"
       fill_in "teacher_profile_years_of_experience", with: "5"
+      choose "teacher_profile_online_1"
+      choose "teacher_profile_in_person_1"
       fill_in "teacher_profile_user_attributes_first_name", with: "Bill"
       fill_in "teacher_profile_user_attributes_last_name", with: "Jones"
       fill_in "teacher_profile_user_attributes_email", with: "bjones@example.com"
       fill_in "teacher_profile_user_attributes_password", with: "cool123"
       fill_in "teacher_profile_user_attributes_password_confirmation", with: "cool123"
+      fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
