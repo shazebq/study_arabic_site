@@ -3,8 +3,8 @@ require "spec_helper"
 describe "new teacher profile page" do
   before :each do
     sign_in_user( FactoryGirl.create(:user, email: "shazebq@gmail.com") )
+    FactoryGirl.create(:country, name: "Egypt")
     visit new_teacher_profile_path
-
   end
 
   describe "page contents" do
@@ -25,6 +25,7 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_user_attributes_password", with: "cool123"
       fill_in "teacher_profile_user_attributes_password_confirmation", with: "cool123"
       fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
+      select "Egypt", from: "teacher_profile_user_attributes_country_id"
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
