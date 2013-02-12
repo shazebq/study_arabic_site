@@ -1,0 +1,28 @@
+<h2>Create Teacher Profile</h2>
+<%= new_teacher_profile_path %>
+<%= form_for(@teacher_profile) do |f| %>
+  <div class="field">
+    <%= f.label :education %><br />
+    <%= f.text_field :education %>
+  </div>
+  <div class="field">
+    <%= f.label :years_of_experience %><br />
+    <%= f.text_field :years_of_experience %>
+  </div>
+  <%= f.fields_for :user do |user_form| %>
+    <div class="field"><%= user_form.label :first_name %><br />
+    <%= user_form.text_field :first_name %></div>
+    <div class="field"><%= user_form.label :last_name %><br />
+    <%= user_form.text_field :last_name %></div>
+    <div class="field"><%= user_form.label :email %><br />
+    <%= user_form.email_field :email %></div>
+    <div class="field"><%= user_form.label :password %><br />
+    <%= user_form.password_field :password %></div>
+    <div class="field"><%= user_form.label :password_confirmation %><br />
+    <%= user_form.password_field :password_confirmation %></div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Create account" %>
+  </div>
+<% end %>
