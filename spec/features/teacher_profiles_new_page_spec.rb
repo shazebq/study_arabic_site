@@ -26,6 +26,7 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_user_attributes_password_confirmation", with: "cool123"
       fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
       select "Egypt", from: "teacher_profile_user_attributes_country_id"
+      attach_file "teacher_profile_user_attributes_image_attributes_image", "/Users/shazeb/Pictures/test_image.jpg" 
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
@@ -36,7 +37,12 @@ describe "new teacher profile page" do
       expect { click_button "Create account" }.to change(User, :count)
     end
 
+    specify "clicking create account button should create an image which belongs to the user" do
+      click_button "Create account"
+      User.last.image.should_not be_nil 
+    end
+
   end
 end
 
-#comments
+#commentsss
