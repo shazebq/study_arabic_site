@@ -12,6 +12,18 @@ module ApplicationHelper
     end
   end
 
+  def full_name(user)
+    "#{user.first_name} #{user.last_name}" 
+  end
+
+  def user_type(user)
+    if user.profile_type == "TeacherProfile"
+      "Teacher"
+    else
+      "Student"
+    end
+  end
+
 end
 
 class BigDecimal

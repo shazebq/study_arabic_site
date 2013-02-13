@@ -18,7 +18,7 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_education", with: "bachelors degree in Arabic"
       fill_in "teacher_profile_years_of_experience", with: "5"
       fill_in "teacher_profile_price_per_hour", with: "5.50"
-      fill_in "teacher_profile_specialities", with: "grammar, quran, islamic arabic"
+      fill_in "teacher_profile_specialties", with: "grammar, quran, islamic arabic"
       choose "teacher_profile_online_1"
       choose "teacher_profile_in_person_1"
       fill_in "teacher_profile_user_attributes_first_name", with: "Bill"

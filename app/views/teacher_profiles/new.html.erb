@@ -17,7 +17,7 @@
     <%= user_form.password_field :password_confirmation %></div>
     <div class="field"><%= user_form.label "Enter a brief description about yourself" %>
     <%= user_form.text_area :bio %></div>
-    <%= user_form.fields_for :image do |image_form| %>
+    <%= user_form.fields_for :image, :html => { :multipart => true } do |image_form| %>
       <%= image_form.label "Profile Picture" %>
       <%= image_form.file_field :image %>
     <% end %>
@@ -31,8 +31,8 @@
     <%= f.text_field :years_of_experience %>
   </div>
   <div class="field">
-    <%= f.label :specialities %>
-    <%= f.text_field :specialities %>
+    <%= f.label :specialties %>
+    <%= f.text_field :specialties %>
   </div>
   <div class="field">
     <%= f.label :price_per_hour %>

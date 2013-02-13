@@ -1,1 +1,14 @@
-<% provide :title, "#{@user.first_name} #{@user.last_name}" %>
+<% provide :title, full_name(@user) %>
+
+<div class="row">
+  <div class="span3 photo">
+    <%= image_tag @user.image.try(:image).try(:url, :thumb) %> 
+  </div>
+  <div class="span6">
+    <div class="user_title"><span class="subtitle_large1"><%= full_name(@user) %></span><span class="label user_label"><%= user_type(@user) %></div>
+      <p class="specialties"><%= @user.profile.try(:specialties) %></p class="specialties">
+    <p><%= @user.bio %></p>
+  </div>
+</div>
+
+<br />

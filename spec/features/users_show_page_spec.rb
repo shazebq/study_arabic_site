@@ -16,8 +16,23 @@ describe "user show page" do
         page.html.should have_selector("title", text: "#{user.first_name} #{user.last_name}") 
       end
     end
+    
+    it "should display the user's name" do
+      page.should have_content("#{user.first_name} #{user.last_name}")
+    end
 
+    it "should display a teacher badge" do
+      page.should have_content("Teacher")
+    end
+
+    it "should display the user's bio" do
+      page.should have_content(user.bio)
+    end
+
+    it "should display the user's bio" do
+      page.should have_content(user.profile.specialties)
+    end
   end
 end
 
-# commentss
+# commen
