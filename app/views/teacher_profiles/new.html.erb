@@ -15,6 +15,10 @@
     <%= user_form.password_field :password_confirmation %></div>
     <div class="field"><%= user_form.label "Enter a brief description about yourself" %>
     <%= user_form.text_area :bio %></div>
+    <%= user_form.fields_for :image do |image_form| %>
+      <%= image_form.label "Profile Picture" %>
+      <%= image_form.file_field :image %>
+    <% end %>
   <% end %>
   <div class="field">
     <%= f.label :education %>
