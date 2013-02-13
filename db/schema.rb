@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213062144) do
+ActiveRecord::Schema.define(:version => 20130213172411) do
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -120,8 +120,10 @@ ActiveRecord::Schema.define(:version => 20130213062144) do
     t.boolean  "online"
     t.boolean  "in_person"
     t.integer  "years_of_experience"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.decimal  "price_per_hour",      :precision => 5, :scale => 2
+    t.text     "specialities"
   end
 
   create_table "users", :force => true do |t|

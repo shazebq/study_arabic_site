@@ -7,6 +7,8 @@
     <%= user_form.text_field :last_name %></div>
     <div class="field"><%= user_form.label :email %>
     <%= user_form.email_field :email %></div>
+    <div class="field"><%= user_form.label "Skype ID" %>
+    <%= user_form.email_field :skype_id %></div>
     <div class="field"><%= user_form.label :country_id %>
       <%= user_form.select :country_id, Country.all.collect { |c| [c.name, c.id] } %></div>
     <div class="field"><%= user_form.label :password %>
@@ -27,6 +29,14 @@
   <div class="field">
     <%= f.label :years_of_experience %>
     <%= f.text_field :years_of_experience %>
+  </div>
+  <div class="field">
+    <%= f.label :specialities %>
+    <%= f.text_field :specialities %>
+  </div>
+  <div class="field">
+    <%= f.label :price_per_hour %>
+    <%= f.text_field :price_per_hour %>
   </div>
   <div class="field">
     Do you offer online classes?

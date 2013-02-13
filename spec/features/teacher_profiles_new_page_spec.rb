@@ -17,6 +17,8 @@ describe "new teacher profile page" do
     before :each do
       fill_in "teacher_profile_education", with: "bachelors degree in Arabic"
       fill_in "teacher_profile_years_of_experience", with: "5"
+      fill_in "teacher_profile_price_per_hour", with: "5.50"
+      fill_in "teacher_profile_specialities", with: "grammar, quran, islamic arabic"
       choose "teacher_profile_online_1"
       choose "teacher_profile_in_person_1"
       fill_in "teacher_profile_user_attributes_first_name", with: "Bill"
@@ -25,6 +27,7 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_user_attributes_password", with: "cool123"
       fill_in "teacher_profile_user_attributes_password_confirmation", with: "cool123"
       fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
+      fill_in "teacher_profile_user_attributes_skype_id", with: "billyjones"
       select "Egypt", from: "teacher_profile_user_attributes_country_id"
       attach_file "teacher_profile_user_attributes_image_attributes_image", "/Users/shazeb/Pictures/test_image.jpg" 
     end
@@ -45,4 +48,4 @@ describe "new teacher profile page" do
   end
 end
 
-#commentsss
+#comments
