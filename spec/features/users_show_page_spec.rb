@@ -17,7 +17,6 @@ describe "user show page" do
       end
     end
 
-    #it { should have_selector("h3", text: resource.title)}
   end
 end
 
