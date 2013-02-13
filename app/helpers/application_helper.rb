@@ -23,6 +23,10 @@ module ApplicationHelper
       "Student"
     end
   end
+  
+  def user_type_controller(user)
+    "#{user_type(@user).downcase}_profiles"
+  end
 
 end
 
