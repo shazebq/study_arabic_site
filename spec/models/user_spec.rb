@@ -12,6 +12,7 @@ describe User do
   it { should respond_to(:resources) }
   it { should respond_to(:profile) }
   it { should respond_to(:country) }
+  it { should respond_to(:image) }
 
   # this spec doesn't work but it does work
   #describe "after a user is destroyed" do

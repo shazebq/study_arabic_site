@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :forum_posts
   has_many :answers
   has_many :resources
+  has_one :image, as: :imageable
   belongs_to :profile, polymorphic: true
   belongs_to :country
 
@@ -22,4 +23,4 @@ class User < ActiveRecord::Base
 end
 
 
-#comments
+#commentss
