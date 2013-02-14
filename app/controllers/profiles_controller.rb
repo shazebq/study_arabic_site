@@ -14,5 +14,16 @@ class ProfilesController < ApplicationController
       return render text: "boohoo, error!"
     end
   end
+
+  def edit
+    @profile = params[:controller].classify.constantize.find(params[:id])
+  end
+
+  def update
+    #return render text: params[:teacher_profile]
+    @profile = params[:controller].classify.constantize.find(params[:id])
+    @profile.update_attributes(params[params[:controller].singularize])
+    return render text: @profile.errors.messages.inspect
+  end
 end
 
