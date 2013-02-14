@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    #return render text: params[:teacher_profile]
+    return render text: params[:teacher_profile]
     @profile = params[:controller].classify.constantize.find(params[:id])
     @profile.update_attributes(params[params[:controller].singularize])
     return render text: @profile.errors.messages.inspect
