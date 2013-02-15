@@ -38,18 +38,18 @@
     Do you offer online classes?
     <div class="form-inline">
       <%= f.label "Yes" %>
-      <%= f.radio_button :online, "1" %>
+      <%= f.radio_button :online, true %>
       <%= f.label "No" %>
-      <%= f.radio_button :online, "2" %>
+      <%= f.radio_button :online, false %>
     </div><br />
   </div>
   <div class="field">
     Do you offer in person classes?
     <div class="form-inline">
       <%= f.label "Yes" %>
-      <%= f.radio_button :in_person, "1" %>
+      <%= f.radio_button :in_person, true %>
       <%= f.label "No" %>
-      <%= f.radio_button :in_person, "2" %>
+      <%= f.radio_button :in_person, false %>
     </div><br />
   </div>
 
