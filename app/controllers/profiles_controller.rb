@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     @profile = params[:controller].classify.constantize.find(params[:id])
     @profile.update_attributes(params[params[:controller].singularize])
     #return render text: @profile.errors.messages.inspect
-    return render text: "good job"
+    redirect_to user_path(@profile.user)
   end
 end
 

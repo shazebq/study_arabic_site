@@ -16,11 +16,16 @@ describe "teacher profile edit page" do
     it { should_not have_selector("#teacher_profile_user_attributes_password_confirmation") } 
   end
 
-  #describe "editing a field and submitting the form" do
-  #  before :each do
-  #    fill_in "teacher_profile_education", with: "phd in Arabic" 
-  #  end
-  #end
+  describe "editing a field and submitting the form" do
+    before :each do
+      fill_in "teacher_profile_field_of_study", with: "Rhetoric" 
+    end
+
+    it "should redirect to the user's page" do
+      click_button "Submit"
+      current_path.should == user_path(user)
+    end
+  end
 end
 
 # comments
