@@ -3,5 +3,5 @@ class Image < ActiveRecord::Base
 
   belongs_to :imageable, polymorphic: true
   attr_accessible :image
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, :styles => { :medium => "250x250>", :thumb => "100x100>" }
 end
