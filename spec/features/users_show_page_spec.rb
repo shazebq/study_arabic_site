@@ -46,7 +46,7 @@ describe "user show page" do
       describe "clicking edit" do
         it "should redirect to the edit page" do
           click_link("Edit Profile")
-          current_path.should == edit_teacher_profile_path(user)
+          current_path.should == edit_teacher_profile_path(teacher_profile)
         end
       end
     end

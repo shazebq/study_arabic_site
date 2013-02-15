@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :teacher_profile do
-    education "MyText"
+    university "Cairo University"
+    field_of_study "Arabic Literature"
     online false
     in_person false
     years_of_experience 1

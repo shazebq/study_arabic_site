@@ -9,18 +9,21 @@ describe "new teacher profile page" do
 
   describe "page contents" do
     it "should include fields for the teacher profile" do
-      page.should have_selector("#teacher_profile_education")
+      page.should have_selector("#teacher_profile_university")
+      page.should have_selector("#teacher_profile_field_of_study")
+      page.should have_selector("#teacher_profile_specialties")
     end
   end
 
   describe "creating a new teacher account" do
     before :each do
-      fill_in "teacher_profile_education", with: "bachelors degree in Arabic"
+      fill_in "teacher_profile_university", with: "Cairo University"
+      fill_in "teacher_profile_field_of_study", with: "Arabic Literature"
       fill_in "teacher_profile_years_of_experience", with: "5"
       fill_in "teacher_profile_price_per_hour", with: "5.50"
       fill_in "teacher_profile_specialties", with: "grammar, quran, islamic arabic"
-      choose "teacher_profile_online_1"
-      choose "teacher_profile_in_person_1"
+      choose "teacher_profile_online_true"
+      choose "teacher_profile_in_person_true"
       fill_in "teacher_profile_user_attributes_first_name", with: "Bill"
       fill_in "teacher_profile_user_attributes_last_name", with: "Jones"
       fill_in "teacher_profile_user_attributes_email", with: "bjones@example.com"
@@ -33,15 +36,15 @@ describe "new teacher profile page" do
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
-      expect { click_button "Create account" }.to change(TeacherProfile, :count)
+      expect { click_button "Submit" }.to change(TeacherProfile, :count)
     end
 
     specify "clicking create account button should create a user and a new user" do
-      expect { click_button "Create account" }.to change(User, :count)
+      expect { click_button "Submit" }.to change(User, :count)
     end
 
     specify "clicking create account button should create an image which belongs to the user" do
-      click_button "Create account"
+      click_button "Submit"
       User.last.image.should_not be_nil 
     end
 
