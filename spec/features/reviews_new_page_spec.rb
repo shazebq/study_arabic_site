@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "new review page" do
   create_categories
   let(:resource) { FactoryGirl.create(:resource, category_ids: [Category.first.id])}
+  let(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
   subject { page }
 
   before do

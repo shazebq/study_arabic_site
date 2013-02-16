@@ -11,7 +11,11 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       flash[:success] = "Your review has been added"
-      redirect_to resource_review_path(@reviewable, @review)
+      if @reviewable.is_a?(TeacherProfile) # have to add this condition because redirection should be to show user page, not show teacher profile page
+        redirect_to user_path(@reviewable.user)
+      else
+        redirect_to controller: @reviewable.class.name.underscore.pluralize, action: "show", id: @reviewable.id 
+      end
     else
       render "new"
     end
