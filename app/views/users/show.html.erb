@@ -94,6 +94,10 @@
   <span class="large_font_size">Have you had classes with this teacher?</span>
   <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn btn-primary") %>
 </div>
+<div>
+  <h4>Reviews</h4>
+  <%= render partial: "reviews/reviews_display", locals: { item: @user.profile } %>
+</div>
 
 <% content_for :side_bar do %>
   <h4>Teacher Statistics</h4>

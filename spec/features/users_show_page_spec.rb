@@ -4,6 +4,8 @@ include Devise::TestHelpers
 describe "user show page" do
   let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
   let!(:user) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile.id) }
+  let!(:teacher_review) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile",
+                                              reviewable_id: teacher_profile.id, content: "wonderful teacher!!!") }
   before do
     visit user_path(user)
   end
@@ -46,13 +48,19 @@ describe "user show page" do
       #page.should have_content("Write a Review")
     end
 
+    describe "teacher reviews" do
+      specify "all teacher reviews should be displayed" do
+        page.should have_content(teacher_review.content)
+      end
+    end
+
     describe "clicking on the review button" do
       it "should redirect to the teacher_review_path" do
         click_button("Write a Review")
         current_path.should == new_teacher_profile_review_path(teacher_profile) 
       end
     end
-    
+
     describe "edit/delete links" do
       before :each do
         sign_in_user(user)

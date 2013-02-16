@@ -37,17 +37,7 @@
     <div class="bottom_border_div">
     <h4>Reviews</h4>
     </div>
-
-    <div>
-      <% @resource.reviews.each do |review| %>
-        <div class="well">
-          <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
-          <span class="subtitle_large"><%= review.title %></span>
-
-          <%= render partial: "shared/nested_item_view", locals: { item: review, parent: @resource } %>
-        </div>
-      <% end %>
-    </div>
+    <%= render partial: "reviews/reviews_display", locals: { item: @resource } %>
   </div>
 </div>
 

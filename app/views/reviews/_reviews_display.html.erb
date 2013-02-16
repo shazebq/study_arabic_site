@@ -1,0 +1,10 @@
+<div>
+  <% item.reviews.each do |review| %>
+    <div class="well">
+      <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
+      <span class="subtitle_large"><%= review.title %></span>
+
+      <%= render partial: "shared/nested_item_view", locals: { item: review, parent: item } %>
+    </div>
+  <% end %>
+</div>
