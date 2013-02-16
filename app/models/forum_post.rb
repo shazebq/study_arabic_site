@@ -9,9 +9,9 @@ class ForumPost < ActiveRecord::Base
   has_many :categories_categorizables, as: :categorizable, dependent: :destroy
   has_many :categories, through: :categories_categorizables
 
-  has_many :votes, as: :voteable
-  has_many :views, as: :viewable
-  has_many :answers
+  has_many :votes, as: :voteable, dependent: :destroy
+  has_many :views, as: :viewable, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   validates :title, :content, :category_ids, presence: true
 

@@ -33,6 +33,26 @@ describe "user show page" do
       page.should have_content(user.profile.specialties)
     end
 
+    it "should display the teacher's statistics" do
+      page.should have_content("Teacher Statistics")
+    end
+    
+    it "should display the teacher's answers" do
+      page.should have_content("Questions Answered")
+      page.should have_content(user.answers.count)
+    end    
+
+    it "should display a button to review the teacher" do
+      #page.should have_content("Write a Review")
+    end
+
+    describe "clicking on the review button" do
+      it "should redirect to the teacher_review_path" do
+        click_button("Write a Review")
+        current_path.should == new_teacher_profile_review_path(teacher_profile) 
+      end
+    end
+    
     describe "edit/delete links" do
       before :each do
         sign_in_user(user)
@@ -53,4 +73,4 @@ describe "user show page" do
   end
 end
 
-# comments
+# commentss

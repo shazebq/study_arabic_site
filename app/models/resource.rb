@@ -9,10 +9,10 @@ class Resource < ActiveRecord::Base
   # just like regular join table
   has_many :categories, through: :categories_categorizables
 
-  has_many :votes, as: :voteable
-  has_many :views, as: :viewable
+  has_many :votes, as: :voteable, dependent: :destroy
+  has_many :views, as: :viewable, dependent: :destroy
 
-  has_many :reviews, as: :reviewable
+  has_many :reviews, as: :reviewable, dependent: :destroy
 
   belongs_to :user
 

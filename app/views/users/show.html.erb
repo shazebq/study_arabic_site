@@ -88,18 +88,43 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br />
+
+<div>
+  <span class="large_font_size">Have you had classes with this teacher?</span>
+  <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn btn-primary") %>
+</div>
+
+<% content_for :side_bar do %>
+  <h4>Teacher Statistics</h4>
+  <table>
+    <tr>
+      <td><span class="subtitle_large padded_cell">Repuation Score</span></td>
+      <td><span class="stats"><%= "475" %></span></td>      
+    </tr>   
+    <tr>
+      <td><span class="subtitle_large padded_cell">Questions Answered</span></td>
+      <td><span class="stats"><%= @user.answers.count %></span></td>      
+    </tr>
+    <tr>
+      <td><span class="subtitle_large padded_cell">Resources Posted</span></td>
+      <td><span class="stats"><%= @user.resources.count %></span></td>      
+    </tr>
+  </table>
+<% end %>
+
+
+<!--comments-->
+
+
+
+
+
+
+
+
+
+
+
+
 
