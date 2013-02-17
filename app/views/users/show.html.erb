@@ -7,12 +7,20 @@
   <div class="span6">
     <div class="row">
       <div class="span4">
-        <div><span class="subtitle_large1"><%= full_name(@user) %></span><span class="label user_label"><%= user_type(@user) %></div>
+        <div><span class="subtitle_large1"><%= full_name(@user) %></span><span class="label user_label"><%= user_type(@user) %></span>
+        </div>
+
       </div>
       <div class="span2"><p class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(@user), 
                                                       action: "edit", id: @user.profile %></p></div>
     </div>
-      <p class="specialties"><%= @user.profile.try(:specialties) %></p class="specialties">
+    <p class="specialties"><%= @user.profile.try(:specialties) %></p>
+    <p>
+      <span class="rating_font">
+        <%= generate_stars(@user.profile.try(:reviews).average("rating").try(:round_point5)).html_safe %>
+        <%= "(#{@user.profile.try(:reviews_count)} reviews)" %>
+      </span>
+    </p>
     <p><%= @user.bio %></p>
   </div>
 </div>
