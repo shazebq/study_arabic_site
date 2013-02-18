@@ -1,3 +1,3 @@
-class StudentProfilesController
+class StudentProfilesController < ProfilesController
   
 end

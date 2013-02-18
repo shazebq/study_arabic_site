@@ -25,6 +25,8 @@ ArabicProject::Application.routes.draw do
     resources :reviews
   end
 
+  resources :student_profiles
+
   match 'resources/:id/download' => 'resources#download', :via => :get
 
   resources :resources do
