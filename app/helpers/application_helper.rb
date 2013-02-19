@@ -28,6 +28,13 @@ module ApplicationHelper
     "#{user_type(@user).downcase}_profiles"
   end
 
+  def authorized?(user)
+    if user_signed_in? && (@user == current_user)
+      true
+    else
+      false
+    end
+  end
 end
 
 class BigDecimal

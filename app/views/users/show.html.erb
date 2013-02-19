@@ -11,104 +11,123 @@
         </div>
 
       </div>
-      <div class="span2"><p class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(@user), 
+      <% if authorized?(@user) %>
+        <div class="span2"><p class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(@user), 
                                                       action: "edit", id: @user.profile %></p></div>
+      <% end %>                                                    
     </div>
-    <p class="specialties"><%= @user.profile.try(:specialties) %></p>
-    <p>
+    <% if user_type(@user) == "Teacher" %>
+      <p class="specialties"><%= @user.profile.try(:specialties)  %></p>
+      <p>
       <span class="rating_font">
         <%= generate_stars(@user.profile.try(:reviews).average("rating").try(:round_point5)).html_safe %>
         <%= "(#{@user.profile.try(:reviews_count)} reviews)" %>
       </span>
-    </p>
+      </p>
+    <% end %>
     <p><%= @user.bio %></p>
   </div>
 </div>
 <br />
-<div class="row">
-  <div class="span3">
-    <p>Online Teaching</p>     
-  </div>
-  <div class="span4">
-    <p><%= bool_display(@user.profile.online) %></p> 
-  </div>
-</div>
 
-<div class="row">
-  <div class="span3">
-    <p>In Person Teaching</p> 
-  </div>
-  <div class="span4">
-    <p><%= bool_display(@user.profile.in_person) %></p>
-  </div>
-</div>
+<% if user_type(@user) == "Teacher" %>
 
-<div class="row">
-  <div class="span3">
-    <p>Price Per Hour</p> 
+  <div class="row">
+    <div class="span3">
+      <p>Online Teaching</p>     
+    </div>
+    <div class="span4">
+      <p><%= bool_display(@user.profile.online) %></p> 
+    </div>
   </div>
-  <div class="span4">
-    <p><%= number_to_currency(@user.profile.price_per_hour) %></p>
-  </div>
-</div>
 
-<div class="row">
-  <div class="span3">
-    <p>Education</p> 
+  <div class="row">
+    <div class="span3">
+      <p>In Person Teaching</p> 
+    </div>
+    <div class="span4">
+      <p><%= bool_display(@user.profile.in_person) %></p>
+    </div>
   </div>
-  <div class="span4">
-  </div>
-</div>
 
-<div class="row">
-  <div class="span3">
-    <p style="padding-left: 10px"><i class="icon-chevron-right"></i> Field of Study</p> 
+  <div class="row">
+    <div class="span3">
+      <p>Price Per Hour</p> 
+    </div>
+    <div class="span4">
+      <p><%= number_to_currency(@user.profile.price_per_hour) %></p>
+    </div>
   </div>
-  <div class="span4">
-    <p><%= @user.profile.field_of_study %></p>
-  </div>
-</div>
 
-<div class="row">
-  <div class="span3">
-    <p style="padding-left: 10px"><i class="icon-chevron-right"></i> University</p> 
+  <div class="row">
+    <div class="span3">
+      <p>Education</p> 
+    </div>
+    <div class="span4">
+    </div>
   </div>
-  <div class="span4">
-    <p><%= @user.profile.university %></p>
-  </div>
-</div>
 
-<div class="row">
-  <div class="span3">
-    <p>Email</p> 
+  <div class="row">
+    <div class="span3">
+      <p style="padding-left: 10px"><i class="icon-chevron-right"></i> Field of Study</p> 
+    </div>
+    <div class="span4">
+      <p><%= @user.profile.field_of_study %></p>
+    </div>
   </div>
-  <div class="span4">
-    <p><%= mail_to @user.email %></p>
-  </div>
-</div>
 
-<div class="row">
-  <div class="span3">
-    <p>Skype ID</p> 
+  <div class="row">
+    <div class="span3">
+      <p style="padding-left: 10px"><i class="icon-chevron-right"></i> University</p> 
+    </div>
+    <div class="span4">
+      <p><%= @user.profile.university %></p>
+    </div>
   </div>
-  <div class="span4">
-    <p><%= @user.skype_id %></p>
+
+  <div class="row">
+    <div class="span3">
+      <p>Email</p> 
+    </div>
+    <div class="span4">
+      <p><%= mail_to @user.email %></p>
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="span3">
+      <p>Skype ID</p> 
+    </div>
+    <div class="span4">
+      <p><%= @user.skype_id %></p>
+    </div>
+  </div>
+<% end %>
+
+<% if user_type(@user) == "Student" %>
+  <div class="row">
+    <div class="span3">
+      <p>Level</p> 
+    </div>
+    <div class="span4">
+      <p><%= @user.profile.try(:level).title %></p>
+    </div>
+  </div>
+<% end %>
 
 <br />
-
-<div>
-  <span class="large_font_size">Have you had classes with this teacher?</span>
-  <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn btn-primary") %>
-</div>
-<div>
-  <h4>Reviews</h4>
-  <%= render partial: "reviews/reviews_display", locals: { item: @user.profile } %>
-</div>
-
+<% if user_type(@user) == "Teacher" %>
+  <div>
+    <span class="large_font_size">Have you had classes with this teacher?</span>
+    <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn btn-primary") %>
+  </div>
+  <div>
+    <h4>Reviews</h4>
+    <%= render partial: "reviews/reviews_display", locals: { item: @user.profile } %>
+  </div>
+<% end %>
 <% content_for :side_bar do %>
-  <h4>Teacher Statistics</h4>
+  <h4><%= "#{user_type(@user)} Statistics" %></h4>
   <table>
     <tr>
       <td><span class="subtitle_large padded_cell">Repuation Score</span></td>

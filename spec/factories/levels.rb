@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :level do
-    title "MyText"
-    description "MyText"
-    years_of_study 1
+    title "Advanced"
+    description "Formal classes or self study equivalent to four university level years"
+    years_of_study 4
   end
 end

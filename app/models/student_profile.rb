@@ -1,5 +1,6 @@
 class StudentProfile < ActiveRecord::Base
-  attr_accessible :level_id
-
-  has_one :user, as: :profile
+  has_one :user, as: :profile, dependent: :destroy
+  belongs_to :level
+  accepts_nested_attributes_for :user
+  attr_accessible :level_id, :user_attributes
 end

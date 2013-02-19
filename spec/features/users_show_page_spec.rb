@@ -1,5 +1,3 @@
-require 'spec_helper'
-include Devise::TestHelpers
 
 describe "user show page" do
   let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
@@ -78,6 +76,13 @@ describe "user show page" do
         end
       end
     end
+
+    describe "edit links when user is not signed in" do
+      it "should not appear" do
+        page.should_not have_content("Edit Profile")
+      end
+    end
+
   end
 end
 
