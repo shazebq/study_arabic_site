@@ -83,6 +83,18 @@ describe "user show page" do
       end
     end
 
+    describe "edit links when the user who is signed in is different than the profile" do
+      before :each do
+        user_new = FactoryGirl.create(:user, email: "wallyjones@example.com")
+        sign_in_user(user_new)
+        visit user_path(user)
+      end
+
+      it "should not appear" do
+        page.should_not have_content("Edit Profile")
+      end
+    end
+
   end
 end
 
