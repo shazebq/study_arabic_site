@@ -96,6 +96,13 @@ def initialize_records
                                      user_id: user.id) }
 end
 
+def create_teacher_records
+  let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
+  let!(:user) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile.id) }
+  let!(:teacher_review) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile",
+                                              reviewable_id: teacher_profile.id, content: "wonderful teacher!!!") }
+end
+
 def sign_in_user(the_user)
   visit new_user_session_path
   fill_in("user_email", with: the_user.email)

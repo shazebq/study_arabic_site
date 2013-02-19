@@ -1,9 +1,6 @@
 
 describe "user show page" do
-  let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
-  let!(:user) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile.id) }
-  let!(:teacher_review) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile",
-                                              reviewable_id: teacher_profile.id, content: "wonderful teacher!!!") }
+  create_teacher_records
   before do
     visit user_path(user)
   end
