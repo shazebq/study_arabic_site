@@ -29,7 +29,7 @@
   <% if params[:controller] == "student_profiles" %>
     <div class="field">
       <%= f.label "Level" %>
-      <%= f.text_field :level_id %>
+      <%= f.select :level_id, Level.all.collect { |l| [l.title, l.id] } %>
     </div>
   <% end %>
 
