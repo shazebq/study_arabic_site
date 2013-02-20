@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :bio, :country_id, :image_attributes, :skype_id
 
+  scope :teachers, where(profile_type: "TeacherProfile")
+  scope :students, where(profile_type: "StudentProfile")
+
   private
   def destroy_user_profile
     self.profile.delete

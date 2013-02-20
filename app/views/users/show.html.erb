@@ -1,5 +1,5 @@
 <% provide :title, full_name(@user) %>
-<%= render "basic_user_info" %>
+<%= render partial: "basic_user_info", locals: { user: @user } %>
 <br />
 
 <% if user_type(@user) == "Teacher" %>
