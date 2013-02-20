@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216030130) do
+ActiveRecord::Schema.define(:version => 20130220204606) do
+
+  create_table "addresses", :force => true do |t|
+    t.text     "address_line"
+    t.integer  "city_id"
+    t.integer  "country_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -42,6 +50,35 @@ ActiveRecord::Schema.define(:version => 20130216030130) do
     t.string   "categorizable_type"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "centers", :force => true do |t|
+    t.text     "name"
+    t.text     "description"
+    t.boolean  "short_term"
+    t.boolean  "long_term"
+    t.string   "website"
+    t.string   "email"
+    t.string   "phone_number"
+    t.integer  "address_id"
+    t.text     "program_length"
+    t.integer  "user_id"
+    t.boolean  "private_instruction"
+    t.boolean  "group_instruction"
+    t.integer  "year_established"
+    t.decimal  "price_per_hour_private"
+    t.decimal  "price_per_hour_group"
+    t.decimal  "total_price"
+    t.boolean  "housing_provided"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "cities", :force => true do |t|
+    t.text     "name"
+    t.integer  "country_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "countries", :force => true do |t|

@@ -8,6 +8,8 @@ describe Country do
   subject { @country }
 
   it { should respond_to :users }
+  it { should respond_to :cities }
+  it { should respond_to :addresses }
 end
 
 #comments
