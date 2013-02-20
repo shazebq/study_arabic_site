@@ -7,7 +7,7 @@
     </div>
     <div class="span7">
           <div>
-            <span class="subtitle_large1"><%= full_name(teacher) %></span>
+            <span class="subtitle_large1"><%= link_to(full_name(teacher), user_path(teacher)) %></span>
             <span class="rating_font">
               <%= generate_stars(teacher.profile.try(:reviews).average("rating").try(:round_point5)).html_safe %>
               <%= "(#{teacher.profile.try(:reviews_count)} reviews)" %>
@@ -21,3 +21,4 @@
     </div>
   </div>
 <% end %>
+

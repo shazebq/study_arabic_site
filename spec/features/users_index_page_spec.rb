@@ -19,4 +19,10 @@ describe "users(teachers) index page" do
       page.should have_content(user.last_name)
     end
   end
+
+  describe "teacher's name" do
+    it "should be a link to the the user's show page" do
+      click_link("#{user.first_name} #{user.last_name}")
+    end
+  end
 end
