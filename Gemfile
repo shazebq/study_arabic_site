@@ -16,7 +16,6 @@ group :assets do
   gem 'bootstrap-sass'
   #gem 'font-awesome-rails'
   gem 'font-awesome-sass-rails'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 
   gem 'uglifier', '>= 1.0.3'
