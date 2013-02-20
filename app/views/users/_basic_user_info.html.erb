@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="span3 photo">
+    <%= image_tag @user.image.try(:image).try(:url, :medium) %> 
+  </div>
+  <div class="span6">
+    <div class="row">
+      <div class="span4">
+        <div>
+          <span class="subtitle_large1"><%= full_name(@user) %></span>
+          <% if params[:action] == "show" %>
+            <span class="label user_label"><%= user_type(@user) %></span>
+          <% end %>
+        </div>
+
+      </div>
+      <% if authorized?(@user) %>
+        <div class="span2"><p class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(@user), 
+                                                      action: "edit", id: @user.profile %></p></div>
+      <% end %>                                                    
+    </div>
+    <% if user_type(@user) == "Teacher" %>
+      <p class="specialties"><%= @user.profile.try(:specialties)  %></p>
+      <p>
+      <span class="rating_font">
+        <%= generate_stars(@user.profile.try(:reviews).average("rating").try(:round_point5)).html_safe %>
+        <%= "(#{@user.profile.try(:reviews_count)} reviews)" %>
+      </span>
+      </p>
+    <% end %>
+    <p><%= @user.bio %></p>
+  </div>
+</div>
