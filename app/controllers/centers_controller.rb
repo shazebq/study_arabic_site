@@ -1,6 +1,10 @@
 class CentersController < ApplicationController
   include MiscTasks
 
+  def index
+    @centers = Center.all
+  end
+
   def new
     @center = Center.new
     @center.build_address
@@ -20,4 +24,5 @@ class CentersController < ApplicationController
   def show 
     @center = Center.find(params[:id]) 
   end
+
 end

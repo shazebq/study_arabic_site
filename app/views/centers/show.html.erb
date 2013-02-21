@@ -1,5 +1,23 @@
+<%= provide :title, @center.name %>
 <div>
-  <% @center.images.each do |i| %>
-    <%= image_tag i.image.url(:medium) %> 
-  <% end %>
+  <%# @center.images.each do |i| %>
+    <%#= image_tag i.image.url(:medium) %> 
+  <%# end %>
 </div>
+    <div id="myCarousel" class="carousel slide">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <% @center.images.each do |i| %>
+        <div class="item"><%= image_tag i.image.url(:medium) %></div>
+      <% end %>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+    

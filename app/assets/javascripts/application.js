@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require bootstrap-dropdown
+//= require bootstrap
 //= require_tree .
