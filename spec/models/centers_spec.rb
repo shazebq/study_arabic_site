@@ -8,6 +8,7 @@ describe Center do
   subject { @center }
 
   it { should respond_to :address }
+  it { should respond_to :images }
 end
 
 #comment

@@ -2,6 +2,7 @@ class CentersController < ApplicationController
   def new
     @center = Center.new
     @address = @center.build_address
+    #@images = @center.images.build
   end
 
   def create
