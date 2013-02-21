@@ -1,5 +1,13 @@
 require 'spec_helper'
 
-describe Centers do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Center do
+  before :each do
+    @center = FactoryGirl.build(:center)
+  end
+
+  subject { @center }
+
+  it { should respond_to :address }
 end
+
+#comment

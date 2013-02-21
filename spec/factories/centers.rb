@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :center, :class => 'Centers' do
+  factory :center do
     name "MyText"
     description "MyText"
     short_term false

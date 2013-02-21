@@ -8,6 +8,7 @@ describe Address do
 
   it { should respond_to(:country) }
   it { should respond_to(:city) }
+  it { should respond_to(:center) }
   
 end
 

@@ -19,6 +19,8 @@ ArabicProject::Application.routes.draw do
     end
   end
 
+  resources :centers
+
   resources :users
 
   resources :teacher_profiles do

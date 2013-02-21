@@ -1,0 +1,31 @@
+<%= provide :title, "Add an Arabic Center or Program" %>
+
+<%= form_for(@center) do |f| %>
+  <% if @center.errors.any? %>
+    <div id="error_explanation" class="alert alert-error">
+      <% pluralize(@center.errors.count, "error") %>
+      Your addition could not be submitted.
+      <ul>
+        <% @center.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Center or Program Name"  %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Brief Description" %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Brief Description" %>
+    <%= f.text_area :description %>
+  </div>
+<% end %>
+
