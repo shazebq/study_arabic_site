@@ -3,6 +3,7 @@ require "spec_helper"
 describe "new center page" do
   
   before :each do
+    FactoryGirl.create(:country, name: "Egypt")
     visit new_center_path
   end
 
@@ -35,7 +36,7 @@ describe "new center page" do
       choose "center_long_term_true"
       fill_in "center_address_attributes_address_line", with: "123 Najeeb Mahfouz Street"
       fill_in "center_address_attributes_city_id", with: 2 
-      fill_in "center_address_attributes_country_id", with: 5
+      select "Egypt", from: "center_address_attributes_country_id" 
     end
 
     specify "clicking the submit button should create a new center record" do
