@@ -1,8 +1,8 @@
 class CentersController < ApplicationController
   def new
     @center = Center.new
-    @address = @center.build_address
-    #@images = @center.images.build
+    @center.build_address
+    5.times { @center.images.build }
   end
 
   def create
@@ -14,7 +14,7 @@ class CentersController < ApplicationController
     end
   end
 
-  def show
-
+  def show 
+    @center = Center.find(params[:id]) 
   end
 end

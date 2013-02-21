@@ -124,6 +124,10 @@
       <%= f.radio_button :housing_provided, false %>
     </div><br />
   </div>
+  <p>Add photos of the center or program location</p>
+  <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
+    <%= image_form.file_field :image %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Submit" %>

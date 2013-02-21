@@ -1,0 +1,5 @@
+<div>
+  <% @center.images.each do |i| %>
+    <%= image_tag i.image.url(:medium) %> 
+  <% end %>
+</div>
