@@ -23,6 +23,27 @@
     <%= f.text_area :description %>
   </div>
   
+  <div class="field">
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "Email Contact" %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Phone Contact" %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :year_established %>
+    <%= f.text_field :year_established %>
+  </div>
+  
+
   <%= f.fields_for :address do |address_form| %>
     <div class="field">
       <%= address_form.label "Address Line" %>
@@ -38,9 +59,9 @@
       <%= address_form.text_field :country_id %>
     </div>
   <% end %>
-
+  
   <div class="field">
-    Does this instituion offer short term programs (less than six months)?
+    Does this center or program offer short term programs (less than six months)?
     <div class="form-inline">
       <%= f.label "Yes" %>
       <%= f.radio_button :short_term, true %>
@@ -50,12 +71,57 @@
   </div>
 
   <div class="field">
-    Does this instituion offer long term programs (more than six months)?
+    Does this center or program offer long term programs (more than six months)?
     <div class="form-inline">
       <%= f.label "Yes" %>
       <%= f.radio_button :long_term, true %>
       <%= f.label "No" %>
       <%= f.radio_button :long_term, false %>
+    </div><br />
+  </div>
+  
+  <div class="field">
+    Does this center or program offer private instruction?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :private_instruction, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :private_instruction, false %>
+    </div><br />
+  </div>
+
+  <div class="field">
+    <%= f.label "Price per hour (private instruction)" %>
+    <%= f.text_field :price_per_hour_private %>
+  </div>
+
+  <div class="field">
+    Does this center or program offer group instruction?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :group_instruction, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :group_instruction, false %>
+    </div><br />
+  </div>
+
+  <div class="field">
+    <%= f.label "Price per hour (group instruction)" %>
+    <%= f.text_field :price_per_hour_group %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Total estimated price if only one type of program is offered" %>
+    <%= f.text_field :total_price %>
+  </div>
+
+  <div class="field">
+    Does the center or program provide housing?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :housing_provided, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :housing_provided, false %>
     </div><br />
   </div>
 

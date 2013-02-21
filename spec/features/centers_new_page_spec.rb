@@ -22,7 +22,17 @@ describe "new center page" do
   describe "submitting a new center/program" do
     before :each do
       fill_in "center_name", with: "Diwan Arabic Center"
-      fill_in "center_description", with: "A wonderful arabic center where you can learn a whole lot!"
+      fill_in "center_description", with: "a great arabic center"
+      fill_in "center_year_established", with: 1998
+      fill_in "center_price_per_hour_private", with: 5.00
+      fill_in "center_price_per_hour_group", with: 4.00
+      fill_in "center_website", with: "http://www.studyarabic.com" 
+      fill_in "center_email", with: "studyarabic@example.com" 
+      fill_in "center_phone_number", with: "408-554-2343" 
+      fill_in "center_total_price", with: 5000
+      choose "center_housing_provided_true" 
+      choose "center_short_term_true"
+      choose "center_long_term_true"
       fill_in "center_address_attributes_address_line", with: "123 Najeeb Mahfouz Street"
       fill_in "center_address_attributes_city_id", with: 2 
       fill_in "center_address_attributes_country_id", with: 5

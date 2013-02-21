@@ -5,7 +5,15 @@ class CentersController < ApplicationController
   end
 
   def create
-    @center = Center.create(params[:center])
-    return render text: "good job"
+    @center = Center.new(params[:center])
+    if @center.save 
+      redirect_to @center
+    else
+      render action: "new"
+    end
+  end
+
+  def show
+
   end
 end
