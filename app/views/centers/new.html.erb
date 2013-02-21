@@ -22,10 +22,45 @@
     <%= f.label "Brief Description" %>
     <%= f.text_area :description %>
   </div>
+  
+  <%= f.fields_for :address do |address_form| %>
+    <div class="field">
+      <%= address_form.label "Address Line" %>
+      <%= address_form.text_field :address_line %>
+    </div>
+    <div class="field">
+      <%= address_form.label "City" %>
+      <%= address_form.text_field :city_id %>
+    </div>
+
+    <div class="field">
+      <%= address_form.label "Country" %>
+      <%= address_form.text_field :country_id %>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= f.label "Brief Description" %>
-    <%= f.text_area :description %>
+    Does this instituion offer short term programs (less than six months)?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :short_term, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :short_term, false %>
+    </div><br />
+  </div>
+
+  <div class="field">
+    Does this instituion offer long term programs (more than six months)?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :long_term, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :long_term, false %>
+    </div><br />
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
   </div>
 <% end %>
 
