@@ -25,5 +25,12 @@ describe "centers show page" do
       page.should have_content(center.description)
     end
   end
+  
+  describe "edit link" do
+    it "should redirect to the edit page for the center when clicked" do
+      click_link "Edit Center/Program Info"
+      current_path.should == edit_center_path(center)
+    end
+  end
 
 end

@@ -10,4 +10,6 @@ describe "centers index page" do
       page.html.should have_selector("title", text: "Arabic Centers and Programs")
     end
   end
+
+  
 end

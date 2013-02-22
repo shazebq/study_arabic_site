@@ -1,0 +1,134 @@
+<%= form_for(@center) do |f| %>
+  <% if @center.errors.any? %>
+    <div id="error_explanation" class="alert alert-error">
+      <% pluralize(@center.errors.count, "error") %>
+      Your addition could not be submitted.
+      <ul>
+        <% @center.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Center or Program Name"  %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Brief Description" %>
+    <%= f.text_area :description %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "Email Contact" %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Phone Contact" %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :year_established %>
+    <%= f.text_field :year_established %>
+  </div>
+  
+
+  <%= f.fields_for :address do |address_form| %>
+    <div class="field">
+      <%= address_form.label "Address Line" %>
+      <%= address_form.text_field :address_line %>
+    </div>
+    <div class="field">
+      <%= address_form.label "City" %>
+      <%= address_form.text_field :city_name %>
+    </div>
+
+    <div class="field">
+      <%= address_form.label "Country" %>
+      <%= address_form.select :country_id, Country.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  <% end %>
+  <div class="field">
+    Does this center or program offer short term programs (less than six months)?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :short_term, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :short_term, false %>
+    </div><br />
+  </div>
+
+  <div class="field">
+    Does this center or program offer long term programs (more than six months)?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :long_term, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :long_term, false %>
+    </div><br />
+  </div>
+  
+  <div class="field">
+    Does this center or program offer private instruction?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :private_instruction, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :private_instruction, false %>
+    </div><br />
+  </div>
+
+  <div class="field">
+    <%= f.label "Price per hour (private instruction)" %>
+    <%= f.text_field :price_per_hour_private %>
+  </div>
+
+  <div class="field">
+    Does this center or program offer group instruction?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :group_instruction, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :group_instruction, false %>
+    </div><br />
+  </div>
+
+  <div class="field">
+    <%= f.label "Price per hour (group instruction)" %>
+    <%= f.text_field :price_per_hour_group %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Total estimated price if only one type of program is offered" %>
+    <%= f.text_field :total_price %>
+  </div>
+
+  <div class="field">
+    Does the center or program provide housing?
+    <div class="form-inline">
+      <%= f.label "Yes" %>
+      <%= f.radio_button :housing_provided, true %>
+      <%= f.label "No" %>
+      <%= f.radio_button :housing_provided, false %>
+    </div><br />
+  </div>
+  <p>Add some photos of the center or program location</p>
+  <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
+    <div><%= image_form.file_field :image %></div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+
+<!--comments-->

@@ -35,7 +35,7 @@ describe "new center page" do
       choose "center_short_term_true"
       choose "center_long_term_true"
       fill_in "center_address_attributes_address_line", with: "123 Najeeb Mahfouz Street"
-      fill_in "center_address_attributes_city_id", with: 2 
+      fill_in "center_address_attributes_city_name", with: "Cairo" 
       select "Egypt", from: "center_address_attributes_country_id" 
     end
 

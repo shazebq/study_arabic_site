@@ -31,6 +31,7 @@
       <span class="subtitle_large1"><%= @center.name %></span>
       <%= render partial: "shared/star_rating", locals: { item: @center } %>
     </p>
+    <span class="info"><%= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
     <p><%= @center.description %></p> 
   </div>
 </div>

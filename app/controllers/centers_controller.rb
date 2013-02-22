@@ -25,4 +25,7 @@ class CentersController < ApplicationController
     @center = Center.find(params[:id]) 
   end
 
+  def edit
+    @center = Center.find(params[:id])
+  end
 end
