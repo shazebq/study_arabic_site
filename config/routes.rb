@@ -19,7 +19,9 @@ ArabicProject::Application.routes.draw do
     end
   end
 
-  resources :centers
+  resources :centers do
+    resources :reviews
+  end
 
   resources :users
 
