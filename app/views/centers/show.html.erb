@@ -34,3 +34,23 @@
     <p><%= @center.description %></p> 
   </div>
 </div>
+
+<%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: mail_to(@center.email) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Phone Number", value: @center.phone_number } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Website", value: link_to(@center.website, @center.website) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.address_line}<br />#{@center.address.city.name}, #{@center.address.country.name}".html_safe} %>
+
+
+<%= render partial: "shared/two_columns", locals: { key: "Prices", value: nil } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Private)", value: number_to_currency(@center.price_per_hour_private) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Group)", value: number_to_currency(@center.price_per_hour_group) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Total Price (If only one type of program offered)", value: number_to_currency(@center.total_price) } %>
+
+<%= render partial: "shared/two_columns", locals: { key: "General Information", value: nil } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Year Established", value: @center.year_established } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Short Term Program(s)", value: bool_display(@center.short_term) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Long Term Program(s)", value: bool_display(@center.long_term) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Group Instruction", value: bool_display(@center.group_instruction) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Private Instruction", value: bool_display(@center.private_instruction) } %>
+<%= render partial: "shared/two_columns_indented", locals: { key: "Housing Provided", value: bool_display(@center.housing_provided) } %>
