@@ -12,7 +12,7 @@
       </ol>
     <!-- Carousel items -->
     <div class="carousel-inner">
-      <div class="active item"><a href="<%= @center.images.first.image.url %>"><%= image_tag @center.images.first.image.url(:medium) %></a></div>
+      <div class="active item"><a href="<%= @center.images.first.try(:image).try(:url) %>"><%= image_tag @center.images.first.try(:image).try(:url, :medium) %></a></div>
 
       <% @center.images.each_with_index do |i, index| %>
         <% unless index == 0 %>
@@ -28,6 +28,6 @@
   </div><!--span3-->
   <div class="span6">
     <span class="subtitle_large1"><%= @center.name %></span>
-    <p><%= render partial: "shared/star_rating", locals: { item: @center } %></p>
+    <%= render partial: "shared/star_rating", locals: { item: @center } %>
   </div>
 </div>
