@@ -9,6 +9,7 @@ describe Center do
 
   it { should respond_to :address }
   it { should respond_to :images }
+  it { should respond_to :reviews }
 end
 
-#comment
+#comments

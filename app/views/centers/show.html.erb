@@ -1,26 +1,33 @@
 <%= provide :title, @center.name %>
-<div id="myCarousel" class="carousel slide">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <% @center.images.count.times do |count| %>  
-      <% unless count == 0 %>
-        <li data-target="#myCarousel" data-slide-to="<%= count+1 %>"></li>
+<div class="row">
+  <div class="span3">  
+    <div id="myCarousel" class="carousel slide">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <% @center.images.count.times do |count| %>  
+          <% unless count == 0 %>
+            <li data-target="#myCarousel" data-slide-to="<%= count+1 %>"></li>
+          <% end %>
+        <% end %>
+      </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="active item"><a href="<%= @center.images.first.image.url %>"><%= image_tag @center.images.first.image.url(:medium) %></a></div>
+
+      <% @center.images.each_with_index do |i, index| %>
+        <% unless index == 0 %>
+          <div class="item"><a href="<%= i.image.url %>"><%= image_tag i.image.url(:medium) %></a></div> 
+        <% end %>
       <% end %>
-    <% end %>
-  </ol>
-<!-- Carousel items -->
-<div class="carousel-inner">
-  <div class="active item"><a href="<%= @center.images.first.image.url %>"><%= image_tag @center.images.first.image.url(:medium) %></a></div>
 
-  <% @center.images.each_with_index do |i, index| %>
-    <% unless index == 0 %>
-      <div class="item"><a href="<%= i.image.url %>"><%= image_tag i.image.url(:medium) %></a></div> 
-    <% end %>
-  <% end %>
-
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+  </div><!--span3-->
+  <div class="span6">
+    <span class="subtitle_large1"><%= @center.name %></span>
+    <p><%= render partial: "shared/star_rating", locals: { item: @center } %></p>
+  </div>
 </div>
-<!-- Carousel nav -->
-<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
-

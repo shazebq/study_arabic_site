@@ -20,12 +20,7 @@
     </div>
     <% if user_type(user) == "Teacher" %>
       <p class="specialties"><%= user.profile.try(:specialties)  %></p>
-      <p>
-      <span class="rating_font">
-        <%= generate_stars(user.profile.try(:reviews).average("rating").try(:round_point5)).html_safe %>
-        <%= "(#{user.profile.try(:reviews_count)} reviews)" %>
-      </span>
-      </p>
+      <p><%= render partial: "shared/star_rating", locals: { item: user.profile } %></p>
     <% end %>
     <p><%= user.bio %></p>
   </div>
