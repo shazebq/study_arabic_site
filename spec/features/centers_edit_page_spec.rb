@@ -11,4 +11,16 @@ describe "centers edit page" do
       page.html.should have_selector("title", text: "Edit Center/Program Information")
     end
   end
+
+  describe "making an edit and hitting submit" do
+    #before :each do
+    #  fill_in "center_name", with: "Baba's Arabic House" 
+    #  click_button "Submit"
+    #end
+
+    #it "should successfully change the record" do
+
+    #  
+    #end
+  end
 end

@@ -1,0 +1,21 @@
+<% User.teachers.each do |teacher| %>
+  <div class="row">
+    <div class="span2 photo">
+      <%= image_tag teacher.image.try(:image).try(:url, :thumb) %> 
+    </div>
+    <div class="span7">
+          <div>
+            <span class="subtitle_large1"><%= link_to(full_name(teacher), user_path(teacher)) %></span>
+            <span class="rating_font">
+              <%= generate_stars(teacher.profile.try(:reviews).average("rating").try(:round_point5)).html_safe %>
+              <%= "(#{teacher.profile.try(:reviews_count)} reviews)" %>
+            </span>
+          </div>
+      <% if params[:controller] == "users" && user_type(teacher) == "Teacher"  %>
+          <p class="specialties"><%= teacher.profile.try(:specialties)  %></p>
+      <% end %>
+      <p><%= teacher.bio %></p>
+    </div>
+  </div>
+<% end %>
+

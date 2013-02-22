@@ -28,4 +28,11 @@ class CentersController < ApplicationController
   def edit
     @center = Center.find(params[:id])
   end
+
+  def update
+    @center = Center.find(params[:id])
+    revised_params = handle_city_creation(params[:center])
+    @center.update_attributes(revised_params)
+    redirect_to @center
+  end
 end
