@@ -20,6 +20,10 @@ describe "centers show page" do
     it "should include the name of the center" do
       page.should have_content(center.name)
     end
+
+    it "should include the description of the center" do
+      page.should have_content(center.description)
+    end
   end
 
 end
