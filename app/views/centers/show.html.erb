@@ -16,7 +16,7 @@
 
       <% @center.images.each_with_index do |i, index| %>
         <% unless index == 0 %>
-          <div class="item"><a href="<%= i.image.url %>"><%= image_tag i.image.url(:medium) %></a></div> 
+          <div class="item"><a href="<%= i.image.url %>"><%= image_tag(i.image.url(:medium))%></a></div> 
         <% end %>
       <% end %>
 

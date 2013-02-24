@@ -25,4 +25,20 @@ describe "users(teachers) index page" do
       click_link("#{user.first_name} #{user.last_name}")
     end
   end
+
+  describe "sorting options" do
+    it "should have sorting by ratings options" do
+      page.should have_content("Ratings")
+      page.should have_content("Highest Rated")
+      page.should have_content("Most Reviews")
+    end
+
+    describe "clicking on sorting options" do
+      describe "clicking on 'Highest Rated' option" do
+        it "should sort the results by highest rated teacher" do
+          check('Highest Rated') 
+        end
+      end
+    end
+  end
 end

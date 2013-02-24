@@ -3,6 +3,13 @@
 
 @import 'font-awesome';
 
+body
+{
+  line-height: 18px;
+}
+
+
+
 .sidebar
 {
   margin-left: 0px;
@@ -66,6 +73,7 @@ h3
 .bottom_border_div
 {
   border-bottom: 1px solid #CCCCCC;
+  margin-bottom: 10px;
 }
 
 // buttons from rails button_to method
@@ -108,6 +116,10 @@ h3
 {
   background-color: #DAADFF;
 }
+
+
+
+
 
 #myCarousel
 {
