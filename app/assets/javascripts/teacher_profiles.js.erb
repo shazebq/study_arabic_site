@@ -1,0 +1,15 @@
+$(document).ready(function() {
+  $(".ratings_option").click(function(event) {
+    // uncheck all other .ratings options
+    $(".ratings_option").prop("checked", false);
+    $(this).prop("checked", true);
+
+    // call the ajax function to index with either highest_rated or most_reviews scope
+    // and upon succes, reload the dom with the appropriate partial
+    $('#profiles_list').load('/teacher_profiles?ratings_option=testing #profiles_div')
+  });
+
+});
+
+
+

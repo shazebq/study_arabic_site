@@ -9,7 +9,7 @@
        Highest Rated
      </label>
      <label class="checkbox">
-       <input type="checkbox" class="ratings_option" id="highest_rated">
+       <input type="checkbox" class="ratings_option" id="most_reviews">
        Most Reviews 
      </label>
   </div>
@@ -22,13 +22,8 @@
 </div>
 <br />
 
-
-<% TeacherProfile.all.each do |teacher| %>
-  <%= render partial: "shared/index_with_image", 
-             locals: { image: teacher.user.image.try(:image).try(:url, :thumb), 
-                       name: full_name(teacher.user), 
-                       item: teacher.user,
-                       description: teacher.user.bio,
-                       item_with_reviews: teacher } %>
-
-<% end %>
+<div id="profiles_list">
+  <div id="profiles_div">
+    <%= render partial: "profiles_list", locals: { teacher_profiles: @teacher_profiles } %>
+  </div>
+</div>
