@@ -1,0 +1,34 @@
+<%= provide :title, "Arabic Teacher Directory" %>
+
+<div class="row">
+  <div class="span3">
+    <p class="subtitle_large">Ratings</p>
+    
+     <label class="checkbox">
+       <input type="checkbox" class="ratings_option" id="highest_rated">
+       Highest Rated
+     </label>
+     <label class="checkbox">
+       <input type="checkbox" class="ratings_option" id="highest_rated">
+       Most Reviews 
+     </label>
+  </div>
+  <div class="span3">
+    <span class="subtitle_large">Instruction Type</span>
+  </div>
+  <div class="span3">
+    <span class="subtitle_large">Price</span>
+  </div>
+</div>
+<br />
+
+
+<% TeacherProfile.all.each do |teacher| %>
+  <%= render partial: "shared/index_with_image", 
+             locals: { image: teacher.user.image.try(:image).try(:url, :thumb), 
+                       name: full_name(teacher.user), 
+                       item: teacher.user,
+                       description: teacher.user.bio,
+                       item_with_reviews: teacher } %>
+
+<% end %>

@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
+  #scope :order_by_reviews, preload(:profile).joins(:profile) #.order("profiles.reviews_count")
+  #Project.joins(:customer).order('customers.name')
 
   private
   def destroy_user_profile

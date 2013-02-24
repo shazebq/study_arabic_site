@@ -8,5 +8,6 @@ FactoryGirl.define do
     in_person false
     years_of_experience 1
     specialties "Classical Arabic, tajweed, grammar"
+    reviews_count 0
   end
 end
