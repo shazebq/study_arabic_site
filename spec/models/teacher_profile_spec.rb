@@ -22,18 +22,35 @@ describe TeacherProfile do
   describe "scopes" do
     let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1) }
     let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id) }
+    let!(:review1a) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
+    let!(:review1b) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     
     let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2) }
     let!(:user2) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile2.id) }
+    let!(:review2a) { FactoryGirl.create(:review, rating: 2, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
+    let!(:review2b) { FactoryGirl.create(:review, rating: 1, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
+
+    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3) }
+    let!(:user3) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile3.id) }
+    let!(:review3a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
+    let!(:review3b) { FactoryGirl.create(:review, rating: 4, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
 
     describe "most reviews descending" do
       it "should sort teachers by number of reviews descending" do
-        User.order_by_reviews.first.should == user2
+        TeacherProfile.order_by_reviews.first.should == teacher_profile3
+        TeacherProfile.order_by_reviews.last.should == teacher_profile1
+      end
+    end
+
+    describe "highest rated" do
+      it "should sort teachers by average rating" do
+        TeacherProfile.order_by_average_rating.first.should == teacher_profile1
+        TeacherProfile.order_by_average_rating.last.should == teacher_profile2
       end
     end
   end
 end
 
-#commentss
+#comments
 
 
