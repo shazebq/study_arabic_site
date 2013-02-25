@@ -12,11 +12,11 @@
       </ol>
     <!-- Carousel items -->
     <div class="carousel-inner">
-      <div class="active item"><a href="<%= @center.images.first.try(:image).try(:url) %>"><%= image_tag @center.images.first.try(:image).try(:url, :medium) %></a></div>
+      <div class="active item"><a href="<%= handle_image(@center.images.first.try(:photo).try(:url)) %>"><%= handle_image(image_tag @center.images.first.try(:photo).try(:url, :medium)) %></a></div>
 
       <% @center.images.each_with_index do |i, index| %>
         <% unless index == 0 %>
-          <div class="item"><a href="<%= i.image.url %>"><%= image_tag(i.image.url(:medium))%></a></div> 
+          <div class="item"><a href="<%= i.photo.url %>"><%= image_tag(i.photo.url(:medium))%></a></div> 
         <% end %>
       <% end %>
 

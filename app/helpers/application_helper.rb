@@ -35,6 +35,16 @@ module ApplicationHelper
       false
     end
   end
+
+  # this should be used in any case where the image
+  # is from the images table (nested polymorphic)
+  def handle_image(image)
+    if image
+      image_tag(image).html_safe
+    else
+      image_tag("/images/rails.png").html_safe
+    end
+  end
 end
 
 class BigDecimal

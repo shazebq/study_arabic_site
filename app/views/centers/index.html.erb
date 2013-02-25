@@ -3,7 +3,7 @@
 
 <% @centers.each do |center| %>
   <%= render partial: "shared/index_with_image", 
-             locals: { image: center.images.first.try(:image).try(:url, :thumb), 
+             locals: { image: center.images.first.try(:photo).try(:url, :thumb), 
                        name: center.name, 
                        item: center,
                        description: center.description,

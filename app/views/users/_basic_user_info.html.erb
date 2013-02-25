@@ -1,6 +1,6 @@
 <div class="row">
   <div class="span3 photo">
-    <%= image_tag user.image.try(:image).try(:url, :medium) %> 
+    <%= handle_image(user.image.try(:photo).try(:url, :medium)) %> 
   </div>
   <div class="span6">
     <div class="row">

@@ -25,7 +25,8 @@ class Resource < ActiveRecord::Base
                                               else
                                                 {}
                                               end
-                                            }
+                                            },
+                                              :default_url => "/images/rails.png"
 
   validates_attachment_content_type(:resource_file, content_type: ["image/jpeg", "image/jpg", "application/pdf", "application/msword", "text/plain"])
 

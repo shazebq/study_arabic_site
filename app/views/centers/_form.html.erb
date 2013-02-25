@@ -123,7 +123,7 @@
   </div>
   <p>Add some photos of the center or program location</p>
   <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
-    <div><%= image_form.file_field :image %></div>
+    <div><%= image_form.file_field :photo %></div>
   <% end %>
 
   <div class="actions">

@@ -22,7 +22,7 @@
     <%= user_form.text_area :bio %></div>
     <%= user_form.fields_for :image, :html => { :multipart => true } do |image_form| %>
       <%= image_form.label "Profile Picture" %>
-      <%= image_form.file_field :image %>
+      <%= image_form.file_field :photo %>
     <% end %>
   <% end %>
 
