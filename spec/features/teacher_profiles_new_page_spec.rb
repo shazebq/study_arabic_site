@@ -32,7 +32,7 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
       fill_in "teacher_profile_user_attributes_skype_id", with: "billyjones"
       select "Egypt", from: "teacher_profile_user_attributes_country_id"
-      attach_file "teacher_profile_user_attributes_image_attributes_image", "/Users/shazeb/Pictures/test_image.jpg" 
+      attach_file "teacher_profile_user_attributes_image_attributes_photo", "/Users/shazeb/Pictures/test_image.jpg" 
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
