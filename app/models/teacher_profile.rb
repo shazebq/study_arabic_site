@@ -1,5 +1,6 @@
 class TeacherProfile < ActiveRecord::Base
   include ReviewableScoping
+  after_initialize :init
   has_one :user, as: :profile, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
   accepts_nested_attributes_for :user
@@ -12,6 +13,10 @@ class TeacherProfile < ActiveRecord::Base
                                 JOIN reviews ON reviews.reviewable_id = teacher_profiles.id
                                 WHERE reviews.reviewable_type = 'TeacherProfile'
                                 GROUP BY teacher_profiles.id
-                                ORDER BY average_rating DESC")
+                                ORDER BY average_rating DESC") + TeacherProfile.where(reviews_count: 0)
+  end
+
+  def init
+    self.reviews_count ||= 0
   end
 end
