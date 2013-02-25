@@ -3,10 +3,11 @@ $(document).ready(function() {
     // uncheck all other .ratings options
     $(".ratings_option").prop("checked", false);
     $(this).prop("checked", true);
-
+    
+    console.log();
     // call the ajax function to index with either highest_rated or most_reviews scope
     // and upon succes, reload the dom with the appropriate partial
-    $('#profiles_list').load('/teacher_profiles?ratings_option=testing #profiles_div')
+    $('#profiles_list').load('/teacher_profiles?ratings_option=' + $(this).attr("id") + ' #profiles_div')
   });
 
 });
