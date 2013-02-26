@@ -11,13 +11,13 @@ class TeacherProfile < ActiveRecord::Base
   
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
   # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet
-  def self.order_by_average_rating
-    TeacherProfile.find_by_sql("SELECT teacher_profiles.*, AVG(reviews.rating) AS average_rating
+  def self.order_by_average_rating(options = {})
+      profiles = TeacherProfile.find_by_sql("SELECT teacher_profiles.*, AVG(reviews.rating) AS average_rating
                                 FROM teacher_profiles
                                 JOIN reviews ON reviews.reviewable_id = teacher_profiles.id
                                 WHERE reviews.reviewable_type = 'TeacherProfile'
                                 GROUP BY teacher_profiles.id
-                                ORDER BY average_rating DESC") + TeacherProfile.where(reviews_count: 0)
+                                ORDER BY average_rating DESC") # + TeacherProfile.where(reviews_count: 0) 
   end
 
   def init

@@ -55,15 +55,22 @@ describe TeacherProfile do
           TeacherProfile.online_filter.should have(2).items 
           TeacherProfile.online_filter.should include(teacher_profile1, teacher_profile2)
         end
+      end
 
       describe "in person only filter" do
         it "should return teachers that only teach in person" do
           TeacherProfile.in_person_filter.should have(2).items 
           TeacherProfile.in_person_filter.should include(teacher_profile1, teacher_profile3)
         end
+      end  
+
+      describe "online filter ordered by average rating" do
+        it "should return teachers that teach online only ordered by average rating" do
+          TeacherProfile.order_by_average_rating(with_filter: true).online_filter.should == [teacher_profile1, teacher_profile2]
+        end
       end
         
-      end
+
     end
   end
 end
