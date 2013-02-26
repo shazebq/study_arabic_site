@@ -20,17 +20,17 @@ describe TeacherProfile do
   end
 
   describe "scopes" do
-    let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1) }
+    let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1, online: true, in_person: true) }
     let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id) }
     let!(:review1a) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     let!(:review1b) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     
-    let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2) }
+    let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2, online: true, in_person: false ) }
     let!(:user2) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile2.id) }
     let!(:review2a) { FactoryGirl.create(:review, rating: 2, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
     let!(:review2b) { FactoryGirl.create(:review, rating: 1, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
 
-    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3) }
+    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3, online: false, in_person: true) }
     let!(:user3) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile3.id) }
     let!(:review3a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     let!(:review3b) { FactoryGirl.create(:review, rating: 4, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
@@ -46,6 +46,23 @@ describe TeacherProfile do
       it "should sort teachers by average rating" do
         TeacherProfile.order_by_average_rating.first.should == teacher_profile1
         TeacherProfile.order_by_average_rating.last.should == teacher_profile2
+      end
+    end
+
+    describe "instruction type filters" do
+      describe "online only filter" do
+        it "should return teachers that only teach online" do
+          TeacherProfile.online_filter.should have(2).items 
+          TeacherProfile.online_filter.should include(teacher_profile1, teacher_profile2)
+        end
+
+      describe "in person only filter" do
+        it "should return teachers that only teach in person" do
+          TeacherProfile.in_person_filter.should have(2).items 
+          TeacherProfile.in_person_filter.should include(teacher_profile1, teacher_profile3)
+        end
+      end
+        
       end
     end
   end
