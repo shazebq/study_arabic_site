@@ -6,5 +6,4 @@
   ORDER BY average_rating DESC
 
 
-
  

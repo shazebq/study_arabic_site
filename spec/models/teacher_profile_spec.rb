@@ -35,10 +35,13 @@ describe TeacherProfile do
     let!(:review3a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     let!(:review3b) { FactoryGirl.create(:review, rating: 4, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
 
+    let!(:teacher_profile4) { FactoryGirl.create(:teacher_profile, reviews_count: 0, online: false, in_person: true) }
+    let!(:user4) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile4.id) }
+
     describe "most reviews descending" do
       it "should sort teachers by number of reviews descending" do
         TeacherProfile.order_by_reviews.first.should == teacher_profile3
-        TeacherProfile.order_by_reviews.last.should == teacher_profile1
+        TeacherProfile.order_by_reviews.last.should == teacher_profile4
       end
     end
 
@@ -59,22 +62,28 @@ describe TeacherProfile do
 
       describe "in person only filter" do
         it "should return teachers that only teach in person" do
-          TeacherProfile.in_person_filter.should have(2).items 
+          TeacherProfile.in_person_filter.should have(3).items 
           TeacherProfile.in_person_filter.should include(teacher_profile1, teacher_profile3)
         end
       end  
 
       describe "online filter ordered by average rating" do
         it "should return teachers that teach online only ordered by average rating" do
-          TeacherProfile.order_by_average_rating(with_filter: true).online_filter.should == [teacher_profile1, teacher_profile2]
+          (TeacherProfile.order_by_average_rating.online_filter + TeacherProfile.zero_review_records.online_filter).
+            should == [teacher_profile1, teacher_profile2]
         end
       end
-        
 
+      describe "in person filter ordered by average rating" do
+        it "should return teachers that teach only in person ordered by average rating" do
+          (TeacherProfile.order_by_average_rating.in_person_filter + TeacherProfile.zero_review_records.in_person_filter).
+            should == [teacher_profile1, teacher_profile3, teacher_profile4] 
+        end
+      end
     end
   end
 end
 
-#comments
+#comment
 
 

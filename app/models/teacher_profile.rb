@@ -8,16 +8,16 @@ class TeacherProfile < ActiveRecord::Base
 
   scope :online_filter, where("online = true")
   scope :in_person_filter, where("in_person = true")
+  scope :zero_review_records, where("reviews_count = 0")
   
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
   # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet
   def self.order_by_average_rating(options = {})
-      profiles = TeacherProfile.find_by_sql("SELECT teacher_profiles.*, AVG(reviews.rating) AS average_rating
-                                FROM teacher_profiles
-                                JOIN reviews ON reviews.reviewable_id = teacher_profiles.id
-                                WHERE reviews.reviewable_type = 'TeacherProfile'
-                                GROUP BY teacher_profiles.id
-                                ORDER BY average_rating DESC") # + TeacherProfile.where(reviews_count: 0) 
+   profiles = TeacherProfile.select("teacher_profiles.*, AVG(reviews.rating) AS average_rating").
+                  joins("JOIN reviews ON reviews.reviewable_id = teacher_profiles.id").
+                  where("reviews.reviewable_type = ?", "TeacherProfile").
+                  group("teacher_profiles.id").
+                  order("average_rating DESC")
   end
 
   def init
