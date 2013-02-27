@@ -39,8 +39,8 @@ describe "user(teachers) index page" do
       describe "instruction type options" do
         it "should have filter options for instruction type" do
           page.should have_content("Instruction Type")
-          page.should have_selector("#in_person_filter")
-          page.should have_selector("#online_filter")
+          page.should have_selector("#in_person")
+          page.should have_selector("#online")
         end
       end
 
