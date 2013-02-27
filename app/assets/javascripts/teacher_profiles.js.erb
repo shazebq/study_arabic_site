@@ -4,13 +4,30 @@ $(document).ready(function() {
     $(".ratings_option").prop("checked", false);
     $(this).prop("checked", true);
     
-    console.log();
     // call the ajax function to index with either highest_rated or most_reviews scope
     // and upon succes, reload the dom with the appropriate partial
-    $('#profiles_list').load('/teacher_profiles?ratings_option=' + $(this).attr("id") + ' #profiles_div')
+    $("#profiles_list").load("/teacher_profiles?ratings_option=" + $(this).attr("id") + ' #profiles_div');
+  });
+
+  $(".instruction_option").click(function(event) {
+
+    // get the currently selected ratings option (only 1 so use 0 index) 
+    var ratings_option = $(".ratings_option:checkbox:checked")[0].id;
+    
+    var instruction_option = [];
+    
+    $(".instruction_option:checkbox:checked").each(function() {
+       instruction_option.push(this.id) 
+    });
+
+    console.log(instruction_option);
+    $("#profiles_list").load("/teacher_profiles?instruction_option[]=" + instruction_option + "&ratings_option="
+                             + ratings_option + " #profiles_div");
   });
 
 });
 
+
+// pass the ratings option as well, and handle it in the controller!
 
 

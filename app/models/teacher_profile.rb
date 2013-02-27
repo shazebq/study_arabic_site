@@ -23,4 +23,8 @@ class TeacherProfile < ActiveRecord::Base
   def init
     self.reviews_count ||= 0
   end
+
+  def self.send_chain(my_array)
+    my_array.inject(self) { |initial, additional| initial.send(additional) }
+  end
 end

@@ -81,6 +81,13 @@ describe TeacherProfile do
         end
       end
     end
+
+    describe "chaining scopes from an array" do
+      it "should apply all the scopes in the argument array" do
+        #TeacherProfile.send_chain(["online_filter", "in_person_filter"]).should include(teacher_profile1, teacher_profile2, teacher_profile3, teacher_profile4)
+        #TeacherProfile.send_chain(["online_filter", "in_person_filter"]).count.should == 4
+      end
+    end
   end
 end
 
