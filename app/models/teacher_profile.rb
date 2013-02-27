@@ -10,6 +10,7 @@ class TeacherProfile < ActiveRecord::Base
   scope :in_person_filter, where("in_person = true")
   scope :zero_review_records, where("reviews_count = 0")
   scope :by_price, lambda { |price| where("price_per_hour <= ?", price) }
+  scope :instruction_type, lambda { |i_list| where(TeacherProfile.arel_table[:online].eq("true")) }
   
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
   # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet

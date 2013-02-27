@@ -1,44 +1,76 @@
 $(document).ready(function() {
-  $(".ratings_option").click(function(event1) {
-    // uncheck all other .ratings options
-    $(".ratings_option").prop("checked", false);
-    $(this).prop("checked", true);
-    
-    // call the ajax function to index with either highest_rated or most_reviews scope
-    // and upon succes, reload the dom with the appropriate partial
-    $("#profiles_list").load("/teacher_profiles?ratings_option=" + $(this).attr("id") + ' #profiles_div');
-  });
+  //$(".ratings_option").click(function(event1) {
+  //  // uncheck all other .ratings options
+  //  $(".ratings_option").prop("checked", false);
+  //  $(this).prop("checked", true);
+  //  
+  //  // call the ajax function to index with either highest_rated or most_reviews scope
+  //  // and upon succes, reload the dom with the appropriate partial
+  //  $("#profiles_list").load("/teacher_profiles?ratings_option=" + $(this).attr("id") + ' #profiles_div');
+  //});
 
-  $(".instruction_option").click(function(event2) {
+  //$(".instruction_option").click(function(event2) {
 
-    // get the currently selected ratings option (only 1 so use 0 index) 
+  //  // get the currently selected ratings option (only 1 so use 0 index) 
+  //  var ratings_option = $(".ratings_option:checkbox:checked")[0].id;
+  //  
+  //  var instruction_option = [];
+  //  
+  //  $(".instruction_option:checkbox:checked").each(function() {
+  //     instruction_option.push(this.id); 
+  //  });
+
+  //  console.log(instruction_option);
+  //  // note, use $.param to pass an data and still have the load function issue a get request instead of a post request
+  //  $("#profiles_list").load("/teacher_profiles?" + $.param({"instruction_option[]": instruction_option, 
+  //                                                           ratings_option: ""}) + " #profiles_div");
+  //});
+
+  //$(".price_option").click(function(event3) {
+  //  var price_option_list = [];
+
+  //  $(".price_option:checkbox:checked").each(function() {
+  //     price_option_list.push($(this).data("price")); 
+  //  });
+  //  
+  //  var price_option = Math.max.apply(Math, price_option_list); 
+
+  //  $("#profiles_list").load("/teacher_profiles?" + $.param({price_option: price_option, 
+  //                                                           ratings_option: ""}) + " #profiles_div");
+  //});
+
+  $(".options").click(function(event) {
+    // if the clicked item was a ratings option (this is a special case)
+    if ($(this).hasClass("ratings_option"))
+    {
+      $(".ratings_option").prop("checked", false);
+      $(this).prop("checked", true);
+    }
+
+    // get all the current options
     var ratings_option = $(".ratings_option:checkbox:checked")[0].id;
-    
+
+    // get all the price options
+    var price_option_list = [];
+    var price_option
+    $(".price_option:checkbox:checked").each(function() {
+      price_option_list.push($(this).data("price")); 
+    });
+    if (price_option_list.length > 0)
+      price_option = Math.max.apply(Math, price_option_list); 
+
+    // get all instruction options
     var instruction_option = [];
-    
     $(".instruction_option:checkbox:checked").each(function() {
        instruction_option.push(this.id); 
     });
 
-    console.log(instruction_option);
-    // note, use $.param to pass an data and still have the load function issue a get request instead of a post request
     $("#profiles_list").load("/teacher_profiles?" + $.param({"instruction_option[]": instruction_option, 
-                                                             ratings_option: ""}) + " #profiles_div");
-  });
-
-  $(".price_option").click(function(event3) {
-    var price_option_list = [];
-
-    $(".price_option:checkbox:checked").each(function() {
-       price_option_list.push($(this).data("price")); 
-    });
-    
-    var price_option = Math.max.apply(Math, price_option_list); 
-
-    $("#profiles_list").load("/teacher_profiles?" + $.param({price_option: price_option, 
-                                                             ratings_option: ""}) + " #profiles_div");
+                                                             ratings_option: ratings_option,
+                                                             price_option: price_option }) + " #profiles_div");
 
   });
+
 
 });
 
