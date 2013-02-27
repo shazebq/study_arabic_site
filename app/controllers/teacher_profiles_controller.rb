@@ -2,8 +2,11 @@ class TeacherProfilesController < ProfilesController
   def index
     t = TeacherProfile.arel_table
     #@teacher_profiles = TeacherProfile.order_by_average_rating.where(t[:online].eq("true").or(t[:in_person].eq("true")))
-    @teacher_profiles = TeacherProfile.instruction_type(5)
-
+    if params[:instruction_option]
+      @teacher_profiles = TeacherProfile.instruction_type(params[:instruction_option])
+    else
+      @teacher_profiles = TeacherProfile.all
+    end
     #generator = ConditionGenerator.new
     #if params[:ratings_option] || params[:instruction_option]
     #  #condition = generator.bool_generator(params[:instruction_option])
