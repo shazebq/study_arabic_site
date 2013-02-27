@@ -44,6 +44,15 @@ describe "user(teachers) index page" do
         end
       end
 
+      describe "price options" do
+        it "should have filter options price" do
+          page.should have_content("Price")
+          page.should have_selector("#five")
+          page.should have_selector("#ten")
+        end
+      end
+
+
     end
   end
 

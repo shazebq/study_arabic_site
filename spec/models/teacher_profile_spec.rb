@@ -20,22 +20,22 @@ describe TeacherProfile do
   end
 
   describe "scopes" do
-    let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1, online: true, in_person: true) }
+    let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1, online: true, in_person: true, price_per_hour: 5) }
     let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id) }
     let!(:review1a) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     let!(:review1b) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     
-    let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2, online: true, in_person: false ) }
+    let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2, online: true, in_person: false, price_per_hour: 3 ) }
     let!(:user2) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile2.id) }
     let!(:review2a) { FactoryGirl.create(:review, rating: 2, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
     let!(:review2b) { FactoryGirl.create(:review, rating: 1, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
 
-    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3, online: false, in_person: true) }
+    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3, online: false, in_person: true, price_per_hour: 9) }
     let!(:user3) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile3.id) }
     let!(:review3a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     let!(:review3b) { FactoryGirl.create(:review, rating: 4, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
-
-    let!(:teacher_profile4) { FactoryGirl.create(:teacher_profile, reviews_count: 0, online: false, in_person: true) }
+    
+    let!(:teacher_profile4) { FactoryGirl.create(:teacher_profile, reviews_count: 0, online: false, in_person: true, price_per_hour: 15) }
     let!(:user4) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile4.id) }
 
     describe "most reviews descending" do
@@ -78,6 +78,22 @@ describe TeacherProfile do
         it "should return teachers that teach only in person ordered by average rating" do
           (TeacherProfile.order_by_average_rating.in_person_filter + TeacherProfile.zero_review_records.in_person_filter).
             should == [teacher_profile1, teacher_profile3, teacher_profile4] 
+        end
+      end
+    end
+
+    describe "price filters" do
+      describe "filter of 5 dollars or less" do
+        it "should return all the teacher profiles whose price per hour is 5 or less" do
+          TeacherProfile.by_price(5).should include(teacher_profile1, teacher_profile2)
+          TeacherProfile.by_price(5).length.should == 2
+        end
+      end
+
+      describe "filter of 12 dollars or less" do
+        it "should return all the teacher profiles who price per hour is 12 or less" do
+          TeacherProfile.by_price(12).should include(teacher_profile1, teacher_profile2, teacher_profile3)
+          TeacherProfile.by_price(12).length.should == 3
         end
       end
     end

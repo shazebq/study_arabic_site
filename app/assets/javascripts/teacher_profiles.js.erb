@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(".ratings_option").click(function(event) {
+  $(".ratings_option").click(function(event1) {
     // uncheck all other .ratings options
     $(".ratings_option").prop("checked", false);
     $(this).prop("checked", true);
@@ -9,7 +9,7 @@ $(document).ready(function() {
     $("#profiles_list").load("/teacher_profiles?ratings_option=" + $(this).attr("id") + ' #profiles_div');
   });
 
-  $(".instruction_option").click(function(event) {
+  $(".instruction_option").click(function(event2) {
 
     // get the currently selected ratings option (only 1 so use 0 index) 
     var ratings_option = $(".ratings_option:checkbox:checked")[0].id;
@@ -24,6 +24,16 @@ $(document).ready(function() {
     // note, use $.param to pass an data and still have the load function issue a get request instead of a post request
     $("#profiles_list").load("/teacher_profiles?" + $.param({"instruction_option[]": instruction_option, 
                                                              ratings_option: ""}) + " #profiles_div");
+  });
+
+  $(".price_option").click(function(event3) {
+    var price_option = []
+
+    $(".price_option:checkbox:checked").each(function() {
+       price_option.push($(this).data("price")); 
+    });
+
+    console.log(price_option);
   });
 
 });
