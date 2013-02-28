@@ -56,6 +56,7 @@ $(document).ready(function() {
     $(".price_option:checkbox:checked").each(function() {
       price_option_list.push($(this).data("price")); 
     });
+    // get the maximum from the selected price, as that's all that you need
     if (price_option_list.length > 0)
       price_option = Math.max.apply(Math, price_option_list); 
 

@@ -9,7 +9,14 @@ class TeacherProfile < ActiveRecord::Base
   scope :online_filter, where("online = true")
   scope :in_person_filter, where("in_person = true")
   scope :zero_review_records, where("reviews_count = 0")
-  scope :by_price, lambda { |price| where("price_per_hour <= ?", price) }
+
+  scope :by_price, (lambda do |price| 
+    if price.blank?
+      where("price_per_hour <= ?", 0) 
+    else
+      where("price_per_hour <= ?", price) 
+    end
+  end)
 
   scope :instruction_type, (lambda do |attr_list| 
     t = TeacherProfile.arel_table 

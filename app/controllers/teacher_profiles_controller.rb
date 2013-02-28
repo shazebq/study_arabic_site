@@ -3,7 +3,8 @@ class TeacherProfilesController < ProfilesController
     t = TeacherProfile.arel_table
     #@teacher_profiles = TeacherProfile.order_by_average_rating.where(t[:online].eq("true").or(t[:in_person].eq("true")))
     if params[:instruction_option] || params[:ratings_option]
-      @teacher_profiles = TeacherProfile.send(params[:ratings_option]).instruction_type(params[:instruction_option])
+      @teacher_profiles = TeacherProfile.send(params[:ratings_option]).instruction_type(params[:instruction_option]).
+                          by_price(params[:price_option])
     else
       @teacher_profiles = TeacherProfile.order_by_average_rating
     end
