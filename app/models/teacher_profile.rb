@@ -10,7 +10,7 @@ class TeacherProfile < ActiveRecord::Base
   scope :in_person_filter, where("in_person = true")
   scope :zero_review_records, where("reviews_count = 0")
 
-  scope :by_price, (lambda do |price| 
+  scope :price_option, (lambda do |price| 
     if price.blank?
       where("price_per_hour <= ?", 0) 
     else
@@ -18,7 +18,7 @@ class TeacherProfile < ActiveRecord::Base
     end
   end)
 
-  scope :instruction_type, (lambda do |attr_list| 
+  scope :instruction_option, (lambda do |attr_list| 
     t = TeacherProfile.arel_table 
     if attr_list == nil
       where(t[:online].eq("false").and(t[:in_person].eq("false"))) # this should always return nothing due to validation rules
@@ -28,11 +28,12 @@ class TeacherProfile < ActiveRecord::Base
       where(t[attr_list[0].to_sym].eq("true"))
     end
   end)
- 
-  def test
-    attr_list = [:online, :in_person]
+
+  # chains the price_option and instruction option scopes to make things more compact in the controller
+  def self.chain_scopes(my_hash) 
+    [:instruction_option, :price_option].inject(self) { |initial, additional| initial.send(additional, my_hash[additional]) }
   end
-  
+ 
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
   # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet
   def self.order_by_average_rating(options = {})
@@ -47,7 +48,4 @@ class TeacherProfile < ActiveRecord::Base
     self.reviews_count ||= 0
   end
 
-  def self.send_chain(my_array)
-    my_array.inject(self) { |initial, additional| initial.send(additional) }
-  end
 end
