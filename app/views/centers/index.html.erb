@@ -1,5 +1,11 @@
 <%= provide :title, "Arabic Centers and Programs" %>
 
+<ul class="nav nav-pills">
+  <li class="active">
+    <a href="#">Highest Rated</a>
+  </li>
+  <li><a href="#">Most Reviews</a></li>
+</ul>
 
 <% @centers.each do |center| %>
   <%= render partial: "shared/index_with_image", 
@@ -10,4 +16,8 @@
                        item_with_reviews: center} %>
 
 
+<% end %>
+
+<% content_for(:side_bar) do %>
+  <%= render partial: "shared/country_filter" %>
 <% end %>

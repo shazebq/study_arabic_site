@@ -2,6 +2,7 @@ class CentersController < ApplicationController
   include MiscTasks
 
   def index
+    @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
     @centers = Center.all
   end
 

@@ -101,6 +101,6 @@ describe TeacherProfile do
   end
 end
 
-#comment
+#comments
 
 
