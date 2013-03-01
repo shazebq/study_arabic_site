@@ -6,10 +6,8 @@ class TeacherProfile < ActiveRecord::Base
   accepts_nested_attributes_for :user
   attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience, :user_attributes, :specialties, :price_per_hour
 
-  scope :online_filter, where("online = true")
-  scope :in_person_filter, where("in_person = true")
   scope :zero_review_records, where("reviews_count = 0")
-
+  
   scope :price_option, (lambda do |price| 
     if price.blank?
       where("price_per_hour <= ?", 0) 
@@ -18,6 +16,7 @@ class TeacherProfile < ActiveRecord::Base
     end
   end)
 
+  # takes a parameter which is an array of instruction options i.e. ["online", "in_person"]
   scope :instruction_option, (lambda do |attr_list| 
     t = TeacherProfile.arel_table 
     if attr_list == nil  # note in if no instruction option is selection, js returns nothing not even a blank string
@@ -42,6 +41,13 @@ class TeacherProfile < ActiveRecord::Base
                   where("reviews.reviewable_type = ?", "TeacherProfile").
                   group("teacher_profiles.id").
                   order("average_rating DESC")
+  end
+
+  def self.country_option(country_id)
+    profiles = TeacherProfile.select("teacher_profiles.*").
+                              joins("JOIN users ON users.profile_id = teacher_profiles.id").
+                              where("users.profile_type = ?", "TeacherProfile").
+                              where("users.country_id = ?", country_id)
   end
 
   def init

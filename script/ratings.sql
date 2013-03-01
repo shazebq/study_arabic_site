@@ -6,4 +6,13 @@
   ORDER BY average_rating DESC
 
 
- 
+
+SELECT teacher_profiles.*, reviews.*
+  FROM teacher_profiles
+  LEFT JOIN reviews ON reviews.reviewable_id = teacher_profiles.id
+
+
+SELECT * FROM teacher_profiles
+WHERE price_per_hour <= null
+
+

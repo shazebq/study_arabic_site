@@ -6,13 +6,21 @@ $(document).ready(function() {
       $(".ratings_option").prop("checked", false);
       $(this).prop("checked", true);
     }
-
+  
     // get all the current options
     var ratings_option = $(".ratings_option:checkbox:checked")[0].id;
 
+    // get the country option
+    if ($(this).hasClass("country_option"))
+    {
+      $("li.active").removeClass("active");
+      $(this).addClass("active");
+    }
+    var country_option = $("li.active")[0].id
+
     // get all the price options
     var price_option_list = [];
-    var price_option
+    var price_option;
     $(".price_option:checkbox:checked").each(function() {
       price_option_list.push($(this).data("price")); 
     });
@@ -26,11 +34,11 @@ $(document).ready(function() {
        instruction_option.push(this.id); 
     });
 
-
     $("#profiles_list").load("/teacher_profiles?" + $.param({"instruction_option[]": instruction_option, 
                                                              ratings_option: ratings_option,
-                                                             price_option: price_option }) + " #profiles_div");
-
+                                                             price_option: price_option,
+                                                             country_option: country_option,  
+                                                            }) + " #profiles_div");
   });
 
 
@@ -38,5 +46,3 @@ $(document).ready(function() {
 
 
 // pass the ratings option as well, and handle it in the controller!
-
-

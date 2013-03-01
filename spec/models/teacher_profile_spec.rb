@@ -21,22 +21,22 @@ describe TeacherProfile do
 
   describe "scopes" do
     let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1, online: true, in_person: true, price_per_hour: 5) }
-    let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id) }
+    let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id, country_id: 1) }
     let!(:review1a) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     let!(:review1b) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     
     let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2, online: true, in_person: false, price_per_hour: 3 ) }
-    let!(:user2) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile2.id) }
+    let!(:user2) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile2.id, country_id: 2) }
     let!(:review2a) { FactoryGirl.create(:review, rating: 2, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
     let!(:review2b) { FactoryGirl.create(:review, rating: 1, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
 
     let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3, online: false, in_person: true, price_per_hour: 9) }
-    let!(:user3) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile3.id) }
+    let!(:user3) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile3.id, country_id: 3) }
     let!(:review3a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     let!(:review3b) { FactoryGirl.create(:review, rating: 4, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     
     let!(:teacher_profile4) { FactoryGirl.create(:teacher_profile, reviews_count: 0, online: false, in_person: true, price_per_hour: 15) }
-    let!(:user4) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile4.id) }
+    let!(:user4) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile4.id, country_id: 4) }
 
     describe "most reviews descending" do
       it "should sort teachers by number of reviews descending" do
@@ -52,32 +52,19 @@ describe TeacherProfile do
       end
     end
 
+    # revise these specs to utilize new methods
     describe "instruction type filters" do
-      describe "online only filter" do
-        it "should return teachers that only teach online" do
-          TeacherProfile.online_filter.should have(2).items 
-          TeacherProfile.online_filter.should include(teacher_profile1, teacher_profile2)
-        end
-      end
-
-      describe "in person only filter" do
-        it "should return teachers that only teach in person" do
-          TeacherProfile.in_person_filter.should have(3).items 
-          TeacherProfile.in_person_filter.should include(teacher_profile1, teacher_profile3)
-        end
-      end  
-
       describe "online filter ordered by average rating" do
         it "should return teachers that teach online only ordered by average rating" do
-          (TeacherProfile.order_by_average_rating.online_filter + TeacherProfile.zero_review_records.online_filter).
-            should == [teacher_profile1, teacher_profile2]
+          #(TeacherProfile.order_by_average_rating.online_filter + TeacherProfile.zero_review_records.online_filter).
+          #  should == [teacher_profile1, teacher_profile2]
         end
       end
 
       describe "in person filter ordered by average rating" do
         it "should return teachers that teach only in person ordered by average rating" do
-          (TeacherProfile.order_by_average_rating.in_person_filter + TeacherProfile.zero_review_records.in_person_filter).
-            should == [teacher_profile1, teacher_profile3, teacher_profile4] 
+          #(TeacherProfile.order_by_average_rating.in_person_filter + TeacherProfile.zero_review_records.in_person_filter).
+          #  should == [teacher_profile1, teacher_profile3, teacher_profile4] 
         end
       end
     end
@@ -102,6 +89,13 @@ describe TeacherProfile do
       it "should apply all the scopes in the argument array" do
         #TeacherProfile.send_chain(["online_filter", "in_person_filter"]).should include(teacher_profile1, teacher_profile2, teacher_profile3, teacher_profile4)
         #TeacherProfile.send_chain(["online_filter", "in_person_filter"]).count.should == 4
+      end
+    end
+
+    describe "country_option method" do
+      it "should filter the teacher profiles by country" do
+        TeacherProfile.country_option(2).should == [teacher_profile2]
+        TeacherProfile.country_option(1).should == [teacher_profile1]
       end
     end
   end
