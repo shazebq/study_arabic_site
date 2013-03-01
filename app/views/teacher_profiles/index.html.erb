@@ -59,7 +59,7 @@
 
   <ul class="nav nav-pills nav-stacked">
     <li class="parent_links active options country_option" id="all"><a href="#">All Countries</a></li>
-    <% Country.joins(:users).uniq.each do |country| %>
+    <% @countries.each do |country| %>
       <li class="options country_option" id="<%= country.id %>"><a href="#"><%= country.name %></a></li>
     <% end %>
   </ul>

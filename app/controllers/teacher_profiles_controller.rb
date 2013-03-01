@@ -1,5 +1,6 @@
 class TeacherProfilesController < ProfilesController
   def index
+    @countries = Country.joins(:users).where("users.profile_type = ?", "TeacherProfile").uniq
     if params[:ratings_option] == "order_by_reviews"
       @teacher_profiles = TeacherProfile.send(params[:ratings_option]).chain_scopes(params)
     elsif params[:ratings_option] == "order_by_average_rating"
