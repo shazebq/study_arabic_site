@@ -10,7 +10,7 @@ class TeacherProfile < ActiveRecord::Base
   
   scope :price_option, (lambda do |price| 
     if price.blank?
-      where("price_per_hour <= ?", 0) 
+      where("price_per_hour < ?", 0) 
     else
       where("price_per_hour <= ?", price) 
     end
@@ -30,7 +30,7 @@ class TeacherProfile < ActiveRecord::Base
 
   # chains the price_option and instruction option scopes to make things more compact in the controller
   def self.chain_scopes(my_hash) 
-    [:instruction_option, :price_option].inject(self) { |initial, additional| initial.send(additional, my_hash[additional]) }
+    [:instruction_option, :price_option, :country_option].inject(self) { |initial, additional| initial.send(additional, my_hash[additional]) }
   end
  
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
@@ -44,10 +44,14 @@ class TeacherProfile < ActiveRecord::Base
   end
 
   def self.country_option(country_id)
-    profiles = TeacherProfile.select("teacher_profiles.*").
-                              joins("JOIN users ON users.profile_id = teacher_profiles.id").
-                              where("users.profile_type = ?", "TeacherProfile").
-                              where("users.country_id = ?", country_id)
+    if country_id == "all"
+     where({}) 
+    else
+      TeacherProfile.select("teacher_profiles.*").
+                   joins("JOIN users ON users.profile_id = teacher_profiles.id").
+                   where("users.profile_type = ?", "TeacherProfile").
+                   where("users.country_id = ?", country_id)
+    end
   end
 
   def init
