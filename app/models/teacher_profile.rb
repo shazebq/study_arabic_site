@@ -20,7 +20,7 @@ class TeacherProfile < ActiveRecord::Base
 
   scope :instruction_option, (lambda do |attr_list| 
     t = TeacherProfile.arel_table 
-    if attr_list == nil
+    if attr_list == nil  # note in if no instruction option is selection, js returns nothing not even a blank string
       where(t[:online].eq("false").and(t[:in_person].eq("false"))) # this should always return nothing due to validation rules
     elsif attr_list.length == 2 
       where(t[:online].eq("true").or(t[:in_person].eq("true"))) # use metaprogramming to make this more general solution

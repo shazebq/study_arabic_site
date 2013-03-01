@@ -85,15 +85,15 @@ describe TeacherProfile do
     describe "price filters" do
       describe "filter of 5 dollars or less" do
         it "should return all the teacher profiles whose price per hour is 5 or less" do
-          TeacherProfile.by_price(5).should include(teacher_profile1, teacher_profile2)
-          TeacherProfile.by_price(5).length.should == 2
+          TeacherProfile.price_option(5).should include(teacher_profile1, teacher_profile2)
+          TeacherProfile.price_option(5).length.should == 2
         end
       end
 
       describe "filter of 12 dollars or less" do
         it "should return all the teacher profiles who price per hour is 12 or less" do
-          TeacherProfile.by_price(12).should include(teacher_profile1, teacher_profile2, teacher_profile3)
-          TeacherProfile.by_price(12).length.should == 3
+          TeacherProfile.price_option(12).should include(teacher_profile1, teacher_profile2, teacher_profile3)
+          TeacherProfile.price_option(12).length.should == 3
         end
       end
     end

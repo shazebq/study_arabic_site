@@ -51,8 +51,21 @@ describe "user(teachers) index page" do
           page.should have_selector("#ten")
         end
       end
+    end
 
+    describe "side bar" do
+      let!(:country) { FactoryGirl.create(:country, name: "Mali") }
+      let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile) }
+      let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id, country_id: country.id) }
+      let!(:teacher_review1) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile",
+                                              reviewable_id: teacher_profile1.id, content: "wonderful teacher!!!") }
+      before :each do
+        visit teacher_profiles_path
+      end
 
+      it "should have a list of all the countries represented by teachers" do
+        page.should have_content(user1.country.name)
+      end
     end
   end
 

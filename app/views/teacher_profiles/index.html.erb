@@ -53,3 +53,38 @@
     <%= render partial: "profiles_list", locals: { teacher_profiles: @teacher_profiles } %>
   </div>
 </div>
+
+<% content_for(:side_bar) do %>
+  <h4>Filter By Country</h4>
+
+  <ul class="nav nav-pills nav-stacked options">
+    <li class="parent_links"><a href="">All Countries</a></li>
+    <% User.teachers.each do |teacher| %>
+      <li class="<%= teacher.try(:country).try(:name) %>"><a href=""><%= teacher.try(:country).try(:name) %></a></li>
+    <% end %>
+  </ul>
+
+  <br /><br />
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active">
+      <a href="#">Home</a>
+      </li>
+      <li><a href="#">...</a></li>
+      <li><a href="#">...</a></li> 
+    </ul>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
