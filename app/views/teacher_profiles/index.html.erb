@@ -50,12 +50,12 @@
 
 <div id="profiles_list">
   <div id="profiles_div">
-    <%= render partial: "profiles_list", locals: { teacher_profiles: @teacher_profiles } %>
+    <%= render partial: "profiles_list", locals: { teacher_profiles: @teacher_profiles} %>
   </div>
 </div>
 
 <% content_for(:side_bar) do %>
-  <%= render partial: "shared/country_filter" %>
+  <%= render partial: "shared/country_filter", locals: { li_class: "options" } %>
 <% end %>
 
 

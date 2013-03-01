@@ -3,7 +3,13 @@ class CentersController < ApplicationController
 
   def index
     @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
-    @centers = Center.all
+    if params[:ratings_option] == "order_by_reviews"
+      @centers = Center.order_by_reviews.country_option(params[:country_option])
+    elsif params[:ratings_option] == "order_by_average_rating"
+      @centers = Center.order_by_average_rating.country_option(params[:country_option]) + Center.zero_review_records.country_option(params[:country_option])
+    else
+      @centers = Center.order_by_average_rating + Center.zero_review_records
+    end
   end
 
   def new

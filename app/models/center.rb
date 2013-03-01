@@ -13,7 +13,13 @@ class Center < ActiveRecord::Base
   has_many :reviews, as: :reviewable, dependent: :destroy
   accepts_nested_attributes_for :address, :images
 
-  scope :country_option, lambda { |country_id| joins(:address => :country).where("countries.id" => country_id) }
+  scope :country_option, (lambda do |country_id| 
+    if country_id == "all"
+      where({})
+    else
+      joins(:address => :country).where("countries.id" => country_id)
+    end
+  end)
 
   def init
     self.reviews_count ||= 0
@@ -30,3 +36,4 @@ end
 #                   where("users.country_id = ?", country_id)
 #    end
 #  end
+#
