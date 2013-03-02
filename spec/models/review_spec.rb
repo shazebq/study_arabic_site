@@ -5,7 +5,6 @@ describe Review do
   subject { review }
 
   it { should respond_to(:user) }
-  #it { should respond_to(:resource) }
   it { should respond_to(:reviewable) }
 end
 

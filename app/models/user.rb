@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :forum_posts
   has_many :answers
   has_many :resources
-  has_one :image, as: :imageable
+  has_many :reviews
+  has_one :image, as: :imageable, dependent: :destroy
   belongs_to :profile, polymorphic: true
   belongs_to :country
   accepts_nested_attributes_for :image
@@ -29,4 +30,4 @@ class User < ActiveRecord::Base
 end
 
 
-#commentss
+#comments

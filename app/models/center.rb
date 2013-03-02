@@ -7,7 +7,7 @@ class Center < ActiveRecord::Base
                   :user_id, :website, :year_established, :address_attributes, :images_attributes
 
   after_initialize :init
-  
+  before_destroy :destroy_address 
   belongs_to :address
   has_many :images, as: :imageable, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
@@ -23,6 +23,11 @@ class Center < ActiveRecord::Base
 
   def init
     self.reviews_count ||= 0
+  end
+
+  private
+  def destroy_address
+    self.address.delete
   end
 end
 

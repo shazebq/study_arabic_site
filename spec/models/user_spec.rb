@@ -8,6 +8,7 @@ describe User do
   subject {@user}
 
   it { should respond_to(:forum_posts) }
+  it { should respond_to(:reviews) }
   it { should respond_to(:answers) }
   it { should respond_to(:resources) }
   it { should respond_to(:profile) }
