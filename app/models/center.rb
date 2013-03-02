@@ -7,7 +7,7 @@ class Center < ActiveRecord::Base
                   :user_id, :website, :year_established, :address_attributes, :images_attributes
 
   after_initialize :init
-
+  
   belongs_to :address
   has_many :images, as: :imageable, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy

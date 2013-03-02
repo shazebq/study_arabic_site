@@ -33,19 +33,32 @@
 #end
 
 #create levels
-levels = 
-{
-  "Beginner" => "Little to no prior experience", 
-  "Advanced Beginner" => "Formal classes or self study equivalent to one to two university level semesters",
-  "Intermediate" => "Formal classes or self study equivalent to two university level years", 
-  "Advanced Intermediate" =>  "Formal classes or self study equivalent to three university level years",
-  "Advanced" => "Formal classes or self study equivalent to four university level years" 
-}
-year = 0
-levels.each do |key, value|
-  Level.create(title: key, description: value, years_of_study: year)
-  year += 1
-end
+#levels = 
+#{
+#  "Beginner" => "Little to no prior experience", 
+#  "Advanced Beginner" => "Formal classes or self study equivalent to one to two university level semesters",
+#  "Intermediate" => "Formal classes or self study equivalent to two university level years", 
+#  "Advanced Intermediate" =>  "Formal classes or self study equivalent to three university level years",
+#  "Advanced" => "Formal classes or self study equivalent to four university level years" 
+#}
+#year = 0
+#levels.each do |key, value|
+#  Level.create(title: key, description: value, years_of_study: year)
+#  year += 1
+#end
+
+# development seed data
+
+
+
+
+
+
+
+
+
+
+
 
 # create country list
 #Country.create(:id=>1,:iso=>"AD",:name=>"Andorra")
