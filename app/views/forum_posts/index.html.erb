@@ -1,10 +1,10 @@
 <% provide :title, "Arabic Forums" %>
 
-<%= form_tag do %>
+<%= form_tag("/forum_posts/search", :method => "get") do %>
   <div class="field">
     <div class="form-inline">
-      <%= text_field_tag(:q, nil, class: "search_box") %>
-      <%= submit_tag("Search Forums") %>
+      <%= text_field_tag(:query, nil, class: "search_box") %>
+      <%= submit_tag("Search Forums", class: "btn") %>
     </div>
   </div>
 <% end %>
