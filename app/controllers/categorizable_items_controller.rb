@@ -7,7 +7,7 @@ class CategorizableItemsController < ApplicationController
         if @category.categories.any?  # if it's a parent category
           @items = @category.collect_all_posts(params[:controller]).send(@current_scope) 
         else # if it's not a parent category
-          @items = @category.resources.send(@current_scope)
+          @items = @category.send(params[:controller]).send(@current_scope)
         end
     else
       # call appropriate scope here
