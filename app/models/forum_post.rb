@@ -1,6 +1,9 @@
 class ForumPost < ActiveRecord::Base
   include Voting
   include Scoping
+  include PgSearch
+  pg_search_scope :search, against: [:title, :content]
+
   attr_accessible :content, :title, :user_id, :views_count, :votes_count, :answers_count, :category_ids
   after_initialize :init
 
@@ -25,4 +28,10 @@ class ForumPost < ActiveRecord::Base
     self.votes_count ||= 0
     self.answers_count ||= 0
   end
+
+  def self.text_search(query)
+    search(query)
+  end
+
+
 end

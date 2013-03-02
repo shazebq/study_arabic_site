@@ -31,6 +31,12 @@ describe "forum post index page" do
     end
   end
 
+  describe "search form" do
+    it "should be present on the index page" do
+      page.should have_selector("input", "Search Forums")
+    end
+  end
+
   describe "filter links" do
     describe "most views link" do
       it "should redirect to the index page with posts sorted by views" do

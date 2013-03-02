@@ -37,11 +37,14 @@ describe ForumPost do
     end
   end
 
-  describe "scopes" do
+  describe "scopes and searching" do
     let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
-    let!(:forum_post1) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 2, votes_count:4, answers_count: 0) }
-    let!(:forum_post2) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 5, votes_count:2, answers_count: 8) }
-    let!(:forum_post3) { FactoryGirl.create(:forum_post, category_ids: parent.id, views_count: 9, votes_count: 3, answers_count: 4) }
+    let!(:forum_post1) { FactoryGirl.create(:forum_post, title: "Question about arabic grammar", 
+                                            content: "tough question about grammar", category_ids: parent.id, views_count: 2, votes_count:4, answers_count: 0) }
+    let!(:forum_post2) { FactoryGirl.create(:forum_post, title: "looking for rommates in egypt", 
+                                            content: "anyone going to egypt in summer 2013?", category_ids: parent.id, views_count: 5, votes_count:2, answers_count: 8) }
+    let!(:forum_post3) { FactoryGirl.create(:forum_post, title: "study abroad stuff",
+                                            content: "I want to study abraod in yemen. Someone help!", category_ids: parent.id, views_count: 9, votes_count: 3, answers_count: 4) }
 
     describe "most_views scope" do
       it "should order posts by number of views descending" do
@@ -82,6 +85,14 @@ describe ForumPost do
         ForumPost.unanswered.should_not(include(forum_post2))
       end
     end
+
+    #describe "searching" do
+    #  describe "searching for a specific word" do
+    #    it should "return forum_post2" do
+    #      ForumPost.text_search("egypt")
+    #    end
+    #  end
+    #end
 
   end
 

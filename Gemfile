@@ -34,6 +34,7 @@ gem 'rb-fsevent', '~> 0.9.1'
 gem 'hirb'
 gem 'cocaine', '= 0.3.2'
 gem 'warden'
+gem 'pg_search'
 
 group :development, :test do
   gem 'rspec-rails'
