@@ -49,9 +49,46 @@
 
 # development seed data
 
-# 
+# create cities
+
+city1 = City.create(name: "Cancun", country_id: Country.find_by_name("Mexico").id)
+city2 = City.create(name: "Baghdad", country_id: Country.find_by_name("Iraq").id)
+city3 = City.create(name: "Tunis", country_id: Country.find_by_name("Tunisia").id)
+city4 = City.create(name: "Cairo", country_id: Country.find_by_name("Egypt").id)
+
+# create addresses
+
+address1 = Address.create(address_line: "123 Wall St", city_id: City.find_by_name("Cancun").id, country_id: Country.find_by_name("Mexico").id)    
+address2 = Address.create(address_line: "342 Corniche St", city_id: City.find_by_name("Baghdad").id, country_id: Country.find_by_name("Iraq").id)    
+address3 = Address.create(address_line: "456 Mail St.", city_id: City.find_by_name("Tunis").id, country_id: Country.find_by_name("Tunisia").id)    
+address4 = Address.create(address_line: "8349 Silk Rd.", city_id: City.find_by_name("Cairo").id, country_id: Country.find_by_name("Egypt").id)    
+
+# create centers
+
+Center.create(name: "Diwan Center", description: "An excellent arabic center is the hear of Nasr City.  We offer all kinds
+              classes.  There's so much at this place!", short_term: true, long_term: true, website: "www.diwan.com",
+              email: "info@diwan.com", phone_number: "304-231-4322", user_id: User.first.id,  address_id: address1.id) 
 
 
+Center.create(name: "Nile Center", description: "Cool center located on the nile river.  Lots of restaurants and shop nearby
+              There are many students from many different cities", short_term: true, long_term: true, website: "www.nilecenter.com",
+              email: "questions@nilcenter.com", phone_number: "433-455-3232", user_id: User.first.id,  address_id: address2.id) 
+
+Center.create(name: "Sibaway Center", description: "Sibaway is a center offering classes in tajweed, fiqh, classical arabic, and other
+              disciplines to students from all around the world", short_term: true, long_term: false, website: "www.sibaway.com",
+              email: "info@sibaway.com", phone_number: "345-545-1231", user_id: User.first.id,  address_id: address3.id) 
+
+# create forum_posts
+#post1 = ForumPost.create(title: "Anbody going to Cairo summer 2013?", content: "salaams, any brothers going to Cairo this summer to study Arabic? If so, let me know and maybe we can be roomates iA", user_id: User.first.id)  
+#post2 = ForumPost.create(title: "A really tough grammar question", content: "here is a very tough grammar question. Can someone help me out?", user_id: User.first.id)  
+
+# create categories_categorizables
+#CategoriesCategorizable.create(category_id: Category.find_by_name("Egypt").id, categorizable_id: post1.id, categorizable_type: "ForumPost")
+#CategoriesCategorizable.create(category_id: Category.find_by_name("Grammar").id, categorizable_id: post2.id, categorizable_type: "ForumPost")
+
+# create reviews
+
+# create resources
 
 
 
