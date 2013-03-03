@@ -1,15 +1,8 @@
 <% provide :title, "Arabic Forums" %>
 
-<%= form_tag("/forum_posts/search", :method => "get") do %>
-  <div class="field">
-    <div class="form-inline">
-      <%= text_field_tag(:query, nil, class: "search_box") %>
-      <%= submit_tag("Search Forums", class: "btn") %>
-    </div>
-  </div>
-<% end %>
+<%= render partial: "shared/search_box" %>
 
-<%= render partial: 'shared/filter_links' %>
+<%= render partial: "shared/filter_links" %>
 
 <%= render partial: "shared/index_list" %>
 

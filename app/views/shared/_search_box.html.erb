@@ -1,0 +1,8 @@
+<%= form_tag("/#{params[:controller]}/search", :method => "get") do %>
+  <div class="field">
+    <div class="form-inline">
+      <%= text_field_tag(:query, nil, class: "search_box") %>
+      <%= submit_tag("Search", class: "btn") %>
+    </div>
+  </div>
+<% end %>

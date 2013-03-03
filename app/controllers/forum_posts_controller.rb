@@ -25,12 +25,6 @@ class ForumPostsController < CategorizableItemsController
     @answer = ForumPost.find(@forum_post.id).answers.new
   end
 
-  def search
-    @scopes = params[:controller].classify.constantize::SCOPES
-    @items = ForumPost.text_search(params[:query]) 
-    render "index"
-  end
-
   def edit
     @forum_post = ForumPost.find(params[:id])
   end

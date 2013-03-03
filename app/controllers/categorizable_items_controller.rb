@@ -14,4 +14,10 @@ class CategorizableItemsController < ApplicationController
       @items = params[:controller].classify.constantize.send(@current_scope)
     end
   end 
+
+  def search
+    @scopes = params[:controller].classify.constantize::SCOPES
+    @items = params[:controller].classify.constantize.text_search(params[:query]) 
+    render "index"
+  end
 end

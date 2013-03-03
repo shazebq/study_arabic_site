@@ -1,8 +1,11 @@
 class ForumPost < ActiveRecord::Base
+  extend Searching
   include Voting
   include Scoping
   include PgSearch
-  pg_search_scope :search, against: [:title, :content]
+  pg_search_scope :search, against: [:title, :content],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {categories: :name, answers: :content} # needed so it searches associated records as well
 
   attr_accessible :content, :title, :user_id, :views_count, :votes_count, :answers_count, :category_ids
   after_initialize :init
@@ -27,10 +30,6 @@ class ForumPost < ActiveRecord::Base
     self.views_count ||= 0
     self.votes_count ||= 0
     self.answers_count ||= 0
-  end
-
-  def self.text_search(query)
-    search(query)
   end
 
 
