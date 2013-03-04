@@ -9,6 +9,12 @@ class TeacherProfilesController < ProfilesController
       @teacher_profiles = TeacherProfile.order_by_average_rating + TeacherProfile.zero_review_records
     end
   end
+
+  def search
+    @countries = Country.joins(:users).where("users.profile_type = ?", "TeacherProfile").uniq # all the countries that teachers are from (unique)
+    @teacher_profiles = TeacherProfile.text_search(params[:query]) 
+    render "index"
+  end
 end
   
 

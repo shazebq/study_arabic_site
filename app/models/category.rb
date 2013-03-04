@@ -1,4 +1,7 @@
 class Category < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => :name
+
   attr_accessible :name, :category_parent_id
 
   has_many :categories_categorizables, dependent: :destroy

@@ -2,6 +2,7 @@ ArabicProject::Application.routes.draw do
 
   match "home" => "static_pages#home", :via => :get
   match "about_us" => "static_pages#about_us", :via => :get
+  match "site_search" => "static_pages#site_search", :via => :get
 
   devise_for :users
 
@@ -11,9 +12,7 @@ ArabicProject::Application.routes.draw do
     member do
       post "vote"
     end
-    collection do
-      get "search"
-    end
+    get 'search', :on => :collection
 
     resources :answers do
       member do
@@ -24,12 +23,14 @@ ArabicProject::Application.routes.draw do
 
   resources :centers do
     resources :reviews
+    get 'search', :on => :collection
   end
 
   resources :users
 
   resources :teacher_profiles do
     resources :reviews
+    get 'search', :on => :collection
   end
 
   resources :student_profiles
@@ -40,6 +41,7 @@ ArabicProject::Application.routes.draw do
     member do
       post "vote"
     end
+    get 'search', :on => :collection
     resources :reviews
   end
 

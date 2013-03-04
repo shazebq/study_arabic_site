@@ -12,6 +12,12 @@ class CentersController < ApplicationController
     end
   end
 
+  def search
+    @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
+    @centers = Center.text_search(params[:query]) 
+    render "index"
+  end
+
   def new
     @center = Center.new
     @center.build_address

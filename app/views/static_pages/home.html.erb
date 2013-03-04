@@ -1,2 +1,16 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<%= provide :title, "StudyArabic.com" %>
+
+<div class="search_box_home">
+  <%= form_tag("/site_search", :method => "get") do %>
+    <div class="field">
+      <div class="form-inline">
+        <%= select_tag(:item_type, 
+                      options_from_collection_for_select(StaticPagesController::SEARCH_OPTIONS, :last, :first), class: "select_box") %>
+        <div class="input-append">
+        <%= text_field_tag(:query, nil, class: "span5", id: "appendedInputButtons", type: "text") %>
+        <button class="btn" type="submit" name="commit">Search</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

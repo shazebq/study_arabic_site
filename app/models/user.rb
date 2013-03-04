@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  include PgSearch 
+  multisearchable :against => [:first_name, :last_name, :bio]
+
   before_destroy :destroy_user_profile
   has_many :forum_posts
   has_many :answers

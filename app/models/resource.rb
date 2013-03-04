@@ -6,6 +6,7 @@ class Resource < ActiveRecord::Base
   pg_search_scope :search, against: [:title, :description],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {categories: :name, reviews: :content} # needed so it searches associated records as well
+  multisearchable :against => [:title, :description]
 
   after_initialize :init
   attr_accessible :description, :difficulty_level, :downloads_count, :title, :user_id, :views_count, :votes_count, :resource_file, :category_ids

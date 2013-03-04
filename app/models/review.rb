@@ -1,4 +1,7 @@
 class Review < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:title, :content]
+
   attr_accessible :content, :rating, :reviewable_id, :reviewable_type, :title, :user_id
 
   belongs_to :user
