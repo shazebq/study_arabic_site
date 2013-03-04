@@ -1,14 +1,11 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'pg'
-gem 'mysql2'
-
 
 group :assets do
   gem 'coffee-rails'
@@ -42,10 +39,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'spork-rails'
   gem 'guard-rspec'
-
-
-
-  gem 'annotate', '~> 2.4.1.beta', group: :development
+  #gem 'annotate', '~> 2.4.1.beta', group: :development
 
 end
 
