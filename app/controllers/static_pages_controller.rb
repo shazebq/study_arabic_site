@@ -8,8 +8,8 @@ class StaticPagesController < ApplicationController
   def about_us
   end
 
+  # just redirects to the appropriate controller, passing the query along
   def site_search
-    searcher = Searcher.new
-    @results = searcher.search(params[:query])
+    redirect_to controller: params[:item_type], action: "search", query: params[:query] 
   end
 end

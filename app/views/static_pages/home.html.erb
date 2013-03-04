@@ -7,7 +7,7 @@
         <%= select_tag(:item_type, 
                       options_from_collection_for_select(StaticPagesController::SEARCH_OPTIONS, :last, :first), class: "select_box") %>
         <div class="input-append">
-        <%= text_field_tag(:query, nil, class: "span5", id: "appendedInputButtons", type: "text") %>
+        <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text") %>
         <button class="btn" type="submit" name="commit">Search</button>
         </div>
       </div>
