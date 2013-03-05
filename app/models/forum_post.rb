@@ -6,7 +6,7 @@ class ForumPost < ActiveRecord::Base
   pg_search_scope :search, against: [:title, :content],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {categories: :name, answers: :content} # needed so it searches associated records as well
-  multisearchable :against => [:title, :content]
+  #multisearchable :against => [:title, :content]
 
   attr_accessible :content, :title, :user_id, :views_count, :votes_count, :answers_count, :category_ids
   after_initialize :init

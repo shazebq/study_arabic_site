@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   include PgSearch 
-  multisearchable :against => [:first_name, :last_name, :bio]
+  #multisearchable :against => [:first_name, :last_name, :bio]
 
   before_destroy :destroy_user_profile
   has_many :forum_posts

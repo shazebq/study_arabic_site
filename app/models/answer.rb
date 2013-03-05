@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   include Voting
-  include PgSearch
-  multisearchable :against => :content
+  #include PgSearch
+  #multisearchable :against => :content
   after_initialize :init
   attr_accessible :content, :forum_post_id, :user_id
 

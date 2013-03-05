@@ -6,7 +6,7 @@ class Center < ActiveRecord::Base
   pg_search_scope :search, against: [:name, :description],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {reviews: [:title, :content]} # needed so it searches associated records as well
-  multisearchable :against => [:name, :description]
+  #multisearchable :against => [:name, :description]
 
   attr_accessible :address_id, :description, :email, :group_instruction, :housing_provided, :long_term, :name, :phone_number, 
                   :price_per_hour_group, :price_per_hour_private, :private_instruction, :program_length, :short_term, :total_price, 

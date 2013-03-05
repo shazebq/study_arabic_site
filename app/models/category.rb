@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
-  include PgSearch
-  multisearchable :against => :name
+  #include PgSearch
+  #multisearchable :against => :name
 
   attr_accessible :name, :category_parent_id
 

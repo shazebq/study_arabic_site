@@ -1,6 +1,6 @@
 class Country < ActiveRecord::Base
   include PgSearch
-  multisearchable :against => :name
+  #multisearchable :against => :name
   attr_accessible :iso, :name
   has_many :users
   has_many :addresses
