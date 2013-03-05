@@ -3,7 +3,10 @@
 
 @import 'font-awesome';
 
+
+
 $main_color: #1D7373;
+$darker: #006363;
 
 body
 {
@@ -29,6 +32,22 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   border-bottom-color: white !important;
 }
 
+.custom_hover > li > a:hover {
+    background-color: $darker;
+}
+
+.custom_hover > li.active_nav > a {
+    background-color: white;
+}
+
+.custom_hover > li.active_nav > a:link {
+    color: black !important;
+}
+
+.custom_hover > li.active_nav > a:visited {
+    color: black !important;
+}
+
 #header
 {
   margin-bottom: -20px;
@@ -45,7 +64,8 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
   li
   {
-    border-right: solid 1px silver; 
+    //border-right: solid 1px silver; 
+    //border-top: solid 1px silver; 
   }
 }
 

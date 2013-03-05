@@ -26,36 +26,25 @@
           </div>
         </div>
         
-          <ul class="nav nav-tabs">
-          <li>
-          <a href="#">Home</a>
-          </li>
-          <li><%= link_to("Centers/Programs", centers_path) %></li>
-          <li><%= link_to("Teachers", teacher_profiles_path) %></a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle disabled"
-            data-toggle="dropdown"
-            href="/teacher_profiles">
-            Dropdown
-            <b class="caret custom_caret"></b>
+          <ul class="nav nav-tabs custom_hover bold">
+          <li><%= link_to("Home", "/") %></a></li>
+        <li class="<%= params[:controller] == "centers" ? "active_nav" : "not_active" %>"><%= link_to("Centers/Programs", centers_path) %></li>
+          <li class="<%= params[:controller] == "teacher_profiles" ? "active_nav" : "not_active" %>"><%= link_to("Teachers", teacher_profiles_path) %></a></li>
+        <li class="<%= params[:controller] == "resources" ? "active_nav" : "not_active" %>"><%= link_to("Resources", resources_path) %></a></li>
+      <li class="<%= params[:controller] == "articles" ? "active_nav" : "not_active" %>"><a href=#>Articles</a></li>
+          <li class="dropdown <%= params[:controller] == "categories" || params[:controller] == "forum_posts" ? "active_nav" : "not_active" %>">
+          <a class="dropdown-toggle disabled" data-toggle="dropdown" href="<%= categories_path %>">Forums
+              <b class="caret custom_caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">study abroad</a></li>
-              <li><a href="#">something else</a></li>
+              <li><a href="<%= category_forum_posts_path(Category.find_by_name("Arabic Language")) %>">Arabic Language</a></li>
+              <li><a href="<%= category_forum_posts_path(Category.find_by_name("Study Abroad")) %>">Study Abroad (General)</a></li>
+              <li><a href="<%= category_forum_posts_path(Category.find_by_name("Countries")) %>">Study Abroad (By Country)</a></li>
             </ul>
           </li>
 
           </ul>
-
           
-          <%#= render(partial: "shared/dropdown", locals: { title: "Study Abroad",
-                                                           links: { "Egypt" => "http://www.egypt.com",
-                                                                    "Jordan" => "www.jordan.com"}  }) %>
-
-          <%#= render(partial: "shared/dropdown", locals: { title: "Books",
-                                                           links: { "Reviews" => "http://www.egypt.com",
-                                                                    "Ratings" => "www.jordan.com"}  }) %>
-
       </div>
 
 
