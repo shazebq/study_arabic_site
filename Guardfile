@@ -31,6 +31,9 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb', :all_on
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/controllers/#{m[1]}_controller_spec.rb" }
 
+  # changes is the controller should trigger the relevant request spec
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/requests/#{m[1]}_request_spec.rb" }
+
   # watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
