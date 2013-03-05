@@ -32,19 +32,24 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   border-bottom-color: white !important;
 }
 
-.custom_hover > li > a:hover {
+.custom_nav
+{
+    border: none !important;
+}
+
+.custom_nav > li > a:hover {
     background-color: $darker;
 }
 
-.custom_hover > li.active_nav > a {
+.custom_nav > li.active_nav > a {
     background-color: white;
 }
 
-.custom_hover > li.active_nav > a:link {
+.custom_nav > li.active_nav > a:link {
     color: black !important;
 }
 
-.custom_hover > li.active_nav > a:visited {
+.custom_nav > li.active_nav > a:visited {
     color: black !important;
 }
 
