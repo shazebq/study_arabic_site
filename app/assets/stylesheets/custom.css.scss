@@ -6,13 +6,34 @@
 body
 {
   line-height: 18px;
-  background-color: silver;
-  background-color: #00AF64;
+  background-color: #1D7373;
 }
 
-.container
+.logo_container
 {
+  //margin-bottom: -20px;
 }
+
+#header
+{
+  margin-bottom: -20px;
+
+  a:link 
+  {
+    color: white;
+  }
+
+  a:visited 
+  {
+    color: white;
+  }
+
+  li
+  {
+    border-right: solid 1px silver; 
+  }
+}
+
 
 #main_content
 {
@@ -20,8 +41,6 @@ body
   padding-left: 30px;
   border-radius: 15px;
 }
-
-
 
 
 .sidebar
