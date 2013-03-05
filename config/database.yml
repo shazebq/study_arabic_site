@@ -17,11 +17,7 @@ test:
   database: arabic_project_test
   host: localhost
 
-#production:
-#  adapter: mysql2
-#  encoding: utf8
-#  database: arabic_project_prod
-#  pool: 5
-#  username: root
-#  password: hungrotos
-#  socket: /var/run/mysqld/mysqld.sock
+production:
+  adapter: postgresql
+  database: arabic_project_prod
+  host: localhost
