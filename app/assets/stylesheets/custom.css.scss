@@ -3,15 +3,30 @@
 
 @import 'font-awesome';
 
+$main_color: #1D7373;
+
 body
 {
   line-height: 18px;
-  background-color: #1D7373;
+  background-color: $main_color; 
 }
 
-.logo_container
+// layout stuff
+// make dropdown showup on hover
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+    margin: 0;
+}
+
+.dropdown-menu
 {
-  //margin-bottom: -20px;
+  background-color: $main_color;
+}
+
+.custom_caret
+{
+  border-top-color: white !important;
+  border-bottom-color: white !important;
 }
 
 #header
