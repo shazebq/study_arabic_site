@@ -1,10 +1,12 @@
 require "spec_helper"
 
 describe "new center page" do
-  
+  let(:user) { FactoryGirl.create(:user) } 
+
   before :each do
     FactoryGirl.create(:country, name: "Egypt")
     visit new_center_path
+    sign_in_user(user)
   end
 
   describe "page title" do

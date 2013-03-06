@@ -39,9 +39,9 @@
                 <b class="caret custom_caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Arabic Language")) %>">Arabic Language</a></li>
-                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Study Abroad")) %>">Study Abroad (General)</a></li>
-                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Countries")) %>">Study Abroad (By Country)</a></li>
+                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Arabic Language")) if Category.find_by_name("Arabic Language") %>">Arabic Language</a></li>
+                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Study Abroad")) if Category.find_by_name("Study Abroad") %>">Study Abroad (General)</a></li>
+                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Countries")) if Category.find_by_name("Study Abroad") %>">Study Abroad (By Country)</a></li>
               </ul>
             </li>
           </ul>

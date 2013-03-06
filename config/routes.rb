@@ -6,7 +6,7 @@ ArabicProject::Application.routes.draw do
 
   devise_for :users
 
-  #root(to: "forum_posts#new")
+  root(to: "static_pages#home")
 
   resources :forum_posts do
     member do

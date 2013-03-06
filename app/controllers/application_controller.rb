@@ -1,7 +1,23 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :check_if_signed_in, only: :vote
-  
+  before_filter :authenticate_user!, only: :vote
+  # for devise, save the last page user was on before doing something that required authentication
+  #after_filter :store_location
+
+  def store_location
+    # store last url as long as it isn't a /users path
+    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+  end
+
+  #def after_sign_in_path_for(resource)
+    #logger.fatal "Terminating application, raised unrecoverable error!!! #{resource.class.name}"
+    #if resource.is_a?(Answer) 
+    #  session[:previous_url] || root_path
+    #elsif resource.is_a?(ForumPost)
+    #  new_forum_post_path
+    #end
+  #end
+    
   # ajax call to vote is directed to this action
   def vote
     item = params[:voteable_type].constantize.find(params[:id])
@@ -46,6 +62,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #{"action"=>"new", "controller"=>"reviews", "resource_id"=>"2"}
 end
 

@@ -1,4 +1,5 @@
 class CentersController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   include MiscTasks
 
   def index
@@ -49,3 +50,5 @@ class CentersController < ApplicationController
     redirect_to @center
   end
 end
+
+# comment

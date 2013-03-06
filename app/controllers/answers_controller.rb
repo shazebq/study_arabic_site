@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_filter :require_sign_in, only: [:destroy, :update]
+  before_filter :authenticate_user!, only: [:new, :update, :destroy, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def index
@@ -31,4 +31,5 @@ class AnswersController < ApplicationController
     redirect_to forum_post_path(@forum_post)
   end
 
+  
 end
