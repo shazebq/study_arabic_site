@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate_user!, only: :vote
+  before_filter :require_sign_in, only: :vote
   # for devise, save the last page user was on or tyring to access before doing something that required authentication
   before_filter :store_location
 

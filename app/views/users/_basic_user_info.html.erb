@@ -15,7 +15,7 @@
       </div>
       <% if authorized?(user) %>
         <div class="span2"><p class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(user), 
-                                                      action: "edit", id: user.profile %></p></div>
+                                                      action: "edit", id: user.try(:profile).try(:id) %></p></div>
       <% end %>                                                    
     </div>
     <% if user_type(user) == "Teacher" %>

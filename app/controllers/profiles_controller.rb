@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_filter(:only => [:update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
+
   def new
     @profile = params[:controller].classify.constantize.new
     user = @profile.build_user

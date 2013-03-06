@@ -17,12 +17,14 @@ describe "home page" do
         fill_in "query", with: "roommates"  
         select "Forums", from: "item_type"  
       end
-      
-      # not working for some reason
-      #it "should redirect to the forums index and display the relevant search results" do
-      #  click_button "Search"  
-      #  current_path.should == forum_posts_path
-      #end
+    end
+  end
+
+  describe "layout content" do
+    before :each do
+    end
+    it "should have a link to the logged in user's profile" do
+
     end
   end
 end

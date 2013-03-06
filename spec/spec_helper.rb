@@ -103,11 +103,23 @@ def create_teacher_records
                                               reviewable_id: teacher_profile.id, content: "wonderful teacher!!!") }
 end
 
+def create_student_records
+  let!(:student_profile) { FactoryGirl.create(:student_profile) }
+  let!(:user) { FactoryGirl.create(:user, profile_type: "StudentProfile", profile_id: student_profile.id) }
+end
+
 def sign_in_user(the_user)
+  if the_user.profile_id.nil?
+    @new_profile = FactoryGirl.create(:student_profile)
+    the_user.profile_type = "StudentProfile"
+    the_user.profile_id = @new_profile.id
+    the_user.save
+  end
+
   visit new_user_session_path
   fill_in("user_email", with: the_user.email)
   fill_in("user_password", with: the_user.password)
   click_button("Sign in")
 end
 
-
+# comments

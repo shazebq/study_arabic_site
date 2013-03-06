@@ -133,12 +133,12 @@ describe "forum post index page" do
         page.should(have_selector(".active", text: "Arabic Centers"))
       end
 
-      context "where the forum category that is clicked on is a parent category" do
-        it "should redirect to all of the parent category's posts" do
-          click_link("Arabic Language")
-          page.should(have_selector(".active", text: "Arabic Language"))
-        end
-      end
+      #context "where the forum category that is clicked on is a parent category" do
+      #  it "should redirect to all of the parent category's posts" do
+      #    click_link("Arabic Language")
+      #    page.should(have_selector(".active", text: "Arabic Language"))
+      #  end
+      #end
     end
   end
 end

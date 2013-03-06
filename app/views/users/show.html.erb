@@ -16,7 +16,7 @@
 <% end %>
 
 <% if user_type(@user) == "Student" %>
-  <%= render partial: "shared/two_columns", locals: { key: "Level", value: @user.profile.try(:level).title } %>
+  <%= render partial: "shared/two_columns", locals: { key: "Level", value: @user.profile.try(:level).try(:title) } %>
 <% end %>
 
 <br />

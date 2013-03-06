@@ -2,8 +2,11 @@ require "spec_helper"
 
 describe "centers edit page" do
   let!(:center) { FactoryGirl.create(:center) }
+  let!(:student) { FactoryGirl.create(:student_profile)}
+  let!(:user) { FactoryGirl.create(:user, profile_id: student.id, profile_type: "StudentProfile") }
 
   before :each do
+    sign_in_user(user)
     visit edit_center_path(center)
   end
   describe "title" do
@@ -24,3 +27,5 @@ describe "centers edit page" do
     #end
   end
 end
+
+# comemnts

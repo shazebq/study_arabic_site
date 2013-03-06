@@ -27,6 +27,10 @@ describe "centers show page" do
   end
   
   describe "edit link" do
+    create_student_records
+    before :each do
+      sign_in_user(user)
+    end
     it "should redirect to the edit page for the center when clicked" do
       click_link "Edit Center/Program Info"
       current_path.should == edit_center_path(center)

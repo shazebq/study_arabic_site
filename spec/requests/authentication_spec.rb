@@ -17,7 +17,6 @@ describe "Authentication" do
       describe "in forum post controller" do
         describe "voting up a post" do
           before { post(vote_forum_post_path(forum_post), voteable_type: "ForumPost", type: "up") }
-          #before { get(forum_posts_path) }
           it "should not up vote the forum post" do
             response.response_code.should_not == 200
           end
@@ -104,4 +103,4 @@ describe "Authentication" do
 
 end
 
-# comments
+# comment

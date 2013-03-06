@@ -39,10 +39,10 @@ describe "Category Pages" do
           current_path.should == category_forum_posts_path(child1)
         end
 
-        it "should redirect to forum post page of a parent category" do
-          click_link("Arabic Language")
-          current_path.should == category_forum_posts_path(parent)
-        end
+        #it "should redirect to forum post page of a parent category" do
+        #  click_link("Arabic Language")
+        #  current_path.should == category_forum_posts_path(parent)
+        #end
       end
     end
 
