@@ -1,3 +1,12 @@
+<% provide(:title, "Create a #{get_user_type(params[:controller]).capitalize} Account") %>
+
+<% other_user_type = get_other_user_type(params[:controller]) %>
+
+    <div class="alert custom_alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Note: </strong>Are you an Arabic <%= other_user_type %>? Create a <%= link_to("#{other_user_type} account", controller: "#{other_user_type}_profiles", action: :new) %> instead.
+    </div>
+
 <%= form_for(@profile) do |f| %>
   <%= f.fields_for :user do |user_form| %>
     <div class="field"><%= user_form.label :first_name %>

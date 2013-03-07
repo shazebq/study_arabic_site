@@ -3,9 +3,9 @@
 
 @import 'font-awesome';
 
-
-
-$main_color: #1D7373;
+//$main_color: #4682B4;
+//$main_color: #1D7373;
+$main_color: #71A6D2;
 $darker: #006363;
 
 body
@@ -81,6 +81,24 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   padding-left: 30px;
   border-radius: 15px;
 }
+
+
+.custom_alert
+{
+  background-color: #E8E8E8;//#CCCCCC;
+  color: #909090;
+  border-radius: 5px;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
 
 
 .sidebar

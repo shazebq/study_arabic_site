@@ -17,7 +17,12 @@
 
 
     <h4>Answer this question:</h4>
-    <%= render "answers/form" %>
+    <% if user_signed_in? %>
+      <%= render "answers/form" %>
+    <% else %>
+      <%= button_to("Sign In", new_user_session_path, class: "btn") %> or
+      <%= button_to("Create An Account", new_student_profile_path, method: "get", class: "btn") %> 
+    <% end %>
 
 
     <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
