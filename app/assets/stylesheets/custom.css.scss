@@ -3,10 +3,13 @@
 
 @import 'font-awesome';
 
-//$main_color: #4682B4;
-//$main_color: #1D7373;
-$main_color: #71A6D2;
-$dark: #006363;
+$main_color: #007974;
+$dark: #004E4B;
+$contrast: #C65800;
+$light_gray: #F5F5F5;
+$dark_gray: #909090;
+
+
 
 body
 {
@@ -38,7 +41,14 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .custom_nav > li > a:hover {
-    background-color: $dark;
+    background-color: $main_color;
+}
+
+.custom_nav > li > a:link {
+   border:1px solid $dark_gray;
+   border-bottom: none;
+   background-color: $contrast;
+   margin-right: 3px;
 }
 
 .custom_nav > li.active_nav > a {
@@ -85,12 +95,18 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .custom_alert
 {
-  background-color: #F5F5F5;
-  color: #909090;
+  background-color: $light_gray; 
+  color: $dark_gray; 
   border-radius: 5px;
   border: none;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.custom_well
+{
+  @extend .custom_alert;
+  color: black;
 }
 
 .inline
@@ -204,7 +220,7 @@ h3
   font-size: 18px;
   //line-height: 40px;
   margin-left: 10px;
-  background-color: $dark;
+  background-color: $contrast; 
   border-radius: 5px;
   padding: 5px;
   color: white;

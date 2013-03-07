@@ -28,7 +28,7 @@
 
         <div class="row">
           <div class="span10">
-          <ul class="nav nav-tabs custom_nav bold">
+          <ul class="nav nav-tabs custom_nav nav_links">
             <li><%= link_to("Home", "/") %></a></li>
             <li class="<%= params[:controller] == "centers" ? "active_nav" : "not_active" %>"><%= link_to("Centers/Programs", centers_path) %></li>
             <li class="<%= params[:controller] == "teacher_profiles" ? "active_nav" : "not_active" %>"><%= link_to("Teachers", teacher_profiles_path) %></li>

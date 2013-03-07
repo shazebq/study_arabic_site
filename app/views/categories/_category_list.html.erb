@@ -1,4 +1,4 @@
-<p><h4><%= link_to(category_title, category_forum_posts_path(Category.find_by_name(parent_name))) %></h4></p>
+<div class="subtitle_large"><%= link_to(category_title, category_forum_posts_path(Category.find_by_name(parent_name))) %></div>
 <% CategoryParent.find_by_name(parent_name).categories.each do |cat| %>
     <%=  link_to(cat.name, category_forum_posts_path(cat)) %><br />
 <% end %>

@@ -1,6 +1,31 @@
+$main_color: #007974;
+$dark: #004E4B;
+$contrast: #C65800;
+$light_gray: #F5F5F5;
+$dark_gray: #909090;
+
+a:link 
+{
+  text-decoration:none;
+  color: $main_color;//#2FBCB6;
+}
+a:visited 
+{
+  text-decoration:none;
+  color: $main_color;//#2FBCB6;
+}
+
+a:hover {text-decoration:underline;}
+a:active {text-decoration:underline;}
+
 .white_font
 {
   color: white;
+}
+
+.nav_links
+{
+  letter-spacing: 1px;
 }
 
 .info
@@ -10,33 +35,37 @@
   color: #666666;
 }
 
-.subtitle
+.subtitle_large_gray
 {
-  font-size: 11px;
-  font-weight: bold;
-  color: #999999;
+  font-size: 15px;
+  color: $dark_gray;
+  margin-bottom: 10px;
 }
+
+.subtitle_large_gray a:link
+{
+  color: $dark_gray; 
+}
+
+.subtitle_large_gray a:visited
+{
+  color: $dark_gray; 
+}
+
 
 .subtitle_large
 {
-  font-size: 15px;
-  color: #999999;
-  margin-bottom: 5px;
-}
-
-.subtitle_large1
-{
-  font-size: 18px;
-  color: #054B7D;
-  font-weight: bold;
-}
-
-.large_font_size
-{
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
+
+.subtitle_large_color
+{
+  @extend .subtitle_large;
+  color: $main_color; 
+}
 
 
 body
@@ -49,12 +78,6 @@ body
   font-weight: bold;
   color: #ffffff;
   background-color: #228b22;
-}
-
-.gray_bold
-{
-  font-weight: bold;
-  color: #444444;
 }
 
 .stats, .bold

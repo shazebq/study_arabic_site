@@ -4,7 +4,7 @@
   <%= render partial: "shared/vote_arrows", locals: { item: @forum_post } %>
 
   <div class="span8">
-    <div class="subtitle_large1">
+    <div class="subtitle_large_color">
       <%= @forum_post.title %><%= render partial: "shared/vote_count", locals: { item: @forum_post } %>
     </div>
     <br />
@@ -45,16 +45,19 @@
     <div class="subtitle_large"><%= pluralize(@forum_post.answers.count, "answer") %></div>
 
     <% @forum_post.answers.by_votes.each do |answer| %>
-        <div class="row well well-small no_left_margin">
+        <div class="row no_left_margin custom_well">
           <div class="vote_arrow_div">
-            <i class="icon-caret-up vote vote_small" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
+            <i class="icon-caret-up vote" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>
-            <i class="icon-caret-down vote vote_small" data-voteable_type="Answer" data-type="down" data-post_id=<%= @forum_post.id %>
+            <i class="icon-caret-down vote" data-voteable_type="Answer" data-type="down" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>
           </div>
 
           <div class="span7">
-            <span class="vote_count_small"><%= "+#{answer.votes.count}" %></span>
+            <span class="subtitle_large"><%= link_to(answer.user.first_name, answer.user.profile) %> said:</span>
+            <span class="vote_count"><%= "+#{answer.votes.count}" %></span>
+            <br />
+            <br />
             <%= render partial: "shared/nested_item_view", locals: { item: answer, parent: @forum_post } %>
           </div>
 

@@ -1,9 +1,13 @@
 <!--for any nested item like comments or reviews  -->
 
   <div>
-    <span class="info">Posted by <%= item.try(:user).try(:email) %></span><br />
+
+    <% if item.is_a?(Review) %>
+      <span class="info">Posted by <%= item.try(:user).try(:email) %></span><br />
+    <% end %>
     <%= item.content %>
   </div>
+
   <span class="info"><%= "#{distance_of_time_in_words(item.created_at, Time.now.in_time_zone)} ago" %></span>
 
   <div class="info">

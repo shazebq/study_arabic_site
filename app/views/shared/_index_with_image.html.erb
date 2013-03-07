@@ -4,7 +4,7 @@
     </div>
     <div class="span7">
           <div>
-            <span class="subtitle_large1"><%= link_to(name, item) %></span>
+            <span class="subtitle_large"><%= link_to(name, item) %></span>
             <span class="rating_font">
               <%= generate_stars(item_with_reviews.try(:reviews).average("rating").try(:round_point5)).html_safe %>
               <%= "(#{item_with_reviews.try(:reviews_count)} reviews)" %>
