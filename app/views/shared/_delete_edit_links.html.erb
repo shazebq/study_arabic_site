@@ -1,10 +1,10 @@
+<div class="info">Posted on <%= "#{item.created_at.strftime("%b %d, %Y")} by #{item.user.email}" %> </div>
 <% if user_signed_in? %>
   <% if current_user.id == item.user.id %>
-    <span class="subtitle">Posted on <%= item.created_at.strftime("%b %d, %Y") %> by Shazeb Qadir</span><br />
 
-    <%= link_to "Edit", send("edit_#{item.class.to_s.underscore}_path", item), id: "edit", class: "subtitle" %>
+    <%= link_to "Edit", send("edit_#{item.class.to_s.underscore}_path", item), id: "edit", class: "info" %>
     <span class="subtitle"> | </span>
-    <%= link_to "Delete", send("#{item.class.to_s.underscore}_path", item), data: {confirm: "Are you sure?"}, method: :delete, id: "delete", class: "subtitle" %>
+    <%= link_to "Delete", send("#{item.class.to_s.underscore}_path", item), data: {confirm: "Are you sure?"}, method: :delete, id: "delete", class: "info" %>
   <% end %>
 <% end %>
 

@@ -6,7 +6,7 @@
 //$main_color: #4682B4;
 //$main_color: #1D7373;
 $main_color: #71A6D2;
-$darker: #006363;
+$dark: #006363;
 
 body
 {
@@ -38,7 +38,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .custom_nav > li > a:hover {
-    background-color: $darker;
+    background-color: $dark;
 }
 
 .custom_nav > li.active_nav > a {
@@ -85,10 +85,17 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .custom_alert
 {
-  background-color: #E8E8E8;//#CCCCCC;
+  background-color: #F5F5F5;
   color: #909090;
   border-radius: 5px;
   border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.inline
+{
+  display: inline;
 }
 
 
@@ -150,11 +157,31 @@ h3
 
 .vote_arrow_div
 {
-  //@extend .span1;
   width: 20px;
+  margin-top: -8px;
   margin-right: -10px;
   float: left;
 }
+
+.question_div
+{
+  width: 675px;
+  float: left;
+  margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .no_left_margin
 {
@@ -174,12 +201,14 @@ h3
 
 .vote_count
 {
-  @extend .badge;
   font-size: 18px;
-  line-height: 40px;
+  //line-height: 40px;
   margin-left: 10px;
-  background-color: #5897fb;
-  vertical-align: top;
+  background-color: $dark;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  //vertical-align: top;
 }
 
 .vote_count_small

@@ -4,28 +4,45 @@
   <%= render partial: "shared/vote_arrows", locals: { item: @forum_post } %>
 
   <div class="span8">
-    <h3>
+    <div class="subtitle_large1">
       <%= @forum_post.title %><%= render partial: "shared/vote_count", locals: { item: @forum_post } %>
-    </h3>
-
-    <div class="post_content">
+    </div>
+    <br />
+    <div class="post_content bottom_border_div">
       <%= render partial: "shared/delete_edit_links", locals: { item: @forum_post } %>
       <div class="post">
         <%=  @forum_post.content %>
       </div>
     </div>
 
-
-    <h4>Answer this question:</h4>
+    <br />
+    <div class="subtitle_large">Answer this question:</div>
     <% if user_signed_in? %>
       <%= render "answers/form" %>
     <% else %>
-      <%= button_to("Sign In", new_user_session_path, class: "btn") %> or
-      <%= button_to("Create An Account", new_student_profile_path, method: "get", class: "btn") %> 
+    <div class="custom_alert">
+      <div class="row">
+        <div class="span3">
+          <strong>Already have an account?</strong>
+        </div>
+        <div class="span2">
+          <%= button_to("Sign In", new_user_session_path, class: "btn") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span3">
+          <strong>Don't have an account yet?</strong>
+        </div>
+        <div class="span2">
+          <%= button_to("Register", new_student_profile_path, method: "get", class: "btn") %>
+        </div>
+      </div>
+    </div>
     <% end %>
 
 
-    <h6><%= "#{@forum_post.answers.count} answers:"  %></h6>
+    <div class="subtitle_large"><%= pluralize(@forum_post.answers.count, "answer") %></div>
 
     <% @forum_post.answers.by_votes.each do |answer| %>
         <div class="row well well-small no_left_margin">
