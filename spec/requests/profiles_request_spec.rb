@@ -8,7 +8,7 @@ describe "Authorization" do
     describe "updating a profile" do
       before { put(teacher_profile_path(teacher_profile)) }
       it "should not update the teacher profile" do
-        response.should(redirect_to(new_user_session_path))
+        response.should(redirect_to(root_path))
       end
     end
   end

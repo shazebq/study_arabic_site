@@ -21,10 +21,21 @@ describe "home page" do
   end
 
   describe "layout content" do
+    let(:user) { FactoryGirl.create(:user) }
     before :each do
+      sign_in_user(user)
     end
     it "should have a link to the logged in user's profile" do
-
+      page.should have_selector("a", text: "Profile")
+    end
+    
+    describe "clicking on the profile link" do
+      before :each do
+        click_link "Profile"
+      end
+      it "should redirect to the user's profile page" do
+        current_path.should == user_path(user)
+      end
     end
   end
 end

@@ -33,12 +33,12 @@ describe ForumPostsController do
 
         it "should not delete the forum_post" do
           delete :destroy, id: forum_post.id, forum_post_id: forum_post.id
-          response.should redirect_to(new_user_session_path)
+          response.should redirect_to(root_path)
         end
 
         it "should not delete the forum_post" do
           put :update, id: forum_post.id, forum_post_id: forum_post.id
-          response.should redirect_to(new_user_session_path)
+          response.should redirect_to(root_path)
         end
       end
 

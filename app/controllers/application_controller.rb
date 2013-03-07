@@ -10,8 +10,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    session[:previous_url]
+    session[:previous_url] || root_path
   end 
+
+  def after_update_path_for(resource)
+    session[:previous_url] || root_path
+  end
 
   # ajax call to vote is directed to this action
   def vote
@@ -44,7 +48,13 @@ class ApplicationController < ActionController::Base
   def require_user_is_owner(controller, id)
     resource = controller.classify.constantize.find(id)
     unless resource.user == current_user
-      redirect_to new_user_session_path
+      redirect_to root_path 
+    end
+  end
+
+  def prevent_if_signed_in()
+    if user_signed_in?
+      redirect_to root_path
     end
   end
 

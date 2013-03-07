@@ -26,12 +26,12 @@ describe AnswersController do
 
         it "should not delete the answer" do
           delete :destroy, id: answer.id, forum_post_id: forum_post.id
-          response.should redirect_to(new_user_session_path)
+          response.should redirect_to(root_path)
         end
 
         it "should not delete the answer" do
           put :update, id: answer.id, forum_post_id: forum_post.id
-          response.should redirect_to(new_user_session_path)
+          response.should redirect_to(root_path)
         end
       end
 

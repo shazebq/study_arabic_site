@@ -27,12 +27,12 @@
         </div>
 
         <div class="row">
-          <div class="span8">
+          <div class="span10">
           <ul class="nav nav-tabs custom_nav bold">
             <li><%= link_to("Home", "/") %></a></li>
             <li class="<%= params[:controller] == "centers" ? "active_nav" : "not_active" %>"><%= link_to("Centers/Programs", centers_path) %></li>
-            <li class="<%= params[:controller] == "teacher_profiles" ? "active_nav" : "not_active" %>"><%= link_to("Teachers", teacher_profiles_path) %></a></li>
-            <li class="<%= params[:controller] == "resources" ? "active_nav" : "not_active" %>"><%= link_to("Resources", resources_path) %></a></li>
+            <li class="<%= params[:controller] == "teacher_profiles" ? "active_nav" : "not_active" %>"><%= link_to("Teachers", teacher_profiles_path) %></li>
+            <li class="<%= params[:controller] == "resources" ? "active_nav" : "not_active" %>"><%= link_to("Resources", resources_path) %></li>
             <li class="<%= params[:controller] == "articles" ? "active_nav" : "not_active" %>"><a href=#>Articles</a></li>
             <li class="dropdown <%= params[:controller] == "categories" || params[:controller] == "forum_posts" ? "active_nav" : "not_active" %>">
             <a class="dropdown-toggle disabled" data-toggle="dropdown" href="<%= categories_path %>">Forums
@@ -44,6 +44,9 @@
                 <li><a href="<%= category_forum_posts_path(Category.find_by_name("Countries")) if Category.find_by_name("Study Abroad") %>">Study Abroad (By Country)</a></li>
               </ul>
             </li>
+            <% if user_signed_in? %>
+              <li class="<%= params[:controller] == "users" ? "active_nav" : "not_active" %>"><%= link_to("Profile", user_path(current_user.id)) %></li>
+            <% end %>
           </ul>
           </div><!--navbar-->
 

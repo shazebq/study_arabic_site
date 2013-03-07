@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  before_filter(:only => [:update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
+  before_filter(:only => :create) { |c| c.prevent_if_signed_in() } 
+  before_filter(:only => [:update, :edit]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def new
     @profile = params[:controller].classify.constantize.new
@@ -11,9 +12,9 @@ class ProfilesController < ApplicationController
     # note here, using the controller name to generalize the solution
     @profile = params[:controller].classify.constantize.new(params[params[:controller].singularize])
     if @profile.save
-      return render text: "woohoo, teacher profile AND user created!"
+      redirect_to @profile.user
     else
-      return render text: "boohoo, error!"
+      render "new"
     end
   end
 
