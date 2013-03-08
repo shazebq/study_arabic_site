@@ -13,19 +13,19 @@
       <div class="row">
         <div class="avv_div subtitle_large_color">
           <%= item.views_count %><br />
-          <span class="info">Views</span>
+          <span class="info"><%= simple_pluralize(item.views_count, "View") %></span>
         </div>
         <div class="avv_div subtitle_large_color">
           <%= item.votes_count %><br />
-          <span class="info">Votes</span>
+          <span class="info"><%= simple_pluralize(item.votes_count, "Vote") %></span>
         </div>
         <div class="avv_div subtitle_large_color">
           <% if item.class == "Resource".constantize %>
             <%=  item.downloads_count %><br />
-            <span class="info">Downloads</span>
+            <span class="info"><%= simple_pluralize(item.downloads_count, "Download") %></span>
           <% else %>
-            <%=  item.answers.count %><br />
-            <span class="info">Answers</span>
+            <%=  item.answers_count %><br />
+            <span class="info"><%= simple_pluralize(item.answers_count, "Answer") %></span>
           <% end %>
         </div>
       </div>
