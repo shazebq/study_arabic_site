@@ -1,6 +1,9 @@
 <%= provide :title, "Arabic Centers and Programs" %>
 
-<%= render "shared/search_box" %>
+<%= render partial: "shared/search_box", locals: { item_type: "Centers" } %>
+
+<div class="subtitle_large right_margin_small inline middle">Have you attended a center or program that isn't on this list?</div>
+  <%= button_to("Add a Center/Program", new_center_path, class: "btn_custom", method: "get") %>
 
 <ul class="nav nav-pills">
   <li class="active center_options ratings_option" id="order_by_average_rating">

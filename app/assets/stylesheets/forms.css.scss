@@ -2,6 +2,7 @@ $main_color: #007974;
 $dark: #004E4B;
 $contrast: #C65800;
 $light_gray: #F5F5F5;
+$light: #BFDDDC;
 $dark_gray: #909090;
 
 .general_text_box
@@ -9,3 +10,26 @@ $dark_gray: #909090;
   width: 100%;
   height: 180px;
 }
+
+// general settings for text boxes
+input
+{
+  border:1px solid $dark_gray !important;
+}
+
+input:focus
+{
+  -webkit-appearance:none !important;
+  outline:0px !important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.search_box
+{
+  width: 520px !important;
+  margin-right: 20px;
+  border-radius: 10px !important;
+}
+ 

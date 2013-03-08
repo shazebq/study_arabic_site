@@ -7,7 +7,7 @@
             <span class="subtitle_large"><%= link_to(name, item) %></span>
             <span class="rating_font">
               <%= generate_stars(item_with_reviews.try(:reviews).average("rating").try(:round_point5)).html_safe %>
-              <%= "(#{item_with_reviews.try(:reviews_count)} reviews)" %>
+              <%= "(#{pluralize(item_with_reviews.try(:reviews_count), "review")})" %>
             </span>
           </div>
       <% if params[:controller] == "users" && user_type(item) == "Teacher"  %>

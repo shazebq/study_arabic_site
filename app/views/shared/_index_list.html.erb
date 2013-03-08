@@ -1,6 +1,6 @@
   <div class="row">
     <% @items.each do |item| %>
-    <div class="span7">
+    <div class="span6">
       <div class="margin_bottom_small"><%= link_to(item.title, item) %></div>
       <div>
         <% item.categories.each do |category| %>
@@ -9,17 +9,17 @@
         <div class="margin_bottom_small"></div>
       </div>
     </div>
-    <div class="span2">
+    <div class="span3">
       <div class="row">
-        <div class="avv_div">
+        <div class="avv_div subtitle_large_color">
           <%= item.views_count %><br />
           <span class="info">Views</span>
         </div>
-        <div class="avv_div">
+        <div class="avv_div subtitle_large_color">
           <%= item.votes_count %><br />
           <span class="info">Votes</span>
         </div>
-        <div class="avv_div">
+        <div class="avv_div subtitle_large_color">
           <% if item.class == "Resource".constantize %>
             <%=  item.downloads_count %><br />
             <span class="info">Downloads</span>
