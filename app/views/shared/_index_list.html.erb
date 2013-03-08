@@ -1,15 +1,15 @@
   <div class="row">
     <% @items.each do |item| %>
-    <div class="span6 post_row">
-      <%= link_to(item.title, item) %>
+    <div class="span7">
+      <div class="margin_bottom_small"><%= link_to(item.title, item) %></div>
       <div>
         <% item.categories.each do |category| %>
-          <span class="label"><%= category.name %></span>
+          <span class="gray_badge right_margin_small"><%= category.name %></span>
         <% end %>
+        <div class="margin_bottom_small"></div>
       </div>
-      <hr></hr>
     </div>
-    <div class="span3 post_row">
+    <div class="span2">
       <div class="row">
         <div class="avv_div">
           <%= item.views_count %><br />
@@ -29,7 +29,7 @@
           <% end %>
         </div>
       </div>
-      <hr></hr>
     </div>
+    <div class="span9 bottom_border_div"></div>
     <% end %>
   </div>

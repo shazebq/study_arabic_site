@@ -1,7 +1,7 @@
 <% item_count_method = "#{params[:controller]}_in_country" %>
 
 <h4>Filter By Country</h4>
-  <ul class="nav nav-pills nav-stacked">
+  <ul class="nav nav-pills nav-stacked custom">
     <li class="parent_links active country_option <%= li_class %>" id="all"><a href="#">All Countries</a></li>
     <% @countries.each do |country| %>
       <li class="country_option <%= li_class %>" id="<%= country.id %>"><a href="#"><%= "#{country.name} (#{country.send(item_count_method)})" %></a></li>

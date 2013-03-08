@@ -7,7 +7,7 @@
         <div>
           <span class="subtitle_large_color"><%= full_name(user) %></span>
           <% if params[:action] == "show" %>
-            <span class="custom_badge"><%= user_type(user) %></span>
+            <span class="red_badge left_margin_small right_margin_small"><%= user_type(user) %></span>
 
             <span><%= render partial: "shared/star_rating", locals: { item: user.profile } %></span>
           <% end %>

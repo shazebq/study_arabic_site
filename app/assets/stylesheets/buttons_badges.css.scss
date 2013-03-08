@@ -5,17 +5,30 @@ $light_gray: #F5F5F5;
 $dark_gray: #909090;
 $light: #2FBCB7;
 
-.custom_badge
-{
-  background-color: $contrast;
+.general_badge
+{ 
   color: white;
   border-radius: 3px;
-  padding: 2px;
-  margin-left: 5px;
-  margin-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
   vertical-align: top;
   font-size: 11px;
   font-weight: bold;
+}
+
+
+.red_badge
+{
+  @extend .general_badge; 
+  background-color: $contrast;
+}
+
+.gray_badge
+{
+  @extend .general_badge;
+  background-color: $dark_gray;
 }
 
 // when you have text next to a button
@@ -24,9 +37,24 @@ $light: #2FBCB7;
   vertical-align: middle;
 }
 
+.left_margin_small
+{
+  margin-left: 5px;
+}
+
+.right_margin_small
+{
+  margin-right: 5px;
+}
+
 .left_margin
 {
   margin-left: 10px;
+}
+
+.right_margin
+{
+  margin-right: 10px;
 }
 
 .btn_custom 

@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked custom">
   <% if params[:controller] != "resources" %>
     <% li_class2 = @category.id == CategoryParent.find_by_name(parent_name).id ? 'active parent_links' : 'not_active' if @category %>
     <li class="<%= li_class2 %> parent_links"><%= link_to(category_title, send("category_#{params[:controller]}_path", CategoryParent.find_by_name(parent_name), order_by: @current_scope)) %></li>
