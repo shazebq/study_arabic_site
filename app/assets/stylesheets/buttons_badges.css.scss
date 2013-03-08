@@ -1,0 +1,64 @@
+$main_color: #007974;
+$dark: #004E4B;
+$contrast: #C65800;
+$light_gray: #F5F5F5;
+$dark_gray: #909090;
+$light: #2FBCB7;
+
+.custom_badge
+{
+  background-color: $contrast;
+  color: white;
+  border-radius: 3px;
+  padding: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  vertical-align: top;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+// when you have text next to a button
+.middle
+{
+  vertical-align: middle;
+}
+
+.left_margin
+{
+  margin-left: 10px;
+}
+
+.btn_custom 
+{
+        vertical-align: middle;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	padding: 5px 9px;
+	background: -moz-linear-gradient(
+		top,
+		#30bfba 0%,
+		#014d49);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#30bfba),
+		to(#014d49));
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border: 1px solid #000000;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(184,184,184,0.6);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(184,184,184,0.6);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(184,184,184,0.6);
+	text-shadow:
+		0px -1px 0px rgba(051,051,051,1),
+		0px 1px 0px rgba(163,163,163,0.2);
+}
+

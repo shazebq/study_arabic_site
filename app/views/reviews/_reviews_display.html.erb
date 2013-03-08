@@ -1,6 +1,6 @@
 <div>
   <% item.reviews.each do |review| %>
-    <div class="well">
+    <div class="custom_well">
       <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
       <span class="subtitle_large"><%= review.title %></span>
 

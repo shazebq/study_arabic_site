@@ -16,7 +16,7 @@
     </div>
 
     <br />
-    <div class="subtitle_large">Answer this question:</div>
+    <div class="subtitle_large margin_bottom">Answer this question</div>
     <% if user_signed_in? %>
       <%= render "answers/form" %>
     <% else %>
@@ -42,7 +42,7 @@
     <% end %>
 
 
-    <div class="subtitle_large"><%= pluralize(@forum_post.answers.count, "answer") %></div>
+    <div class="subtitle_large margin_bottom"><%= pluralize(@forum_post.answers.count, "answer") %></div>
 
     <% @forum_post.answers.by_votes.each do |answer| %>
         <div class="row no_left_margin custom_well">
@@ -54,7 +54,7 @@
           </div>
 
           <div class="span7">
-            <span class="subtitle_large"><%= link_to(answer.user.first_name, answer.user.profile) %> said:</span>
+            <span class="subtitle_large"><%= link_to(answer.user.first_name, answer.user) %> said:</span>
             <span class="vote_count"><%= "+#{answer.votes.count}" %></span>
             <br />
             <br />

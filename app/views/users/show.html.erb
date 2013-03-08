@@ -22,16 +22,16 @@
 <br />
 <% if user_type(@user) == "Teacher" %>
   <div>
-    <span class="large_font_size">Have you had classes with this teacher?</span>
-    <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn btn-primary") %>
+    <span class="subtitle_large middle">Have you had classes with this teacher?</span>
+    <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn_custom left_margin") %>
   </div>
   <div>
-    <div class="subtitle_large">Reviews</div>
+    <div class="subtitle_large margin_bottom">Reviews</div>
     <%= render partial: "reviews/reviews_display", locals: { item: @user.profile } %>
   </div>
 <% end %>
 <% content_for :side_bar do %>
-  <div class="subtitle_large"><%= "#{user_type(@user)} Statistics" %></div>
+  <div class="subtitle_large margin_bottom"><%= "#{user_type(@user)} Statistics" %></div>
   <table>
     <tr>
       <td><span class="subtitle_large_gray padded_cell">Repuation Score</span></td>
