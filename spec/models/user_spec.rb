@@ -15,6 +15,39 @@ describe User do
   it { should respond_to(:country) }
   it { should respond_to(:image) }
 
+  describe "validations" do
+    before :each do
+      @user1 = User.new(first_name: "Jim", last_name: "Jones", email: "jjones@example.com", 
+                        country_id: 123, password: "cool123", password_confirmation: "cool123")
+    end
+    describe "user validation" do
+      
+      describe "valid user information is submitted" do
+        it "should be valid with a valid url" do
+          @user1.should be_valid
+        end
+      end
+
+      describe "email validation" do
+
+        describe "invalid email is submitted" do
+          before { @user1.email = "blahblah" }
+          it "should be invalid" do
+            @user1.should_not be_valid
+          end
+        end
+      end
+
+    end
+
+
+  end
+
+
+
+
+
+
   # this spec doesn't work but it does work
   #describe "after a user is destroyed" do
   #  before :each do

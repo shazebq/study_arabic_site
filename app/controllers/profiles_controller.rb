@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_filter(:only => :create) { |c| c.prevent_if_signed_in() } 
+  before_filter(:only => [:create, :new]) { |c| c.prevent_if_signed_in() } 
   before_filter(:only => [:update, :edit]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def new
