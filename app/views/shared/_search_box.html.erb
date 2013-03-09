@@ -1,6 +1,6 @@
 <%= form_tag("/#{params[:controller]}/search", :method => "get", class: "form-search") do %>
   <div class="input-append">
-      <%= text_field_tag(:query, nil, class: "span2 search-query") %>
+      <%= text_field_tag(:query, nil, class: "span4 search-query") %>
       <button class="btn" type="submit"><%= "Search #{item_type}" %></button>
   </div>
 <% end %>

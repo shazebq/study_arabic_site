@@ -19,6 +19,16 @@ class Center < ActiveRecord::Base
   has_many :reviews, as: :reviewable, dependent: :destroy
   accepts_nested_attributes_for :address, :images
 
+  validates :name, :description, presence: true
+  validates :price_per_hour_private, :price_per_hour_group, allow_blank: true,
+            numericality: { greater_than: 0, less_than: 100 }
+
+  validates :total_price, allow_blank: true, numericality: { greater_than: 0, less_than: 100000 }
+  validates :year_established, allow_blank: true, numericality: { integer: true }, length: { is: 4 }
+
+  validates :email, email_format: true 
+  validates :website, url: true
+
   scope :country_option, (lambda do |country_id| 
     if country_id == "all"
       where({})
@@ -36,15 +46,3 @@ class Center < ActiveRecord::Base
     self.address.delete
   end
 end
-
-#def self.country_option(country_id)
-#    if country_id == "all"
-#     where({}) 
-#    else
-#      TeacherProfile.select("teacher_profiles.*").
-#                   joins("JOIN users ON users.profile_id = teacher_profiles.id").
-#                   where("users.profile_type = ?", "TeacherProfile").
-#                   where("users.country_id = ?", country_id)
-#    end
-#  end
-#

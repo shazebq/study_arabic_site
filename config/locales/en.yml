@@ -4,18 +4,19 @@
 en:  
   activerecord:
     models: 
-      address: "Addy"
+      address: 
     attributes:
       address:
-        address_line: "Email address"
-        country_id: "country"
+        address_line: "Address"
+        country_id: "Country"
+        city_id: "City"
     errors:
       models:
         address:
           attributes:
             address_line:
-              blank: "hey yo don't be empty"
+              #blank: "can't be blank"
             country_id:
-              blank: "hey you no blanks"
+              #blank: "hey you no blanks"
 
                 

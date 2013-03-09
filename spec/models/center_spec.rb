@@ -53,6 +53,82 @@ describe Center do
     end
   end
 
+  
+  describe "validations" do
+    before :each do
+      @center1 = Center.new(name: "New Center", description: "A wonderful place to study")
+    end
+    describe "website validation" do
+      
+      describe "when the website is formatted correctly" do
+        before { @center1.website = "http://www.google.com" }
+        it "should be valid with a valid url" do
+          @center1.should be_valid
+        end
+      end
+
+      describe "when the website is not formatted correctly" do
+        before { @center1.website = "yahooooo" }
+        it "should not be valid with an invalid url" do
+          @center1.should_not be_valid  
+        end
+      end
+    end
+    
+    describe "price field validations" do
+
+      describe "when a price field is not a number" do
+        before { @center1.price_per_hour_private = "hello" }
+        it "should not be valid" do
+          @center1.should_not be_valid
+        end
+      end
+
+      describe "when a price field is more than 100" do
+        before { @center1.price_per_hour_private = 200 }
+        it "should not be valid" do
+          @center1.should_not be_valid
+        end
+      end
+
+      describe "when a price field is less than 1" do
+        before { @center1.price_per_hour_private = 0 }
+        it "should not be valid" do
+          @center1.should_not be_valid
+        end
+      end
+
+      describe "when a price field is between 1 and 100" do
+        before { @center1.price_per_hour_private = 5 }
+        it "should be valid" do
+          @center1.should be_valid
+        end
+      end
+
+    end
+
+    describe "year established validation" do
+      
+      describe "when an invalid year is entered" do
+        before { @center1.year_established = 19991 }
+        it "should not be valid" do
+          @center1.should_not be_valid
+        end
+      end
+
+      describe "when an invalid year is entered" do
+        before { @center1.year_established = 1998 }
+        it "should not valid" do
+          @center1.should be_valid
+        end
+      end
+
+    end
+
+
+
+  end
+
 end
 
 #comments

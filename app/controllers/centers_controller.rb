@@ -31,6 +31,7 @@ class CentersController < ApplicationController
     if @center.save 
       redirect_to @center
     else
+      3.times { @center.images.build }
       render action: "new"
     end
   end

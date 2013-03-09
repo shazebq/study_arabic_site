@@ -8,6 +8,7 @@ class Address < ActiveRecord::Base
   # validations
 
   validates :address_line, :city_id, :country_id, presence: true 
+  validates :address_line, length: { maximum: 65 }
 
   # sort of a virtual attribute
   def city_name

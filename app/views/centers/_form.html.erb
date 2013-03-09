@@ -1,23 +1,23 @@
   <%= form_for(@center) do |f| %>
   <% if @center.errors.any? %>
-    <div id="error_explanation" class="alert alert-error">
+    <div id="error_explanation">
       <% pluralize(@center.errors.count, "error") %>
-      Your addition could not be submitted.
-      <ul>
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
         <% @center.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
         <% end %>
-      </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :name, "Center or Program Name"  %>
+    <%= f.label :name, "Center or Program Name *", class: "required"  %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :description, "Brief Description" %>
+    <%= f.label :description, "Brief Description *" %>
     <%= f.text_area :description %>
   </div>
   
@@ -44,16 +44,16 @@
 
   <%= f.fields_for :address do |address_form| %>
     <div class="field">
-      <%= address_form.label :address_line, "Address" %>
+      <%= address_form.label :address_line, "Address *" %>
       <%= address_form.text_field :address_line %>
     </div>
     <div class="field">
-      <%= address_form.label "City" %>
+      <%= address_form.label "City *" %>
       <%= address_form.text_field :city_name %>
     </div>
 
     <div class="field">
-      <%= address_form.label "Country" %>
+      <%= address_form.label "Country *" %>
       <%= address_form.select :country_id, Country.all.collect { |c| [c.name, c.id] }, { :include_blank => true } %>
     </div>
   <% end %>

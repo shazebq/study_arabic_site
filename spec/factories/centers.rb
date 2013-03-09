@@ -6,7 +6,7 @@ FactoryGirl.define do
     description "An excellent top notch arabic center"
     short_term false
     long_term false
-    website "www.coolarabiccenter.com"
+    website "http://www.coolarabiccenter.com"
     email "bob@coolarabic.com"
     phone_number "405-234-2939"
     address_id 1
