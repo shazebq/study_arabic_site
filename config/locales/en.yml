@@ -1,5 +1,21 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
-  hello: "Hello world"
+en:  
+  activerecord:
+    models: 
+      address: "Addy"
+    attributes:
+      address:
+        address_line: "Email address"
+        country_id: "country"
+    errors:
+      models:
+        address:
+          attributes:
+            address_line:
+              blank: "hey yo don't be empty"
+            country_id:
+              blank: "hey you no blanks"
+
+                

@@ -12,12 +12,12 @@ $dark_gray: #909090;
 }
 
 // general settings for text boxes
-input
+input, textarea, select
 {
   border:1px solid $dark_gray !important;
 }
 
-input:focus
+input:focus, textarea:focus, select:focus
 {
   -webkit-appearance:none !important;
   outline:0px !important;
@@ -26,10 +26,33 @@ input:focus
   -webkit-box-shadow: none !important;
 }
 
+
 .search_box
 {
   width: 520px !important;
   margin-right: 20px;
   border-radius: 10px !important;
 }
- 
+
+label
+{
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+}
+
+input, select
+{
+  width: 350px;
+}
+
+textarea
+{
+  width: 450px;
+  height: 180px;
+}
+
+.small_input
+{
+  width: 50px;
+}

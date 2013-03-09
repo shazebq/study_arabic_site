@@ -4,8 +4,14 @@ module MiscTasks
   def handle_city_creation(params)
     city_name = params[:address_attributes][:city_name]
     country_id = params[:address_attributes][:country_id]
+    if city_name.blank? || country_id.blank?
+      return params  # let controller handle the validation
+    end
     city = City.where(name: city_name, country_id: country_id, country_iso: (Country.find(country_id).iso)).first_or_create
     params[:address_attributes][:city_id] = city.id if city
     params
   end
 end
+
+
+

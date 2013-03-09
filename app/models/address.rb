@@ -5,6 +5,10 @@ class Address < ActiveRecord::Base
   belongs_to :city
   has_one :center
 
+  # validations
+
+  validates :address_line, :city_id, :country_id, presence: true 
+
   # sort of a virtual attribute
   def city_name
     self.city.try(:name) 

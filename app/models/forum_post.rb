@@ -20,7 +20,7 @@ class ForumPost < ActiveRecord::Base
   has_many :views, as: :viewable, dependent: :destroy
   has_many :answers, dependent: :destroy
 
-  validates :title, :content, :category_ids, presence: true
+  validates :title, :content, :category_ids, presence: true, message: "please enter the address"
 
   validates :title, length: { maximum: 65 }
   validates :content, length: {maximum: 5000 }

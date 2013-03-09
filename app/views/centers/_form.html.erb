@@ -1,4 +1,4 @@
-<%= form_for(@center) do |f| %>
+  <%= form_for(@center) do |f| %>
   <% if @center.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
       <% pluralize(@center.errors.count, "error") %>
@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Center or Program Name"  %>
+    <%= f.label :name, "Center or Program Name"  %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label "Brief Description" %>
+    <%= f.label :description, "Brief Description" %>
     <%= f.text_area :description %>
   </div>
   
@@ -27,24 +27,24 @@
   </div>
   
   <div class="field">
-    <%= f.label "Email Contact" %>
+    <%= f.label :email, "Email Contact" %>
     <%= f.text_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label "Phone Contact" %>
+    <%= f.label :phone_number, "Phone Contact" %>
     <%= f.text_field :phone_number %>
   </div>
 
   <div class="field">
-    <%= f.label :year_established %>
+    <%= f.label :year_established, "Year Established" %>
     <%= f.text_field :year_established %>
   </div>
   
 
   <%= f.fields_for :address do |address_form| %>
     <div class="field">
-      <%= address_form.label "Address Line" %>
+      <%= address_form.label :address_line, "Address" %>
       <%= address_form.text_field :address_line %>
     </div>
     <div class="field">
@@ -54,15 +54,15 @@
 
     <div class="field">
       <%= address_form.label "Country" %>
-      <%= address_form.select :country_id, Country.all.collect { |c| [c.name, c.id] } %>
+      <%= address_form.select :country_id, Country.all.collect { |c| [c.name, c.id] }, { :include_blank => true } %>
     </div>
   <% end %>
   <div class="field">
     Does this center or program offer short term programs (less than six months)?
     <div class="form-inline">
-      <%= f.label "Yes" %>
+      <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :short_term, true %>
-      <%= f.label "No" %>
+      <%= f.label "No", class: "middle left_margin" %>
       <%= f.radio_button :short_term, false %>
     </div><br />
   </div>
@@ -70,9 +70,9 @@
   <div class="field">
     Does this center or program offer long term programs (more than six months)?
     <div class="form-inline">
-      <%= f.label "Yes" %>
+      <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :long_term, true %>
-      <%= f.label "No" %>
+      <%= f.label "No", class: "middle left_margin" %>
       <%= f.radio_button :long_term, false %>
     </div><br />
   </div>
@@ -80,44 +80,44 @@
   <div class="field">
     Does this center or program offer private instruction?
     <div class="form-inline">
-      <%= f.label "Yes" %>
+      <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :private_instruction, true %>
-      <%= f.label "No" %>
+      <%= f.label "No", class: "middle left_margin" %>
       <%= f.radio_button :private_instruction, false %>
     </div><br />
   </div>
 
   <div class="field">
     <%= f.label "Price per hour (private instruction)" %>
-    <%= f.text_field :price_per_hour_private %>
+    <%= f.text_field :price_per_hour_private, class: "small_input" %>
   </div>
 
   <div class="field">
     Does this center or program offer group instruction?
     <div class="form-inline">
-      <%= f.label "Yes" %>
+      <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :group_instruction, true %>
-      <%= f.label "No" %>
+      <%= f.label "No", class: "middle left_margin" %>
       <%= f.radio_button :group_instruction, false %>
     </div><br />
   </div>
 
   <div class="field">
     <%= f.label "Price per hour (group instruction)" %>
-    <%= f.text_field :price_per_hour_group %>
+    <%= f.text_field :price_per_hour_group, class: "small_input" %>
   </div>
 
   <div class="field">
     <%= f.label "Total estimated price if only one type of program is offered" %>
-    <%= f.text_field :total_price %>
+    <%= f.text_field :total_price, class: "small_input" %>
   </div>
 
   <div class="field">
     Does the center or program provide housing?
     <div class="form-inline">
-      <%= f.label "Yes" %>
+      <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :housing_provided, true %>
-      <%= f.label "No" %>
+      <%= f.label "No", class: "middle left_margin" %>
       <%= f.radio_button :housing_provided, false %>
     </div><br />
   </div>
@@ -127,7 +127,8 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Submit" %>
+    <br />
+    <%= f.submit "Submit", class: "btn_custom" %>
   </div>
 <% end %>
 
