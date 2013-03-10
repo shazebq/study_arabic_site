@@ -1,4 +1,15 @@
 <% provide(:title, "Create a #{get_user_type(params[:controller]).capitalize} Account") %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <% pluralize(@profile.errors.count, "error") %>
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
+        <% @profile.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
 <% other_user_type = get_other_user_type(params[:controller]) %>
 

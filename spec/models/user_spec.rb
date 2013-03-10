@@ -29,11 +29,16 @@ describe User do
       end
 
       describe "email validation" do
-
         describe "invalid email is submitted" do
           before { @user1.email = "blahblah" }
           it "should be invalid" do
             @user1.should_not be_valid
+          end
+        end
+
+        describe "valid email is submitted" do
+          it "should be valid" do
+            @user1.should be_valid
           end
         end
       end
@@ -62,4 +67,4 @@ describe User do
   #end
 end
 
-#comment
+#comments
