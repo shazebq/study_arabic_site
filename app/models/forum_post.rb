@@ -22,7 +22,7 @@ class ForumPost < ActiveRecord::Base
 
   validates :title, :content, :category_ids, presence: true
 
-  validates :title, length: { maximum: 65 }
+  validates :title, length: { maximum: 130 }
   validates :content, length: {maximum: 5000 }
 
   SCOPES = ["most_recent", "most_views", "most_votes", "most_answers", "unanswered"]

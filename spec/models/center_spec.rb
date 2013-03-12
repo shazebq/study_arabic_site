@@ -107,6 +107,22 @@ describe Center do
 
     end
 
+    describe "description validation" do
+      describe "when description is longer than 2000 characters" do
+        before { @center1.description = "a" * 2001 }
+        it "should no be valid" do
+          @center1.should_not be_valid 
+        end
+      end
+
+      describe "when description is less than 2000 characters" do
+        before { @center1.description = "a" * 2000 }
+        it "should be valid" do
+          @center1.should be_valid
+        end
+      end
+    end
+
     describe "year established validation" do
       
       describe "when an invalid year is entered" do

@@ -17,7 +17,7 @@ describe User do
 
   describe "validations" do
     before :each do
-      @user1 = User.new(first_name: "Jim", last_name: "Jones", email: "jjones@example.com", 
+      @user1 = User.new(first_name: "Billy", last_name: "Jones", email: "jjones@example.com", 
                         country_id: 123, password: "cool123", password_confirmation: "cool123")
     end
     describe "user validation" do
@@ -43,6 +43,16 @@ describe User do
         end
       end
 
+      describe "name validation" do
+        describe "blank name" do
+          before { @user1.first_name = nil }
+          it "should not be valid" do
+            @user1.should_not be_valid
+          end
+        end
+      end
+
+
     end
 
 
@@ -67,4 +77,4 @@ describe User do
   #end
 end
 
-#comments
+#comment

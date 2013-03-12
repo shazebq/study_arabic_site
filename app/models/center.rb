@@ -20,6 +20,10 @@ class Center < ActiveRecord::Base
   accepts_nested_attributes_for :address, :images
 
   validates :name, :description, presence: true
+
+  validates :name, length: { maximum: 65 }
+  validates :description, length: { maximum: 2000 }
+
   validates :price_per_hour_private, :price_per_hour_group, allow_blank: true,
             numericality: { greater_than: 0, less_than: 100 }
 

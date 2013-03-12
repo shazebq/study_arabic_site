@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :bio, :country_id, :image_attributes, :skype_id
 
+  validates :first_name, :last_name, :bio, :country_id, presence: true 
+  #validates :first_name, :last_name
+
+  #validates :skype_id 
+
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
   #scope :order_by_reviews, preload(:profile).joins(:profile) #.order("profiles.reviews_count")

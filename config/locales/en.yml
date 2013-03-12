@@ -5,13 +5,18 @@ en:
   activerecord:
     models: 
       address: 
+      user:
     attributes:
+      user:
+        email: "Email"
+        password: "Password"
       address:
         address_line: "Address"
         country_id: "Country"
         city_id: "City"
     errors:
       models:
+        user:
         address:
           attributes:
             address_line:
