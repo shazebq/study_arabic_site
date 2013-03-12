@@ -17,13 +17,13 @@ describe User do
 
   describe "validations" do
     before :each do
-      @user1 = User.new(first_name: "Billy", last_name: "Jones", email: "jjones@example.com", 
-                        country_id: 123, password: "cool123", password_confirmation: "cool123")
+      @user1 = User.new(first_name: "Billy", last_name: "Jones", bio: "A wonderful arabic teacher",
+                        email: "jjones@example.com", country_id: 123, password: "cool123", password_confirmation: "cool123")
     end
     describe "user validation" do
       
       describe "valid user information is submitted" do
-        it "should be valid with a valid url" do
+        it "should be valid with valid information" do
           @user1.should be_valid
         end
       end
@@ -50,8 +50,31 @@ describe User do
             @user1.should_not be_valid
           end
         end
+
+        describe "very long name" do
+          before { @user1.first_name = "a" * 100 }
+          it "should not be valid" do
+            @user1.should_not be_valid
+          end
+        end
+
+        describe "a valid name" do
+          before { @user1.first_name = "Bill" }
+          it "should be valid" do
+            @user1.should be_valid
+          end
+        end
       end
 
+      describe "skype_id validation" do
+        describe "long skype_id" do
+          before { @user1.skype_id = "a" * 100 }
+          it "should not be valid" do
+            @user1.should_not be_valid
+          end
+        end
+
+      end
 
     end
 
@@ -77,4 +100,4 @@ describe User do
   #end
 end
 
-#comment
+#comments
