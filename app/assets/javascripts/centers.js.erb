@@ -20,7 +20,9 @@ $(document).ready(function() {
 
     $("#centers_list").load("/centers?" + $.param({ ratings_option: ratings_option,
                                                              country_option: country_option,  
-                                                            }) + " #centers_div");
+                                                             page: 1
+                                                  }) + " #centers_div"
+      );
 
   });
 

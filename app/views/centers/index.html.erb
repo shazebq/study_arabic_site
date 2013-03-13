@@ -2,6 +2,7 @@
 
 <%= render partial: "shared/search_box", locals: { item_type: "Centers" } %>
 
+
 <div class="subtitle_large right_margin_small inline middle">Have you attended a center or program that isn't on this list?</div>
   <%= button_to("Add a Center/Program", new_center_path, class: "btn_custom", method: "get") %>
 
@@ -14,6 +15,9 @@
 
 <div id="centers_list">
   <div id="centers_div">
+    <%= will_paginate @centers, previous_label: "<i class='icon-arrow-left'></i> Previous".html_safe,
+                                next_label: "<i class='icon-arrow-right'></i> Next".html_safe %>
+      
       <% @centers.each do |center| %>
         <%= render partial: "shared/index_with_image", 
                   locals: { image: center.images.first.try(:photo).try(:url, :thumb), 

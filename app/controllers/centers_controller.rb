@@ -5,11 +5,12 @@ class CentersController < ApplicationController
   def index
     @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
     if params[:ratings_option] == "order_by_reviews"
-      @centers = Center.order_by_reviews.country_option(params[:country_option])
+      @centers = Center.order_by_reviews.country_option(params[:country_option]).paginate(page: params[:page], per_page: 2)
     elsif params[:ratings_option] == "order_by_average_rating"
-      @centers = Center.order_by_average_rating.country_option(params[:country_option]) + Center.zero_review_records.country_option(params[:country_option])
+      @centers = (Center.order_by_average_rating.country_option(params[:country_option]) + 
+                  Center.zero_review_records.country_option(params[:country_option])).paginate(page: params[:page], per_page: 2)
     else
-      @centers = Center.order_by_average_rating + Center.zero_review_records
+      @centers = (Center.order_by_average_rating + Center.zero_review_records).paginate(page: params[:page], per_page: 2)
     end
   end
 

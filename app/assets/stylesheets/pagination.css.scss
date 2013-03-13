@@ -1,0 +1,8 @@
+$light: #BFDDDC;
+
+.pagination ul > .active > a, .pagination ul > .active > span {
+    cursor: default;
+    background-color: $light;
+    color: black;
+    font-weight: bold;
+}
