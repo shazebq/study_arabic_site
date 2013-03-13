@@ -6,6 +6,7 @@ en:
     models: 
       address: 
       user:
+      forum_post:
     attributes:
       user:
         email: "Email"
@@ -22,6 +23,9 @@ en:
         country_id: "Country"
         city_id: "City"
         city_name: "City"
+      forum_post:
+        category_ids: "Category"
+        content: "Details"
     errors:
       models:
         user:

@@ -1,15 +1,15 @@
 <%= form_for(@forum_post) do |f| %>
-    <% if @forum_post.errors.any? %>
-        <div id="error_explanation" class="alert alert-error">
-          <% pluralize(@forum_post.errors.count, "error") %>
-          Your post could not be submitted.
-          <ul>
-            <% @forum_post.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+  <% if @forum_post.errors.any? %>
+    <div class="error_alert">
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
+        <% @forum_post.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
 
     <div class="field">
       <%= f.label :title  %>
@@ -17,10 +17,12 @@
     </div>
 
     <div class="field">
-      <%= f.label "Category" %>
+      <%= f.label :category_ids, "Category" %>
+      <div class="field_with_errors">
       <select id="forum_post_category_ids" name="forum_post[category_ids][]" data-placeholder="Categories"
               class="chzn-select" multiple tabindex="6"  multiple="multiple">
         <option value=""></option>
+      </div>
         <%= render :partial => 'chosen_categories', locals: {:category_name => "Arabic Language", :label => "Arabic Language" } %>
         <%= render :partial => 'chosen_categories', locals: {:category_name => "Study Abroad" , :label => "Study Abroad (general)" } %>
         <%= render :partial => 'chosen_categories', locals: {:category_name => "Countries" , :label => "Study Abroad (country specific)" } %>
@@ -28,11 +30,11 @@
     </div>
 
     <div class="field">
-      <%= f.label "Question"  %>
+      <%= f.label :content, "Details"  %>
       <%= f.text_area :content %>
     </div>
 
     <div class="actions">
-      <%= f.submit(submit_text) %>
+      <%= f.submit(submit_text, class: "btn_custom") %>
     </div>
 <% end %>

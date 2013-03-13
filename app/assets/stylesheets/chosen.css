@@ -129,13 +129,13 @@
 
 /* @group Multi Chosen */
 .chzn-container-multi .chzn-choices {
-  background-color: #fff;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
-  border: 1px solid #aaa;
+  //background-color: blue;
+  //background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  //background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  //background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  //background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  //background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
+  border: 1px solid #909090;
   margin: 0;
   padding: 0;
   cursor: text;
@@ -143,6 +143,7 @@
   height: auto !important;
   height: 1%;
   position: relative;
+  border-radius: 5px;
 }
 .chzn-container-multi .chzn-choices li {
   float: left;

@@ -15,6 +15,7 @@ $dark_gray: #909090;
 input, textarea, select
 {
   border:1px solid $dark_gray !important;
+  border-radius: 5px !important;
 }
 
 input:focus, textarea:focus, select:focus
