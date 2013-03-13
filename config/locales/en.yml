@@ -21,6 +21,7 @@ en:
         address_line: "Address"
         country_id: "Country"
         city_id: "City"
+        city_name: "City"
     errors:
       models:
         user:

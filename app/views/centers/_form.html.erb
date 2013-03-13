@@ -1,6 +1,6 @@
   <%= form_for(@center) do |f| %>
   <% if @center.errors.any? %>
-    <div id="error_explanation">
+    <div class="error_alert">
       <% pluralize(@center.errors.count, "error") %>
       Your submission could not be accepted. Please correct the following errors:
       <div class="bold">
@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name, "Center or Program Name *", class: "required"  %>
+    <%= f.label :name, "Center or Program Name*", class: "required"  %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :description, "Brief Description *" %>
+    <%= f.label :description, "Brief Description*" %>
     <%= f.text_area :description %>
   </div>
   
@@ -44,21 +44,21 @@
 
   <%= f.fields_for :address do |address_form| %>
     <div class="field">
-      <%= address_form.label :address_line, "Address *" %>
+      <%= address_form.label :address_line, "Address*" %>
       <%= address_form.text_field :address_line %>
     </div>
     <div class="field">
-      <%= address_form.label "City *" %>
+      <%= address_form.label :city_name, "City*" %>
       <%= address_form.text_field :city_name %>
     </div>
 
     <div class="field">
-      <%= address_form.label "Country *" %>
+      <%= address_form.label :country_id, "Country*" %>
       <%= address_form.select :country_id, Country.all.collect { |c| [c.name, c.id] }, { :include_blank => true } %>
     </div>
   <% end %>
   <div class="field">
-    Does this center or program offer short term programs (less than six months)?
+    <%= label :short_term, "Does this center or program offer short term programs (less than six months)?" %>
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :short_term, true %>
@@ -68,7 +68,7 @@
   </div>
 
   <div class="field">
-    Does this center or program offer long term programs (more than six months)?
+    <%= label :long_term, "Does this center or program offer long term programs (more than six months)?" %>
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :long_term, true %>
@@ -78,7 +78,7 @@
   </div>
   
   <div class="field">
-    Does this center or program offer private instruction?
+    <%= label :private_instruction, "Does this center or program offer private instruction?" %>
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :private_instruction, true %>
@@ -88,12 +88,12 @@
   </div>
 
   <div class="field">
-    <%= f.label "Price per hour (private instruction)" %>
-    <%= f.text_field :price_per_hour_private, class: "small_input" %>
+    <%= f.label :price_per_hour_private, "Price Per Hour - Private Instruction (U.S. Dollars)" %>
+    $<%= f.text_field :price_per_hour_private, class: "small_input" %>
   </div>
 
   <div class="field">
-    Does this center or program offer group instruction?
+    <%= label :group_instruction, "Does this center or program offer group instruction?" %>
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :group_instruction, true %>
@@ -103,17 +103,17 @@
   </div>
 
   <div class="field">
-    <%= f.label "Price per hour (group instruction)" %>
-    <%= f.text_field :price_per_hour_group, class: "small_input" %>
+    <%= f.label :price_per_hour_group, "Price Per Hour - Group Instruction (U.S. Dollars)" %>
+    $<%= f.text_field :price_per_hour_group, class: "small_input" %>
   </div>
 
   <div class="field">
-    <%= f.label "Total estimated price if only one type of program is offered" %>
-    <%= f.text_field :total_price, class: "small_input" %>
+    <%= f.label :total_price, "Total estimated price if only one type of program is offered (U.S. Dollars)" %>
+    $<%= f.text_field :total_price, class: "small_input" %>
   </div>
 
   <div class="field">
-    Does the center or program provide housing?
+    <%= f.label :housing_provided, "Does the center or program provide housing?" %>
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :housing_provided, true %>
@@ -121,7 +121,7 @@
       <%= f.radio_button :housing_provided, false %>
     </div><br />
   </div>
-  <p>Add some photos of the center or program location</p>
+  <p class="bold">Add some photos of the center or program location</p>
   <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
     <div><%= image_form.file_field :photo %></div>
   <% end %>
