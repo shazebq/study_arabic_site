@@ -34,9 +34,8 @@ class Resource < ActiveRecord::Base
   validates_attachment_content_type(:resource_file, content_type: ["image/jpeg", "image/jpg", "application/pdf", "application/msword", "text/plain"])
 
   validates :title, :description, :category_ids, presence: true
-
-  validates :title, length: { maximum: 65 }
-  validates :description, length: { maximum: 5000 }
+  validates :title, length: { maximum: 130 }
+  validates :description, length: { maximum: 2000 }
 
   SCOPES = ["most_recent", "most_views", "most_votes", "most_downloads"]
 

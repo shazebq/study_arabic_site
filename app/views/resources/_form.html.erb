@@ -1,15 +1,14 @@
 <%= form_for(@resource, :html => { :multipart => true }) do |f| %>
     <% if @resource.errors.any? %>
-        <div id="error_explanation" class="alert alert-error">
-          <% pluralize(@resource.errors.count, "error") %>
-          Your resource could not be submitted.
-          <ul>
-            <% @resource.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+    <div class="error_alert">
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
+        <% @resource.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
     <div class="field">
       <%= f.label :title  %>
@@ -17,7 +16,7 @@
     </div>
 
     <div class="field">
-      <%= f.label "Category" %>
+      <%= f.label :category_ids, "Category" %>
       <select id="resource_category_ids" name="resource[category_ids][]" data-placeholder="Categories"
               class="chzn-select" multiple tabindex="6"  multiple="multiple">
         <option value=""></option>
@@ -38,6 +37,6 @@
     <br />
 
     <div class="actions">
-      <%= f.submit("Submit") %>
+      <%= f.submit("Submit", class: "btn_custom") %>
     </div>
 <% end %>
