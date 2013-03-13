@@ -46,9 +46,19 @@ module ApplicationHelper
     end
   end
 
-
+  
+  # for pluralizing without the number, just the object
   def simple_pluralize count, singular, plural=nil
     ((count == 1 || count =~ /^1(\.0+)?$/) ? singular : (plural || singular.pluralize))
+  end
+
+  # for marking offending labels in forms 
+  def label_class(resource, field_name)
+    if resource.errors[field_name].any?
+      "error_label".html_safe
+    else
+      "".html_safe
+    end
   end
   
 end

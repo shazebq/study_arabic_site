@@ -1,6 +1,6 @@
 <% provide(:title, "Create a #{get_user_type(params[:controller]).capitalize} Account") %>
   <% if @profile.errors.any? %>
-    <div id="error_explanation">
+    <div class="error_alert">
       <% pluralize(@profile.errors.count, "error") %>
       Your submission could not be accepted. Please correct the following errors:
       <div class="bold">
@@ -29,9 +29,9 @@
     <div class="field"><%= user_form.label :skype_id, "Skype ID" %>
     <%= user_form.text_field :skype_id %></div>
     <div class="field"><%= user_form.label :country_id, "Country*" %>
-    <%= user_form.select :country_id, Country.all.collect { |c| [c.name, c.id] } %></div>
+    <%= user_form.select :country_id, Country.all.collect { |c| [c.name, c.id] }, { :include_blank => true } %></div>
 
-    <% if params[:action] == "new" %>
+    <% if params[:action] == "new" || "create" %>
       <div class="field"><%= user_form.label :password, "Password*" %>
       <%= user_form.password_field :password %></div>
       <div class="field"><%= user_form.label :password_confirmation, "Password Confirmation*" %>
@@ -63,30 +63,31 @@
         <%= f.text_field :specialties %>
       </div>
       <div class="field">
-        <%= f.label :price_per_hour, "Price Per Hour*" %>
-        <%= f.text_field :price_per_hour %>
+        <%= f.label :price_per_hour, "Price Per Hour (in U.S. dollars)* " %>
+        $<%= f.text_field :price_per_hour, class: "small_input" %>
       </div>
       <div class="field">
-        Do you offer online classes?*
+        <%= f.label :online, "Do you offer online classes?*" %>
         <div class="form-inline">
-          <%= f.label "Yes" %>
+          <%= f.label "Yes", class: "middle" %>
           <%= f.radio_button :online, true %>
-          <%= f.label "No" %>
+          <%= f.label "No", class: "middle left_margin" %>
           <%= f.radio_button :online, false %>
         </div><br />
       </div>
       <div class="field">
-        Do you offer in person classes?*
+        <%= f.label :in_person, "Do you offer in person classes?*" %>
         <div class="form-inline">
-          <%= f.label "Yes" %>
+          <%= f.label "Yes", class: "middle" %>
           <%= f.radio_button :in_person, true %>
-          <%= f.label "No" %>
+          <%= f.label "No", class: "middle left_margin" %>
           <%= f.radio_button :in_person, false %>
         </div><br />
       </div>
     <% end %>
 
-    <div class="field"><%= user_form.label "Enter a brief description about yourself*" %>
+    <div class="field">
+    <%= user_form.label :bio, "Brief description about yourself*" %></span>
     <%= user_form.text_area :bio %></div>
     <%= user_form.fields_for :image, :html => { :multipart => true } do |image_form| %>
       <%= image_form.label "Profile Picture" %>
@@ -95,7 +96,7 @@
   <% end %>
 
     <div class="actions">
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", class: "btn_custom" %>
   </div>
 <% end %>
 

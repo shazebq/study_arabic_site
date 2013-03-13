@@ -10,6 +10,13 @@ en:
       user:
         email: "Email"
         password: "Password"
+        first_name: "First Name"
+        last_name: "Last Name"
+        bio: "Description"
+        country_id: "Country"
+      teacher_profile:
+        in_person: "In Person option"
+        online: "Online option"
       address:
         address_line: "Address"
         country_id: "Country"
@@ -23,5 +30,12 @@ en:
               #blank: "can't be blank"
             country_id:
               #blank: "hey you no blanks"
+        teacher_profile:
+          attributes:
+            in_person:
+              inclusion: "must be selected"
+            online:
+              inclusion: "must be selected"
+
 
                 

@@ -14,6 +14,15 @@ class TeacherProfile < ActiveRecord::Base
   accepts_nested_attributes_for :user
   attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience, :user_attributes, :specialties, :price_per_hour
 
+  validates :years_of_experience, :price_per_hour, :specialties, :field_of_study, presence: true 
+  validates :in_person, :online, :inclusion => {:in => [true, false]}
+  validates :years_of_experience, numericality: { integer: true, less_than: 100 } 
+  validates :price_per_hour, numericality: { greater_than: 0.99, less_than: 100 }
+  
+  validates :university, :field_of_study, length: { maximum: 65 }
+  validates :specialties, length: { maximum: 130 }
+
+
   
   scope :price_option, (lambda do |price| 
     if price.blank?
@@ -42,7 +51,6 @@ class TeacherProfile < ActiveRecord::Base
  
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
   # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet
-
   def self.country_option(country_id)
     if country_id == "all"
      where({}) 

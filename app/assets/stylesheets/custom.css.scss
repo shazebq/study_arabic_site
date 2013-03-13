@@ -10,6 +10,8 @@ $contrast: #C65800;
 $light_gray: #F5F5F5;
 $dark_gray: #909090;
 
+$error_text: #961F1F;
+$error_background: #E8CFCF; 
 
 
 body
@@ -136,11 +138,20 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 {
   background-color: $light_gray; 
   color: $dark_gray; 
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
   padding: 15px;
   margin-bottom: 10px;
 }
+
+.error_alert
+{
+  @extend .custom_alert;
+  color: $error_text;
+  background-color: $error_background
+
+}
+
 
 .custom_well
 {

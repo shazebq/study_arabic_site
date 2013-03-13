@@ -13,8 +13,9 @@ describe TeacherProfile do
     @teacher_profile_with_user = { field_of_study: "bachelors in Arabic", university: "Cairo University",
                                   years_of_experience: 2, specialties: "Classical Arabic", online: true, in_person: false,
                                   user_attributes: { first_name: "John", last_name: "Khan", email: "jkhan@example.com",
-                                                     password: "cool123", password_confirmation: "cool123" } }
-    profile = TeacherProfile.create!(@teacher_profile_with_user)
+                                                     password: "cool123", password_confirmation: "cool123", bio: "my bio", country_id: 5 } }
+    profile = TeacherProfile.new(@teacher_profile_with_user)
+    profile.save(validate: false)
     profile.id.should_not be_nil
     profile.user.should_not be_nil
   end
@@ -97,6 +98,30 @@ describe TeacherProfile do
         TeacherProfile.country_option(2).should == [teacher_profile2]
         TeacherProfile.country_option(1).should == [teacher_profile1]
       end
+    end
+  end
+
+  describe "validation" do
+    before :each do
+      @teacher_profile1 = TeacherProfile.new(online: true, in_person: true, years_of_experience: 5,
+                                             price_per_hour: 10, specialties: "literature, rhetoric",
+                                             field_of_study: "Translation")
+    end
+
+    describe "general validation" do
+      it "should be valid" do
+        @teacher_profile1.should be_valid
+      end
+    end
+
+    describe "years_of_experience validation" do
+      describe "invalid input for years of exerience" do
+        before { @teacher_profile1.years_of_experience = "abcd" }
+        it "should not be valid" do
+          @teacher_profile1.should_not be_valid
+        end
+      end
+      
     end
   end
 end

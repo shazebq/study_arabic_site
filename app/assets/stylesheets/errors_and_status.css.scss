@@ -1,5 +1,19 @@
-#error_explanation
+// error colors
+$error_text: #961F1F;
+$error_background: #E8CFCF; 
+
+
+.field_with_errors
 {
-  color: #C72A00;
-  margin-bottom: 10px;
+  display: inline;
+}
+
+.field_with_errors > label
+{
+  color: $error_text;
+}
+
+.field_with_errors > input, .field_with_errors > select, .field_with_errors > textarea
+{
+  border: 3px solid $error_text !important;
 }

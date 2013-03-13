@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
     # note here, using the controller name to generalize the solution
     @profile = params[:controller].classify.constantize.new(params[params[:controller].singularize])
     if @profile.save
+      sign_in @profile.user
       redirect_to @profile.user
     else
       render "new"

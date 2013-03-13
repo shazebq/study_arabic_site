@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :bio, :country_id, presence: true 
   validates :first_name, :last_name, :skype_id, length: { maximum: 65 }   
-  validates :skype_id, allow_blank: true 
+  validates :bio, length: { maximum: 2000 }
 
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
