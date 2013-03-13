@@ -1,12 +1,6 @@
 <% provide :title, "Arabic Forums" %>
-<div class="row">
-  <div class="span6">
-    <%= render partial: "shared/search_box", locals: { item_type: "Forums" } %>
-  </div>
-  <div class="span3 align_right">
-    <%= button_to("Ask a Question", new_forum_post_path, method: "get", class: "btn_custom middle") %>
-  </div>
-</div>
+
+<%= render partial: "shared/search_and_new", locals: { item_type: "Forums", new_button_text: "Ask a Question" }  %>
 
 <%= render partial: "shared/filter_links" %>
 
