@@ -3,4 +3,6 @@ class StudentProfile < ActiveRecord::Base
   belongs_to :level
   accepts_nested_attributes_for :user
   attr_accessible :level_id, :user_attributes
+
+  validates :level_id, presence: true
 end

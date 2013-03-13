@@ -40,8 +40,8 @@
 
     <% if params[:controller] == "student_profiles" %>
       <div class="field">
-        <%= f.label "Level*" %>
-        <%= f.select :level_id, Level.all.collect { |l| [l.title, l.id] } %>
+        <%= f.label :level_id, "Level*" %>
+        <%= f.select :level_id, Level.all.collect { |l| [l.title, l.id] }, { :include_blank => true }  %>
       </div>
     <% end %>
 
