@@ -33,6 +33,7 @@ gem 'cocaine', '= 0.3.2'
 gem 'warden'
 gem 'pg_search'
 gem 'thin'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
