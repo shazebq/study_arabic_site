@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
     # note here, using the controller name to generalize the solution
     @profile = params[:controller].classify.constantize.new(params[params[:controller].singularize])
     if @profile.save
+      flash[:notice] = "Your profile has been successfully created"
       sign_in @profile.user
       redirect_to @profile.user
     else
@@ -25,9 +26,12 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = params[:controller].classify.constantize.find(params[:id])
-    @profile.update_attributes(params[params[:controller].singularize])
-    #return render text: @profile.errors.messages.inspect
-    redirect_to user_path(@profile.user)
+    if @profile.update_attributes(params[params[:controller].singularize])
+      flash[:notice] = "Your profile has been successfully updated"
+      redirect_to user_path(@profile.user)
+    else
+      render "new"
+    end
   end
 end
 

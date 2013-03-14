@@ -30,7 +30,7 @@
     <div class="field"><%= user_form.label :country_id, "Country*" %>
     <%= user_form.select :country_id, Country.all.collect { |c| [c.name, c.id] }, { :include_blank => true } %></div>
 
-    <% if params[:action] == "new" || "create" %>
+    <% if params[:action] == "new" || params[:action] == "create" %>
       <div class="field"><%= user_form.label :password, "Password*" %>
       <%= user_form.password_field :password %></div>
       <div class="field"><%= user_form.label :password_confirmation, "Password Confirmation*" %>

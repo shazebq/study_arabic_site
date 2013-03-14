@@ -1,4 +1,15 @@
+<% if @answer.errors.any? %>
+  <div class="error_alert">
+    Your update could not be accepted. Please correct the following errors:
+    <div class="bold">
+      <% @answer.errors.full_messages.each do |msg| %>
+        <i class="icon-warning-sign"></i> <%= msg %><br />
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <%= form_for([@forum_post, @answer]) do |f| %>
     <%= f.text_area :content, class: "general_text_box" %>
-    <%= f.submit "Submit Answer", class: "btn" %>
+    <%= f.submit "Submit Answer", class: "btn_custom" %>
 <% end %>

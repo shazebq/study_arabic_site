@@ -7,6 +7,7 @@ en:
       address: 
       user:
       forum_post:
+      answer:
     attributes:
       user:
         email: "Email"
@@ -26,6 +27,8 @@ en:
       forum_post:
         category_ids: "Category"
         content: "Details"
+      answer:
+        content: "Answer"
     errors:
       models:
         user:

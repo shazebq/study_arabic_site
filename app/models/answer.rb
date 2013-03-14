@@ -9,6 +9,8 @@ class Answer < ActiveRecord::Base
   belongs_to :forum_post, counter_cache: true
   has_many :votes, :as => :voteable
 
+  validates :content, :forum_post_id, presence: true, length: { maximum: 10000 } 
+
   # orders by number of votes
   scope :by_votes, order("votes_count desc, id desc")
 

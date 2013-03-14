@@ -30,6 +30,7 @@ class CentersController < ApplicationController
     revised_params = handle_city_creation(params[:center])
     @center = Center.new(revised_params)
     if @center.save 
+      flash[:notice] = "Your entry was successfully submitted"
       redirect_to @center
     else
       3.times { @center.images.build }
@@ -47,9 +48,14 @@ class CentersController < ApplicationController
 
   def update
     @center = Center.find(params[:id])
+    3.times { @center.images.build }
     revised_params = handle_city_creation(params[:center])
-    @center.update_attributes(revised_params)
-    redirect_to @center
+    if @center.update_attributes(revised_params)
+      flash[:notice] = "The entry has been updated"
+      redirect_to @center
+    else
+      render "new"
+    end
   end
 end
 

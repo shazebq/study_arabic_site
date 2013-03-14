@@ -1,4 +1,14 @@
 <% provide :title, @forum_post.title %>
+  <% if @answer_new.try(:errors).try(:any?) %>
+    <div class="error_alert">
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
+        <% @answer_new.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
 <div class="row">
   <%= render partial: "shared/vote_arrows", locals: { item: @forum_post } %>

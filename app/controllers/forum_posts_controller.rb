@@ -12,11 +12,11 @@ class ForumPostsController < CategorizableItemsController
     @forum_post = ForumPost.new(params[:forum_post])
     @forum_post.user_id = current_user.id
     if @forum_post.save
-      flash[:success] = "Your post has been added"
+      flash[:notice] = "Your question has been added"
       redirect_to forum_post_path(@forum_post)
     else
       # note here, you're simply rendering the template with the variables from here
-      render action: "new"
+      render "new"
     end
   end
 
@@ -31,12 +31,17 @@ class ForumPostsController < CategorizableItemsController
 
   def update
     @forum_post = ForumPost.find(params[:id])
-    @forum_post.update_attributes(params[:forum_post])
-    redirect_to @forum_post
+    if @forum_post.update_attributes(params[:forum_post])
+      flash[:notice] = "Your question has been updated"
+      redirect_to @forum_post
+    else
+      render "new"
+    end
   end
 
   def destroy
     ForumPost.find(params[:id]).destroy
+    flash[:notice] = "Your question has been deleted"
     redirect_to forum_posts_path()
   end
 end

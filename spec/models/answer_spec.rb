@@ -29,4 +29,24 @@ describe Answer do
       Answer.by_votes.last.should == answer
     end
   end
+
+  describe "validation" do
+    before { @answer_new = Answer.new() }
+
+    describe "when no content is submitted" do
+      it "should not be valid" do
+        @answer_new.should_not be_valid
+      end
+    end
+
+    describe "when content and forum_post_id are submitted" do
+      before :each do 
+        @answer_new.content = "very good answer"
+        @answer_new.forum_post_id = 5
+      end
+      it "should be valid" do
+        @answer_new.should be_valid
+      end
+    end
+  end
 end
