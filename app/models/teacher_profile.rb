@@ -52,7 +52,7 @@ class TeacherProfile < ActiveRecord::Base
   # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
   # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet
   def self.country_option(country_id)
-    if country_id == "all"
+    if country_id == "all" || country_id.blank?
      where({}) 
     else
       TeacherProfile.select("teacher_profiles.*").

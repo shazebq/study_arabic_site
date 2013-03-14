@@ -11,8 +11,6 @@
 
 <div id="centers_list">
   <div id="centers_div">
-    <%= will_paginate @centers, previous_label: "<i class='icon-arrow-left'></i> Previous".html_safe,
-                                next_label: "<i class='icon-arrow-right'></i> Next".html_safe %>
       
       <% @centers.each do |center| %>
         <%= render partial: "shared/index_with_image", 
@@ -22,6 +20,8 @@
                             description: center.description,
                             item_with_reviews: center} %>
       <% end %>
+
+      <%= render partial: "shared/pagination_links", locals: { items: @centers } %>
   </div>
 </div>
 

@@ -52,6 +52,8 @@
 <div id="profiles_list">
   <div id="profiles_div">
     <%= render partial: "profiles_list", locals: { teacher_profiles: @teacher_profiles} %>
+
+    <%= render partial: "shared/pagination_links", locals: { items: @centers } %>
   </div>
 </div>
 
