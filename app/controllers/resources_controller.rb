@@ -12,19 +12,30 @@ class ResourcesController < CategorizableItemsController
     @resource = Resource.new(params[:resource])
     @resource.user_id = current_user.id
     if @resource.save
-      flash[:success] = "Your resource has been added"
+      flash[:notice] = "Your resource has been successfully saved"
       redirect_to resource_path(@resource)
     else
       render action: "new"
     end
   end
 
-  def update
+  def edit
+    @resource = Resource.find(params[:id])
+  end
 
+  def update
+    @resource = Resource.find(params[:id])
+    if @resource.update_attributes(params[:resource])
+      flash[:notice] = "Your question has been updated"
+      redirect_to @resource
+    else
+      render "edit"
+    end
   end
 
   def destroy
     Resource.find(params[:id]).destroy
+    flash[:notice] = "Your resource has been successfully deleted"
     redirect_to resources_path
   end
 

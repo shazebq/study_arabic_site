@@ -6,11 +6,12 @@ class User < ActiveRecord::Base
   #multisearchable :against => [:first_name, :last_name, :bio]
 
   before_destroy :destroy_user_profile
-  has_many :forum_posts
-  has_many :answers
-  has_many :resources
-  has_many :reviews
+  has_many :forum_posts, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :resources, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_one :image, as: :imageable, dependent: :destroy
+
   belongs_to :profile, polymorphic: true
   belongs_to :country
   accepts_nested_attributes_for :image

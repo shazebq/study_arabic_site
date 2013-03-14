@@ -32,16 +32,16 @@ class ForumPostsController < CategorizableItemsController
   def update
     @forum_post = ForumPost.find(params[:id])
     if @forum_post.update_attributes(params[:forum_post])
-      flash[:notice] = "Your question has been updated"
+      flash[:notice] = "Your question has been successfully updated"
       redirect_to @forum_post
     else
-      render "new"
+      render "edit"
     end
   end
 
   def destroy
     ForumPost.find(params[:id]).destroy
-    flash[:notice] = "Your question has been deleted"
+    flash[:notice] = "Your resource has been successfully deleted"  
     redirect_to forum_posts_path()
   end
 end
