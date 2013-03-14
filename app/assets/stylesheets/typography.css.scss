@@ -4,6 +4,12 @@ $contrast: #C75800;
 $light_gray: #F5F5F5;
 $dark_gray: #909090;
 
+
+a:hover.no_underline 
+{
+  text-decoration: none;
+}
+
 a:link 
 {
   text-decoration:none;
@@ -93,4 +99,5 @@ body
 {
   text-align: right;
 }
+
 

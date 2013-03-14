@@ -1,0 +1,7 @@
+<div class="subtitle_large margin_bottom"><%= simple_pluralize(item.categories.size, "Category") %></div>
+  <div class="margin_bottom">
+  <% item.categories.each do |category| %>
+    <span class="gray_badge"><%= category.name %></span>
+  <% end %>
+</div>
+

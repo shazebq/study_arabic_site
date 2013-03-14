@@ -2,7 +2,7 @@
 
 <div class="row">
   <%= render partial: "shared/vote_arrows", locals: { item: @resource } %>
- <div class="span8">
+ <div class="span8_custom">
     <%= render partial: "shared/voteable_item_title", locals: { item: @resource }  %>
     <div class="row">
     <div class="span3 preview_div">
@@ -20,59 +20,50 @@
 
     <div class="span5">
       <p>
-        <span class="subtitle_large">Description</span><br />
+        <span class="bold">Description</span><br />
         <%= @resource.description %>
       </p>
-      <div class="download_link"><%= link_to "Download Resource", "/resources/#{@resource.id}/download" %></div>
+        <%= link_to "<i class='icon-download icon-large'></i>".html_safe, "/resources/#{@resource.id}/download", class: "no_underline" %>
+        <%= link_to "Download Resource", "/resources/#{@resource.id}/download", class: "bold" %>
     </div>
 
     </div>
-    <%= button_to("Review this resource", new_resource_review_path(@resource), class: "btn btn-primary", method: :get) %>
 
-    <div class="bottom_border_div">
-    <h4>Reviews</h4>
-    </div>
+    <div>
+      <span class="subtitle_large middle">Have you used this resource?</span>
+      <%= button_to("Write a Review", new_resource_review_path(@resource), class: "btn_custom left_margin", method: :get) %>
+    </div> 
+
+    <div class="subtitle_large margin_bottom">Reviews</div>
     <%= render partial: "reviews/reviews_display", locals: { item: @resource } %>
   </div>
 </div>
 
 <% content_for(:side_bar) do %>
-    <span class="subtitle_large">Categories</span><br />
-    <% @resource.categories.each do |category| %>
-        <span class="label"><%= category.name %></span><br />
-    <% end %>
-
-    <br />
-
-    <span class="subtitle_large">Posted By</span><br />
-
-    <div class="row">
-      <div class="span1">
-        <br /><i class='icon-sign-blank' style="font-size: 75px; color: #f5f5dc;"></i>
-      </div>
-      <div class="span1">
-        <span class="gray_bold"><%= @resource.user.email.split("@")[0] %></span><br />
-        <span class="general_label reputation"><i class="icon-plus"></i> 234</span>
-      </div>
-    </div>
+    <%= render partial: "categories/side_bar_categories", locals: { item: @resource } %> 
+    <!--<div class="subtitle_large margin_bottom">Posted By</div>-->
 
     <div>
+      <div class="subtitle_large margin_bottom">Resource Statistics</div>
       <table>
         <tr>
-          <td><span class="subtitle_large padded_cell">Average Rating</span></td>
-          <td><span class="rating_font"><%= generate_stars(@resource.try(:reviews).average("rating").try(:round_point5)).html_safe %></span></td>
+          <td><span class="subtitle_large_gray padded_cell">Average Rating</span></td>
+          <td><span class="rating_font">
+                <%= generate_stars(@resource.try(:reviews).average("rating").try(:round_point5)).html_safe %>
+                <%= "(#{@resource.reviews_count})" %>
+              </span></td>
         </tr>
 
         <tr>
-          <td><span class="subtitle_large padded_cell">Views</span></td>
+          <td><span class="subtitle_large_gray padded_cell">Views</span></td>
           <td><span class="stats"><%= @resource.views_count %></span></td>
         </tr>
         <tr>
-          <td><span class="subtitle_large padded_cell">Votes</span></td>
+          <td><span class="subtitle_large_gray padded_cell">Votes</span></td>
           <td><span class="stats"><%=  @resource.votes_count %></span></td>
         </tr>
         <tr>
-          <td><span class="subtitle_large padded_cell">Downloads</span></td>
+          <td><span class="subtitle_large_gray padded_cell">Downloads</span></td>
           <td><span class="stats"><%=  @resource.downloads_count %></span></td>
         </tr>
       </table>

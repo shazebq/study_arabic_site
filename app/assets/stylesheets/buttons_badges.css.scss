@@ -29,6 +29,7 @@ $light: #2FBCB7;
 {
   @extend .general_badge;
   background-color: $dark_gray;
+  line-height: 23px;
 }
 
 // when you have text next to a button

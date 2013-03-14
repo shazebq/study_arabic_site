@@ -71,11 +71,25 @@
 </div>
 
 <% content_for :side_bar do %>
-  <div>
-    Post Stats:<br />
-    123 views<br />
-    23 up votes<br /><br />
-  </div>
+    <%= render partial: "categories/side_bar_categories", locals: { item: @forum_post } %> 
+
+    
+    <div class="subtitle_large margin_bottom">Question Statistics</div>
+    <table>
+        <tr>
+          <td><span class="subtitle_large_gray padded_cell">Views</span></td>
+          <td><span class="stats"><%= @forum_post.views_count %></span></td>
+        </tr>
+        <tr>
+          <td><span class="subtitle_large_gray padded_cell">Votes</span></td>
+          <td><span class="stats"><%=  @forum_post.votes_count %></span></td>
+        </tr>
+        <tr>
+          <td><span class="subtitle_large_gray padded_cell">Answers</span></td>
+          <td><span class="stats"><%=  @forum_post.answers_count %></span></td>
+        </tr>
+    </table>
+
 <% end %>
 
 <!--comments-->
