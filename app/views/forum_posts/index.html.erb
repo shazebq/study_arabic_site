@@ -6,6 +6,8 @@
 
 <%= render partial: "shared/index_list" %>
 
+<%= render partial: "shared/pagination_links", locals: { items: @items } %>
+
 <% content_for(:side_bar) do %>
     <h4>Forum Categories</h4>
     <!--link to all categories-->
