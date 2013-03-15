@@ -1,0 +1,41 @@
+$(document).ready(function() { 
+    $(".form_rating").on("click", "i", function() {
+        // if this is an empty star, then do this
+        if ($(this).hasClass("icon-star-empty"))
+        {
+          $(this).removeClass("icon-star-empty");
+          $(this).prevAll().removeClass("icon-star-empty");
+          $(this).addClass("icon-star");
+          $(this).prevAll().addClass("icon-star");
+
+          // assing the selected rating to the hidden html element
+          $("#rating").val(this.id);
+        }
+        // if this is a filled star, then do this
+        else if ($(this).hasClass("icon-star"))
+        {
+          $(this).nextAll().addClass("icon-star-empty");
+          // assing the selected rating to the hidden html element
+          $("#rating").val(this.id);
+        }
+    });
+
+    $(".form_rating > i").hover(
+        function() {
+          $(this).css("color", "orange");        
+          $(this).prevAll().css("color", "orange");
+        },
+
+        function() {
+          $(this).css("color", "gray");
+          $(this).prevAll().css("color", "gray");
+        }
+    );
+});
+
+
+
+
+
+
+

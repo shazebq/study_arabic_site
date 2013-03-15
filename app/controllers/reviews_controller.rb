@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    return render text: params
     @reviewable = get_reviewable(params)
     @review = @reviewable.reviews.new(params[:review])
     @review.user_id = current_user.id

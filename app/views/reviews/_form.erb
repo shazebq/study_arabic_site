@@ -1,16 +1,15 @@
-<%= form_for([@reviewable, @review]) do |f| %>
-    <% if @review.errors.any? %>
-        <div id="error_explanation" class="alert alert-error">
-          <% pluralize(@review.errors.count, "error") %>
-          Your review could not be submitted.
-          <ul>
-            <% @review.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+<% if @review.errors.any? %>
+    <div class="error_alert">
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
+        <% @review.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+<% end %>
 
+<%= form_for([@reviewable, @review]) do |f| %>
     <div class="field">
       <%= f.label :title  %>
       <%= f.text_field :title %>
@@ -26,11 +25,17 @@
       <%= f.select :rating, Hash[(1..10).to_a.map { |i| [i, i] }] %>
     </div>
 
-    <br />
+    <div class="form_rating"><%= get_star_string(5) %></div>
+
+    <%= hidden_field_tag "rating", "yahooo" %>
+      
 
     <div class="actions">
-      <%= f.submit("Submit") %>
+      <%= f.submit("Submit", class: "btn_custom") %>
     </div>
 <% end %>
 
 <!--comments-->
+
+
+

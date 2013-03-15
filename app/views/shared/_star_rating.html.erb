@@ -1,4 +1,4 @@
-<span class="rating_font">
+<span class="subtitle_large_gray">
   <%= generate_stars(item.try(:reviews).average("rating").try(:round_point5)).html_safe %>
   <%= "(#{pluralize(item.try(:reviews_count), "review")})" %>
 </span>

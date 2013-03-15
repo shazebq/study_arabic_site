@@ -11,5 +11,7 @@ class Review < ActiveRecord::Base
 
   validates :title, length: { maximum: 65 }
   validates :content, length: { maximum: 5000 }
-
+  validates :rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
 end
+
+# comment
