@@ -21,6 +21,8 @@ ArabicProject::Application.routes.draw do
     end
   end
 
+  resources :articles
+
   resources :centers do
     resources :reviews
     get 'search', :on => :collection

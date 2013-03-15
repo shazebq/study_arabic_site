@@ -28,7 +28,18 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @reviewable = get_reviewable(params)
     @review = Review.find(params[:id])
+  end
+
+  def update
+    @reviewable = get_reviewable(params)
+    @review = Review.find(params[:id])
+    if @review.update_attributes(params[:review])
+      flash[:notice] = "Your review has been successfully updated"
+    else
+      render "edit"
+    end
   end
 
   def destroy
@@ -38,3 +49,12 @@ class ReviewsController < ApplicationController
 end
 
 #comments
+#def update
+#    @resource = Resource.find(params[:id])
+#    if @resource.update_attributes(params[:resource])
+#      flash[:notice] = "Your question has been updated"
+#      redirect_to @resource
+#    else
+#      render "edit"
+#    end
+#  end

@@ -48,6 +48,12 @@ describe "new center page" do
     specify "clicking the submit button should create a new address record as well" do
       expect { click_button "Submit" }.to change(Address, :count)
     end
+
+    specify "the center that is created belongs to the currently signed in user" do
+      it "is a test" do
+        current_user.first_name
+      end
+    end
   end
 end
 

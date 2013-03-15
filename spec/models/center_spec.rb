@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Center do
   let!(:country1) { FactoryGirl.create(:country) }
   let!(:country2) { FactoryGirl.create(:country) }
-  let!(:address1) { FactoryGirl.create(:address, country_id: country1.id) }
-  let!(:address2) { FactoryGirl.create(:address, country_id: country2.id) }
+  let!(:address1) { FactoryGirl.create(:address, country_id: country1.id, city_name: "Cairo") }
+  let!(:address2) { FactoryGirl.create(:address, country_id: country2.id, city_name: "Cairo") }
 
   let!(:center1) { FactoryGirl.create(:center, address_id: address1.id) }
   let!(:review1a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "Center", reviewable_id: center1.id) }

@@ -1,0 +1,43 @@
+<%= form_for(@article) do |f| %>
+  <% if @article.errors.any? %>
+    <div class="error_alert">
+      Your submission could not be accepted. Please correct the following errors:
+      <div class="bold">
+        <% @article.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :title  %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :category_ids, "Category" %>
+      <select id="article_category_ids" name="article[category_ids][]" data-placeholder="Categories"
+              class="chzn-select" multiple tabindex="6"  multiple="multiple">
+        <option value=""></option>
+        <%= render :partial => 'forum_posts/chosen_categories', locals: {:category_name => "Arabic Language", :label => "Arabic Language" } %>
+        <%= render :partial => 'forum_posts/chosen_categories', locals: {:category_name => "Study Abroad" , :label => "Study Abroad (general)" } %>
+        <%= render :partial => 'forum_posts/chosen_categories', locals: {:category_name => "Countries" , :label => "Study Abroad (country specific)" } %>
+      </select>
+    </div>
+
+    <div class="field">
+      <%= f.label :content, "Content"  %>
+      <%= f.text_area :content %>
+    </div>
+
+    <p class="bold">Add some photos to go along with your article</p>
+    <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
+      <div><%= image_form.file_field :photo %></div>
+    <% end %>
+
+
+    <div class="actions">
+      <%= f.submit("Submit", class: "btn_custom") %>
+    </div>
+<% end %>

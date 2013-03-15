@@ -11,8 +11,8 @@ class Address < ActiveRecord::Base
   validates :address_line, length: { maximum: 65 }
 
   # sort of a virtual attribute
-  def city_name
-    self.city.try(:name) 
-  end
+  #def city_name
+  #  self.city.try(:name) 
+  #end
 end
 
