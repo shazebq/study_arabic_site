@@ -15,6 +15,7 @@ $(document).ready(function() {
         else if ($(this).hasClass("icon-star"))
         {
           $(this).nextAll().addClass("icon-star-empty");
+          $(this).nextAll().removeClass("icon-star");
           // assigning the selected rating to the hidden html element
           $("#rating").val(this.id);
         }
