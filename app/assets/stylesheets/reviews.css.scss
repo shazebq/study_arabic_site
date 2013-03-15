@@ -1,5 +1,6 @@
 $contrast: #C65800;
 $dark_gray: #909090;
+$star_color: #FFAD00;
 
 .rating_container
 {
@@ -27,7 +28,7 @@ $dark_gray: #909090;
             content: "\f006\f006\f006\f006\f006";
         }
         &:after { 
-            color: $contrast; 
+            color: $star_color; 
             position:absolute; 
             left:0; 
         }
@@ -55,12 +56,11 @@ $dark_gray: #909090;
 .form_rating
 {
   font-size: 30px;
-  //color: $dark_gray;
 }
 
 i.icon-star
 {
-  color: orange;
+  color: $star_color;
 }
 
 i.icon-star-empty
@@ -76,7 +76,7 @@ i.icon-star-empty
 
 i.star_enter
 {
-  color: orange;
+  color: $star_color;
 }
 
 i.star_leave

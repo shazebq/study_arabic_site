@@ -22,14 +22,13 @@
 
     <div class="field">
       <%= f.label :rating  %>
-      <%= f.select :rating, Hash[(1..10).to_a.map { |i| [i, i] }] %>
+      <div class="form_rating"><%= get_star_string(5) %></div>
     </div>
 
-    <div class="form_rating"><%= get_star_string(5) %></div>
+    <!--this is for the rating-->
+    <%= hidden_field_tag "review[rating]", "" %>
 
-    <%= hidden_field_tag "rating", "yahooo" %>
-      
-
+    <br />
     <div class="actions">
       <%= f.submit("Submit", class: "btn_custom") %>
     </div>
