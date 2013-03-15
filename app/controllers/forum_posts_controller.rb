@@ -9,8 +9,7 @@ class ForumPostsController < CategorizableItemsController
   end
 
   def create
-    @forum_post = ForumPost.new(params[:forum_post])
-    @forum_post.user_id = current_user.id
+    @forum_post = current_user.forum_posts.new(params[:forum_post])
     if @forum_post.save
       flash[:notice] = "Your question has been added"
       redirect_to forum_post_path(@forum_post)

@@ -29,6 +29,7 @@
 
     </div>
 
+    <br />
     <div>
       <span class="subtitle_large middle">Have you used this resource?</span>
       <%= button_to("Write a Review", new_resource_review_path(@resource), class: "btn_custom left_margin", method: :get) %>
@@ -49,7 +50,7 @@
         <tr>
           <td><span class="subtitle_large_gray padded_cell">Average Rating</span></td>
           <td><span class="rating_font">
-                <%= generate_stars(@resource.try(:reviews).average("rating").try(:round_point5)).html_safe %>
+                <%= generate_stars(@resource.try(:reviews).average("rating").try(:round_point5)) %>
                 <%= "(#{@resource.reviews_count})" %>
               </span></td>
         </tr>

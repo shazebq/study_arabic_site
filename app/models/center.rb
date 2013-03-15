@@ -15,6 +15,7 @@ class Center < ActiveRecord::Base
   after_initialize :init
   before_destroy :destroy_address 
   belongs_to :address
+  belongs_to :user
   has_many :images, as: :imageable, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
   accepts_nested_attributes_for :address, :images

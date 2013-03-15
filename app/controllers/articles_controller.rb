@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = current_user.articles.new(params[:article])
     if @article.save
       flash[:notice] = "Your article has been successfully created"
       redirect_to root_path
@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
 
   end
 

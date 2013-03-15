@@ -1,4 +1,5 @@
 require "spec_helper"
+include Devise::TestHelpers
 
 describe "new center page" do
   let(:user) { FactoryGirl.create(:user) } 
@@ -49,12 +50,7 @@ describe "new center page" do
       expect { click_button "Submit" }.to change(Address, :count)
     end
 
-    specify "the center that is created belongs to the currently signed in user" do
-      it "is a test" do
-        current_user.first_name
-      end
-    end
   end
 end
 
-# comments
+# comment

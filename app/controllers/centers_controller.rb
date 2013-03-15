@@ -28,7 +28,7 @@ class CentersController < ApplicationController
 
   def create
     revised_params = handle_city_creation(params[:center])
-    @center = Center.new(revised_params)
+    @center = current_user.centers.new(revised_params)
     if @center.save 
       flash[:notice] = "Your entry was successfully submitted"
       redirect_to @center

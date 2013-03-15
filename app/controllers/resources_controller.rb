@@ -9,8 +9,7 @@ class ResourcesController < CategorizableItemsController
 
   def create
     #return render text: params testing
-    @resource = Resource.new(params[:resource])
-    @resource.user_id = current_user.id
+    @resource = current_user.resources.new(params[:resource])
     if @resource.save
       flash[:notice] = "Your resource has been successfully saved"
       redirect_to resource_path(@resource)
