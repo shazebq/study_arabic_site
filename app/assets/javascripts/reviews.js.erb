@@ -8,27 +8,27 @@ $(document).ready(function() {
           $(this).addClass("icon-star");
           $(this).prevAll().addClass("icon-star");
 
-          // assing the selected rating to the hidden html element
+          // assigning the selected rating to the hidden html element
           $("#rating").val(this.id);
         }
         // if this is a filled star, then do this
         else if ($(this).hasClass("icon-star"))
         {
           $(this).nextAll().addClass("icon-star-empty");
-          // assing the selected rating to the hidden html element
+          // assigning the selected rating to the hidden html element
           $("#rating").val(this.id);
         }
     });
 
     $(".form_rating > i").hover(
         function() {
-          $(this).css("color", "orange");        
-          $(this).prevAll().css("color", "orange");
+          $(this).addClass("star_enter");        
+          $(this).prevAll().addClass("star_enter");
         },
 
         function() {
-          $(this).css("color", "gray");
-          $(this).prevAll().css("color", "gray");
+          $(this).removeClass("star_enter");        
+          $(this).prevAll().removeClass("star_enter");
         }
     );
 });

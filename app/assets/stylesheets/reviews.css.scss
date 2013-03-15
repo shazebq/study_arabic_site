@@ -55,8 +55,40 @@ $dark_gray: #909090;
 .form_rating
 {
   font-size: 30px;
+  //color: $dark_gray;
+}
+
+i.icon-star
+{
+  color: orange;
+}
+
+i.icon-star-empty
+{
+  color: $dark_gray; 
+}
+
+.form_rating > i:hover
+{
+  cursor: hand;
+  cursor: pointer;
+}
+
+i.star_enter
+{
+  color: orange;
+}
+
+i.star_leave
+{
   color: $dark_gray;
 }
+
+
+
+
+
+
 
 //.form_rating > i:hover:before {
 //   content: "<i class='icon-star'></i>";
