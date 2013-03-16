@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :resources, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :centers
+  has_many :articles
   has_one :image, as: :imageable, dependent: :destroy
 
   belongs_to :profile, polymorphic: true

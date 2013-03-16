@@ -12,6 +12,7 @@ describe ForumPost do
   it { should respond_to(:votes) }
   it { should respond_to(:answers)}
   it { should respond_to(:views)}
+  it { should respond_to(:comments)}
   #comment
 
   describe "count_vote" do

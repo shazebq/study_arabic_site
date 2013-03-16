@@ -21,7 +21,11 @@ ArabicProject::Application.routes.draw do
     end
   end
 
-  resources :articles
+  resources :articles do
+    member do
+      post "vote"
+    end
+  end
 
   resources :centers do
     resources :reviews

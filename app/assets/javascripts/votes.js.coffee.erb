@@ -1,6 +1,6 @@
 $(document).ready ->
   $(".vote").bind("click", ->
-    # Answer, Review or ForumPost
+    # Answer, Review, Article or ForumPost
     type = $(this).attr("data-voteable_type")
 
     if type == "Answer"
@@ -9,6 +9,8 @@ $(document).ready ->
       url = "/forum_posts/#{$(this).attr("data-forum_post_id")}/vote"
     else if type == "Resource"
       url = "/resources/#{$(this).attr("data-resource_id")}/vote"
+    else if type == "Article"
+      url = "/articles/#{$(this).attr("data-article_id")}/vote"
 
     if url
         $.ajax
@@ -25,7 +27,7 @@ $(document).ready ->
             # change the number of votes displayed
             if type == "Answer"
                 ($(this).parent().parent()).find(".vote_count").html("+" + data)
-            else if type == "ForumPost" || type == "Resource"
+            else
                 $(".vote_count").html("+" + data)
           error: (data, textStatus) =>
             alert("Sign in or sign up to vote!")

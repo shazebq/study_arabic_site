@@ -20,6 +20,8 @@ class ForumPost < ActiveRecord::Base
   has_many :views, as: :viewable, dependent: :destroy
   has_many :answers, dependent: :destroy
 
+  has_many :comments, as: :commentable, dependent: :destroy
+
   validates :title, :content, :category_ids, presence: true
 
   validates :title, length: { maximum: 130 }

@@ -13,7 +13,7 @@
 <div class="row">
   <%= render partial: "shared/vote_arrows", locals: { item: @forum_post } %>
 
-  <div class="span8">
+  <div class="span8_custom">
     <%= render partial: "shared/voteable_item_title", locals: { item: @forum_post }  %>
     <div class="post">
       <%=  @forum_post.content %>

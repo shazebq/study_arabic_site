@@ -8,6 +8,7 @@ describe Answer do
 
   it { should respond_to(:user) }
   it { should respond_to(:forum_post) }
+  it { should respond_to(:comments) }
 
   describe "count_vote" do
     it "adds the vote to the forum if it is voted up and removes the vote if it is voted down" do
