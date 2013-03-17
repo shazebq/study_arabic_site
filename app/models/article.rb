@@ -1,5 +1,9 @@
 class Article < ActiveRecord::Base
+  extend Searching
   include Voting
+  include Scoping
+  include PgSearch
+
   attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids , :images_attributes
   after_initialize :init
 
@@ -22,8 +26,11 @@ class Article < ActiveRecord::Base
 
   accepts_nested_attributes_for :images
 
+  SCOPES = ["most_recent", "most_views", "most_votes"]
+
   def init
     self.views_count ||= 0
     self.votes_count ||= 0
+    self.comments_count ||= 0
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316042457) do
+ActiveRecord::Schema.define(:version => 20130317203527) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(:version => 20130316042457) do
     t.text     "content"
     t.integer  "views_count"
     t.integer  "votes_count"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "comments_count"
   end
 
   create_table "categories", :force => true do |t|

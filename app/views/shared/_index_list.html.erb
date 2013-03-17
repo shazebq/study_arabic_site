@@ -23,10 +23,14 @@
           <% if item.class == "Resource".constantize %>
             <%=  item.downloads_count %><br />
             <span class="info"><%= simple_pluralize(item.downloads_count, "Download") %></span>
-          <% else %>
+          <% elsif item.class == "ForumPost".constantize %>
             <%=  item.answers_count %><br />
             <span class="info"><%= simple_pluralize(item.answers_count, "Answer") %></span>
+          <% elsif item.class == "Article".constantize %>
+            <%=  item.comments_count %><br />
+            <span class="info"><%= simple_pluralize(item.comments_count, "Comment") %></span>
           <% end %>
+
         </div>
       </div>
     </div>
