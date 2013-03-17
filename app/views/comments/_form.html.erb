@@ -1,6 +1,29 @@
-<%= form_for([@article, Comment.new]) do |f| %>
+<% if params[:action] == "edit" %>
+  <% comment = @comment %>
+  <% if comment.errors.any? %>
+  <div class="error_alert">
+    Your update could not be accepted. Please correct the following errors:
+    <div class="bold">
+      <% comment.errors.full_messages.each do |msg| %>
+        <i class="icon-warning-sign"></i> <%= msg %><br />
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+  <% comment = Comment.new %>
+<% end %>
+
+
+<%= form_for([@article, comment]) do |f| %>
   <div class="field">
     <%= f.text_area :content, class: "comment_text_box" %>
   </div>
+  <% if params[:action] == "edit" %>
+    <%= f.submit "Update Comment", class: "btn_custom" %>
+  <% else %>
     <%= f.submit "Submit Comment", class: "btn_custom" %>
+  <% end %>
 <% end %>
+
+

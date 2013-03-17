@@ -5,7 +5,7 @@ describe "articles show page" do
   create_categories
   create_student_records
   let!(:article) { FactoryGirl.create(:article, title: "Advice for everyone", category_ids: [Category.first.id], user_id: user.id) }
-  let!(:comment) { FactoryGirl.create(:comment, content: "fabulous article", commentable_id: article.id, commentable_type: "Article") } 
+  let!(:comment) { FactoryGirl.create(:comment, content: "fabulous article", commentable_id: article.id, commentable_type: "Article", user_id: user.id) } 
 
 
   before :each do
@@ -53,6 +53,28 @@ describe "articles show page" do
 
     it "should create a comment and redirect to the same article path" do
       expect { click_button "Submit Comment" }.to change(Comment, :count).by(1)   
+    end
+  end
+
+  describe "clicking on the edit or delete link for a comment" do
+    before :each do
+      sign_in_user(user)
+      visit article_path(article)
+      fill_in "comment_content", with: "Fabulous article. Keep up the good work!"
+    end
+
+    describe "clicking on edit link" do
+      it "should redirect to the edit comment path" do
+        click_link "edit_comment#{comment.id}"
+        current_path.should == edit_article_comment_path(article, comment)
+      end
+
+    end
+    
+    describe "clicking on the delete link" do
+      it "should delete the comment" do
+        expect { click_link "delete_comment#{comment.id}" }.to change(Comment, :count).by(-1)   
+      end
     end
   end
 end

@@ -14,6 +14,32 @@ class CommentsController < ApplicationController
     flash[:notice] = "Your comment has been successfully added" if @comment_new.valid?
     render "articles/show"
   end
+
+  def edit
+    @commentable = get_somethingable(params) 
+    instance_variable_set("@#{@commentable.class.name.underscore}", @commentable)
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @commentable = get_somethingable(params)
+    instance_variable_set("@#{@commentable.class.name.underscore}", @commentable)
+    @comment = Comment.find(params[:id])
+    @comment.update_attributes(params[:comment])
+    if @comment.valid?
+      flash[:notice] = "Your comment has been updated"
+      redirect_to @commentable 
+    else
+      render "edit" 
+    end
+  end
+
+  def destroy
+    @article = Article.find(params[:article_id])
+    Comment.find(params[:id]).destroy
+    flash[:notice] = "Your comment has been successfully deleted"
+    redirect_to article_path(@article)
+  end
 end
 
 
