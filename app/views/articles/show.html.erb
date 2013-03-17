@@ -1,10 +1,10 @@
 <%= provide :title, @article.title %>
 
-<% if @comment_submitted.try(:errors).try(:any?) %>
+<% if @comment_new.try(:errors).try(:any?) %>
     <div class="error_alert">
       Your submission could not be accepted. Please correct the following errors:
       <div class="bold">
-        <% @comment_submitted.errors.full_messages.each do |msg| %>
+        <% @comment_new.errors.full_messages.each do |msg| %>
           <i class="icon-warning-sign"></i> <%= msg %><br />
         <% end %>
       </div>
@@ -23,16 +23,16 @@
 
     <div class="subtitle_large margin_bottom">Post a Comment</div>
     <% if user_signed_in? %>
-      <%= render "comments/form" %>  
+      <%= render partial: "comments/form" %>  
     <% else %>
-      <%= render "shared/reg_or_sign_in" %> 
+      <%= render partial: "shared/reg_or_sign_in" %> 
     <% end %>
 
     <div class="subtitle_large margin_bottom"><%= pluralize(@article.comments.count, "comment") %></div>
 
-    <% @article.comments.each do |c| %>
+    <% @article.comments.each do |comment| %>
       <div class="custom_well">
-        <%= render "shared/nested_item_view", locals: { item: c, parent: @article } %>
+        <%= render partial: "shared/nested_item_view", locals: { item: comment, parent: @article } %>
       </div>
     <% end %>
 

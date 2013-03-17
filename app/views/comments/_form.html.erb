@@ -1,4 +1,6 @@
 <%= form_for([@article, Comment.new]) do |f| %>
+  <div class="field">
     <%= f.text_area :content, class: "comment_text_box" %>
+  </div>
     <%= f.submit "Submit Comment", class: "btn_custom" %>
 <% end %>

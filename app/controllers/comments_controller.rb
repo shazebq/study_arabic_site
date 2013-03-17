@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
     # for the possibility that the comment was submitted with an error
     @comment_new = @commentable.comments.create(params[:comment]) 
     flash[:notice] = "Your comment has been successfully added" if @comment_new.valid?
-    render "articles/show" 
+    render template: "articles/show" 
+    #redirect_to article_path(Article.find(2))
   end
 end
 
