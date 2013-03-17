@@ -6,6 +6,5 @@ class Comment < ActiveRecord::Base
   
   scope :saved_records, where("ID IS NOT ?", nil)
 
-  validates :user_id, presence: true
-  validates :content, presence: true, length: { maximum: 5000 } 
+  validates :user_id, :content, presence: true
 end

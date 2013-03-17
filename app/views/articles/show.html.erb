@@ -30,7 +30,7 @@
 
     <div class="subtitle_large margin_bottom"><%= pluralize(@article.comments.count, "comment") %></div>
 
-    <% @article.comments.each do |comment| %>
+    <% @article.comments.saved_records.each do |comment| %>
       <div class="custom_well">
         <%= render partial: "shared/nested_item_view", locals: { item: comment, parent: @article } %>
       </div>
