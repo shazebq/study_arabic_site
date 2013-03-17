@@ -24,25 +24,7 @@
     <% if user_signed_in? %>
       <%= render "answers/form" %>
     <% else %>
-    <div class="custom_alert">
-      <div class="row">
-        <div class="span3">
-          <strong>Already have an account?</strong>
-        </div>
-        <div class="span2">
-          <%= button_to("Sign In", new_user_session_path, class: "btn") %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span3">
-          <strong>Don't have an account yet?</strong>
-        </div>
-        <div class="span2">
-          <%= button_to("Register", new_student_profile_path, method: "get", class: "btn") %>
-        </div>
-      </div>
-    </div>
+      <%= render "shared/reg_or_sign_in" %> 
     <% end %>
 
 

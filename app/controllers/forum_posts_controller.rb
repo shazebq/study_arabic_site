@@ -21,7 +21,7 @@ class ForumPostsController < CategorizableItemsController
 
   def show
     @forum_post = ForumPost.find(params[:id])
-    @answer = ForumPost.find(@forum_post.id).answers.new
+    @answer = @forum_post.answers.new
   end
 
   def edit

@@ -1,0 +1,19 @@
+<div class="custom_alert">
+  <div class="row">
+    <div class="span3">
+      <span class="middle"><strong>Already have an account?</strong></span>
+    </div>
+    <div class="span2">
+      <span class="middle"><%= button_to("Sign In", new_user_session_path, class: "btn middle") %></span>
+    </div>
+  </div>
+                                                                                          
+  <div class="row">
+    <div class="span3">
+      <span class="middle"><strong>Don't have an account yet?</strong></span>
+    </div>
+    <div class="span2">
+      <%= button_to("Register", new_student_profile_path, method: "get", class: "btn") %>
+    </div>
+  </div>
+</div>

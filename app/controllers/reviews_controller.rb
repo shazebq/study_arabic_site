@@ -3,12 +3,12 @@ class ReviewsController < ApplicationController
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def new
-    @reviewable = get_reviewable(params)
+    @reviewable = get_somethingable(params)
     @review = @reviewable.reviews.new
   end
 
   def create
-    @reviewable = get_reviewable(params)
+    @reviewable = get_somethingable(params)
     @review = @reviewable.reviews.new(params[:review])
     @review.user_id = current_user.id
     if @review.save
@@ -28,12 +28,12 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @reviewable = get_reviewable(params)
+    @reviewable = get_somethingable(params)
     @review = Review.find(params[:id])
   end
 
   def update
-    @reviewable = get_reviewable(params)
+    @reviewable = get_somethingable(params)
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
       flash[:notice] = "Your review has been successfully updated"

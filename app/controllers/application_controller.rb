@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   end
 
   # necessary because reviews are polymorphic
-  def get_reviewable(params)
+  def get_somethingable(params)
     params.each do |key, value|
       if key =~ /(.+)_id$/
         return $1.classify.constantize.find(value)

@@ -25,6 +25,8 @@ ArabicProject::Application.routes.draw do
     member do
       post "vote"
     end
+
+    resources :comments
   end
 
   resources :centers do

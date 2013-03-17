@@ -1,23 +1,9 @@
 <!--for any nested item like comments or reviews  -->
 
   <div>
-
-    <% if item.is_a?(Review) %>
-      <span class="info">Posted by <%= link_to(item.try(:user).try(:first_name), item.user) %> </span>
-      <span class="info"><%= "#{distance_of_time_in_words(item.created_at, Time.now.in_time_zone)} ago" %></span>
-      <br />
-    <% end %>
+    <span class="info">Posted by <%= link_to(item.try(:user).try(:first_name), item.user) %> </span>
+    <span class="info"><%#= "#{distance_of_time_in_words(item.created_at, Time.now.in_time_zone)} ago" %></span>
     <%= item.content %>
   </div>
 
-
-  <div class="info">
-    <% if (user_signed_in?) && (current_user == item.user) %>
-                <span><%= link_to("Delete", send("#{parent.class.name.underscore}_#{item.class.name.underscore}_path", parent, item),
-                                  data: {confirm: "Are you sure?"}, method: :delete, id: "delete_#{item.class.name.downcase}#{item.id}") %>
-                </span>
-                <span><%= link_to("Edit", send("edit_#{parent.class.name.underscore}_#{item.class.name.underscore}_path", parent, item),
-                                  id: "edit_#{item.class.name.downcase}#{item.id}") %>
-                </span>
-    <% end %>
-  </div>
+  <%= render partial: "shared/delete_edit_nested", locals: { item: item, parent: parent } %>
