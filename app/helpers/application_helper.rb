@@ -42,7 +42,7 @@ module ApplicationHelper
     if image
       image_tag(image).html_safe
     else
-      image_tag("/images/rails.png").html_safe
+      image_tag("/images/thumb_sub.png").html_safe
     end
   end
 

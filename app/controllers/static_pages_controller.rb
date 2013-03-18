@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
                       "Resources" => "resources", "Articles" => "articles" }
 
   def home
+
   end
 
   def about_us

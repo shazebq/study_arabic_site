@@ -24,7 +24,7 @@ class Resource < ActiveRecord::Base
   # need this for paper clip
   has_attached_file :resource_file, styles: lambda { |attachment|
                                               if attachment.instance.resource_file_content_type != "application/msword" && attachment.instance.resource_file_content_type != "text/plain"
-                                                { :thumb => ["550x425", :png], :medium => ["1100x8500", :png] }
+                                                { :thumb => ["425x550#", :png], :medium => ["850x1100#", :png] }
                                               else
                                                 {}
                                               end
@@ -46,6 +46,5 @@ class Resource < ActiveRecord::Base
   end
 
 end
-
 
 # validates_attachment_content_type :uploaded_file, :content_type =>['application/pdf']
