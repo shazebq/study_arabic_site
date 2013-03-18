@@ -1,3 +1,28 @@
 <%= provide :title, "Article" %>
 
+<%= render partial: "shared/search_box", locals: { item_type: "Articles" } %>
+
+<%= render partial: "shared/filter_links" %>
+
 <%= render partial: "shared/index_list" %>
+
+<% content_for(:side_bar) do %>
+    <h4>Article Categories</h4>
+    <!--link to all categories-->
+    <ul class="nav nav-pills nav-stacked custom">
+      <% li_class1 = "active" unless @category %>
+      <li class="<%= li_class1 %> parent_links"><%= link_to("All Categories", articles_path(order_by: @current_scope)) %></li>
+    </ul>
+
+    <%= render :partial => 'categories/category_pills', locals: { :category_title => "Arabic Language",
+                                                      :parent_name => "Arabic Language" } %>
+
+    <%= render :partial => 'categories/category_pills', locals: { :category_title => "Study Abroad (General)",
+                                                      :parent_name => "Study Abroad" } %>
+
+    <%= render :partial => 'categories/category_pills', locals: { :category_title => "Study Abroad (Country Specific)",
+                                                      :parent_name => "Countries" } %>
+
+<% end %>
+
+

@@ -3,6 +3,9 @@ class Article < ActiveRecord::Base
   include Voting
   include Scoping
   include PgSearch
+  pg_search_scope :search, against: [:title, :content],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {categories: :name, comments: :content} # needed so it searches associated records as well
 
   attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids , :images_attributes
   after_initialize :init

@@ -25,8 +25,8 @@ ArabicProject::Application.routes.draw do
     member do
       post "vote"
     end
-
     resources :comments
+    get 'search', :on => :collection
   end
 
   resources :centers do
@@ -56,6 +56,7 @@ ArabicProject::Application.routes.draw do
   resources :categories, only: [:index] do
     resources :forum_posts
     resources :resources
+    resources :articles
   end
 
   # The priority is based upon order of creation:
