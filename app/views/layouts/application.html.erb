@@ -33,7 +33,7 @@
             <li class="<%= params[:controller] == "centers" ? "active_nav" : "not_active" %>"><%= link_to("Centers/Programs", centers_path) %></li>
             <li class="<%= params[:controller] == "teacher_profiles" ? "active_nav" : "not_active" %>"><%= link_to("Teachers", teacher_profiles_path) %></li>
             <li class="<%= params[:controller] == "resources" ? "active_nav" : "not_active" %>"><%= link_to("Resources", resources_path) %></li>
-            <li class="<%= params[:controller] == "articles" ? "active_nav" : "not_active" %>"><a href=#>Articles</a></li>
+            <li class="<%= params[:controller] == "articles" ? "active_nav" : "not_active" %>"><%= link_to("Articles", articles_path) %></li>
             <li class="dropdown <%= params[:controller] == "categories" || params[:controller] == "forum_posts" ? "active_nav" : "not_active" %>">
             <a class="dropdown-toggle disabled" data-toggle="dropdown" href="<%= categories_path %>">Forums
                 <b class="caret custom_caret"></b>
