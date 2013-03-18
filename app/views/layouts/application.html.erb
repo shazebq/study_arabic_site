@@ -8,18 +8,18 @@
 
 </head>
 <body>
-
 <div class="container" id="header"><!--div for logo and navigation-->
     <div class="row">
 
       <div class="span12 logo_container">
-        <div class="row">
+        <div class="row margin_top">
           <div class="span9">
-            <h2 class="white_font">StudyArabic.com</h2>
+                <span class="site_title">StudyArabic.com</span>
+
           </div>
           <div class="span3">
             <% if user_signed_in? %>
-                 You are signed in as <%= current_user.email %> | <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+                 <%= current_user.email %> | <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
             <% else %>
                 <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
             <% end %>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="row">
-          <div class="span10">
+          <div class="span8">
           <ul class="nav nav-tabs custom_nav nav_links">
             <li><%= link_to("Home", "/") %></a></li>
             <li class="<%= params[:controller] == "centers" ? "active_nav" : "not_active" %>"><%= link_to("Centers/Programs", centers_path) %></li>
@@ -49,6 +49,24 @@
             <% end %>
           </ul>
           </div><!--navbar-->
+
+          <div class="span4">
+              <div class="search_box_home">
+              <%= form_tag("/site_search", :method => "get", class: "form-search") do %>
+                <div class="field">
+                  <div class="form-inline">
+                    <div class="input-append input-prepend">
+                      <%= select_tag(:item_type, 
+                                    options_from_collection_for_select(StaticPagesController::SEARCH_OPTIONS, :last, :first), 
+                                    class: "select_box btn") %>
+                    <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", class: "span2", id: "search_input") %>
+                    <button class="btn" type="submit" name="commit" id="search_button"><i class="icon-search icon"></i></button>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              </div>
+          </div>
 
         </div><!--div for nav and search box-->
           

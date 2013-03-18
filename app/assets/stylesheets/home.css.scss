@@ -1,11 +1,44 @@
-.select_box
+select.select_box
 {
-  width: 160px;
+  width: 130px;
+  font-size: 10px !important;
+  text-align: left !important;
+  height: 24px;
 }
 
 .search_box_home
 {
-  //background-color: silver;
+    input, select, option 
+    {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;  
+    }
+}
+
+
+#search_input
+{
+  height: 24px;
+}
+
+#search_button
+{
+  height: 24px !important;
+}
+
+.align_top
+{
+  //vertical-align: text-bottom;
+}
+
+
+
+.search_box_home
+{
+  //border: solid 3px silver;
+  //border-radius: 5px;
+  //display: inline !important;
 }
 
 .no_border

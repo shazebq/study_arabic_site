@@ -1,16 +1,17 @@
 <%= provide :title, "StudyArabic.com" %>
 
 <div class="search_box_home">
-  <%= form_tag("/site_search", :method => "get") do %>
-    <div class="field">
-      <div class="form-inline">
+<%= form_tag("/site_search", :method => "get", class: "form-search") do %>
+  <div class="field">
+    <div class="form-inline">
+      <div class="input-append input-prepend">
         <%= select_tag(:item_type, 
-                      options_from_collection_for_select(StaticPagesController::SEARCH_OPTIONS, :last, :first), class: "select_box") %>
-        <div class="input-append">
-        <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text") %>
-        <button class="btn" type="submit" name="commit">Search</button>
-        </div>
+                      options_from_collection_for_select(StaticPagesController::SEARCH_OPTIONS, :last, :first), 
+                      class: "select_box btn") %>
+      <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", class: "span2") %>
+      <button class="btn" type="submit" name="commit"><i class="icon-search icon"></i></button>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
