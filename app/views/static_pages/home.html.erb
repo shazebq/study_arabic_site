@@ -9,36 +9,25 @@
 </div>
 
 <div class="row">
-  <div class="span3">
-    <%= image_tag(@feature_article.images.first.photo(:large)) %>
-  </div>
-  <div class="span6">
-    <%= truncate_text(simple_format(@feature_article.content), 750, @feature_article) %>
+  <div class="span9">
+    <%= image_tag(@feature_article.images.first.photo(:medium), class: "floatLeft") %>
+    <%= truncate_text(simple_format(@feature_article.content), 675, @feature_article) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>
 
 <div class="row">
   <div class="article_span">
-
-    <div class="row">
-      <div class="article_span">
-        <div class="subtitle_large"><%= link_to(@articles.first.title, @articles.first) %></div>
-        <%= render partial: "articles/author_line", locals: { item: @articles.first } %>
-      </div>
-      <div class="thumb_span">
-        <%= image_tag(@articles.first.images.first.photo(:thumb)) %>
-      </div>
-      <div class="article_text_span">
-        <%= truncate_text(simple_format(@articles.first.content), 220, @articles.first) %>
-      </div>
-    </div>
-
+      <div class="subtitle_large"><%= link_to(@articles.first.title, @articles.first) %></div>
+      <div><%= render partial: "articles/author_line", locals: { item: @articles.first } %></div>
+      <%= image_tag(@articles.first.images.first.photo(:thumb), class: "floatLeft" ) %>
+      <%= truncate_text(simple_format(@articles.first.content), 350, @articles.first) %>
   </div>
   <div class="article_span_no_border">
       <div class="subtitle_large"><%= link_to(@articles.last.title, @articles.last) %></div>
-      <%= render partial: "articles/author_line", locals: { item: @articles.last } %>
-      <%= truncate_text(simple_format(@articles.last.content), 300, @articles.last) %>
+      <div><%= render partial: "articles/author_line", locals: { item: @articles.last } %></div>
+      <%= image_tag(@articles.last.images.first.photo(:thumb), class: "floatLeft" ) %>
+      <%= truncate_text(simple_format(@articles.last.content), 350, @articles.last) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>

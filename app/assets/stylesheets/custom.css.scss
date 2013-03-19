@@ -331,19 +331,17 @@ h3
   width: 333px;
 }
 
-.thumb_span
-{
-  @extend .span2;
-  width: 100px;
-  margin-right: 6px;
+img.floatLeft 
+{ 
+    float: left; 
+    margin: 5px; 
+}
+img.floatRight 
+{ 
+    float: right; 
+    margin: 5px; 
 }
 
-.article_text_span
-{
-  @extend .span2;
-  width: 200px;
-  margin-left: 0;
-}
 
 #myCarousel
 {
