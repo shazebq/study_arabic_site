@@ -11,7 +11,7 @@
       <% if params[:controller] == "users" && user_type(item) == "Teacher"  %>
           <p class="specialties"><%= item.profile.try(:specialties)  %></p>
       <% end %>
-      <p><%= raw(truncate(description, length: 300, omission: (link_to "...", item), separator: " ")) %></p>
+      <p><%= truncate_text(description, 300, item) %></p>
     </div>
     <div class="span9 bottom_border_div"></div>
   </div>

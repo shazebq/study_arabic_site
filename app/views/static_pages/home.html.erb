@@ -1,8 +1,31 @@
 <%= provide :title, "StudyArabic.com" %>
 
-<%= image_tag(Article.find(7).images.first.photo.url(:orginal)) %>
+<!--featured article-->
+<div class="row">
+  <div class="span9">
+    <div class="subtitle_largest"><%= link_to(@feature_article.title, @feature_article) %></div>
+    <span class="info"><%= "By #{@feature_article.user.first_name} - #{time_ago_in_words(@feature_article.created_at)}" %></span>
+  </div>
+</div>
 
+<div class="row">
+  <div class="span3">
+    <%= image_tag(@feature_article.images.first.photo(:large)) %>
+  </div>
+  <div class="span6">
+    <%= truncate_text(simple_format(@feature_article.content), 750, @feature_article) %>
+  </div>
+  <div class="span9 bottom_border_div"></div>
+</div>
 
+<div class="row">
+  <% @articles.each do |article| %>
+    <div class="span2">
+      <div class="subtitle_large_color"><%= image_tag(article.images.first.photo(:medium)) %></div>
+      <div class="bold"><%= link_to(article.title, article) %></div> <!--try some text-->
+    </div>
+  <% end %>
+</div>
 
 <!--
 <div style="height: 220px; width: 275px; background-color: blue;"></div>

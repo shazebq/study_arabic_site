@@ -65,6 +65,12 @@ a:active {text-decoration:underline;}
   font-weight: bold;
 }
 
+.subtitle_largest
+{
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .subtitle_large_color
 {
   @extend .subtitle_large;

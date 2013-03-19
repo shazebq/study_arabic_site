@@ -36,6 +36,10 @@ module ApplicationHelper
     end
   end
 
+  def truncate_text(text, length, item)
+    raw(truncate(text, length: length, omission: (link_to "<span style='font-style: italic'> ...continue reading</span>".html_safe, item), separator: " ")) 
+  end
+
   # this should be used in any case where the image
   # is from the images table (nested polymorphic)
   def handle_image(image)

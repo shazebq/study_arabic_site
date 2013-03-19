@@ -3,7 +3,8 @@ class StaticPagesController < ApplicationController
                       "Resources" => "resources", "Articles" => "articles" }
 
   def home
-
+    @feature_article = Article.most_recent.first
+    @articles = Article.most_recent.limit(4).offset(1)
   end
 
   def about_us
