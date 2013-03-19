@@ -137,10 +137,9 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   padding-left: 25px;
   padding-right: 20px;
   border-radius: 15px;
-  min-height: 1000px; 
+  min-height: 1000px;
+  margin-bottom: 10px;
 }
-
-
 
 .custom_alert
 {
@@ -199,13 +198,8 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   margin-left: 0px;
   padding-left: 9px;
   border-left: 1px solid #cccccc;
+  min-height: 1000px; 
 }
-
-.main_content
-{
-  padding-right: 9px;
-}
-
 
 textarea
 {
@@ -323,7 +317,7 @@ h3
 
 
 // custom spans
-.span350
+.article_span
 {
   @extend .span2;
   width: 328px;
@@ -331,6 +325,25 @@ h3
   padding-right: 5px;
 }
 
+.article_span_no_border
+{
+  @extend .span2;
+  width: 333px;
+}
+
+.thumb_span
+{
+  @extend .span2;
+  width: 100px;
+  margin-right: 6px;
+}
+
+.article_text_span
+{
+  @extend .span2;
+  width: 200px;
+  margin-left: 0;
+}
 
 #myCarousel
 {

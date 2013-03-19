@@ -19,13 +19,28 @@
 </div>
 
 <div class="row">
-  <% @articles.each do |article| %>
-    <div class="span350">
-      <div class="subtitle_large"><%= link_to(article.title, article) %></div>
-      <%= render partial: "articles/author_line", locals: { item: article } %>
-      <%= truncate_text(simple_format(article.content), 300, article) %>
+  <div class="article_span">
+
+    <div class="row">
+      <div class="article_span">
+        <div class="subtitle_large"><%= link_to(@articles.first.title, @articles.first) %></div>
+        <%= render partial: "articles/author_line", locals: { item: @articles.first } %>
+      </div>
+      <div class="thumb_span">
+        <%= image_tag(@articles.first.images.first.photo(:thumb)) %>
+      </div>
+      <div class="article_text_span">
+        <%= truncate_text(simple_format(@articles.first.content), 220, @articles.first) %>
+      </div>
     </div>
-  <% end %>
+
+  </div>
+  <div class="article_span_no_border">
+      <div class="subtitle_large"><%= link_to(@articles.last.title, @articles.last) %></div>
+      <%= render partial: "articles/author_line", locals: { item: @articles.last } %>
+      <%= truncate_text(simple_format(@articles.last.content), 300, @articles.last) %>
+  </div>
+  <div class="span9 bottom_border_div"></div>
 </div>
 
 <!--
