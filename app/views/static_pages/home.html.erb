@@ -35,11 +35,21 @@
 <div class="subtitle_large_color margin_bottom">Have a Question? Browse Our Forums</div>
 <%= render "categories/categories_page" %>
 
-<!--
-<div style="height: 220px; width: 275px; background-color: blue;"></div>
-<br />
-<div style="height: 140px; width: 175px; background-color: blue;"></div>
-<br />
-<div style="height: 80px; width: 100px; background-color: blue;"></div>
-<br />
--->
+<% content_for :side_bar do %>
+    <div class="custom_well">
+      <div class="subtitle_large margin_bottom">Popular Questions</div>
+      <ul>
+        <% @questions.each do |question| %>
+          <li><span class="normal"><%= link_to(question.title, question) %></span></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="custom_well">
+      <div class="subtitle_large margin_bottom">Popular Forums</div>
+      <ul>
+        <% @forums.each do |forum| %>
+          <li><span class="normal"><%= link_to(forum.name, category_forum_posts_path(forum)) %></span></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

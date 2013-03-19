@@ -13,4 +13,11 @@ class Category < ActiveRecord::Base
 
   belongs_to :category_parent
 
+  def self.popular_forums
+    select("categories.*, COUNT(*)").
+    joins("JOIN categories_categorizables ON categories_categorizables.category_id = categories.id").
+    where("categorizable_type = ?", "ForumPost").
+    group("categories.id").
+    order("COUNT(*) DESC")
+  end
 end

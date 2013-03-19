@@ -5,6 +5,8 @@ class StaticPagesController < ApplicationController
   def home
     @feature_article = Article.most_recent.first
     @articles = Article.most_recent.limit(2).offset(1)
+    @questions = ForumPost.most_views.limit(5)
+    @forums = Category.popular_forums.limit(5)
   end
 
   def about_us

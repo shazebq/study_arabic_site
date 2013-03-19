@@ -1,0 +1,24 @@
+$dark_gray: #909090;
+$light: #BFDDDC;
+
+.custom_well
+{
+  ul
+  {
+    margin-left:0px;
+    padding-left:15px;
+    list-style-type: square;
+  }
+  
+  li
+  {
+    font-size: 16px; 
+    color: $dark_gray; 
+  }
+
+  .normal
+  {
+    font-size: 13px;
+  }
+}
+
