@@ -50,4 +50,12 @@
     <% end %>
   <% end %>
   <%= render partial: "side_bar_section", locals: { title: "Popular Forums" } %>
+
+  <% @list = capture do %>
+    <% @centers.each do |center| %>
+      <li><span class="normal"><%= link_to(center.name, center) %></span></li>
+    <% end %>
+  <% end %>
+  <% @extra_line = capture { "Explore #{ link_to("Arabic Centers", centers_path) } throughout the Middle East".html_safe } %>
+  <%= render partial: "side_bar_section", locals: { title: "Study Abroad" } %>
 <% end %>
