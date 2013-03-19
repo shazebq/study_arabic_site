@@ -36,20 +36,18 @@
 <%= render "categories/categories_page" %>
 
 <% content_for :side_bar do %>
-    <div class="custom_well">
-      <div class="subtitle_large margin_bottom">Popular Questions</div>
-      <ul>
-        <% @questions.each do |question| %>
-          <li><span class="normal"><%= link_to(question.title, question) %></span></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="custom_well">
-      <div class="subtitle_large margin_bottom">Popular Forums</div>
-      <ul>
-        <% @forums.each do |forum| %>
-          <li><span class="normal"><%= link_to(forum.name, category_forum_posts_path(forum)) %></span></li>
-        <% end %>
-      </ul>
-    </div>
+
+  <% @list = capture do %>
+    <% @questions.each do |question| %>
+      <li><span class="normal"><%= link_to(question.title, question) %></span></li>
+    <% end %>
+  <% end %>
+  <%= render partial: "side_bar_section", locals: { title: "Popular Questions" } %>
+
+  <% @list = capture do %>
+    <% @forums.each do |forum| %>
+      <li><span class="normal"><%= link_to(forum.name, category_forum_posts_path(forum)) %></span></li>
+    <% end %>
+  <% end %>
+  <%= render partial: "side_bar_section", locals: { title: "Popular Forums" } %>
 <% end %>
