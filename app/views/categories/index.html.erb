@@ -1,25 +1,3 @@
 <% provide :title, "Forum Categories" %>
 
-<div class="row categories_div">
-  <div class="span3">
-
-    <%= render :partial => 'category_list', locals: { :category_title => "Arabic Language",
-                                                      :parent_name => "Arabic Language" } %>
-
-  </div>
-
-  <div class="span3">
-
-    <%= render :partial => 'category_list', locals: { :category_title => "Study Abroad (General)",
-                                                      :parent_name => "Study Abroad" } %>
-
-  </div>
-
-  <div class="span3">
-
-    <%= render :partial => 'category_list', locals: { :category_title => "Study Abroad (Country)",
-                                                      :parent_name => "Countries" } %>
-
-  </div>
-
-</div>
+<%= render "categories_page" %>
