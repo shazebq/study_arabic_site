@@ -322,6 +322,14 @@ h3
 }
 
 
+// custom spans
+.span350
+{
+  @extend .span2;
+  width: 328px;
+  border-right: 1px solid #CCCCCC;
+  padding-right: 5px;
+}
 
 
 #myCarousel

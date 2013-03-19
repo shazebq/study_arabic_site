@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @feature_article = Article.most_recent.first
-    @articles = Article.most_recent.limit(4).offset(1)
+    @articles = Article.most_recent.limit(2).offset(1)
   end
 
   def about_us
