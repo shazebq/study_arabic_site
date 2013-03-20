@@ -102,14 +102,27 @@ describe "user show page" do
         user_new = FactoryGirl.create(:user, email: "wallyjones@example.com")
         sign_in_user(user_new)
         visit user_path(user)
-        click_button "Send Message"
+        click_link "Send Message"
       end
 
       it "should redirect to the new message page" do
-        current_path.should == new_message_path
+        current_path.should == new_user_message_path(user)
+      end
+    end
+
+    describe "send message button" do
+      context "when user is not logged in" do
+        before :each do
+          visit user_path(user)
+          click_link "Send Message"
+        end
+
+        it "should redirect to the the sign in page" do
+          current_path.should == new_user_session_path
+        end
       end
     end
   end
 end
 
-# commentss
+# comments

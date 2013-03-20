@@ -8,6 +8,7 @@ en:
       user:
       forum_post:
       answer:
+      message:
     attributes:
       user:
         email: "Email"
@@ -29,6 +30,8 @@ en:
         content: "Details"
       answer:
         content: "Answer"
+      message:
+        content: "Message"
     errors:
       models:
         user:
