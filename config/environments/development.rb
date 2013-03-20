@@ -36,6 +36,8 @@ ArabicProject::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  ENV['root_path'] =  "static_pages#home";
 end
 
 Paperclip.options[:command_path] = "/usr/local/bin/"

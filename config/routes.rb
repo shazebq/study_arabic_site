@@ -6,7 +6,7 @@ ArabicProject::Application.routes.draw do
 
   devise_for :users
 
-  root(to: "static_pages#home")
+  root(to: ENV["root_path"])
 
   resources :forum_posts do
     member do
@@ -34,7 +34,9 @@ ArabicProject::Application.routes.draw do
     get 'search', :on => :collection
   end
 
-  resources :users
+  resources :users do
+    resources :messages
+  end
 
   resources :teacher_profiles do
     resources :reviews

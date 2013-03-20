@@ -50,6 +50,11 @@ describe "user show page" do
     end
 
     describe "clicking on the review button" do
+      before :each do
+        sign_in_user(user)
+        visit user_path(user)
+      end
+
       it "should redirect to the teacher_review_path" do
         click_button("Write a Review")
         current_path.should == new_teacher_profile_review_path(teacher_profile) 
@@ -92,6 +97,18 @@ describe "user show page" do
       end
     end
 
+    describe "send message button" do
+      before :each do
+        user_new = FactoryGirl.create(:user, email: "wallyjones@example.com")
+        sign_in_user(user_new)
+        visit user_path(user)
+        click_button "Send Message"
+      end
+
+      it "should redirect to the new message page" do
+        current_path.should == new_message_path
+      end
+    end
   end
 end
 
