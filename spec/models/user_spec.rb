@@ -14,6 +14,8 @@ describe User do
   it { should respond_to(:profile) }
   it { should respond_to(:country) }
   it { should respond_to(:image) }
+  it { should respond_to(:sent_messages) }
+  it { should respond_to(:received_messages) }
 
   describe "validations" do
     before :each do

@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   has_many :articles
   has_many :comments
 
+  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"  
+  has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"  
+
   has_one :image, as: :imageable, dependent: :destroy
 
   belongs_to :profile, polymorphic: true
@@ -40,4 +43,4 @@ class User < ActiveRecord::Base
 end
 
 
-#comment
+#comments

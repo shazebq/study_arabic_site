@@ -21,9 +21,8 @@ class TeacherProfile < ActiveRecord::Base
   
   validates :university, :field_of_study, length: { maximum: 65 }
   validates :specialties, length: { maximum: 130 }
+ 
 
-
-  
   scope :price_option, (lambda do |price| 
     if price.blank?
       where("price_per_hour < ?", 0) 
