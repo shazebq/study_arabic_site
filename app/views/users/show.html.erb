@@ -33,18 +33,8 @@
 <% content_for :side_bar do %>
   <div class="subtitle_large margin_bottom"><%= "#{user_type(@user)} Statistics" %></div>
   <table>
-    <tr>
-      <td><span class="subtitle_large_gray padded_cell">Repuation Score</span></td>
-      <td><span class="stats"><%= "475" %></span></td>      
-    </tr>   
-    <tr>
-      <td><span class="subtitle_large_gray padded_cell">Questions Answered</span></td>
-      <td><span class="stats"><%= @user.answers.count %></span></td>      
-    </tr>
-    <tr>
-      <td><span class="subtitle_large_gray padded_cell">Resources Posted</span></td>
-      <td><span class="stats"><%= @user.resources.count %></span></td>      
-    </tr>
+    <%= render partial: "shared/table_row", locals: { key: "Questions Answered", value: @user.answers.count } %>
+    <%= render partial: "shared/table_row", locals: { key: "Resources Posted", value: @user.resources.count } %>
   </table>
 <% end %>
 

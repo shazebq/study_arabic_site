@@ -38,6 +38,8 @@ ArabicProject::Application.routes.draw do
     resources :messages
   end
 
+  resources :messages, only: "show"
+
   resources :teacher_profiles do
     resources :reviews
     get 'search', :on => :collection

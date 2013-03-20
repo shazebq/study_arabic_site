@@ -1,4 +1,4 @@
-<%= provide :title, "Your Inbox" %>
+<%= provide :title, "Your Messages" %>
 
 <table class="table">
   <tr>
@@ -11,8 +11,8 @@
   <tr>
     <td><input type="checkbox"></td>
     <td><%= rm.sender.first_name %></td>
-    <td><%= rm.subject %></td>
-    <td><%= rm.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+    <td><%= link_to(rm.subject, rm) %></td>
+    <td><%= date_and_time(rm.created_at) %></td>
   </tr>
 <% end %>
 </table>

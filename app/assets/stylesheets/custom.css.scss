@@ -135,7 +135,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 {
   background-color: white;
   padding-left: 25px;
-  padding-right: 20px;
+  //padding-right: 20px;
   border-radius: 15px;
   min-height: 1000px;
   margin-bottom: 10px;
@@ -170,7 +170,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 {
   @extend .custom_alert;
   color: black;
-  width: 100%;
+  //width: 95%;
 }
 
 .inline
