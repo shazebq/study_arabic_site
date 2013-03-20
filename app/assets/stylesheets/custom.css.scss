@@ -131,7 +131,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 
-#main_content
+#page_area
 {
   background-color: white;
   padding-left: 25px;
@@ -139,6 +139,11 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   border-radius: 15px;
   min-height: 1000px;
   margin-bottom: 10px;
+}
+
+#main_content
+{
+  padding-right: 10px;
 }
 
 .custom_alert
@@ -329,6 +334,16 @@ h3
 {
   @extend .span2;
   width: 333px;
+}
+
+.span9
+{
+  width: 690px;
+}
+
+.span3
+{
+  width: 215px;
 }
 
 img.floatLeft 

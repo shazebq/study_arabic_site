@@ -6,7 +6,6 @@
   <%= render partial: "shared/table_row", locals: { key: "From:", value: @message.sender.first_name } %>
   <%= render partial: "shared/table_row", locals: { key: "Date:", value: date_and_time(@message.created_at) } %>
 </table>
-
 <div class="custom_well">
   <%= @message.content %>
 </div>
