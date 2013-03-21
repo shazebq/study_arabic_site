@@ -15,6 +15,20 @@ describe Message do
     let!(:original_message) { FactoryGirl.create(:message, sender_id: user1.id, recipient_id: user2.id, conversation_id: nil) }
     let!(:first_reply) { FactoryGirl.create(:message, sender_id: user2.id, recipient_id: user1.id, conversation_id: original_message.id) }
     let!(:second_reply) { FactoryGirl.create(:message, sender_id: user1.id, recipient_id: user2.id, conversation_id: original_message.id) }
+    
+    describe "direct_parent" do
+      it "should return the message from the same conversation which the calling record is a reply to" do
+        second_reply.direct_parent.should == first_reply
+      end
+
+      it "should return the overall parent if that is the direct parent of the calling recrod" do
+        first_reply.direct_parent.should == original_message
+      end
+
+      it "should return nil if it's the original message" do
+        original_message.direct_parent.should == nil 
+      end
+    end
 
     describe "in_reply_to scope" do 
       it "should return all the messages in the conversation" do

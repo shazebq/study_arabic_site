@@ -28,4 +28,16 @@ class Message < ActiveRecord::Base
     self.save
   end
 
+  def direct_parent
+    if self.conversation
+      messages = Message.in_reply_to(self.conversation)
+      # grab the message which is next in line from self
+      parent = messages.where("created_at < ?", self.created_at).limit(1).first
+      if parent.nil?
+        self.conversation
+      else
+        parent
+      end
+    end
+  end
 end
