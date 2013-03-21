@@ -1,11 +1,14 @@
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :index]
+  before_filter :authenticate_user!, only: [:new, :create, :destroy] 
+  before_filter :messages_belong_to_current_user, only: :index
+  before_filter :only_recipient_can_reply, only: [:new_reply, :create_reply]
 
   def index
     @received_messages = User.find(params[:user_id]).received_messages.active_messages("recipient")
     @sent_messages = User.find(params[:user_id]).sent_messages.active_messages("sender")
   end
 
+  
   def new
     @user = User.find(params[:user_id])
     @message = Message.new
@@ -52,6 +55,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
+    # no specific filter required because conditions are contained in the method itself
     @message = Message.find(params[:id])
     if current_user == @message.sender
       @message.delete_from_sender # user must be in his sent box
@@ -60,5 +64,19 @@ class MessagesController < ApplicationController
     end
     flash[:notice] = "Your message has been successfully deleted"
     redirect_to user_messages_path(current_user)
+  end
+
+  # before filters
+  # ensures user can acces their own mailbox only
+  def messages_belong_to_current_user
+    unless current_user == User.find(params[:user_id])
+      redirect_to root_path 
+    end
+  end
+
+  def only_recipient_can_reply
+    unless current_user == Message.find(params[:id]).recipient
+      redirect_to root_path
+    end
   end
 end

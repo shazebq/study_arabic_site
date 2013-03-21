@@ -11,5 +11,7 @@
 </div>
 
 <%= button_to("Reply", new_reply_message_path(@message), method: "get", class: "btn") %>  
-<%= button_to("Delete", message_path(@message), method: "delete", data: {confirm: "Are you sure?"}, class: "btn") %>  
+<% if @message.recipient == current_user %>
+  <%= button_to("Delete", message_path(@message), method: "delete", data: {confirm: "Are you sure?"}, class: "btn") %>  
+<% end %>
 
