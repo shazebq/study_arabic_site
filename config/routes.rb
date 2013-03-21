@@ -38,7 +38,10 @@ ArabicProject::Application.routes.draw do
     resources :messages
   end
 
-  resources :messages, only: "show"
+  resources :messages do
+    get "new_reply", :on => :member
+    post "create_reply", :on => :member
+  end
 
   resources :teacher_profiles do
     resources :reviews

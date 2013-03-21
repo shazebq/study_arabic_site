@@ -1,0 +1,35 @@
+<%= provide :title, "Re: #{@parent.subject}" %> 
+
+<%= form_for(@message, url: create_reply_message_path()) do |f| %>
+  <% if @message.errors.any? %>
+    <div class="error_alert">
+      Your reply could not be sent. Please correct the following errors:
+      <div class="bold">
+        <% @message.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :subject  %>
+    <%= f.text_field :subject %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "Message"  %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Send", class: "btn_custom") %>
+  </div>
+<% end %>
+
+
+
+
+
+
+

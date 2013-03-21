@@ -18,10 +18,32 @@ class MessagesController < ApplicationController
     @message.sender = current_user
     @message.recipient = User.find(params[:user_id])
     if @message.save
-      flash[:notice] = "Your message has been sent"
+      flash[:notice] = "Your message has been successfully sent"
       redirect_to user_path(params[:user_id])
     else
       render "new"
+    end
+  end
+
+  def new_reply
+    @parent = Message.find(params[:id])
+    @message = Message.new
+  end
+
+  def create_reply
+    @parent = Message.find(params[:id])
+    if @parent.conversation
+      @message = @parent.conversation.replies.new(params[:message]) # it's a reply to a reply
+    else
+      @message = @parent.replies.new(params[:message]) # it's a reply to the original
+    end
+    @message.sender = current_user
+    @message.recipient = @parent.sender
+    if @message.save
+      flash[:notice] = "Your reply has been successfully sent"
+      redirect_to user_messages_path(current_user)
+    else
+      render "new_reply"
     end
   end
 
