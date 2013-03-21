@@ -8,6 +8,21 @@
 </table>
 <div class="custom_well">
   <%= @message.content %>
+
+  <% if @message.direct_parent %>
+    <br /><br />
+    ----------Original Message----------
+    <br />
+    From: <%= @message.direct_parent.sender.first_name %><br />
+    To: <%= @message.direct_parent.recipient.first_name %><br /> 
+    Date: <%= date_and_time(@message.direct_parent.created_at) %><br />
+    Subject: <%= @message.direct_parent.subject %><br /><br />
+    
+    <%= simple_format(@message.content) %>
+    
+  <% end %>
+
+
 </div>
 
 <% if @message.recipient == current_user %>
