@@ -44,6 +44,12 @@ hr
   color: white;
 }
 
+.custom > .highlight_hover > a:hover 
+{
+  background-color: $contrast !important;
+  color: white;
+}
+
 // pills for filtering by category
 
 .parent_links a

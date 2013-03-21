@@ -1,23 +1,44 @@
 <%= provide :title, "Your Messages" %>
 
 <ul class="nav nav-pills custom">
-  <li class="active"><%= link_to("link1", root_path) %></li> 
-  <li class="not_active"><%= link_to("link1", root_path) %></li> 
+  <li class="active highlight_hover" id="received_tab"><a href="#">Inbox</a></li> 
+  <li class="highlight_hover" id="sent_tab"><a href="#">Sent Messages</a></li> 
 </ul>
 
-<table class="table">
-  <tr>
-    <th></th>
-    <th>Sender</th>
-    <th>Subject</th>
-    <th>Date/Time</th>
-  </tr>
-<% @received_messages.each do |rm| %>
-  <tr>
-    <td><input type="checkbox"></td>
-    <td><%= rm.sender.first_name %></td>
-    <td><%= link_to(rm.subject, rm) %></td>
-    <td><%= date_and_time(rm.created_at) %></td>
-  </tr>
-<% end %>
-</table>
+<div id="received_messages">
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Sender</th>
+      <th>Subject</th>
+      <th>Date/Time</th>
+    </tr>
+  <% @received_messages.each do |rm| %>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td><%= rm.sender.first_name %></td>
+      <td><%= link_to(rm.subject, rm) %></td>
+      <td><%= date_and_time(rm.created_at) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+<div id="sent_messages">
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Sender</th>
+      <th>Subject</th>
+      <th>Date/Time</th>
+    </tr>
+  <% @sent_messages.each do |rm| %>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td><%= rm.sender.first_name %></td>
+      <td><%= link_to(rm.subject, rm) %></td>
+      <td><%= date_and_time(rm.created_at) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
