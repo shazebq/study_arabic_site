@@ -18,7 +18,7 @@
     Date: <%= date_and_time(@message.direct_parent.created_at) %><br />
     Subject: <%= @message.direct_parent.subject %><br /><br />
     
-    <%= simple_format(@message.content) %>
+    <%= simple_format(@message.direct_parent.content) %>
     
   <% end %>
 
