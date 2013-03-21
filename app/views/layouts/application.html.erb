@@ -17,13 +17,6 @@
                 <span class="site_title">StudyArabic.com</span>
 
           </div>
-          <div class="span3">
-            <% if user_signed_in? %>
-                 <%= current_user.email %> | <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-            <% else %>
-                <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
-            <% end %>
-          </div>
         </div>
 
         <div class="row">
@@ -86,22 +79,20 @@
         </div>
         <div class="span3 sidebar">
             <% if user_signed_in? %>
-
-          <ul class="nav nav-tabs">
-             <li class="dropdown <%= params[:controller] == "categories" || params[:controller] == "forum_posts" ? "active_nav" : "not_active" %>">
-             <a class="dropdown-toggle disabled" data-toggle="dropdown" href="#"><%= current_user.first_name %>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to("Profile", user_path(current_user)) %></li>
-                <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
-                <li><%= link_to("Sign Out", destroy_user_session_path) %></li>
+              <ul class="nav nav-tabs">
+                <li class="dropdown">
+                <a class="dropdown-toggle disabled" data-toggle="dropdown" href="#"><%= current_user.first_name %>
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to("Profile", user_path(current_user)) %></li>
+                    <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
+                    <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
+                  </ul>
+                </li>
               </ul>
-            </li>
-          </ul>
-     
-
-
+            <% else %>
+              <div class="margin_bottom_small user_links"><%= link_to "Sign In", new_user_session_path, class: "bold" %> or <%= link_to "Register", register_path, class: "bold" %></div>
             <% end %>
             <%= yield :side_bar %>
             <br />

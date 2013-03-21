@@ -13,7 +13,6 @@
 <% other_user_type = get_other_user_type(params[:controller]) %>
 
     <div class="alert custom_alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>Note: </strong>Are you an Arabic <%= other_user_type %>? Create a <%= link_to("#{other_user_type} account", controller: "#{other_user_type}_profiles", action: :new) %> instead.
     </div>
 

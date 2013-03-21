@@ -1,4 +1,5 @@
 $main_color: #007974;
+$light: #BFDDDC;
 
 select.select_box
 {
@@ -47,3 +48,13 @@ select.select_box
   border: 0;
 }
 
+.user_links
+{
+  background-color: $light;
+  border: 5px;
+  height: 25px;
+  padding-left: 15px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
