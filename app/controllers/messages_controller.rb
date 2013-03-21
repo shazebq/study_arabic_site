@@ -2,8 +2,8 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :index]
 
   def index
-    @received_messages = User.find(params[:user_id]).received_messages
-    @sent_messages = User.find(params[:user_id]).sent_messages
+    @received_messages = User.find(params[:user_id]).received_messages.active_messages("recipient")
+    @sent_messages = User.find(params[:user_id]).sent_messages.active_messages("sender")
   end
 
   def new
@@ -49,5 +49,16 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id]) 
+  end
+
+  def destroy
+    @message = Message.find(params[:id])
+    if current_user == @message.sender
+      @message.delete_from_sender # user must be in his sent box
+    elsif current_user == @message.recipient
+      @message.delete_from_recipient # user must be in his inbox
+    end
+    flash[:notice] = "Your message has been successfully deleted"
+    redirect_to user_messages_path(current_user)
   end
 end

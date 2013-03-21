@@ -9,7 +9,7 @@ describe Message do
   it { should respond_to :conversation }
   it { should respond_to :replies }
 
-  describe "message scopes" do
+  describe "message scopes and other methods" do
     let!(:user1) { FactoryGirl.create(:user) }
     let!(:user2) { FactoryGirl.create(:user) }
     let!(:original_message) { FactoryGirl.create(:message, sender_id: user1.id, recipient_id: user2.id, conversation_id: nil) }
@@ -27,6 +27,29 @@ describe Message do
         user2.received_messages.count.should == 2
       end
     end
+
+    describe "delete_from_sender" do
+      before { first_reply.delete_from_sender }
+      it "should change the sender_delete attribute to true" do
+        first_reply.sender_delete.should == true
+      end
+    end
+
+    describe "delete_from_recipient" do
+      before { first_reply.delete_from_recipient }
+      it "should change the delete_recipient attribute to true" do
+        first_reply.recipient_delete.should == true
+      end
+    end
+
+    describe "active messages scope" do
+      before { original_message.delete_from_recipient }
+      it "should return only those messages which have not been marked as deleted by the recipient" do
+        user2.received_messages.active_messages("recipient").count.should == 1
+        user2.received_messages.active_messages("recipient").should == [second_reply]
+      end
+    end
+
   end
   
   describe "validations" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320014926) do
+ActiveRecord::Schema.define(:version => 20130321161532) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -146,8 +146,10 @@ ActiveRecord::Schema.define(:version => 20130320014926) do
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.integer  "conversation_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.boolean  "sender_delete"
+    t.boolean  "recipient_delete"
   end
 
   create_table "pg_search_documents", :force => true do |t|
