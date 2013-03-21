@@ -38,9 +38,9 @@ hr
   background-color: $contrast; 
 }
 
-.custom .not_active a:hover 
+.custom > .not_active > a:hover 
 {
-  background-color: $light_contrast;
+  background-color: $contrast !important;
   color: white;
 }
 

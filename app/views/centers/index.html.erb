@@ -2,11 +2,11 @@
 
 <%= render partial: "shared/search_and_new", locals: { item_type: "Centers", new_button_text: "Add a Center/Program" }  %>
 
-<ul class="nav nav-pills">
+<ul class="nav nav-pills custom">
   <li class="active center_options ratings_option" id="order_by_average_rating">
     <a href="#">Highest Rated</a>
   </li>
-  <li class="center_options ratings_option" id="order_by_reviews"><a href="#">Most Reviews</a></li>
+  <li class="center_options ratings_option not_active" id="order_by_reviews"><a href="#">Most Reviews</a></li>
 </ul>
 
 <div id="centers_list">
