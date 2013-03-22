@@ -35,5 +35,12 @@ class ForumPost < ActiveRecord::Base
     self.answers_count ||= 0
   end
 
+  # remove current answerer and keep it unique
+  def answerers_list(opts = {})
+    answerers = self.answers.map { |answer| answer.user }
+    answerers.delete(opts[:current_answerer]) if opts[:current_answerer]
+    answerers.delete(nil) # due to new record in controller
+    answerers
+  end
 
 end

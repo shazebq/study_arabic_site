@@ -94,9 +94,18 @@ describe ForumPost do
     #    end
     #  end
     #end
+    describe "answerers_list" do
+      initialize_records
+      let!(:user3) { FactoryGirl.create(:user, email: "tom@example.com", password: "cool123") }
+      let!(:new_answer) { FactoryGirl.create(:answer, forum_post_id: forum_post.id, user_id: user3.id) } 
+      it "should return an array of all of the users who have answered the forum_post minus the current answerer if provided" do
+        forum_post.answerers_list(current_answerer: user3).count.should == 2 
+        forum_post.answerers_list(user3).should include(user, user1)
+      end
+    end
 
   end
 
 end
 
-#comments
+#comment

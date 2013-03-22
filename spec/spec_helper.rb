@@ -90,10 +90,13 @@ end
 
 def initialize_records
   let!(:user) { FactoryGirl.create(:user, email: "shazebq@gmail.com", password: "cool123") }
+  let!(:user1) { FactoryGirl.create(:user, email: "bill@example.com", password: "cool123") }
   let!(:parent) { FactoryGirl.create(:category, name: "Study Abroad") }
   let!(:forum_post) { FactoryGirl.create(:forum_post, category_ids: [parent.id], user_id: user.id) }
   let!(:answer) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: forum_post.id,
                                      user_id: user.id) }
+  let!(:answer1) { FactoryGirl.create(:answer, content: "first answer to the post", forum_post_id: forum_post.id,
+                                     user_id: user1.id) }
 end
 
 def create_teacher_records

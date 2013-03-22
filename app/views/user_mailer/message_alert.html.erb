@@ -1,8 +1,9 @@
     <div style="color: #007974; font-size: 18px; font-weight: bold;" class="subtitle_large_color">Message Alert</div>
     <hr>
 
-    You have received a message from user, <%= link_to(@sender.first_name, user_url(@sender)) %>.
-    You can view and respond to this message <%= link_to("here", message_url(@message)) %><br /><br />
+    You have received a message from user, <%= link_to(@sender.first_name, user_url(@sender)) %>!<br />
+    <b><%= link_to("View Your Message", message_url(@message)) %></b>
+    <br /><br />
 
     Thanks!<br /><br />
 
