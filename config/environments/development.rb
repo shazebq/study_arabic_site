@@ -48,8 +48,8 @@ ArabicProject::Application.configure do
     domain: "studyarabic.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "",
-    password: ""
+    user_name: ENV["DEV_USERNAME"],
+    password: ENV["DEV_PASSWORD"]
   }
 
   ENV['root_path'] =  "static_pages#home";
