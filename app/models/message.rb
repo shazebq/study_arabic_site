@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  attr_accessible :content, :conversation_id, :recipient_id, :sender_id, :subject
+  attr_accessible :content, :conversation_id, :recipient_id, :sender_id, :subject, :recipient_delete, :sender_delete
 
   belongs_to :recipient, class_name: "User"
   belongs_to :sender, class_name: "User"
@@ -18,16 +18,6 @@ class Message < ActiveRecord::Base
   validates :subject, length: { maximum: 130 }
   validates :content, length: { maximum: 5000 }
 
-  def delete_from_sender
-    self.sender_delete = true
-    self.save
-  end
-
-  def delete_from_recipient
-    self.recipient_delete = true
-    self.save
-  end
-
   def direct_parent
     if self.conversation
       messages = Message.in_reply_to(self.conversation)
@@ -37,6 +27,19 @@ class Message < ActiveRecord::Base
         self.conversation
       else
         parent
+      end
+    end
+  end
+
+  # built in authorization i.e. if current user is not either the sender
+  # or recipient, then nothing happens
+  def self.mark_list_as_deleted(message_ids, current_user)
+    message_ids.each do |message_id|
+      message = Message.find(message_id)
+      if current_user == message.recipient
+        message.update_attributes(recipient_delete: true)
+      elsif current_user == message.sender
+        message.update_attributes(sender_delete: true)
       end
     end
   end

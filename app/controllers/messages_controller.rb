@@ -1,15 +1,14 @@
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :destroy, :index, :new_reply, :create_reply, :show] 
+  before_filter :authenticate_user!, only: [:new, :create, :destroy, :destroy_multiple, :index, :new_reply, :create_reply, :show] 
   before_filter :messages_belong_to_current_user, only: :index
   before_filter :only_recipient_can_reply, only: [:new_reply, :create_reply]
   before_filter :cannot_message_yourself, only: [:new, :create]
-  before_filter :must_be_sender_or_recipient, only: :show
+  before_filter :must_be_sender_or_recipient, only: [:show, :destroy]
 
   def index
     @received_messages = User.find(params[:user_id]).received_messages.active_messages("recipient")
     @sent_messages = User.find(params[:user_id]).sent_messages.active_messages("sender")
   end
-
   
   def new
     @user = User.find(params[:user_id])
@@ -58,15 +57,24 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id]) 
   end
 
+  # doesn't actually delete, just changes the attribute
   def destroy
     # no specific filter required because conditions are contained in the method itself
     @message = Message.find(params[:id])
     if current_user == @message.sender
-      @message.delete_from_sender # user must be in his sent box
+      @message.update_attributes(sender_delete: true)
     elsif current_user == @message.recipient
-      @message.delete_from_recipient # user must be in his inbox
+      @message.update_attributes(recipient_delete: true)
     end
     flash[:notice] = "Your message has been successfully deleted"
+    redirect_to user_messages_path(current_user)
+  end
+
+  def destroy_multiple
+    unless params[:message_ids].blank?
+      Message.mark_list_as_deleted(params[:message_ids], current_user)
+      flash[:notice] = "Your messages have been successfully deleted"
+    end
     redirect_to user_messages_path(current_user)
   end
 

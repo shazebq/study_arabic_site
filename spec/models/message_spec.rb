@@ -42,22 +42,9 @@ describe Message do
       end
     end
 
-    describe "delete_from_sender" do
-      before { first_reply.delete_from_sender }
-      it "should change the sender_delete attribute to true" do
-        first_reply.sender_delete.should == true
-      end
-    end
-
-    describe "delete_from_recipient" do
-      before { first_reply.delete_from_recipient }
-      it "should change the delete_recipient attribute to true" do
-        first_reply.recipient_delete.should == true
-      end
-    end
-
+    
     describe "active messages scope" do
-      before { original_message.delete_from_recipient }
+      before { original_message.update_attributes(recipient_delete: true) }
       it "should return only those messages which have not been marked as deleted by the recipient" do
         user2.received_messages.active_messages("recipient").count.should == 1
         user2.received_messages.active_messages("recipient").should == [second_reply]

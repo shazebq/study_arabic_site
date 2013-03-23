@@ -42,6 +42,7 @@ ArabicProject::Application.routes.draw do
   resources :messages do
     get "new_reply", :on => :member
     post "create_reply", :on => :member
+    put :destroy_multiple, :on => :collection
   end
 
   resources :teacher_profiles do

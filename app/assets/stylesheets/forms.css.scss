@@ -68,3 +68,14 @@ textarea
 {
   width: 50px;
 }
+
+td.checkbox_cell, th.checkbox_cell
+{
+  width: 15px;
+  text-align: center;
+}
+
+.checkbox_cell > input
+{
+  vertical-align: text-bottom;
+}

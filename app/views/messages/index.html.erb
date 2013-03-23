@@ -5,40 +5,56 @@
   <li class="highlight_hover" id="sent_tab"><a href="#">Sent Messages</a></li> 
 </ul>
 
-<div id="received_messages">
-  <table class="table">
-    <tr>
-      <th></th>
-      <th>Sender</th>
-      <th>Subject</th>
-      <th>Date/Time</th>
-    </tr>
-  <% @received_messages.each do |rm| %>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td><%= rm.sender.first_name %></td>
-      <td><%= link_to(rm.subject, rm) %></td>
-      <td><%= date_and_time(rm.created_at) %></td>
-    </tr>
-  <% end %>
-  </table>
-</div>
+  <div id="received_messages">
+    <% if @received_messages.any? %>
+      <%= form_tag destroy_multiple_messages_path, method: :put, data: {confirm: "Are you sure?"} do %>  
+      <table class="table">
+        <tr>
+          <th class="checkbox_cell"><input type="checkbox" id="received_all" class="none_selected"></th>
+          <th>Sender</th>
+          <th>Subject</th>
+          <th>Date/Time</th>
+        </tr>
+      <% @received_messages.each do |rm| %>
+        <tr>
+          <td class="checkbox_cell"><%= check_box_tag("message_ids[]", rm.id, false, id: "message_#{rm.id}", class: "received_checkbox") %></td>
+          <td><%= rm.sender.first_name %></td>
+          <td><%= link_to(rm.subject, rm) %></td>
+          <td><%= date_and_time(rm.created_at) %></td>
+        </tr>
+      <% end %>
+      </table>
+      <%= submit_tag("Delete", class: "btn_custom") %>
+      <% end %>
+    <% else %>
+      <div class="custom_well">No messages</div>
+    <% end %>
+  </div>
 
-<div id="sent_messages">
-  <table class="table">
-    <tr>
-      <th></th>
-      <th>Sender</th>
-      <th>Subject</th>
-      <th>Date/Time</th>
-    </tr>
-  <% @sent_messages.each do |rm| %>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td><%= rm.sender.first_name %></td>
-      <td><%= link_to(rm.subject, rm) %></td>
-      <td><%= date_and_time(rm.created_at) %></td>
-    </tr>
-  <% end %>
-  </table>
-</div>
+  <div id="sent_messages">
+    <% if @sent_messages.any? %>
+      <%= form_tag destroy_multiple_messages_path, method: :put, data: {confirm: "Are you sure?"} do %>  
+      <table class="table">
+        <tr>
+          <th class="checkbox_cell"><input type="checkbox" id="sent_all" class="none_selected"></th>
+          <th>Recipient</th>
+          <th>Subject</th>
+          <th>Date/Time</th>
+        </tr>
+      <% @sent_messages.each do |sm| %>
+        <tr>
+          <td class="checkbox_cell"><%= check_box_tag("message_ids[]", sm.id, false, id: "message_#{sm.id}", class: "sent_checkbox") %></td>
+          <td><%= sm.recipient.first_name %></td>
+          <td><%= link_to(sm.subject, sm) %></td>
+          <td><%= date_and_time(sm.created_at) %></td>
+        </tr>
+      <% end %>
+      </table>
+      <%= submit_tag("Delete", class: "btn_custom") %>
+      <% end %>
+    <% else %>
+      <div class="custom_well">No sent messages</div>
+    <% end %>
+  </div>
+
+
