@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :imageable_id, :imageable_type, :photo
+  attr_accessible :imageable_id, :imageable_type, :photo, :as => [:default, :admin] 
 
   belongs_to :imageable, polymorphic: true
   has_attached_file :photo, :styles => { :original => "500x400#", :large => "275x220#", :medium => "175x140#", :thumb => "100x80#" }

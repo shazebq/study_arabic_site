@@ -3,7 +3,7 @@ class Answer < ActiveRecord::Base
   #include PgSearch
   #multisearchable :against => :content
   after_initialize :init
-  attr_accessible :content, :forum_post_id, :user_id
+  attr_accessible :content, :forum_post_id, :user_id, :as => [:default, :admin] 
 
   belongs_to :user
   belongs_to :forum_post, counter_cache: true

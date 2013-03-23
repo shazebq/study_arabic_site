@@ -9,7 +9,7 @@ class Resource < ActiveRecord::Base
   #multisearchable :against => [:title, :description]
 
   after_initialize :init
-  attr_accessible :description, :difficulty_level, :downloads_count, :title, :user_id, :views_count, :votes_count, :resource_file, :category_ids
+  attr_accessible :description, :difficulty_level, :downloads_count, :title, :user_id, :views_count, :votes_count, :resource_file, :category_ids, :as => [:default, :admin] 
 
   # normally, in a regular (non polymorph join), you wouldn't have the as: option
   has_many :categories_categorizables, as: :categorizable, dependent: :destroy

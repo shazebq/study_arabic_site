@@ -1,5 +1,5 @@
 class CategoriesCategorizable < ActiveRecord::Base
-  attr_accessible :categorizable_id, :categorizable_type, :category_id
+  attr_accessible :categorizable_id, :categorizable_type, :category_id, :as => [:default, :admin] 
 
   belongs_to :category
   # in a regular join table, you wouldn't have the polymorphic option

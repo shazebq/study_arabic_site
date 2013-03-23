@@ -8,7 +8,7 @@ class ForumPost < ActiveRecord::Base
     associated_against: {categories: :name, answers: :content} # needed so it searches associated records as well
   #multisearchable :against => [:title, :content]
 
-  attr_accessible :content, :title, :user_id, :views_count, :votes_count, :answers_count, :category_ids
+  attr_accessible :content, :title, :user_id, :views_count, :votes_count, :answers_count, :category_ids, :as => [:default, :admin] 
   after_initialize :init
 
   belongs_to :user

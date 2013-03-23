@@ -34,6 +34,7 @@ gem 'warden'
 gem 'pg_search'
 gem 'thin'
 gem 'will_paginate'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'rspec-rails'

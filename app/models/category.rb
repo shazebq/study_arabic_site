@@ -2,7 +2,7 @@ class Category < ActiveRecord::Base
   #include PgSearch
   #multisearchable :against => :name
 
-  attr_accessible :name, :category_parent_id
+  attr_accessible :name, :category_parent_id, :as => [:default, :admin] 
 
   has_many :categories_categorizables, dependent: :destroy
 

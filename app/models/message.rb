@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  attr_accessible :content, :conversation_id, :recipient_id, :sender_id, :subject, :recipient_delete, :sender_delete
+  attr_accessible :content, :conversation_id, :recipient_id, :sender_id, :subject, :recipient_delete, :sender_delete, :as => [:default, :admin] 
 
   belongs_to :recipient, class_name: "User"
   belongs_to :sender, class_name: "User"

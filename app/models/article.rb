@@ -7,7 +7,7 @@ class Article < ActiveRecord::Base
     using: {tsearch: {dictionary: "english"}},
     associated_against: {categories: :name, comments: :content} # needed so it searches associated records as well
 
-  attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids , :images_attributes
+  attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids , :images_attributes, :as => [:default, :admin] 
   after_initialize :init
 
   has_many :views, as: :viewable, dependent: :destroy

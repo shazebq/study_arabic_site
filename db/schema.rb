@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321161532) do
+ActiveRecord::Schema.define(:version => 20130323215600) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.integer  "votes_count",   :default => 0
+    t.boolean  "approved"
   end
 
   create_table "articles", :force => true do |t|
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "comments_count"
+    t.boolean  "approved"
   end
 
   create_table "categories", :force => true do |t|
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.integer  "reviews_count"
+    t.boolean  "approved"
   end
 
   create_table "cities", :force => true do |t|
@@ -101,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.text     "content"
+    t.boolean  "approved"
   end
 
   create_table "countries", :force => true do |t|
@@ -119,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.integer  "answers_count", :default => 0
+    t.boolean  "approved"
   end
 
   create_table "images", :force => true do |t|
@@ -160,6 +165,19 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
   create_table "resources", :force => true do |t|
     t.text     "title"
     t.text     "description"
@@ -175,6 +193,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.integer  "resource_file_file_size"
     t.datetime "resource_file_updated_at"
     t.integer  "reviews_count"
+    t.boolean  "approved"
   end
 
   create_table "reviews", :force => true do |t|
@@ -186,12 +205,14 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.string   "reviewable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.boolean  "approved"
   end
 
   create_table "student_profiles", :force => true do |t|
     t.integer  "level_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "approved"
   end
 
   create_table "teacher_profiles", :force => true do |t|
@@ -205,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.text     "university"
     t.text     "field_of_study"
     t.integer  "reviews_count"
+    t.boolean  "approved"
   end
 
   create_table "users", :force => true do |t|
@@ -228,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20130321161532) do
     t.text     "bio"
     t.integer  "profile_id"
     t.string   "profile_type"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

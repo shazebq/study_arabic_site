@@ -1,5 +1,5 @@
 class View < ActiveRecord::Base
-  attr_accessible :viewable_id, :viewable_type, :ip_address, :session_id
+  attr_accessible :viewable_id, :viewable_type, :ip_address, :session_id, :as => [:default, :admin] 
 
   belongs_to :viewable, polymorphic: true, counter_cache: true
 

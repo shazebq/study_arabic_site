@@ -1,5 +1,9 @@
 ArabicProject::Application.routes.draw do
 
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   match "home" => "static_pages#home", :via => :get
   match "about_us" => "static_pages#about_us", :via => :get
   match "register" => "static_pages#register", :via => :get
