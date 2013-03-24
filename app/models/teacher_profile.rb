@@ -14,6 +14,7 @@ class TeacherProfile < ActiveRecord::Base
   has_many :reviews, as: :reviewable, dependent: :destroy
   accepts_nested_attributes_for :user
   attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience, :user_attributes, :specialties, :price_per_hour, :as => [:default, :admin] 
+  attr_accessible :approved, as: :admin
 
   validates :years_of_experience, :price_per_hour, :specialties, :field_of_study, presence: true 
   validates :in_person, :online, :inclusion => {:in => [true, false]}
