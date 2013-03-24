@@ -50,7 +50,7 @@ group :test do
   gem "faker", "~> 1.0.1"
   gem 'capybara'
   gem 'database_cleaner'
-  gem "launchy", "~> 2.1.0"
+  gem "launchy"
   gem "guard-spork"
   # gem 'listen', :github => 'guard/listen', :branch => 'linux_events'
 end

@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.new(params[:review])
     @review.user_id = current_user.id
     if @review.save
+      current_user.add_rep_points(:review)
       flash[:success] = "Your review has been added"
       if @reviewable.is_a?(TeacherProfile) # have to add this condition because redirection should be to show user page, not show teacher profile page
         redirect_to user_path(@reviewable.user)

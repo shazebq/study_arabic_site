@@ -54,6 +54,12 @@ describe "articles show page" do
     it "should create a comment and redirect to the same article path" do
       expect { click_button "Submit Comment" }.to change(Comment, :count).by(1)   
     end
+
+    specify "clicking on submit button should increase the current user's reputation by 1 points" do
+      click_button "Submit"
+      user.reload
+      user.reputation.should == 1
+    end
   end
 
   describe "clicking on the edit or delete link for a comment" do

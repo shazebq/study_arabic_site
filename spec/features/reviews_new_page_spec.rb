@@ -29,7 +29,7 @@ describe "new review page" do
 
       it "should display an error" do
         click_button("Submit")
-        page.should(have_content("Your review could not be submitted."))
+        page.should(have_content("Your submission could not be accepted"))
       end
     end
 
@@ -44,8 +44,16 @@ describe "new review page" do
 
       it "should display an error" do
         click_button("Submit")
-        page.should(have_content("Your review could not be submitted."))
+        page.should(have_content("Your submission could not be accepted"))
       end
+    end
+
+    context "when a content and title are given" do
+      before :each do
+        fill_in "review_title", with: "Nice resource!"
+        fill_in "review_content", with: "what a great resource!"
+      end
+
     end
   end
 

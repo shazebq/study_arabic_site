@@ -5,7 +5,8 @@ describe "new resource page" do
   create_categories
 
   before do
-    sign_in_user( FactoryGirl.create(:user, email: "shazebq@gmail.com") )
+    @user = FactoryGirl.create(:user, email: "shazebq@gmail.com")
+    sign_in_user(@user)
     visit new_resource_path
   end
 
@@ -31,7 +32,7 @@ describe "new resource page" do
 
       it "should display an error" do
         click_button("Submit")
-        page.should(have_content("Your resource could not be submitted."))
+        page.should(have_content("Your submission could not be accepted"))
       end
     end
   end
@@ -49,6 +50,12 @@ describe "new resource page" do
         expect { click_button "Submit" }.to change(Resource, :count).by(1)
         Resource.find_by_title("fruit vocabulary").categories.count.should == 1
         Resource.find_by_title("fruit vocabulary").user.email == "shazebq@gmail.com"
+      end
+
+      specify "clicking on submit button should increase the current user's reputation by 4 points" do
+        click_button "Submit"
+        @user.reload
+        @user.reputation.should == 4
       end
     end
   end

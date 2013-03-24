@@ -49,6 +49,12 @@ describe User do
           current_path.should == forum_post_path(ForumPost.find_by_title("living abroad in cairo"))
         end
 
+        specify "clicking on submit button should increase the current user's reputation by 4 points" do
+          click_button "Submit"
+          user.reload
+          user.reputation.should == 2
+        end
+
       end
 
       context "with missing information" do
@@ -59,14 +65,14 @@ describe User do
 
         it "should not create a forum post" do
           expect { click_button "Submit" }.to_not change(ForumPost, :count)
-          page.should have_selector(".alert-error", text: "Your post could not be submitted.")
+          page.should have_content("Your submission could not be accepted")
         end
 
       end
 
       context "with invalid information" do
         before do
-          fill_in "forum_post_title", with: ("a" * 70)
+          fill_in "forum_post_title", with: ("a" * 135)
           fill_in "forum_post_content", with: "some stuff about cairo"
           select "Egypt", from: "forum_post_category_ids"
           select "Arabic Centers", from: "forum_post_category_ids"
@@ -74,9 +80,8 @@ describe User do
 
         it "should not create a forum post" do
           expect { click_button "Submit" }.to_not change(ForumPost, :count)
-          page.should have_selector(".alert-error", text: "Your post could not be submitted.")
+          page.should have_content("Your submission could not be accepted")
         end
-
       end
 
     end

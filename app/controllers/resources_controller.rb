@@ -12,6 +12,7 @@ class ResourcesController < CategorizableItemsController
     #return render text: params testing
     @resource = current_user.resources.new(params[:resource])
     if @resource.save
+      current_user.add_rep_points(:resource)
       flash[:notice] = "Your resource was successfully submitted. We will review it within 24 hours after which it will be added to the site."
       redirect_to resource_path(@resource)
     else

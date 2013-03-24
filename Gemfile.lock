@@ -264,7 +264,7 @@ DEPENDENCIES
   guard-spork
   hirb
   jquery-rails
-  launchy (~> 2.1.0)
+  launchy
   nokogiri
   paperclip (= 3.0.4)
   pg
