@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
+  before_filter :limit_user_content, only: [:new, :create]
 
   def new
     @comment = Comment.new
@@ -11,7 +14,10 @@ class CommentsController < ApplicationController
     instance_variable_set("@#{@commentable.class.name.underscore}", @commentable)
     ## for the possibility that the comment was submitted with an error
     @comment_new = @article.comments.create(params[:comment]) 
-    flash[:notice] = "Your comment has been successfully added" if @comment_new.valid?
+    if @comment_new.valid?
+      #current_user.add_rep_points(:comment)
+      flash[:notice] = "Your comment has been successfully added" 
+    end
     render "articles/show"
   end
 

@@ -38,6 +38,13 @@ class User < ActiveRecord::Base
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
 
+  REP_POINTS_HASH = { comment: 1, forum_post: 2, answer: 4, resource: 4, center: 4, review: 2, up_vote: 2}
+
+  def add_rep_points(item_added)
+    self.reputation = REP_POINTS_HASH[item_added]
+    self.save
+  end
+
   private
   def destroy_user_profile
     self.profile.delete

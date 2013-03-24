@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
+  before_filter :limit_user_content, only: [:create]
 
   def index
 

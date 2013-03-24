@@ -59,6 +59,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # before_filter for forum_posts, comments, reviews, answers, resources, centers
+  def limit_user_content
+    if current_user.send(params[:controller]).where("created_at > ?", 24.hours.ago).count == 5
+      flash[:alert] = "Sorry, you have exceeded the maximum number of submissions in a 24 hour period.  Try again later."
+      redirect_to :back || root_path
+    end
+  end
+
   # necessary because reviews are polymorphic
   def get_somethingable(params)
     params.each do |key, value|

@@ -1,5 +1,6 @@
 class CentersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :limit_user_content, only: [:new, :create]
   include MiscTasks
 
   def index  
