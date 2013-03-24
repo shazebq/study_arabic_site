@@ -28,6 +28,22 @@ describe Center do
   it { should respond_to :images }
   it { should respond_to :reviews }
 
+  describe "approved scope" do
+    it "should return an empty array" do
+      Center.only_approved.should == []
+    end
+  end
+
+  describe "approved scope when there is at least one approved center" do
+    before :each do
+      center2.approved = true
+      center2.save
+    end
+    it "should return the approved centers" do
+      Center.only_approved.should == [center2]
+    end
+  end
+
   describe "filtering options" do
     describe "filtering by number of reviews" do
       it "should order the centers by the number of reviews they have" do

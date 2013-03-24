@@ -1,5 +1,6 @@
 class Center < ActiveRecord::Base
   include ReviewableScoping
+  include ApprovedScoping
   extend ReviewableScoping
   extend Searching
   include PgSearch
@@ -33,6 +34,7 @@ class Center < ActiveRecord::Base
 
   validates :email, email_format: true 
   validates :website, url: true
+
 
   scope :country_option, (lambda do |country_id| 
     if country_id == "all"

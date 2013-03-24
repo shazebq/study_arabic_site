@@ -2,21 +2,21 @@ class CentersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   include MiscTasks
 
-  def index
+  def index  
     @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
     if params[:ratings_option] == "order_by_reviews"
-      @centers = Center.order_by_reviews.country_option(params[:country_option]).paginate(page: params[:page], per_page: PER_PAGE)
+      @centers = Center.only_approved.order_by_reviews.country_option(params[:country_option]).paginate(page: params[:page], per_page: PER_PAGE)
     elsif params[:ratings_option] == "order_by_average_rating"
-      @centers = (Center.order_by_average_rating.country_option(params[:country_option]) + 
-                  Center.zero_review_records.country_option(params[:country_option])).paginate(page: params[:page], per_page: PER_PAGE)
+      @centers = (Center.only_approved.order_by_average_rating.country_option(params[:country_option]) + 
+                  Center.only_approved.zero_review_records.country_option(params[:country_option])).paginate(page: params[:page], per_page: PER_PAGE)
     else
-      @centers = (Center.order_by_average_rating + Center.zero_review_records).paginate(page: params[:page], per_page: PER_PAGE)
+      @centers = (Center.only_approved.order_by_average_rating + Center.only_approved.zero_review_records).paginate(page: params[:page], per_page: PER_PAGE)
     end
   end
 
   def search
     @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
-    @centers = Center.text_search(params[:query]).paginate(page: params[:page], per_page: PER_PAGE) 
+    @centers = Center.only_approved.text_search(params[:query]).paginate(page: params[:page], per_page: PER_PAGE) 
     render "index"
   end
 
@@ -30,7 +30,7 @@ class CentersController < ApplicationController
     revised_params = handle_city_creation(params[:center])
     @center = current_user.centers.new(revised_params)
     if @center.save 
-      flash[:notice] = "Your entry was successfully submitted"
+      flash[:notice] = "Your entry was successfully submitted. We will review it within 24 hours after which it will be added to the site."
       redirect_to @center
     else
       3.times { @center.images.build }

@@ -1,4 +1,5 @@
 class TeacherProfile < ActiveRecord::Base
+  include ApprovedScoping
   extend Searching
   include ReviewableScoping
   extend ReviewableScoping

@@ -9,6 +9,7 @@ FactoryGirl.define do
     votes_count 1
     difficulty_level 1
     user_id 1
+    approved true
     # if there's validation for an image (not, specs run very slow)
     #resource_file File.open('/home/shazeb/Documents/test.pdf')
   end

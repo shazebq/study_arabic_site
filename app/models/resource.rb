@@ -1,4 +1,5 @@
 class Resource < ActiveRecord::Base
+  include ApprovedScoping
   extend Searching
   include Voting
   include Scoping

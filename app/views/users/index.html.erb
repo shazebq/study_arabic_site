@@ -22,7 +22,6 @@
 </div>
 <br />
 
-
 <% User.teachers.each do |teacher| %>
   <%= render partial: "shared/index_with_image", 
              locals: { image: teacher.image.try(:image).try(:url, :thumb), 
