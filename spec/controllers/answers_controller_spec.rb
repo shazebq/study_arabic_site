@@ -4,6 +4,19 @@ describe AnswersController do
   initialize_records()
 
   describe "Authorization" do
+    describe "when user tries to post more than one answer to the same forum_post" do
+      before :each do
+        sign_in(user)
+      end
+      
+      it "should not create the answer" do
+        expect do
+          post :create, forum_post_id: forum_post.id, user_id: user.id
+        end.to change(Answer, :count).by(0)
+      end
+      
+    end
+    
     describe "deleting and update an answer" do
 
       context "when user is not signed in" do

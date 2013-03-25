@@ -19,8 +19,10 @@ class ForumPost < ActiveRecord::Base
   has_many :votes, as: :voteable, dependent: :destroy
   has_many :views, as: :viewable, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :users, through: :answers
 
   has_many :comments, as: :commentable, dependent: :destroy
+
 
   validates :title, :content, :category_ids, presence: true
 

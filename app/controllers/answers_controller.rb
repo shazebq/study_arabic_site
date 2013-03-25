@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_filter :one_answer_per_user, only: [:create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :limit_user_content, only: [:create]
 
@@ -43,6 +44,14 @@ class AnswersController < ApplicationController
     @forum_post.answers.find(params[:id]).destroy
     flash[:notice] = "Your answer was successfully deleted"
     redirect_to forum_post_path(@forum_post)
+  end
+
+  def one_answer_per_user
+    @forum_post = ForumPost.find(params[:forum_post_id]) 
+    if @forum_post.users.include?(current_user)
+      flash[:notice] = "Sorry, you already answered this question"
+      redirect_to @forum_post 
+    end
   end
 
   

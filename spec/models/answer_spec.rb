@@ -49,5 +49,15 @@ describe Answer do
         @answer_new.should be_valid
       end
     end
+
+    #describe "when user tries to post more than one answer to the same forum_post" do
+      #before :each do
+      #  @forum_post1 = ForumPost.new()
+      #  @forum_post1.save(validate: false)
+      #  @answer1 = FactoryGirl.create(:answer, forum_post_id: @forum_post1.id)
+      #  FactoryGirl.create(:answer, forum_post_id: @forum_post1.id)
+      #end
+
+    #end
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Article do
   let(:article) { FactoryGirl.build(:article) } 
-  let(:user) { FactoryGirl.create(:user)}
+  let(:user) { FactoryGirl.create(:user, reputation: 0)}
 
   before :each do
     @article1 = Article.new(title: "new article", user_id: user.id)
@@ -36,6 +36,11 @@ describe Article do
     before :each do
       @article1.count_vote(@article1.id, "Article", user.id, "up")
     end
+
+    #it "should decrease the number of vote counts and also decrease the reputation of the article owner" do
+    #  @article1.count_vote(@article1.id, "Article", user.id, "down")
+    #  @article1.user.reputation.should == 0
+    #end
   end
 
 end
