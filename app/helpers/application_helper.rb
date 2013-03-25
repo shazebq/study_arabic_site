@@ -23,6 +23,11 @@ module ApplicationHelper
       "Student"
     end
   end
+
+  def gender_word(gender)
+    return "Male" if gender == "m"
+    return "Female" if gender == "f"
+  end
   
   def user_type_controller(user)
     "#{user_type(@user).downcase}_profiles"
@@ -44,9 +49,9 @@ module ApplicationHelper
   # is from the images table (nested polymorphic)
   def handle_image(image)
     if image
-      image_tag(image).html_safe
+      image_tag(image, class: "floatLeft").html_safe
     else
-      image_tag("/images/thumb_sub.png").html_safe
+      image_tag("/images/thumb_sub.png", class: "floatLeft").html_safe
     end
   end
 
@@ -62,6 +67,23 @@ module ApplicationHelper
       "error_label".html_safe
     else
       "".html_safe
+    end
+  end
+
+  # for alternative background colors in indexes
+  def get_alternating_class(i)
+    if (i+1).odd?
+      "index_well"
+    else
+      "index_well_white"
+    end
+  end
+
+  def get_alternating_class_with_image(i)
+    if (i+1).odd?
+      "odd_row"
+    else
+      "even_row"
     end
   end
   

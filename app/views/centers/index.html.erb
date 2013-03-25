@@ -12,13 +12,14 @@
 <div id="centers_list">
   <div id="centers_div">
       
-      <% @centers.each do |center| %>
+      <% @centers.each_with_index do |center, i| %>
         <%= render partial: "shared/index_with_image", 
                   locals: { image: center.images.first.try(:photo).try(:url, :thumb), 
                             name: center.name, 
                             item: center,
                             description: center.description,
-                            item_with_reviews: center} %>
+                            item_with_reviews: center,
+                            row_class: get_alternating_class(i)} %>
       <% end %>
 
       <%= render partial: "shared/pagination_links", locals: { items: @centers } %>

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  PER_PAGE = 2
+  PER_PAGE = 3
   protect_from_forgery
   before_filter :require_sign_in, only: :vote
   # for devise, save the last page user was on or tyring to access before doing something that required authentication

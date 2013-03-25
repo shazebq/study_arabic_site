@@ -138,7 +138,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   //padding-right: 20px;
   border-radius: 15px;
   min-height: 1000px;
-  margin-bottom: 10px;
+  padding-top: 20px;
 }
 
 #main_content
@@ -176,6 +176,20 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   @extend .custom_alert;
   color: black;
   //width: 95%;
+}
+
+.index_well
+{
+  padding: 10px;
+  background-color: $light_gray;
+  border-bottom: 1px solid #CCCCCC;
+  min-height: 85px;
+}
+
+.index_well_white
+{
+  @extend .index_well;
+  background-color: white;
 }
 
 .inline
@@ -337,27 +351,26 @@ h3
   width: 333px;
 }
 
-.span9
+.span_thumb
 {
-  //width: 690px;
+  @extend .span2;
+  margin-right: 0;
+  width: 100px;
 }
 
-.span3
+.span_centers_index
 {
-  //width: 215px;
+  @extend .span2;
+  width: 580px; 
+  margin-left: 10px;
 }
 
 img.floatLeft 
 { 
     float: left; 
-    margin: 5px; 
+    margin-top: 2px;
+    margin-right: 10px; 
 }
-img.floatRight 
-{ 
-    float: right; 
-    margin: 5px; 
-}
-
 
 #myCarousel
 {
