@@ -1,9 +1,14 @@
 <% teacher_profiles.each do |teacher| %>
-  <%= render partial: "shared/index_with_image", 
-             locals: { image: teacher.user.try(:image).try(:photo).try(:url, :thumb), 
-                       name: full_name(teacher.user), 
-                       item: teacher.user,
-                       description: teacher.user.bio,
-                       item_with_reviews: teacher } %>
-
+  <div class="margin_bottom">
+    <div>
+      <span class="subtitle_large"><%= link_to(full_name(teacher.user), teacher) %></span>
+      <%= average_stars(teacher) %>
+      <span class="subtitle_large_gray">(<%= review_count(teacher) %>)</span>
+    </div>
+    <p class="specialties"><%= teacher.try(:specialties)  %></p>
+    <p><%= truncate_text(teacher.user.bio, 300, teacher) %></p>
+  </div>
+  <div class="row">
+  <div class="span9 bottom_border_div"></div>
+</div>
 <% end %>

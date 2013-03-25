@@ -4,13 +4,10 @@
     </div>
     <div class="span7">
           <div>
-            <span class="subtitle_large"><%= link_to(name, item) %></span>
+              <span class="subtitle_large"><%= link_to(name, item) %></span>
               <%= average_stars(item_with_reviews) %>
               <span class="subtitle_large_gray">(<%= review_count(item_with_reviews) %>)</span>
           </div>
-      <% if params[:controller] == "users" && user_type(item) == "Teacher"  %>
-          <p class="specialties"><%= item.profile.try(:specialties)  %></p>
-      <% end %>
       <p><%= truncate_text(description, 300, item) %></p>
     </div>
     <div class="span9 bottom_border_div"></div>
