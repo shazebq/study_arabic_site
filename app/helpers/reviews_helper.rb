@@ -9,6 +9,13 @@ module ReviewsHelper
     html_string = "<span class='star-rating'><i class='rating-#{star_num}'></i></span>".html_safe
   end
 
+  def average_stars(reviewable)
+    generate_stars(reviewable.try(:reviews).average("rating").try(:round_point5))
+  end
+
+  def review_count(reviewable)
+    pluralize(reviewable.try(:reviews_count), "review").html_safe
+  end
 
   #def generate_stars_old(number_of_stars)
   #  if number_of_stars == nil || 0

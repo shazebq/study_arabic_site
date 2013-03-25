@@ -5,8 +5,8 @@
     <div class="span7">
           <div>
             <span class="subtitle_large"><%= link_to(name, item) %></span>
-              <%= generate_stars(item_with_reviews.try(:reviews).average("rating").try(:round_point5)) %>
-              <span class="subtitle_large_gray"><%= "(#{pluralize(item_with_reviews.try(:reviews_count), "review")})" %></span>
+              <%= average_stars(item_with_reviews) %>
+              <span class="subtitle_large_gray">(<%= review_count(item_with_reviews) %>)</span>
           </div>
       <% if params[:controller] == "users" && user_type(item) == "Teacher"  %>
           <p class="specialties"><%= item.profile.try(:specialties)  %></p>
