@@ -45,12 +45,24 @@
 
     <% if params[:controller] == "teacher_profiles" %>
       <div class="field">
+        <%= f.label :age, "Age*" %>
+        <%= f.text_field :age %>
+      </div>
+      <div class="field">
         <%= f.label :field_of_study, "Field of Study*" %>
         <%= f.text_field :field_of_study %>
       </div>
       <div class="field">
+        <%= f.label :degree, "Degree" %>
+        <%= f.text_field :degree %>
+      </div>
+      <div class="field">
         <%= f.label :university %>
         <%= f.text_field :university%>
+      </div>
+      <div class="field">
+        <%= f.label :other_education, "Other Education Or Training" %>
+        <%= f.text_area :other_education %>
       </div>
       <div class="field">
         <%= f.label :years_of_experience, "Years of Experience*" %>
@@ -87,10 +99,6 @@
     <div class="field">
     <%= user_form.label :bio, "Brief description about yourself*" %></span>
     <%= user_form.text_area :bio %></div>
-    <%= user_form.fields_for :image, :html => { :multipart => true } do |image_form| %>
-      <%= image_form.label "Profile Picture" %>
-      <%= image_form.file_field :photo %>
-    <% end %>
   <% end %>
 
     <div class="actions">

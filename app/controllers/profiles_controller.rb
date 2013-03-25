@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   def new
     @profile = params[:controller].classify.constantize.new
     user = @profile.build_user
-    image = user.build_image
+    #image = user.build_image (no longer needed)
   end
   
   def create

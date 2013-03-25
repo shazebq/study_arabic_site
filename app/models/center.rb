@@ -22,21 +22,16 @@ class Center < ActiveRecord::Base
   has_many :reviews, as: :reviewable, dependent: :destroy
   has_many :users, through: :reviews
   accepts_nested_attributes_for :address, :images
-
-  validates :name, :description, presence: true
-
-  validates :name, length: { maximum: 65 }
-  validates :description, length: { maximum: 2000 }
-
+  
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :description, presence: true, length: { maximum: 1000 } 
+  validates :website, url: true
+  validates :email, email_format: true 
+  validates :phone_number, length: { maximum: 15 }
+  validates :year_established, allow_blank: true, numericality: { integer: true }, length: { is: 4 }
   validates :price_per_hour_private, :price_per_hour_group, allow_blank: true,
             numericality: { greater_than: 0, less_than: 100 }
-
   validates :total_price, allow_blank: true, numericality: { greater_than: 0, less_than: 100000 }
-  validates :year_established, allow_blank: true, numericality: { integer: true }, length: { is: 4 }
-
-  validates :email, email_format: true 
-  validates :website, url: true
-
 
   scope :country_option, (lambda do |country_id| 
     if country_id == "all"

@@ -31,11 +31,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :bio, :country_id, :image_attributes, :skype_id, :as => [:default, :admin] 
   attr_accessible :admin, as: :admin
-  
 
-  validates :first_name, :last_name, :bio, :country_id, presence: true 
-  validates :first_name, :last_name, :skype_id, length: { maximum: 65 }   
-  validates :bio, length: { maximum: 2000 }
+  validates :first_name, presence: true, length: { maximum: 30 }, reduce: true
+  validates :last_name, presence: true, length: { maximum: 30 }, reduce: true
+  validates :bio, presence: true, length: { maximum: 1000 }, reduce: true
 
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")

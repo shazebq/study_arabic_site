@@ -11,7 +11,8 @@ class Answer < ActiveRecord::Base
 
   has_many :comments, :as => :commentable, dependent: :destroy
 
-  validates :content, :forum_post_id, presence: true, length: { maximum: 10000 } 
+  validates :content, presence: true, length: { maximum: 10000 } 
+  validates :forum_post_id, presence: true
 
   # orders by number of votes
   scope :by_votes, order("votes_count desc, id desc")

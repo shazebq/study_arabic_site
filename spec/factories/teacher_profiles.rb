@@ -11,5 +11,6 @@ FactoryGirl.define do
     reviews_count 0
     price_per_hour 5
     approved true
+    age 25
   end
 end

@@ -24,7 +24,7 @@ class Article < ActiveRecord::Base
 
   validates :title, :content, :category_ids, presence: true
 
-  validates :title, length: { maximum: 130 }
+  validates :title, length: { maximum: 100 }
   validates :content, length: {maximum: 10000 }
 
   accepts_nested_attributes_for :images

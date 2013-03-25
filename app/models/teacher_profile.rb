@@ -16,18 +16,19 @@ class TeacherProfile < ActiveRecord::Base
   has_many :users, through: :reviews
 
   accepts_nested_attributes_for :user
-  attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience, :user_attributes, :specialties, :price_per_hour, :as => [:default, :admin] 
+  attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience,
+                  :user_attributes, :specialties, :price_per_hour, :age, :degree, :other_education, :as => [:default, :admin] 
   attr_accessible :approved, as: :admin
 
-  validates :years_of_experience, :price_per_hour, :specialties, :field_of_study, presence: true 
+  validates :age, presence: true, numericality: { integer: true, less_than: 100, greater_than: 15 }, reduce: true
+  validates :field_of_study, presence: true, length: { maximum: 30 }, reduce: true
+  validates :university, length: { maximum: 30 } 
+  validates :other_education, length: { maximum: 130 } 
+  validates :years_of_experience, presence: true, numericality: { integer: true, less_than: 100 }, reduce: true  
+  validates :specialties, presence: true, length: { maximum: 130 }
+  validates :price_per_hour, presence: true, numericality: { greater_than: 0.99, less_than: 100 }, reduce: true
   validates :in_person, :online, :inclusion => {:in => [true, false]}
-  validates :years_of_experience, numericality: { integer: true, less_than: 100 } 
-  validates :price_per_hour, numericality: { greater_than: 0.99, less_than: 100 }
   
-  validates :university, :field_of_study, length: { maximum: 65 }
-  validates :specialties, length: { maximum: 130 }
- 
-
   scope :price_option, (lambda do |price| 
     if price.blank?
       where("price_per_hour < ?", 0) 

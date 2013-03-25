@@ -9,6 +9,7 @@ en:
       forum_post:
       answer:
       message:
+      comment:
     attributes:
       user:
         email: "Email"
@@ -32,6 +33,8 @@ en:
         content: "Answer"
       message:
         content: "Message"
+      comment:
+        content: "Comment"
     errors:
       models:
         user:
