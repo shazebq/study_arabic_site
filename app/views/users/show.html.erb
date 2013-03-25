@@ -33,6 +33,7 @@
 <% content_for :side_bar do %>
   <div class="subtitle_large margin_bottom"><%= "#{user_type(@user)} Statistics" %></div>
   <table>
+    <%= render partial: "shared/table_row", locals: { key: "Reputation Score", value: @user.reputation } %>
     <%= render partial: "shared/table_row", locals: { key: "Questions Answered", value: @user.answers.count } %>
     <%= render partial: "shared/table_row", locals: { key: "Resources Posted", value: @user.resources.count } %>
   </table>
