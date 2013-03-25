@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Answer do
-  let!(:answer) { FactoryGirl.create(:answer, content: "first question submitted")}
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:answer) { FactoryGirl.create(:answer, content: "first question submitted", user_id: user.id)}
   let!(:answer1) { FactoryGirl.create(:answer, content: "great question")}
   let!(:answer2) { FactoryGirl.create(:answer, content: "nice question")}
   subject { answer }
@@ -50,14 +51,5 @@ describe Answer do
       end
     end
 
-    #describe "when user tries to post more than one answer to the same forum_post" do
-      #before :each do
-      #  @forum_post1 = ForumPost.new()
-      #  @forum_post1.save(validate: false)
-      #  @answer1 = FactoryGirl.create(:answer, forum_post_id: @forum_post1.id)
-      #  FactoryGirl.create(:answer, forum_post_id: @forum_post1.id)
-      #end
-
-    #end
   end
 end

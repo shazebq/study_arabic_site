@@ -20,6 +20,8 @@ class Resource < ActiveRecord::Base
   has_many :views, as: :viewable, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
 
+  has_many :users, through: :reviews
+
   belongs_to :user
 
   # need this for paper clip

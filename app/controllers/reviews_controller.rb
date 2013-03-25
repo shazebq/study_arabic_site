@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :teacher_cannot_review_himself, only: [:new, :create]
+  before_filter :limit_user_reviews, only: [:new, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
   def new
@@ -46,6 +48,25 @@ class ReviewsController < ApplicationController
   def destroy
     Review.find(params[:id]).destroy
     redirect_to(Resource.find(params[:resource_id]))
+  end
+
+  # authorization related
+  def teacher_cannot_review_himself
+    @reviewable = get_somethingable(params)
+    if @reviewable.kind_of?(TeacherProfile)
+      if @reviewable.user == current_user
+        flash[:notice] = "Sorry, you cannot review yourself"
+        redirect_to user_path(@reviewable.user.id)
+      end
+    end
+  end
+
+  def limit_user_reviews
+    @reviewable = get_somethingable(params)
+    if @reviewable.users.include?(current_user)
+      flash[:notice] = "Sorry, you cannot write more than one review"
+      redirect_to :back 
+    end
   end
 end
 

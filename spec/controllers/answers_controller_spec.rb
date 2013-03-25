@@ -14,7 +14,6 @@ describe AnswersController do
           post :create, forum_post_id: forum_post.id, user_id: user.id
         end.to change(Answer, :count).by(0)
       end
-      
     end
     
     describe "deleting and update an answer" do

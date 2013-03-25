@@ -21,10 +21,12 @@
 
 <br />
 <% if user_type(@user) == "Teacher" %>
-  <div>
-    <span class="subtitle_large middle">Have you had classes with this teacher?</span>
-    <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn_custom left_margin") %>
-  </div>
+  <% unless user_signed_in? && current_user.profile == @user.profile %>
+    <div>
+      <span class="subtitle_large middle">Have you had classes with this teacher?</span>
+      <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn_custom left_margin") %>
+    </div>
+  <% end %>
   <div>
     <div class="subtitle_large margin_bottom">Reviews</div>
     <%= render partial: "reviews/reviews_display", locals: { item: @user.profile } %>

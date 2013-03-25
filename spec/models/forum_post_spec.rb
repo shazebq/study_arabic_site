@@ -16,8 +16,9 @@ describe ForumPost do
   #comment
 
   describe "count_vote" do
+    let!(:user_new) { FactoryGirl.create(:user) }
     let(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
-    let(:forum_post) { FactoryGirl.create(:forum_post, category_ids: parent.id) }
+    let(:forum_post) { FactoryGirl.create(:forum_post, category_ids: parent.id, user_id: user_new.id) }
 
     it "adds the vote to the forum if it is voted up and removes the vote if it is voted down" do
       expect { forum_post.count_vote(forum_post.id, "ForumPost", 1, "up") }.to change(forum_post.votes, :count).by(1)

@@ -20,6 +20,7 @@ class Center < ActiveRecord::Base
   belongs_to :user
   has_many :images, as: :imageable, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
+  has_many :users, through: :reviews
   accepts_nested_attributes_for :address, :images
 
   validates :name, :description, presence: true

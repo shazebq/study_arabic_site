@@ -12,6 +12,9 @@ class TeacherProfile < ActiveRecord::Base
   after_initialize :init
   has_one :user, as: :profile, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
+
+  has_many :users, through: :reviews
+
   accepts_nested_attributes_for :user
   attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience, :user_attributes, :specialties, :price_per_hour, :as => [:default, :admin] 
   attr_accessible :approved, as: :admin
