@@ -17,10 +17,13 @@ class TeacherProfile < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
   attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience,
-                  :user_attributes, :specialties, :price_per_hour, :age, :degree, :other_education, :as => [:default, :admin] 
+                  :user_attributes, :specialties, :price_per_hour, :age, :degree, :other_education, :gender, :as => [:default, :admin] 
   attr_accessible :approved, as: :admin
 
   validates :age, presence: true, numericality: { integer: true, less_than: 100, greater_than: 15 }, reduce: true
+  validates :gender, presence: true
+  validates :gender, :format => { :with => /f|m/,
+    :message => "must be m or f" }, reduce: true
   validates :field_of_study, presence: true, length: { maximum: 30 }, reduce: true
   validates :university, length: { maximum: 30 } 
   validates :other_education, length: { maximum: 130 } 
