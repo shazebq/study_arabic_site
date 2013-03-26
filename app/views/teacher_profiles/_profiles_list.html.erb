@@ -2,7 +2,7 @@
   <% div_class = get_alternating_class(i) %>
   <div class="<%= div_class %>">
     
-    <%= render partial: "profile_info", locals: { teacher: teacher } %>
+    <%= render partial: "profile_info", locals: { teacher: teacher, title_class: "subtitle_large" } %>
 
     <div><%= truncate_text(teacher.user.bio, 300, teacher) %></div>
   </div>

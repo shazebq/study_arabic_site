@@ -1,6 +1,6 @@
   <div>
-    <div>
-      <span class="subtitle_large"><%= link_to(full_name(teacher.user), teacher.user) %></span>
+    <div class="margin_bottom_small">
+      <span class="<%= title_class %>"><%= link_to(full_name(teacher.user), teacher.user) %></span>
       <%= average_stars(teacher) %>
       <span class="subtitle_large_gray">(<%= review_count(teacher) %>)</span>
     </div>

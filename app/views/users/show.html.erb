@@ -4,14 +4,24 @@
 
 <% if user_type(@user) == "Teacher" %>
 
-  <%= render partial: "shared/two_columns", locals: { key: "Online Teaching", value: bool_display(@user.profile.online) } %>
-  <%= render partial: "shared/two_columns", locals: { key: "In Person Teaching", value: (bool_display(@user.profile.in_person)) } %>
+  <%= render partial: "shared/two_columns", locals: { key: "Instruction Type", value: nil } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Online Teaching", value: bool_display(@user.profile.online) } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "In Person Teaching", value: (bool_display(@user.profile.in_person)) } %>
+
   <%= render partial: "shared/two_columns", locals: { key: "Price Per Hour", value: number_to_currency(@user.profile.price_per_hour) } %>
+
   <%= render partial: "shared/two_columns", locals: { key: "Education", value: nil } %>
   <%= render partial: "shared/two_columns_indented", locals: { key: "Field of Study", value: @user.profile.field_of_study } %>
   <%= render partial: "shared/two_columns_indented", locals: { key: "University", value: @user.profile.university } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Degree", value: @user.profile.degree } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Other Education/Training", value: @user.profile.other_education } %>
 
-  <%= render partial: "shared/two_columns", locals: { key: "Skype ID", value: @user.skype_id } %>
+  <%= render partial: "shared/two_columns", locals: { key: "Experience", value: nil } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Years of Experience", value: @user.profile.years_of_experience } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Employment History", value: "Tutor at Arabic Center" } %>
+
+  <!--not sure about including contact information yet, perhaps but require log in to see it-->
+  <%#= render partial: "shared/two_columns", locals: { key: "Skype ID", value: @user.skype_id } %>
 <% end %>
 
 <% if user_type(@user) == "Student" %>
