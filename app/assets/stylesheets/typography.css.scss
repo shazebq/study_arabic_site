@@ -10,6 +10,11 @@ a:hover.no_underline
   text-decoration: none;
 }
 
+a:link.no_underline, a:visited.no_underline
+{
+  color: black;
+}
+
 a:link 
 {
   text-decoration:none;

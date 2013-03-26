@@ -1,0 +1,15 @@
+  <div>
+    <div>
+      <span class="subtitle_large"><%= link_to(full_name(teacher.user), teacher.user) %></span>
+      <%= average_stars(teacher) %>
+      <span class="subtitle_large_gray">(<%= review_count(teacher) %>)</span>
+    </div>
+      <div>
+        <span class="bold">
+          <%= "#{teacher.user.country.name} | #{gender_word(teacher.gender)} | #{teacher.age} years"  %>
+          | <span class="red_badge"><%= pluralize(teacher.user.reputation, "point") %></span>
+        </span>
+      </div><!--country, age, gender, rep points-->
+
+      <div class="margin_bottom_small"><span class="bold">Specialties: </span><span class="italic"><%= teacher.try(:specialties) %></span></div>
+  </div>

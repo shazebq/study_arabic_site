@@ -1,22 +1,10 @@
 <% teacher_profiles.each_with_index do |teacher, i| %>
   <% div_class = get_alternating_class(i) %>
   <div class="<%= div_class %>">
-      <div>
-        <div>
-          <span class="subtitle_large"><%= link_to(full_name(teacher.user), teacher.user) %></span>
-          <%= average_stars(teacher) %>
-          <span class="subtitle_large_gray">(<%= review_count(teacher) %>)</span>
-        </div>
-          <div>
-            <span class="bold">
-              <%= "#{teacher.user.country.name} | #{gender_word(teacher.gender)} | #{teacher.age} years"  %>
-              | <span class="red_badge"><%= "#{teacher.user.reputation} points" %></span>
-            </span>
-          </div><!--country, age, gender, rep points-->
+    
+    <%= render partial: "profile_info", locals: { teacher: teacher } %>
 
-          <div class="margin_bottom_small"><span class="bold">Specialties: </span><span class="italic"><%= teacher.try(:specialties) %></span></div>
-          <div><%= truncate_text(teacher.user.bio, 300, teacher) %></div>
-      </div>
+    <div><%= truncate_text(teacher.user.bio, 300, teacher) %></div>
   </div>
 
 <% end %>

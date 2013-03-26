@@ -6,6 +6,7 @@
 $main_color: #007974;
 $dark: #004E4B;
 $light: #BFDDDC;
+$lightest: #E3F0EF; 
 $contrast: #C65800;
 $light_gray: #F5F5F5;
 $dark_gray: #909090;
@@ -13,7 +14,6 @@ $error_text: #961F1F;
 $error_background: #E8CFCF; 
 $notice_text: #006000; 
 $notice_background: #AFD7AF;
-
 #notice
 {
   color: $notice_text;
@@ -410,7 +410,10 @@ img.floatLeft
 
 
 
-
+.testing
+{
+  background-color: $light;
+}
 
 
 

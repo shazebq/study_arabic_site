@@ -1,34 +1,46 @@
-<div class="row">
-  <div class="span3 photo">
-    <%= handle_image(user.image.try(:photo).try(:url, :medium)) %> 
-  </div>
-  <div class="span6">
-      <div class="name_and_badge">
-        <div>
-          <span class="subtitle_large_color"><%= full_name(user) %></span>
-          <% if params[:action] == "show" %>
-            <span class="red_badge left_margin_small right_margin_small"><%= user_type(user) %></span>
-            
-            <% if user_type(user) == "teacher" %>
-            <span><%= render partial: "shared/star_rating", locals: { item: user.profile } %></span>
-            <% end %>
-          <% end %>
-        </div>
+<div>
 
+
+    <div class="row">
+      <div class="span7">
+        <% if user_type(user) == "Teacher" %>
+          <%= render partial: "teacher_profiles/profile_info", locals: { teacher: user.profile } %>
+        <% else %>
+          <!-- student rendition here --> 
+        <% end %>
+      </div><!--span7-->
+      <div class="span2">
+        <% if authorized?(user) %>
+          <div class="align_right"><div class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(user), 
+            action: "edit", id: user.try(:profile).try(:id) %></div>
+          </div>
+        <% end %>                                                    
+      </div><!--span2-->
+    </div><!--row-->
+
+    <div class="row">
+      <div class="span9">
+        <%= link_to('<i class="icon-envelope icon-large"></i><strong>'.html_safe, new_user_message_path(user), class: "no_underline") %> <%= link_to("Send Message", new_user_message_path(user)) %></strong>
       </div>
-      <% if authorized?(user) %>
-        <div class="small_column"><div class="profile_links"><%= link_to "Edit Profile", controller: user_type_controller(user), 
-          action: "edit", id: user.try(:profile).try(:id) %></div>
-        </div>
-      <% end %>                                                    
-  </div>
-  <div class="span6">
+    </div>
 
-    <% if user_type(user) == "Teacher" %>
-      <div class="specialties"><%= user.profile.try(:specialties)  %></div>
-    <% end %>
-    <p><%= user.bio %></p>
+    <div class="row">
+      <div class="span9 bottom_border_div"></div>
+    </div>
+    
+    <div class="row">
+      <div class="span9">
+        <span class="subtitle_large_gray">About <%= user.first_name %></span>
+        <div><%= user.bio %></div> 
+      
+      
+      </div>
+    </div>
 
-    <i class="icon-envelope icon-large"></i><strong><%= link_to(" Send Message", new_user_message_path(user)) %></strong>
-  </div>
+
+
+
 </div>
+
+
+
