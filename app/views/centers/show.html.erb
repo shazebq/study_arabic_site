@@ -1,20 +1,50 @@
 <%= provide :title, @center.name %>
-<div class="margin_bottom_small">
-  <span class="site_title middle"><%= link_to(@center.name, @center) %></span>
-  <%= average_stars(@center) %>
-  <span class="subtitle_large_gray">(<%= review_count(@center) %>)</span><br />
-</div>
-<span class="bold"><%= center_location(@center) %></span>
-<span class="info"><%#= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
+
+    <div class="margin_bottom_small">
+      <span class="site_title middle"><%= link_to(@center.name, @center) %></span>
+      <%= average_stars(@center) %>
+      <span class="subtitle_large_gray">(<%= review_count(@center) %>)</span><br />
+    </div>
+    <span class="bold"><%= center_location(@center) %></span>
+    <span class="info"><%#= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
+
+    <div class="row">
+      <div class="span9 bottom_border_div"></div>
+    </div>
 
 <div class="row">
-  <div class="span9 bottom_border_div"></div>
-</div>
+  <div class="span5">
+    <div class="margin_bottom">
+      <span class="bold caps">About</span>
+      <div><%= modified_sf(@center.description) %></div> 
+    </div>
+  </div>
+  <div class="span4">
 
-<div class="margin_bottom">
-  <span class="bold caps">About</span>
-  <div><%= modified_sf(@center.description) %></div> 
-</div>
+    <div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <% (1...(@center.images.size)).each do |n| %>
+        <li data-target="#myCarousel" data-slide-to="<%= n %>"></li>
+      <% end %>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="active item">
+        <%= image_tag(@center.images.first.photo(:large)) %>
+      </div>
+      <div class="item">
+        <%= image_tag(Image.find(46).photo(:large)) %>
+      </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+
+  </div><!--span4-->
+
+</div><!--row-->
 
 <div class="margin_bottom">
   <%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
@@ -40,6 +70,14 @@
   <%= render partial: "shared/two_columns_indented", locals: { key: "Private Instruction", value: bool_display(@center.private_instruction) } %> 
   <%= render partial: "shared/two_columns_indented", locals: { key: "Housing Provided", value: bool_display(@center.housing_provided) } %>
 </div>
+
+
+
+
+
+
+
+
 
 <br />
 <div>

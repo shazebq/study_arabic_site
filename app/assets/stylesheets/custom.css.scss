@@ -374,13 +374,20 @@ img.floatLeft
 
 #myCarousel
 {
-  width: 100% !important;  
+  width: 275px !important;  
 }
 
 .carousel-control
 {
   border: 1px;
 }
+
+
+
+.carousel-inner { text-align: center; }
+
+.carousel .item > img { display: inline-block; }
+
 
 // Carousel indicator pips
 // -----------------------------
@@ -407,13 +414,3 @@ img.floatLeft
     background-color: #fff;
   }
 }
-
-
-
-.testing
-{
-  background-color: $light;
-}
-
-
-
