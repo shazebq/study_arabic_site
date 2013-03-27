@@ -3,15 +3,17 @@ require 'spec_helper'
 describe TeacherProfile do
   before :each do
     @teacher_profile = FactoryGirl.build(:teacher_profile)
+    @language = FactoryGirl.create(:language)
   end
 
   subject { @teacher_profile }
 
   it { should(respond_to :user) }
   it { should(respond_to :languages) }
+  it { should(respond_to :degree) }
   
   it "should create a user AND teacher profile" do
-    @teacher_profile_with_user = { field_of_study: "bachelors in Arabic", university: "Cairo University",
+    @teacher_profile_with_user = { field_of_study: "bachelors in Arabic", university: "Cairo University", language_ids: [@language.id],
                                   years_of_experience: 2, specialties: "Classical Arabic", online: true, in_person: false,
                                   user_attributes: { first_name: "John", last_name: "Khan", email: "jkhan@example.com",
                                                      password: "cool123", password_confirmation: "cool123", bio: "my bio", country_id: 5 } }
@@ -34,22 +36,22 @@ describe TeacherProfile do
   end
 
   describe "scopes" do
-    let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1, online: true, in_person: true, price_per_hour: 5) }
+    let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, language_ids: [@language.id], reviews_count: 1, online: true, in_person: true, price_per_hour: 5) }
     let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id, country_id: 1) }
     let!(:review1a) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     let!(:review1b) { FactoryGirl.create(:review, rating: 5, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile1.id) }
     
-    let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, reviews_count: 2, online: true, in_person: false, price_per_hour: 3 ) }
+    let!(:teacher_profile2) { FactoryGirl.create(:teacher_profile, language_ids: [@language.id], reviews_count: 2, online: true, in_person: false, price_per_hour: 3 ) }
     let!(:user2) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile2.id, country_id: 2) }
     let!(:review2a) { FactoryGirl.create(:review, rating: 2, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
     let!(:review2b) { FactoryGirl.create(:review, rating: 1, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile2.id) }
 
-    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, reviews_count: 3, online: false, in_person: true, price_per_hour: 9) }
+    let!(:teacher_profile3) { FactoryGirl.create(:teacher_profile, language_ids: [@language.id], reviews_count: 3, online: false, in_person: true, price_per_hour: 9) }
     let!(:user3) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile3.id, country_id: 3) }
     let!(:review3a) { FactoryGirl.create(:review, rating: 3, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     let!(:review3b) { FactoryGirl.create(:review, rating: 4, reviewable_type: "TeacherProfile", reviewable_id: teacher_profile3.id) }
     
-    let!(:teacher_profile4) { FactoryGirl.create(:teacher_profile, reviews_count: 0, online: false, in_person: true, price_per_hour: 15) }
+    let!(:teacher_profile4) { FactoryGirl.create(:teacher_profile, language_ids: [@language.id], reviews_count: 0, online: false, in_person: true, price_per_hour: 15) }
     let!(:user4) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile4.id, country_id: 4) }
 
     describe "most reviews descending" do
@@ -119,7 +121,7 @@ describe TeacherProfile do
       @teacher_profile1 = TeacherProfile.new(online: true, in_person: true, years_of_experience: 5,
                                              price_per_hour: 10, specialties: "literature, rhetoric",
                                              field_of_study: "Translation", employment_history: "job", gender: "m", 
-                                             age: 23)
+                                             age: 23, language_ids: [@language.id])
     end
 
     describe "general validation" do

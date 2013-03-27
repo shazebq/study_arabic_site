@@ -5,6 +5,7 @@ describe "new teacher profile page" do
     FactoryGirl.create(:country, name: "Egypt")
     FactoryGirl.create(:language, name: "Mandarin")
     FactoryGirl.create(:language, name: "Arabic")
+    FactoryGirl.create(:degree, name: "Master")
     visit new_teacher_profile_path
   end
 
@@ -38,6 +39,7 @@ describe "new teacher profile page" do
       select "Egypt", from: "teacher_profile_user_attributes_country_id"
       select "Mandarin", from: "teacher_profile_language_ids"
       select "Arabic", from: "teacher_profile_language_ids"
+      select "Master", from: "teacher_profile_degree_id"
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
@@ -51,6 +53,11 @@ describe "new teacher profile page" do
     specify "clicking submit button should add the selected languages to the teacher profile" do
       click_button "Submit"
       TeacherProfile.find_by_age(29).languages.should include(Language.find_by_name("Mandarin"), Language.find_by_name("Arabic"))
+    end
+
+    specify "clicking submit should add the selected degree to the teacher profile" do
+      click_button "Submit"
+      TeacherProfile.find_by_age(29).degree.name.should == "Master"
     end
 
   end

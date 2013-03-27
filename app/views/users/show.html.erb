@@ -18,7 +18,7 @@
     <%= render partial: "shared/two_columns", locals: { key: "Education", value: nil } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "Field of Study", value: (@user.profile.field_of_study) } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "University", value: @user.profile.university } %>
-    <%= render partial: "shared/two_columns_indented", locals: { key: "Degree", value: @user.profile.degree } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Highest Degree", value: @user.profile.degree.name } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "Other Education/Training", value: modified_sf(@user.profile.other_education) } %>
   </div>
 
@@ -26,6 +26,10 @@
     <%= render partial: "shared/two_columns", locals: { key: "Experience", value: nil } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "Years of Experience", value: @user.profile.years_of_experience } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "Employment History", value: modified_sf(@user.profile.employment_history) } %>
+  </div>
+
+  <div class="margin_bottom">
+    <%= render partial: "shared/two_columns", locals: { key: "Languages", value: @user.profile.languages.pluck(:name).join(", ") } %>
   </div>
 
   <!--not sure about including contact information yet, perhaps but require log in to see it-->
