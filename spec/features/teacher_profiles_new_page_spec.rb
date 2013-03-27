@@ -2,8 +2,9 @@ require "spec_helper"
 
 describe "new teacher profile page" do
   before :each do
-    sign_in_user( FactoryGirl.create(:user, email: "shazebq@gmail.com") )
     FactoryGirl.create(:country, name: "Egypt")
+    FactoryGirl.create(:language, name: "Mandarin")
+    FactoryGirl.create(:language, name: "Arabic")
     visit new_teacher_profile_path
   end
 
@@ -18,6 +19,9 @@ describe "new teacher profile page" do
   describe "creating a new teacher account" do
     before :each do
       fill_in "teacher_profile_university", with: "Cairo University"
+      fill_in "teacher_profile_age", with: 29
+      select "Male", from: "teacher_profile_gender"
+      fill_in "teacher_profile_employment_history", with: "some arabic center"
       fill_in "teacher_profile_field_of_study", with: "Arabic Literature"
       fill_in "teacher_profile_years_of_experience", with: "5"
       fill_in "teacher_profile_price_per_hour", with: "5.50"
@@ -32,7 +36,8 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
       fill_in "teacher_profile_user_attributes_skype_id", with: "billyjones"
       select "Egypt", from: "teacher_profile_user_attributes_country_id"
-      attach_file "teacher_profile_user_attributes_image_attributes_photo", "/Users/shazeb/Pictures/test_image.jpg" 
+      select "Mandarin", from: "teacher_profile_language_ids"
+      select "Arabic", from: "teacher_profile_language_ids"
     end
 
     specify "clicking create account button should create a user and a new teacher_profile" do
@@ -43,9 +48,9 @@ describe "new teacher profile page" do
       expect { click_button "Submit" }.to change(User, :count)
     end
 
-    specify "clicking create account button should create an image which belongs to the user" do
+    specify "clicking submit button should add the selected languages to the teacher profile" do
       click_button "Submit"
-      User.last.image.should_not be_nil 
+      TeacherProfile.find_by_age(29).languages.should include(Language.find_by_name("Mandarin"), Language.find_by_name("Arabic"))
     end
 
   end

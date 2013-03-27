@@ -10,6 +10,7 @@ en:
       answer:
       message:
       comment:
+      teacher_profile:
     attributes:
       user:
         email: "Email"
@@ -21,6 +22,7 @@ en:
       teacher_profile:
         in_person: "In Person option"
         online: "Online option"
+        language_ids: "Languages"
       address:
         address_line: "Address"
         country_id: "Country"

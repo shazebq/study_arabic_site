@@ -140,7 +140,7 @@ Copyright (c) 2011 by Harvest
       if (this.form_field.getAttribute("data-placeholder")) {
         this.default_text = this.form_field.getAttribute("data-placeholder");
       } else if (this.is_multiple) {
-        this.default_text = this.options.placeholder_text_multiple || this.options.placeholder_text || "Select Some Options";
+        this.default_text = this.options.placeholder_text_multiple || this.options.placeholder_text || "";
       } else {
         this.default_text = this.options.placeholder_text_single || this.options.placeholder_text || "Select an Option";
       }

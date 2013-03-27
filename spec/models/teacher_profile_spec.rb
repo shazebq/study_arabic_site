@@ -21,6 +21,18 @@ describe TeacherProfile do
     profile.user.should_not be_nil
   end
 
+  describe "getting the language of a teacher profile" do
+    before :each do
+      @language = FactoryGirl.create(:language, name: "Mandarin")
+      @teacher_profile_with_language = FactoryGirl.build(:teacher_profile)
+      @teacher_profile_with_language.languages << @language
+       
+    end
+    it "should return the languages of the teacher profile" do
+      @teacher_profile_with_language.languages.should include(@language)
+    end
+  end
+
   describe "scopes" do
     let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, reviews_count: 1, online: true, in_person: true, price_per_hour: 5) }
     let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id, country_id: 1) }
