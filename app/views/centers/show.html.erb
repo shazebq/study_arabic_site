@@ -36,11 +36,13 @@
   </div>
 </div>
 
-<%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: mail_to(@center.email) } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Phone Number", value: @center.phone_number } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Website", value: link_to(@center.website, @center.website) } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.try(:address_line)}<br />#{@center.address.try(:city).try(:name)}, #{@center.address.try(:country).try(:name)}".html_safe} %>
+<div class="margin_bottom">
+  <%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: mail_to(@center.email) } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Phone Number", value: @center.phone_number } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Website", value: link_to(@center.website, @center.website) } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.try(:address_line)}<br />#{@center.address.try(:city).try(:name)}, #{@center.address.try(:country).try(:name)}".html_safe} %>
+</div>
 
 
 <%= render partial: "shared/two_columns", locals: { key: "Prices", value: nil } %>

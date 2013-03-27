@@ -1,1 +1,1 @@
-<span class="info">By <%= link_to(item.user.first_name, item.user).html_safe %> - <%= "#{time_ago_in_words(item.created_at)} ago" %></span>
+<span class="info">By <%= link_to(item.try(:user).try(:first_name), item.try(:user)).html_safe %> - <%= "#{time_ago_in_words(item.try(:created_at))} ago" if item %></span>

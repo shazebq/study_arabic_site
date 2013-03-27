@@ -3,31 +3,31 @@
 <!--featured article-->
 <div class="row">
   <div class="span9">
-    <div class="subtitle_largest"><%= link_to(@feature_article.title, @feature_article) %></div>
+    <div class="subtitle_largest"><%= link_to(@feature_article.try(:title), @feature_article) %></div>
     <%= render partial: "articles/author_line", locals: { item: @feature_article } %>
   </div>
 </div>
 
 <div class="row">
   <div class="span9">
-    <%= image_tag(@feature_article.images.first.photo(:medium), class: "floatLeft") %>
-    <%= truncate_text(simple_format(@feature_article.content), 675, @feature_article) %>
+    <%= image_tag(@feature_article.try(:images).try(:first).try(:photo,:medium), class: "floatLeft") %>
+    <%= truncate_text(simple_format(@feature_article.try(:content)), 675, @feature_article) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>
 
 <div class="row">
   <div class="article_span">
-      <div class="subtitle_large"><%= link_to(@articles.first.title, @articles.first) %></div>
+      <div class="subtitle_large"><%= link_to(@articles.first.try(:title), @articles.first) %></div>
       <div><%= render partial: "articles/author_line", locals: { item: @articles.first } %></div>
-      <%= image_tag(@articles.first.images.first.photo(:thumb), class: "floatLeft" ) %>
-      <%= truncate_text(simple_format(@articles.first.content), 350, @articles.first) %>
+      <%= image_tag(@articles.first.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
+      <%= truncate_text(simple_format(@articles.first.try(:content)), 350, @articles.first) %>
   </div>
   <div class="article_span_no_border">
-      <div class="subtitle_large"><%= link_to(@articles.last.title, @articles.last) %></div>
+      <div class="subtitle_large"><%= link_to(@articles.last.try(:title), @articles.last) %></div>
       <div><%= render partial: "articles/author_line", locals: { item: @articles.last } %></div>
-      <%= image_tag(@articles.last.images.first.photo(:thumb), class: "floatLeft" ) %>
-      <%= truncate_text(simple_format(@articles.last.content), 350, @articles.last) %>
+      <%= image_tag(@articles.last.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
+      <%= truncate_text(simple_format(@articles.last.try(:content)), 350, @articles.last) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>

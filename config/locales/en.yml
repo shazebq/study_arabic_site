@@ -27,7 +27,7 @@ en:
         address_line: "Address"
         country_id: "Country"
         city_id: "city_id"
-        city_name: "Citaaay"
+        city_name: "City"
       forum_post:
         category_ids: "Category"
         content: "Details"
