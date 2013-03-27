@@ -20,28 +20,26 @@
     </div>
   </div>
   <div class="span4">
-
     <div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <% (1...(@center.images.size)).each do |n| %>
-        <li data-target="#myCarousel" data-slide-to="<%= n %>"></li>
+      <% (0...(@center.images.size)).each do |n| %>
+        <% n == 0 ? pip_class = "active" : pip_class = "" %>
+        <li data-target="#myCarousel" data-slide-to="<%= n %> class=<%= pip_class %>"></li>
       <% end %>
     </ol>
     <!-- Carousel items -->
     <div class="carousel-inner">
-      <div class="active item">
-        <%= image_tag(@center.images.first.photo(:large)) %>
-      </div>
-      <div class="item">
-        <%= image_tag(Image.find(46).photo(:large)) %>
-      </div>
+      <% @center.images.each_with_index do |image, i| %>
+        <% i == 0 ? img_class = "active item" : img_class = "item" %>
+        <div class="<%= img_class %>">
+          <a href="<%= image.photo.url %>"><%= image_tag(image.photo(:large)) %></a>
+        </div>
+      <% end %>
     </div>
     <!-- Carousel nav -->
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
-
   </div><!--span4-->
 
 </div><!--row-->
