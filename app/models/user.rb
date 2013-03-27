@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true, length: { maximum: 30 }, reduce: true
   validates :last_name, presence: true, length: { maximum: 30 }, reduce: true
+  validates :country_id, presence: true, numericality: { integer: true }, reduce: true
   validates :bio, presence: true, length: { maximum: 1000 }, reduce: true
 
   scope :teachers, where(profile_type: "TeacherProfile")

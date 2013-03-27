@@ -79,12 +79,18 @@ module ApplicationHelper
     end
   end
 
-  def get_alternating_class_with_image(i)
-    if (i+1).odd?
-      "odd_row"
-    else
-      "even_row"
-    end
+  # simple_format without the p tags wrapping the content
+  def modified_sf(text, html_options={}, options={})
+    text = '' if text.nil?
+    text = text.dup
+    start_tag = tag('div', html_options, true)
+    text = sanitize(text) unless options[:sanitize] == false
+    text = text.to_str
+    text.gsub!(/\r\n?/, "\n")                    # \r\n and \r -> \n
+    text.gsub!(/\n\n+/, "</p>\n\n#{start_tag}")  # 2+ newline  -> paragraph
+    text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
+    text.insert 0, start_tag
+    text.html_safe.safe_concat("</div>")
   end
   
 end

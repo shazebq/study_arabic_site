@@ -8,6 +8,7 @@ describe TeacherProfile do
   subject { @teacher_profile }
 
   it { should(respond_to :user) }
+  it { should(respond_to :languages) }
   
   it "should create a user AND teacher profile" do
     @teacher_profile_with_user = { field_of_study: "bachelors in Arabic", university: "Cairo University",
@@ -105,7 +106,8 @@ describe TeacherProfile do
     before :each do
       @teacher_profile1 = TeacherProfile.new(online: true, in_person: true, years_of_experience: 5,
                                              price_per_hour: 10, specialties: "literature, rhetoric",
-                                             field_of_study: "Translation")
+                                             field_of_study: "Translation", employment_history: "job", gender: "m", 
+                                             age: 23)
     end
 
     describe "general validation" do

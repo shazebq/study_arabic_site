@@ -4,21 +4,29 @@
 
 <% if user_type(@user) == "Teacher" %>
 
-  <%= render partial: "shared/two_columns", locals: { key: "Instruction Type", value: nil } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Online Teaching", value: bool_display(@user.profile.online) } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "In Person Teaching", value: (bool_display(@user.profile.in_person)) } %>
+  <div class="margin_bottom">
+    <%= render partial: "shared/two_columns", locals: { key: "Instruction Type", value: nil } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Online Teaching", value: bool_display(@user.profile.online) } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "In Person Teaching", value: (bool_display(@user.profile.in_person)) } %>
+  </div>
 
-  <%= render partial: "shared/two_columns", locals: { key: "Price Per Hour", value: number_to_currency(@user.profile.price_per_hour) } %>
+  <div class="margin_bottom">
+    <%= render partial: "shared/two_columns", locals: { key: "Price Per Hour", value: number_to_currency(@user.profile.price_per_hour) } %>
+  </div>
 
-  <%= render partial: "shared/two_columns", locals: { key: "Education", value: nil } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Field of Study", value: @user.profile.field_of_study } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "University", value: @user.profile.university } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Degree", value: @user.profile.degree } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Other Education/Training", value: @user.profile.other_education } %>
+  <div class="margin_bottom">
+    <%= render partial: "shared/two_columns", locals: { key: "Education", value: nil } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Field of Study", value: (@user.profile.field_of_study) } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "University", value: @user.profile.university } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Degree", value: @user.profile.degree } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Other Education/Training", value: modified_sf(@user.profile.other_education) } %>
+  </div>
 
-  <%= render partial: "shared/two_columns", locals: { key: "Experience", value: nil } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Years of Experience", value: @user.profile.years_of_experience } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Employment History", value: "Tutor at Arabic Center" } %>
+  <div class="margin_bottom">
+    <%= render partial: "shared/two_columns", locals: { key: "Experience", value: nil } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Years of Experience", value: @user.profile.years_of_experience } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Employment History", value: modified_sf(@user.profile.employment_history) } %>
+  </div>
 
   <!--not sure about including contact information yet, perhaps but require log in to see it-->
   <%#= render partial: "shared/two_columns", locals: { key: "Skype ID", value: @user.skype_id } %>

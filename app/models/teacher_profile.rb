@@ -12,23 +12,28 @@ class TeacherProfile < ActiveRecord::Base
   after_initialize :init
   has_one :user, as: :profile, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
-
   has_many :users, through: :reviews
+
+  has_many :teachers_languages
+  has_many :languages, through: :teachers_languages
+
 
   accepts_nested_attributes_for :user
   attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience,
-                  :user_attributes, :specialties, :price_per_hour, :age, :degree, :other_education, :gender, :as => [:default, :admin] 
+                  :user_attributes, :specialties, :price_per_hour, :age, :degree, :other_education,
+                  :employment_history, :languages_spoken, :gender, :as => [:default, :admin] 
   attr_accessible :approved, as: :admin
 
   validates :age, presence: true, numericality: { integer: true, less_than: 100, greater_than: 15 }, reduce: true
   validates :gender, presence: true
   validates :gender, :format => { :with => /f|m/,
     :message => "must be m or f" }, reduce: true
+  validates :specialties, presence: true, length: { maximum: 130 }
   validates :field_of_study, presence: true, length: { maximum: 30 }, reduce: true
   validates :university, length: { maximum: 30 } 
-  validates :other_education, length: { maximum: 130 } 
+  validates :other_education, length: { maximum: 500 } 
   validates :years_of_experience, presence: true, numericality: { integer: true, less_than: 100 }, reduce: true  
-  validates :specialties, presence: true, length: { maximum: 130 }
+  validates :employment_history, presence: true, length: { maximum: 500  }
   validates :price_per_hour, presence: true, numericality: { greater_than: 0.99, less_than: 100 }, reduce: true
   validates :in_person, :online, :inclusion => {:in => [true, false]}
   
@@ -57,8 +62,6 @@ class TeacherProfile < ActiveRecord::Base
     [:instruction_option, :price_option, :country_option].inject(self) { |initial, additional| initial.send(additional, my_hash[additional]) }
   end
  
-  # difficult to do this in active record with a polymorphic relationship to use find_by_sql instead
-  # remember, in the last line, I'm adding the teacher profiles that don't have any reviews yet
   def self.country_option(country_id)
     if country_id == "all" || country_id.blank?
      where({}) 

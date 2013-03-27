@@ -13,5 +13,6 @@ FactoryGirl.define do
     approved true
     age 25
     gender "m"
+    employment_history "previous job"
   end
 end
