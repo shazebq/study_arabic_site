@@ -1,39 +1,19 @@
 <%= provide :title, @center.name %>
+<div class="margin_bottom_small">
+  <span class="site_title middle"><%= link_to(@center.name, @center) %></span>
+  <%= average_stars(@center) %>
+  <span class="subtitle_large_gray">(<%= review_count(@center) %>)</span><br />
+</div>
+<span class="bold"><%= center_location(@center) %></span>
+<span class="info"><%#= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
+
 <div class="row">
-  <div class="span3">  
-    <div id="myCarousel" class="carousel slide">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <% @center.images.count.times do |count| %>  
-          <% unless count == 0 %>
-            <li data-target="#myCarousel" data-slide-to="<%= count+1 %>"></li>
-          <% end %>
-        <% end %>
-      </ol>
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-      <div class="active item"><a href="<%= handle_image(@center.images.first.try(:photo).try(:url)) %>"><%= handle_image(image_tag @center.images.first.try(:photo).try(:url, :medium)) %></a></div>
+  <div class="span9 bottom_border_div"></div>
+</div>
 
-      <% @center.images.each_with_index do |i, index| %>
-        <% unless index == 0 %>
-          <div class="item"><a href="<%= i.photo.url %>"><%= image_tag(i.photo.url(:medium))%></a></div> 
-        <% end %>
-      <% end %>
-
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div>
-  </div><!--span3-->
-  <div class="span6">
-    <div>
-      <span class="subtitle_large_color"><%= @center.name %></span>
-      <%= render partial: "shared/star_rating", locals: { item: @center } %>
-    </div>
-    <span class="info"><%= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
-    <p><%= @center.description %></p> 
-  </div>
+<div class="margin_bottom">
+  <span class="bold caps">About</span>
+  <div><%= modified_sf(@center.description) %></div> 
 </div>
 
 <div class="margin_bottom">
@@ -41,22 +21,29 @@
   <%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: mail_to(@center.email) } %>
   <%= render partial: "shared/two_columns_indented", locals: { key: "Phone Number", value: @center.phone_number } %>
   <%= render partial: "shared/two_columns_indented", locals: { key: "Website", value: link_to(@center.website, @center.website) } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.try(:address_line)}<br />#{@center.address.try(:city).try(:name)}, #{@center.address.try(:country).try(:name)}".html_safe} %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.try(:address_line)}<br />#{center_location(@center)}".html_safe} %>
 </div>
 
+<div class="margin_bottom">
+  <%= render partial: "shared/two_columns", locals: { key: "Prices", value: nil } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Private)", value: number_to_currency(@center.price_per_hour_private) } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Group)", value: number_to_currency(@center.price_per_hour_group) } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Total Price (If only one program)", value: number_to_currency(@center.total_price) } %>
+</div>
 
-<%= render partial: "shared/two_columns", locals: { key: "Prices", value: nil } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Private)", value: number_to_currency(@center.price_per_hour_private) } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Group)", value: number_to_currency(@center.price_per_hour_group) } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Total Price (If only one type of program offered)", value: number_to_currency(@center.total_price) } %>
-
-<%= render partial: "shared/two_columns", locals: { key: "General Information", value: nil } %>
-<%= render partial: "shared/two_columns_indented", locals: { key: "Year Established", value: @center.year_established } %> <%= render partial: "shared/two_columns_indented", locals: { key: "Short Term Program(s)", value: bool_display(@center.short_term) } %> <%= render partial: "shared/two_columns_indented", locals: { key: "Long Term Program(s)", value: bool_display(@center.long_term) } %> <%= render partial: "shared/two_columns_indented", locals: { key: "Group Instruction", value: bool_display(@center.group_instruction) } %> <%= render partial: "shared/two_columns_indented", locals: { key: "Private Instruction", value: bool_display(@center.private_instruction) } %> <%= render partial: "shared/two_columns_indented", locals: { key: "Housing Provided", value: bool_display(@center.housing_provided) } %>
+<div class="margin_bottom">
+  <%= render partial: "shared/two_columns", locals: { key: "General Information", value: nil } %>
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Year Established", value: @center.year_established } %> 
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Short Term Program(s)", value: bool_display(@center.short_term) } %> 
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Long Term Program(s)", value: bool_display(@center.long_term) } %> 
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Group Instruction", value: bool_display(@center.group_instruction) } %> 
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Private Instruction", value: bool_display(@center.private_instruction) } %> 
+  <%= render partial: "shared/two_columns_indented", locals: { key: "Housing Provided", value: bool_display(@center.housing_provided) } %>
+</div>
 
 <br />
 <div>
-  <span class="large_font_size">Have you attended classes at this center or program?</span>
-  <%= button_to("Write a Review", new_center_review_path(@center), method: :get, class: "btn btn-primary") %>
+  <%= button_to("Write a Review For This Center", new_center_review_path(@center), method: :get, class: "btn_custom") %>
 </div>
 <div>
   <div class="subtitle_large margin_bottom">Reviews</div>

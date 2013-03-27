@@ -44,8 +44,7 @@
 <% if user_type(@user) == "Teacher" %>
   <% unless user_signed_in? && current_user.profile == @user.profile %>
     <div>
-      <span class="subtitle_large middle">Have you had classes with this teacher?</span>
-      <%= button_to("Write a Review", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn_custom left_margin") %>
+      <%= button_to("Write a Review For This Teacher", new_teacher_profile_review_path(@user.profile), method: :get, class: "btn_custom") %>
     </div>
   <% end %>
   <div>
