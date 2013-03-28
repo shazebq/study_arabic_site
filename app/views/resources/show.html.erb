@@ -14,25 +14,23 @@
           <div id="resource_thumbnail">
             <%= link_to(image_tag(@resource.resource_file.url(:thumb)), @resource.resource_file.url(:medium)) %>
           </div>
-          <div class="centered"><%= link_to("Preview", @resource.resource_file.url(:medium)) %></div>
-      <% end %>
+      <% end %><br />
+      <%= button_to("Review This Resource", new_resource_review_path(@resource), class: "btn_custom", method: :get) %>
     </div>
 
     <div class="span5">
       <p>
-        <span class="bold">Description</span><br />
+        <span class="bold caps">Description</span><br />
         <%= @resource.description %>
       </p>
-        <%= link_to "<i class='icon-download icon-large'></i>".html_safe, "/resources/#{@resource.id}/download", class: "no_underline" %>
+        <%= link_to "<i class='icon-download icon-large'></i>".html_safe, "/resources/#{@resource.id}/download", class: "no_underline_color" %>
         <%= link_to "Download Resource", "/resources/#{@resource.id}/download", class: "bold" %>
     </div>
 
     </div>
 
     <br />
-    <div>
-      <span class="subtitle_large middle">Have you used this resource?</span>
-      <%= button_to("Write a Review", new_resource_review_path(@resource), class: "btn_custom left_margin", method: :get) %>
+    <div class="row">
     </div> 
 
     <div class="subtitle_large margin_bottom">Reviews</div>
@@ -45,14 +43,15 @@
     <!--<div class="subtitle_large margin_bottom">Posted By</div>-->
 
     <div>
-      <div class="subtitle_large margin_bottom">Resource Statistics</div>
+      <div class="subtitle_large margin_bottom_small">Resource Statistics</div>
       <table>
         <tr>
           <td><span class="subtitle_large_gray padded_cell">Average Rating</span></td>
           <td><span class="rating_font">
-                <%= generate_stars(@resource.try(:reviews).average("rating").try(:round_point5)) %>
-                <%= "(#{@resource.reviews_count})" %>
-              </span></td>
+              <%= average_stars(@resource) %>
+              <%= "(#{@resource.reviews_count})" %>
+              </span>
+          </td>
         </tr>
 
         <tr>

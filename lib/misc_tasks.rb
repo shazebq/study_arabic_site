@@ -7,8 +7,8 @@ module MiscTasks
     if city_name.blank? || country_id.blank?
       return params  # let controller handle the validation
     end
-    city = City.where(name: city_name, country_id: country_id, country_iso: (Country.find(country_id).iso)).first_or_create
-    params[:address_attributes][:city_id] = city.id if city
+    city = City.where(name: city_name.titleize, country_id: country_id, country_iso: (Country.find(country_id).iso)).first_or_create
+    params[:address_attributes][:city_id] = city.id
     params
   end
 end

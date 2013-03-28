@@ -5,7 +5,7 @@ $light_gray: #F5F5F5;
 $dark_gray: #909090;
 
 
-a:hover.no_underline 
+a:hover.no_underline, a:hover.no_underline_color 
 {
   text-decoration: none;
 }
@@ -13,6 +13,11 @@ a:hover.no_underline
 a:link.no_underline, a:visited.no_underline
 {
   color: black;
+}
+
+a:link.no_underline_color, a:visited.no_underline_color
+{
+  color: $main_color;
 }
 
 a:link 
