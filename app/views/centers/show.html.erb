@@ -24,7 +24,7 @@
     <ol class="carousel-indicators">
       <% (0...(@center.images.size)).each do |n| %>
         <% n == 0 ? pip_class = "active" : pip_class = "" %>
-        <li data-target="#myCarousel" data-slide-to="<%= n %> class=<%= pip_class %>"></li>
+        <li data-target="#myCarousel" data-slide-to="<%= n %>" class="<%= pip_class %>"></li>
       <% end %>
     </ol>
     <!-- Carousel items -->
