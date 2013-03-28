@@ -9,6 +9,8 @@
   <li class="center_options ratings_option not_active" id="order_by_reviews"><a href="#">Most Reviews</a></li>
 </ul>
 
+<div id="ajax_spinner_div"><%= image_tag("/images/ajax-loader.gif") %></div>
+
 <div id="centers_list">
   <div id="centers_div">
       
@@ -25,7 +27,6 @@
       <%= render partial: "shared/pagination_links", locals: { items: @centers } %>
   </div>
 </div>
-
 
 
 <% content_for(:side_bar) do %>

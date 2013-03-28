@@ -416,3 +416,12 @@ img.floatLeft
     background-color: #fff;
   }
 }
+
+#ajax_spinner_div img
+{
+  display: block;
+  margin: auto;
+  position:absolute;
+  top:40%;
+  right:55%;
+}
