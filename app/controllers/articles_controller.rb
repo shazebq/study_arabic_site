@@ -1,5 +1,6 @@
 class ArticlesController < CategorizableItemsController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :check_staff_or_admin, only: [:new, :create]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
   before_filter :limit_user_content, only: [:new, :create]
@@ -39,6 +40,12 @@ class ArticlesController < CategorizableItemsController
 
   def destroy
 
+  end
+
+  def check_staff_or_admin
+    unless current_user.admin? || current_user.staff_writer?
+      redirect_to root_path
+    end
   end
 
 
