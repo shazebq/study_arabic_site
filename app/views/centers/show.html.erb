@@ -13,14 +13,8 @@
     </div>
 
 <div class="row">
-  <div class="span5">
-    <div class="margin_bottom">
-      <span class="bold caps">About</span>
-      <div><%= modified_sf(@center.description) %></div> 
-    </div>
-  </div>
-  <div class="span4">
-    <div id="myCarousel" class="carousel slide">
+  <div class="span9">
+   <div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
       <% (0...(@center.images.size)).each do |n| %>
         <% n == 0 ? pip_class = "active" : pip_class = "" %>
@@ -39,9 +33,14 @@
     <!-- Carousel nav -->
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div>
-  </div><!--span4-->
+  </div> 
+  <!--carousel div-->
 
+    <div class="margin_bottom">
+      <span class="bold caps">About</span>
+      <div><%= modified_sf(@center.description) %></div> 
+    </div>
+  </div><!--span9-->    
 </div><!--row-->
 
 <div class="margin_bottom">

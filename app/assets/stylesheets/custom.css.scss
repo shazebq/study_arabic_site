@@ -372,11 +372,11 @@ img.floatLeft
     margin-right: 10px; 
 }
 
-div.floatRight
-
 #myCarousel
 {
   width: 275px !important;  
+  float: right;
+  margin-left: 5px;
 }
 
 .carousel-control
