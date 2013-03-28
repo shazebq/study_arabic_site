@@ -41,7 +41,7 @@
 
           <div class="span7">
             <span class="subtitle_large"><%= link_to(answer.user.first_name, answer.user) %> said:</span>
-            <span class="vote_count"><%= "+#{answer.votes.count}" %></span>
+            <span class="vote_count_answer"><%= "+#{answer.votes.count}" %></span>
             <br />
             <br />
             <%= render partial: "shared/nested_item_view", locals: { item: answer, parent: @forum_post } %>

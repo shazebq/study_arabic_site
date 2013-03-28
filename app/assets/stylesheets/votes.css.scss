@@ -1,3 +1,15 @@
+$main_color: #007974;
+$dark: #004E4B;
+$light: #BFDDDC;
+$lightest: #E3F0EF; 
+$contrast: #C65800;
+$light_gray: #F5F5F5;
+$dark_gray: #909090;
+$error_text: #961F1F;
+$error_background: #E8CFCF; 
+$notice_text: #006000; 
+$notice_background: #AFD7AF;
+
 // Voting Arrows
 
 @mixin vote_base
@@ -26,3 +38,24 @@
 {
   color: red;
 }
+
+
+// vote badge
+.vote_count
+{
+  font-size: 18px;
+  //line-height: 40px;
+  margin-left: 10px;
+  background-color: $contrast; 
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  //vertical-align: top;
+}
+
+.vote_count_answer
+{
+  @extend .vote_count;
+}
+
+
