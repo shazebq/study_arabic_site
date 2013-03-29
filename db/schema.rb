@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328202519) do
+ActiveRecord::Schema.define(:version => 20130329020839) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -276,8 +276,13 @@ ActiveRecord::Schema.define(:version => 20130328202519) do
     t.string   "profile_type"
     t.boolean  "admin"
     t.boolean  "staff_writer"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

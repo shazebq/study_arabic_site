@@ -9,7 +9,7 @@ ArabicProject::Application.routes.draw do
   match "register" => "static_pages#register", :via => :get
   match "site_search" => "static_pages#site_search", :via => :get
 
-  devise_for :users
+  devise_for :users, :controllers => {:confirmations => "confirmations", :registrations => "registrations"}
 
   root(to: ENV["root_path"])
 
