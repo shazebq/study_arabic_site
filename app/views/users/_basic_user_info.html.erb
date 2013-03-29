@@ -6,6 +6,7 @@
           <%= render partial: "teacher_profiles/profile_info", locals: { teacher: user.profile, title_class: "site_title middle" } %>
         <% else %>
           <!-- student rendition here --> 
+          <%= render partial: "student_profiles/profile_info", locals: { student: user.profile, title_class: "site_title middle" } %> 
         <% end %>
       </div><!--span7-->
       <div class="span2">

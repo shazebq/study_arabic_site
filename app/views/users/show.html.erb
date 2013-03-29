@@ -36,10 +36,6 @@
   <%#= render partial: "shared/two_columns", locals: { key: "Skype ID", value: @user.skype_id } %>
 <% end %>
 
-<% if user_type(@user) == "Student" %>
-  <%= render partial: "shared/two_columns", locals: { key: "Level", value: @user.profile.try(:level).try(:title) } %>
-<% end %>
-
 <br />
 <% if user_type(@user) == "Teacher" %>
   <% unless user_signed_in? && current_user.profile == @user.profile %>

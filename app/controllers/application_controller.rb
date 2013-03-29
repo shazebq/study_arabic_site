@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
   end
 
+  # devise method for specifying where user should be redirect after signing in
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
   end 

@@ -1,0 +1,11 @@
+<div>
+    <div class="margin_bottom_small">
+      <span class="<%= title_class %>"><%= link_to(full_name(student.user), student.user) %></span>
+    </div>
+    <div class="margin_bottom_small">
+      <span class="bold">
+        <%= "#{student.user.country.name} | #{student.level.title} Student" %>
+        | <span class="red_badge"><%= pluralize(student.user.reputation, "point") %></span>
+      </span>
+    </div><!--country, age, gender, rep points-->
+</div>
