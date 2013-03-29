@@ -7,6 +7,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     super
   end
 
+  # override devise here to redirect user to root path after he clicks on confirmation page
   def show
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
 
