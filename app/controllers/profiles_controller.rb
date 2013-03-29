@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
   end
   
   def create
+    render "new" unless params[:abc].blank? # attempt to curb bots
     # note here, using the controller name to generalize the solution
     @profile = params[:controller].classify.constantize.new(params[params[:controller].singularize])
     if @profile.save

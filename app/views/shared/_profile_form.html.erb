@@ -109,8 +109,12 @@
     <% end %>
 
     <div class="field">
-    <%= user_form.label :bio, "Brief description about yourself*" %></span>
-    <%= user_form.text_area :bio %></div>
+      <%= user_form.label :bio, "Brief description about yourself*" %></span>
+      <%= user_form.text_area :bio %>
+    </div>
+    <div class="abc_field">
+      <%= text_field_tag("abc") %>
+    </div>
   <% end %>
     <div class="actions">
     <%= f.submit "Submit", class: "btn_custom" %>
