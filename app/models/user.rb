@@ -29,11 +29,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :bio, :country_id, :image_attributes, :skype_id, :as => [:default, :admin] 
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, 
+                  :last_name, :username, :bio, :country_id, :image_attributes, :skype_id, :as => [:default, :admin] 
   attr_accessible :admin, as: :admin
 
-  validates :first_name, presence: true, length: { maximum: 30 }, reduce: true
-  validates :last_name, presence: true, length: { maximum: 30 }, reduce: true
+  validates :first_name, presence: true, length: { maximum: 30 }
+  validates :last_name, presence: true, length: { maximum: 30 }
+  validates :username, presence: true, length: { maximum: 30 }, uniqueness: true 
   validates :country_id, presence: true, numericality: { integer: true }, reduce: true
   validates :bio, presence: true, length: { maximum: 1000 }, reduce: true
 

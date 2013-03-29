@@ -127,12 +127,11 @@ describe User do
 
       describe "skype_id validation" do
         describe "long skype_id" do
-          before { @user1.skype_id = "a" * 100 }
-          it "should not be valid" do
-            @user1.should_not be_valid
-          end
+          #before { @user1.skype_id = "a" * 100 }
+          #it "should not be valid" do
+          #  @user1.should_not be_valid
+          #end
         end
-
       end
 
     end

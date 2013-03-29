@@ -9,5 +9,6 @@ FactoryGirl.define do
     bio "a cool arabic teacher"
     country_id 1
     #encrypted_password "foobar"
+    sequence(:username) { |i| "person_#{i}"}
   end
 end
