@@ -1,4 +1,3 @@
-
 <% if user_signed_in? %>
   <% if current_user.id == item.user.id %>
     <%= link_to "Edit", send("edit_#{item.class.to_s.underscore}_path", item), id: "edit", class: "info" %>

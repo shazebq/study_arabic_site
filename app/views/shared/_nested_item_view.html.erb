@@ -1,10 +1,6 @@
 <!--for any nested item like comments or reviews  -->
 
   <div>
-    <span class="info">Posted by <%= link_to(item.try(:user).try(:username), item.user) %> </span>
-    <span class="info"><%= "#{distance_of_time_in_words(item.created_at, Time.now.in_time_zone)} ago" %></span>
-    <br />
     <%= item.content %>
   </div>
 
-  <%= render partial: "shared/delete_edit_nested", locals: { item: item, parent: parent } %>

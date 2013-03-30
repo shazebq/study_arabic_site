@@ -3,7 +3,11 @@
 <div class="row">
   <%= render partial: "shared/vote_arrows", locals: { item: @resource } %>
  <div class="span8_custom">
-    <%= render partial: "shared/voteable_item_title", locals: { item: @resource }  %>
+    <div class="margin_bottom">
+      <%= render partial: "shared/voteable_item_title", locals: { item: @resource, vote_span_class: "vote_count", action: "Posted by" }  %>
+      <%= render partial: "shared/delete_edit_links", locals: { item: @resource } %>
+    </div>
+
     <div class="row">
     <div class="span3 preview_div">
       <% if @resource.resource_file.content_type == "application/msword" || @resource.resource_file.content_type == "text/plain" %>

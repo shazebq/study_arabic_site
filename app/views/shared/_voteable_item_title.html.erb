@@ -1,11 +1,11 @@
-<div class="subtitle_large_color margin_bottom_small">
-  <%= item.title %>
-</div>
+<% if item.respond_to?(:title) %>
+  <div class="subtitle_large_color margin_bottom_small">
+    <%= item.title %>
+  </div>
+<% end %>
 <div>
-  <%= render partial: "users/user_line", locals: { user: item.user } %>  
-  <%= render partial: "shared/vote_count", locals: { item: item } %>
-  <span class="date_line"><%= "#{time_ago_in_words(item.created_at)} ago" %></span>
-
-  <div><%= render partial: "shared/delete_edit_links", locals: { item: item } %></div>
+  <%= render partial: "shared/vote_count", locals: { item: item, vote_span_class: vote_span_class } %>
+  <%= render partial: "users/user_line", locals: { user: item.user, action: action } %>  
+  <%= render partial: "shared/date_line", locals: { item: item } %>
 </div>
 

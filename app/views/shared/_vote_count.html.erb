@@ -1,2 +1,1 @@
-
-<span class="vote_count margin_right_small"><%= "+#{pluralize(item.votes.count, 'vote')}" %></span>
+<span class="<%= vote_span_class %> margin_right_small"><%= pluralize(item.votes.count, 'vote') %></span>
