@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
     @centers = Center.order_by_average_rating.limit(5)
   end
 
-  def about_us
+  def about
   end
 
   def register
