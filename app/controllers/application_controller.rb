@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ActionView::Helpers::TextHelper
+
   PER_PAGE = 3
   protect_from_forgery
   before_filter :require_sign_in, only: :vote
@@ -24,7 +26,7 @@ class ApplicationController < ActionController::Base
     item = params[:voteable_type].constantize.find(params[:id])
     vote_count = item.count_vote(params[:id], params[:voteable_type], current_user.id, params[:type])
     respond_to do |format|
-      format.json { render :json => vote_count }
+      format.json { render :json => pluralize(vote_count, 'vote') }
     end
   end
 

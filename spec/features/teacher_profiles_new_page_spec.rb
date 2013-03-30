@@ -29,7 +29,7 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_specialties", with: "grammar, quran, islamic arabic"
       choose "teacher_profile_online_true"
       choose "teacher_profile_in_person_true"
-      fill_in "teacher_profile_user_attributes_first_name", with: "Bill"
+      fill_in "teacher_profile_user_attributes_username", with: "Bill"
       fill_in "teacher_profile_user_attributes_last_name", with: "Jones"
       fill_in "teacher_profile_user_attributes_email", with: "bjones@example.com"
       fill_in "teacher_profile_user_attributes_password", with: "cool123"

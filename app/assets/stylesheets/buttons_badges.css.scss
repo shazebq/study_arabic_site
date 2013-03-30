@@ -4,6 +4,8 @@ $contrast: #C65800;
 $light_gray: #F5F5F5;
 $dark_gray: #909090;
 $light: #2FBCB7;
+$pastel_green: #00CC00;
+$light: #BFDDDC;
 
 .general_badge
 { 
@@ -25,12 +27,69 @@ $light: #2FBCB7;
   background-color: $contrast;
 }
 
+.green_badge_connected
+{
+  @extend .general_badge;
+  background-color: $main_color; 
+  color: $light;
+  margin: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid $main_color;
+}
+
+.light_badge_connected
+{
+  @extend .general_badge;
+  background-color: $light; 
+  color: $main_color;
+  margin: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid $main_color;
+}
+
+.green_badge_connected
+{
+  a:link
+  {
+    color: $light;
+  }
+
+  a:visited
+  {
+    color: $light;
+  }
+}
+
+
 .gray_badge
 {
   @extend .general_badge;
   background-color: $dark_gray;
   line-height: 23px;
 }
+
+// voting stuff
+
+.vote_count, .vote_count_answer
+{
+  @extend .general_badge;
+  background-color: $contrast;
+  border: 1px solid $contrast;
+}
+
+.date_line
+{
+  font-style: italic;
+  color: $dark_gray;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+
+
+
 
 // when you have text next to a button
 .middle

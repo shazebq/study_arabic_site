@@ -18,7 +18,7 @@
       <% @received_messages.each do |rm| %>
         <tr>
           <td class="checkbox_cell"><%= check_box_tag("message_ids[]", rm.id, false, id: "message_#{rm.id}", class: "received_checkbox") %></td>
-          <td><%= rm.sender.first_name %></td>
+          <td><%= rm.sender.username %></td>
           <td><%= link_to(rm.subject, rm) %></td>
           <td><%= date_and_time(rm.created_at) %></td>
         </tr>
@@ -44,7 +44,7 @@
       <% @sent_messages.each do |sm| %>
         <tr>
           <td class="checkbox_cell"><%= check_box_tag("message_ids[]", sm.id, false, id: "message_#{sm.id}", class: "sent_checkbox") %></td>
-          <td><%= sm.recipient.first_name %></td>
+          <td><%= sm.recipient.username %></td>
           <td><%= link_to(sm.subject, sm) %></td>
           <td><%= date_and_time(sm.created_at) %></td>
         </tr>

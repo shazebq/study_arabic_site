@@ -40,7 +40,7 @@
           </div>
 
           <div class="span7">
-            <span class="subtitle_large"><%= link_to(answer.user.first_name, answer.user) %> said:</span>
+            <span class="subtitle_large"><%= link_to(answer.user.username, answer.user) %> said:</span>
             <span class="vote_count_answer"><%= "+#{answer.votes.count}" %></span>
             <br />
             <br />

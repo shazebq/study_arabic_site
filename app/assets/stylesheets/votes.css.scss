@@ -38,24 +38,3 @@ $notice_background: #AFD7AF;
 {
   color: red;
 }
-
-
-// vote badge
-.vote_count
-{
-  font-size: 18px;
-  //line-height: 40px;
-  margin-left: 10px;
-  background-color: $contrast; 
-  border-radius: 5px;
-  padding: 5px;
-  color: white;
-  //vertical-align: top;
-}
-
-.vote_count_answer
-{
-  @extend .vote_count;
-}
-
-

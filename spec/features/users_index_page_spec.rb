@@ -15,7 +15,7 @@ describe "users(teachers) index page" do
 
   describe "display of one user profile (teacher)" do
     it "should contain the teacher's basic information" do
-      page.should have_content(user.first_name)
+      page.should have_content(user.username)
       page.should have_content(user.last_name)
     end
   end

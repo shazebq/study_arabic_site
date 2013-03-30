@@ -3,7 +3,7 @@
 <div class="subtitle_large_color margin_bottom"><%= @message.subject %></div>
 
 <table class="margin_bottom">
-  <%= render partial: "shared/table_row", locals: { key: "From:", value: link_to(@message.sender.first_name, @message.sender) } %>
+  <%= render partial: "shared/table_row", locals: { key: "From:", value: link_to(@message.sender.username, @message.sender) } %>
   <%= render partial: "shared/table_row", locals: { key: "Date:", value: date_and_time(@message.created_at) } %>
 </table>
 <div class="custom_well">
@@ -13,8 +13,8 @@
     <br /><br />
     ----------Original Message----------
     <br />
-    From: <%= @message.direct_parent.sender.first_name %><br />
-    To: <%= @message.direct_parent.recipient.first_name %><br /> 
+    From: <%= @message.direct_parent.sender.username %><br />
+    To: <%= @message.direct_parent.recipient.username %><br />
     Date: <%= date_and_time(@message.direct_parent.created_at) %><br />
     Subject: <%= @message.direct_parent.subject %><br /><br />
     

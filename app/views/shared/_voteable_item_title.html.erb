@@ -1,8 +1,11 @@
-<div class="subtitle_large_color">
-  <%= item.title %><%= render partial: "shared/vote_count", locals: { item: item } %>
+<div class="subtitle_large_color margin_bottom_small">
+  <%= item.title %>
 </div>
-<br />
-<div class="post_content bottom_border_div">
-  <%= render partial: "shared/delete_edit_links", locals: { item: item } %>
+<div>
+  <%= render partial: "users/user_line", locals: { user: item.user } %>  
+  <%= render partial: "shared/vote_count", locals: { item: item } %>
+  <span class="date_line"><%= "#{time_ago_in_words(item.created_at)} ago" %></span>
+
+  <div><%= render partial: "shared/delete_edit_links", locals: { item: item } %></div>
 </div>
 
