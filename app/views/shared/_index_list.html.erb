@@ -13,29 +13,29 @@
       </div>
     </div>
     <div class="span3">
-      <div class="row">
-        <div class="avv_div subtitle_large_color">
-          <%= item.views_count %><br />
-          <span class="info"><%= simple_pluralize(item.views_count, "View") %></span>
-        </div>
-        <div class="avv_div subtitle_large_color">
-          <%= item.votes_count %><br />
-          <span class="info"><%= simple_pluralize(item.votes_count, "Vote") %></span>
-        </div>
-        <div class="avv_div subtitle_large_color">
-          <% if item.class == "Resource".constantize %>
-            <%=  item.downloads_count %><br />
-            <span class="info"><%= simple_pluralize(item.downloads_count, "Download") %></span>
-          <% elsif item.class == "ForumPost".constantize %>
-            <%=  item.answers_count %><br />
-            <span class="info"><%= simple_pluralize(item.answers_count, "Answer") %></span>
-          <% elsif item.class == "Article".constantize %>
-            <%=  item.comments_count %><br />
-            <span class="info"><%= simple_pluralize(item.comments_count, "Comment") %></span>
-          <% end %>
+      <div class="row stat_div">
+          <div class="avv_div subtitle_large_color border_right">
+            <%= item.views_count %><br />
+            <span class="info"><%= simple_pluralize(item.views_count, "View") %></span>
+          </div>
+          <div class="avv_div subtitle_large_color border_right">
+            <%= item.votes_count %><br />
+            <span class="info"><%= simple_pluralize(item.votes_count, "Vote") %></span>
+          </div>
+          <div class="avv_div subtitle_large_color">
+            <% if item.class == "Resource".constantize %>
+              <%=  item.downloads_count %><br />
+              <span class="info"><%= simple_pluralize(item.downloads_count, "Download") %></span>
+            <% elsif item.class == "ForumPost".constantize %>
+              <%=  item.answers_count %><br />
+              <span class="info"><%= simple_pluralize(item.answers_count, "Answer") %></span>
+            <% elsif item.class == "Article".constantize %>
+              <%=  item.comments_count %><br />
+              <span class="info"><%= simple_pluralize(item.comments_count, "Comment") %></span>
+            <% end %>
+          </div>
 
-        </div>
-      </div>
+      </div><!--row-->
     </div>
     <div class="span9 bottom_border_div"></div>
     <% end %>

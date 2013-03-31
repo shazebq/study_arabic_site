@@ -9,14 +9,26 @@ $dark_gray: #909090;
 .avv_div
 {
   width: 52px;
-  float: right;
+  float: left;
   text-align: center;
-  background-color: $light;
   //margin-left: 8px;
   //border-radius: 5px;
   padding: 3px;
   padding-top: 5px;
-  margin-bottom: 5px;
+}
+
+.border_right
+{
+  border-right: 1px dotted $main_color;
+}
+
+
+.stat_div
+{
+  background-color: $light;
+  border-radius: 5px;
+  width: 180px;
+  float: right;
 }
 
 .post_row
