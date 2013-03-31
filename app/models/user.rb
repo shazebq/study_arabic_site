@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :articles
   has_many :comments
 
+  has_many :votes, dependent: :destroy
+
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id", dependent: :destroy  
 
@@ -48,6 +50,14 @@ class User < ActiveRecord::Base
     logger.fatal "Terminating application"
     self.reputation = self.reputation + REP_POINTS_HASH[item_added]
     self.save
+  end
+
+  def voted_up?(voteable)
+    if self.votes.where(voteable_id: voteable.id, voteable_type: voteable.class.name).any?
+      true
+    else
+      false
+    end
   end
 
   def init

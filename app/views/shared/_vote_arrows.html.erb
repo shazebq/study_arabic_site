@@ -1,6 +1,6 @@
 <div class="vote_arrow_div">
    <div class="arrows">
-     <i class="icon-caret-up vote" id="up_vote" data-voteable_type="<%= item.class.name %>" data-type="up" data-<%= item.class.name.underscore %>_id=<%= item.id %>></i>
+     <i class="icon-caret-up vote <%= arrow_class(item) %>" id="up_vote" data-voteable_type="<%= item.class.name %>" data-type="up" data-<%= item.class.name.underscore %>_id=<%= item.id %>></i>
      <i class="icon-caret-down vote" id="down_vote" data-voteable_type="<%= item.class.name %>" data-type="down" data-<%= item.class.name.underscore %>_id=<%= item.id %>></i>
    </div>
 </div>

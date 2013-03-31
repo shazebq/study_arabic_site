@@ -9,16 +9,16 @@ $error_text: #961F1F;
 $error_background: #E8CFCF; 
 $notice_text: #006000; 
 $notice_background: #AFD7AF;
+$star_color: #FFAD00;
 
 // Voting Arrows
 
 @mixin vote_base
 {
   font-size: 30px;
-  color: gray;
   &:hover
   {
-    color: red;
+    color: $star_color;
     cursor: pointer;
   }
 }
@@ -26,15 +26,13 @@ $notice_background: #AFD7AF;
 .vote
 {
   @include vote_base;
-}
-
-.vote_small
-{
-  @include vote_base;
-  font-size: 20px;
+  color: gray;
 }
 
 .selected_arrow
 {
-  color: red;
+  @include vote_base;
+  color: $star_color !important;
 }
+
+

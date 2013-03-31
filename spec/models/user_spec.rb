@@ -16,6 +16,7 @@ describe User do
   it { should respond_to(:image) }
   it { should respond_to(:sent_messages) }
   it { should respond_to(:received_messages) }
+  it { should respond_to(:votes) }
 
 
   describe "add_rep_points" do
@@ -74,9 +75,22 @@ describe User do
     end
   end
 
+  describe "user_voted_up? method" do
+    initialize_records
+    before :each do
+      @user_voter = FactoryGirl.create(:user)
+      @vote = FactoryGirl.create(:vote, user_id: @user_voter.id, voteable_type: "ForumPost", voteable_id: forum_post.id) 
+    end
+    
+    it "should return true if the user has voted for the resource" do
+      @user_voter.voted_up?(forum_post).should == true 
+    end
+  
+  end
+
   describe "validations" do
     before :each do
-      @user1 = User.new(first_name: "Billy", last_name: "Jones", bio: "A wonderful arabic teacher",
+      @user1 = User.new(first_name: "Billy", last_name: "Jones", bio: "A wonderful arabic teacher", username: "bill",
                         email: "jjones@example.com", country_id: 123, password: "cool123", password_confirmation: "cool123")
     end
     describe "user validation" do
