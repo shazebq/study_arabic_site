@@ -1,0 +1,42 @@
+<%= provide :title, "Contact" %>
+<%= render partial: "shared/page_title", locals: { title: "Contact" } %> 
+
+<%= form_for(@contact_message, url: contact_path) do |f| %>
+  <% if @contact_message.errors.any? %>
+    <div class="error_alert">
+      Your message could not be sent. Please correct the following errors:
+      <div class="bold">
+        <% @contact_message.errors.full_messages.each do |msg| %>
+          <i class="icon-warning-sign"></i> <%= msg %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject  %>
+    <%= f.text_field :subject %>
+  </div>
+
+  <div class="field">
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Send", class: "btn_custom") %>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+
