@@ -15,4 +15,6 @@ class Image < ActiveRecord::Base
     #  { :medium => "175x140#", :thumb => "100x80#" } 
     #end 
   #end
+  
+  
 end

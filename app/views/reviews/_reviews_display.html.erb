@@ -2,10 +2,15 @@
 <div>
   <% item.reviews.each do |review| %>
     <div class="custom_well">
-      <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
-      <span class="subtitle_large"><%= review.title %></span>
+      <div class="margin_bottom_small">
+        <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
+        <span class="subtitle_large"><%= review.title %></span>
+      </div>
 
-      <%= render partial: "shared/nested_item_view", locals: { item: review, parent: item } %>
+      <div class="margin_bottom_small"><%= modified_sf(review.content) %></div>
+      <%= render partial: "users/user_line", locals: { user: review.user, action: "Posted by" } %>  
+      <%= render partial: "shared/delete_edit_nested", locals: { item: review, parent: item } %>  
+
     </div>
   <% end %>
 </div>
