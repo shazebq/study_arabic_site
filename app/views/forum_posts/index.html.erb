@@ -14,7 +14,7 @@
     <h4>Forum Categories</h4>
     <!--link to all categories-->
     <ul class="nav nav-pills nav-stacked custom">
-      <% li_class1 = "active" unless @category %>
+      <% @category == nil ? li_class1 = "active" : li_class1 = "not_active" %>
       <li class="<%= li_class1 %> parent_links"><%= link_to("All Categories", forum_posts_path(order_by: @current_scope)) %></li>
     </ul>
 
