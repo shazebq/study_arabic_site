@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
     if @message.save
       flash[:notice] = "Your message has been successfully sent"
       # send alert email
-      UserMailer.message_alert(@message.recipient, @message.sender, @message).deliver
+      UserMailer.delay.message_alert(@message.recipient, @message.sender, @message)
       redirect_to user_path(params[:user_id])
     else
       render "new"
@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
     @message.recipient = @parent.sender
     if @message.save
       flash[:notice] = "Your reply has been successfully sent"
-      UserMailer.message_alert(@message.recipient, @message.sender, @message).deliver
+      UserMailer.delay.message_alert(@message.recipient, @message.sender, @message)
       redirect_to user_messages_path(current_user)
     else
       render "new_reply"

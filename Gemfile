@@ -35,7 +35,8 @@ gem 'pg_search'
 gem 'thin'
 gem 'will_paginate'
 gem 'rails_admin'
-gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development, :test do
   gem 'rspec-rails'

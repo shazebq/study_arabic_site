@@ -46,6 +46,21 @@ class User < ActiveRecord::Base
 
   REP_POINTS_HASH = { comment: 1, forum_post: 2, answer: 4, resource: 4, center: 4, review: 2, up_vote: 2, down_vote: -2}
 
+  def send_on_create_confirmation_instructions
+    Devise::Mailer.delay.confirmation_instructions(self)
+  end
+  
+  def send_reset_password_instructions
+    generate_reset_password_token! if should_generate_reset_token?
+    Devise::Mailer.delay.reset_password_instructions(self)
+  end
+
+  def send_unlock_instructions
+    Devise::Mailer.delay.unlock_instructions(self)
+  end
+
+
+
   def add_rep_points(item_added)
     logger.fatal "Terminating application"
     self.reputation = self.reputation + REP_POINTS_HASH[item_added]
