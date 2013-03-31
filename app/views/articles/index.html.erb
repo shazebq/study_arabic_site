@@ -4,6 +4,7 @@
 
 <%= render partial: "shared/filter_links" %>
 
+<%= anticipate_no_records(@items, "articles", articles_path) %>
 <%= render partial: "shared/index_list" %>
 
 <%= render partial: "shared/pagination_links", locals: { items: @items } %>

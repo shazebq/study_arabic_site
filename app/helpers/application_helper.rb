@@ -92,7 +92,12 @@ module ApplicationHelper
     text.insert 0, start_tag
     text.html_safe.safe_concat("</span>")
   end
-  
+
+  def anticipate_no_records(records, name, path)
+    if records.empty?
+      "<br /><div class='bold italic centered'>Sorry, no results were found. See all #{link_to(name, path)}.</div>".html_safe
+    end
+  end
 end
 
 class BigDecimal
