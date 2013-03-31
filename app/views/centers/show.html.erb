@@ -84,7 +84,6 @@
   <%= button_to("Write a Review For This Center", new_center_review_path(@center), method: :get, class: "btn_custom") %>
 </div>
 <div>
-  <div class="subtitle_large margin_bottom">Reviews</div>
   <%= render partial: "reviews/reviews_display", locals: { item: @center } %>
 </div>
 

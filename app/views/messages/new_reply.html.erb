@@ -1,4 +1,5 @@
 <%= provide :title, "Re: #{@parent.subject}" %> 
+<%= render partial: "shared/page_title", locals: { title: "Send Reply" } %>
 
 <%= form_for(@message, url: create_reply_message_path()) do |f| %>
   <% if @message.errors.any? %>

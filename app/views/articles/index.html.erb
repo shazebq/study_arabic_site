@@ -1,4 +1,5 @@
-<%= provide :title, "Article" %>
+<%= provide :title, "Articles" %>
+<%= render partial: "shared/page_title", locals: { title: "Articles" } %>
 
 <%= render partial: "shared/search_box", locals: { item_type: "Articles" } %>
 
