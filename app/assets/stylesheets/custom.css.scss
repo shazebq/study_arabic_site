@@ -77,6 +77,8 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   border-bottom-color: white !important;
 }
 
+//nav bar stuff
+
 .custom_nav
 {
   border: none !important;
@@ -91,7 +93,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
    border-bottom: none;
    background-color: $light; 
    margin-right: 3px;
-   color: black; 
+   color: black !important; 
 }
 
 .custom_nav > li > a:visited {
@@ -425,4 +427,12 @@ img.floatLeft
 {
   visibility: hidden; 
   height: 10px;
+}
+
+
+// stacked nav pills
+.nav-pills.nav-stacked > li > a
+{
+  line-height: 8px;
+  margin-bottom: 0;
 }
