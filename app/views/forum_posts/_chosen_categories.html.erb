@@ -1,4 +1,7 @@
 <optgroup label="<%= label %>">
+  <!--user category_name -->
+  <option value=<%= Category.find_by_name(category_name).id %>><%= "#{label} - General" %></option>
+
   <%= get_categories(category_name).each do |alc| %>
       <option value=<%= alc.id %>><%= alc.name %></option>
   <% end %>
