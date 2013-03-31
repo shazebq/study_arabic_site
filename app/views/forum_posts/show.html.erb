@@ -34,7 +34,7 @@
     <% @forum_post.answers.by_votes.each do |answer| %>
         <div class="row no_left_margin custom_well">
           <div class="vote_arrow_div">
-            <i class="icon-caret-up vote" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
+            <i class="icon-caret-up vote <%= arrow_class(answer) %>" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>
             <i class="icon-caret-down vote" data-voteable_type="Answer" data-type="down" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>

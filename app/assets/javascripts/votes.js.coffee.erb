@@ -22,8 +22,8 @@ $(document).ready ->
           dataType: "text"
           success: (data, textStatus) =>
             #change color of arrow
-            $(this).parent().find(".vote").removeClass("selected_arrow")
-            $(this).addClass("selected_arrow")
+            $(this).parent().find(".vote").removeClass("selected_arrow selected_arrow_answer")
+            $(this).addClass("selected_arrow selected_arrow_answer")
             # change the number of votes displayed
             if type == "Answer"
                 ($(this).parent().parent()).find(".vote_count_answer").html(data)

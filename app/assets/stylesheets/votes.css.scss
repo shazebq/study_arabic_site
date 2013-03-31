@@ -29,7 +29,7 @@ $star_color: #FFAD00;
   color: gray;
 }
 
-.selected_arrow
+.selected_arrow, .selected_arrow_answer
 {
   @include vote_base;
   color: $star_color !important;
