@@ -84,3 +84,22 @@ td.checkbox_cell, th.checkbox_cell
 {
   vertical-align: text-bottom;
 }
+
+span.prepend_field
+{
+  width: 40px;
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+
+span.prepend_char
+{
+  width: 10px;
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+
+input.prepend_field
+{
+  width: 310px;
+}

@@ -22,10 +22,12 @@ class Center < ActiveRecord::Base
   has_many :reviews, as: :reviewable, dependent: :destroy
   has_many :users, through: :reviews
   accepts_nested_attributes_for :address, :images
-  
+
+  before_validation :add_http
+
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, presence: true, length: { maximum: 1000 } 
-  validates :website, url: true
+  #validates :website, url: true
   validates :email, email_format: true 
   validates :phone_number, length: { maximum: 15 }
   validates :year_established, allow_blank: true, numericality: { integer: true }, length: { is: 4 }
@@ -49,4 +51,11 @@ class Center < ActiveRecord::Base
   def destroy_address
     self.address.delete
   end
+
+  def add_http
+    unless self.website[/^http:\/\//] || self.website[/^https:\/\//]
+      self.website = 'http://' + self.website
+    end
+  end
+
 end

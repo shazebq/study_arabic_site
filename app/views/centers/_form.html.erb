@@ -44,7 +44,7 @@
 
   <%= f.fields_for :address do |address_form| %>
     <div class="field">
-      <%= address_form.label :address_line, "Address*" %>
+      <%= address_form.label :address_line, "Address" %>
       <%= address_form.text_field :address_line %>
     </div>
     <div class="field">
@@ -89,7 +89,7 @@
 
   <div class="field">
     <%= f.label :price_per_hour_private, "Price Per Hour - Private Instruction (U.S. Dollars)" %>
-    $<%= f.text_field :price_per_hour_private, class: "small_input" %>
+    <span class="prepend_char">$</span><%= f.text_field :price_per_hour_private, class: "small_input" %>
   </div>
 
   <div class="field">
@@ -104,12 +104,12 @@
 
   <div class="field">
     <%= f.label :price_per_hour_group, "Price Per Hour - Group Instruction (U.S. Dollars)" %>
-    $<%= f.text_field :price_per_hour_group, class: "small_input" %>
+    <span class="prepend_char">$</span><%= f.text_field :price_per_hour_group, class: "small_input" %>
   </div>
 
   <div class="field">
     <%= f.label :total_price, "Total estimated price if only one type of program is offered (U.S. Dollars)" %>
-    $<%= f.text_field :total_price, class: "small_input" %>
+    <span class="prepend_char">$</span><%= f.text_field :total_price, class: "small_input" %>
   </div>
 
   <div class="field">

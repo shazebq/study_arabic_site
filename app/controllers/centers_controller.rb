@@ -60,6 +60,7 @@ class CentersController < ApplicationController
       render "new"
     end
   end
+
 end
 
 # comment

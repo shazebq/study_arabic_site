@@ -1,6 +1,6 @@
 module ApplicationHelper
   def get_categories(category_name)
-    CategoryParent.find_by_name(category_name).categories
+    CategoryParent.find_by_name(category_name).categories.order(:name)
   end
 
   def scope_name_to_link_text(original)
