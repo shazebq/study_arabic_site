@@ -60,13 +60,12 @@ ArabicProject::Application.routes.draw do
 
   resources :student_profiles
 
-  match 'resources/:id/download' => 'resources#download', :via => :get
-
   resources :resources do
     member do
       post "vote"
     end
     get 'search', :on => :collection
+    get 'download', :on => :member
     resources :reviews
   end
 

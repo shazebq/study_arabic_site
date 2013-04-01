@@ -11,6 +11,7 @@ en:
       message:
       comment:
       teacher_profile:
+      resource:
     attributes:
       user:
         email: "Email"
@@ -37,6 +38,9 @@ en:
         content: "Message"
       comment:
         content: "Comment"
+      resource:
+        category_ids: "Category"
+        resource_file: "File"
     errors:
       models:
         user:

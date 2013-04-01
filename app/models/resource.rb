@@ -35,7 +35,9 @@ class Resource < ActiveRecord::Base
                                               :default_url => "/images/rails.png"
 
   validates_attachment_content_type(:resource_file, content_type: ["image/jpeg", "image/jpg", "application/pdf", "application/msword", "text/plain"])
+  validates_attachment_size(:resource_file, :less_than => 10.megabytes) 
 
+  before_post_process :process_only_valid
   validates :title, :description, :category_ids, presence: true
   validates :title, length: { maximum: 100 }
   validates :description, length: { maximum: 1000 }
@@ -46,8 +48,14 @@ class Resource < ActiveRecord::Base
     self.views_count ||= 0
     self.votes_count ||= 0
     self.downloads_count ||= 0
+    self.reviews_count ||= 0
   end
 
+  def process_only_valid
+    unless self.valid?
+      return false
+    end
+  end
 end
 
 # validates_attachment_content_type :uploaded_file, :content_type =>['application/pdf']

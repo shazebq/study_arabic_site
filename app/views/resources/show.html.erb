@@ -16,7 +16,7 @@
           </div>
       <% else %>
           <div id="resource_thumbnail">
-            <%= link_to(image_tag(@resource.resource_file.url(:thumb)), @resource.resource_file.url(:medium)) %>
+            <%= link_to(image_tag(@resource.resource_file.url(:thumb)), download_resource_path(@resource)) %>
           </div>
       <% end %><br />
       <%= button_to("Review This Resource", new_resource_review_path(@resource), class: "btn_custom", method: :get) %>
@@ -27,7 +27,7 @@
         <span class="bold caps">Description</span><br />
         <%= @resource.description %>
       </p>
-        <%= link_to "<i class='icon-download icon-large'></i>".html_safe, "/resources/#{@resource.id}/download", class: "no_underline_color" %>
+        <%= link_to "<i class='icon-download icon-large'></i>".html_safe, download_resource_path(@resource), class: "no_underline_color" %>
         <%= link_to "Download Resource", "/resources/#{@resource.id}/download", class: "bold" %>
     </div>
 
