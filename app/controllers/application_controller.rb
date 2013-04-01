@@ -79,5 +79,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  # needed because teacher_profiles are reviewable but I want the redirection
+  # to go to the user show page
+  def redirect_to_reviewable(reviewable)
+    if reviewable.is_a?(TeacherProfile)
+      redirect_to user_path(reviewable.user)
+    else
+      redirect_to reviewable
+    end
+  end
+
 end
 

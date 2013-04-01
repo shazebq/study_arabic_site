@@ -15,12 +15,8 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       current_user.add_rep_points(:review)
-      flash[:success] = "Your review has been added"
-      if @reviewable.is_a?(TeacherProfile) # have to add this condition because redirection should be to show user page, not show teacher profile page
-        redirect_to user_path(@reviewable.user)
-      else
-        redirect_to controller: @reviewable.class.name.underscore.pluralize, action: "show", id: @reviewable.id 
-      end
+      flash[:notice] = "Your review has been successfully submitted."
+      redirect_to_reviewable(@reviewable) 
     else
       render "new"
     end
@@ -40,14 +36,17 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
       flash[:notice] = "Your review has been successfully updated"
+      redirect_to_reviewable(@reviewable)
     else
       render "edit"
     end
   end
 
   def destroy
+    @reviewable = get_somethingable(params)
     Review.find(params[:id]).destroy
-    redirect_to(Resource.find(params[:resource_id]))
+    flash[:notice] = "Your review has been successfully deleted"
+    redirect_to_reviewable(@reviewable)
   end
 
   # authorization related
@@ -69,14 +68,3 @@ class ReviewsController < ApplicationController
     end
   end
 end
-
-#comments
-#def update
-#    @resource = Resource.find(params[:id])
-#    if @resource.update_attributes(params[:resource])
-#      flash[:notice] = "Your question has been updated"
-#      redirect_to @resource
-#    else
-#      render "edit"
-#    end
-#  end
