@@ -1,5 +1,6 @@
 class CentersController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_filter(:only => [:update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :limit_user_content, only: [:new, :create]
   include MiscTasks
 
@@ -24,7 +25,7 @@ class CentersController < ApplicationController
   def new
     @center = Center.new
     @center.build_address
-    3.times { @center.images.build }
+    5.times { @center.images.build }
   end
 
   def create
@@ -33,10 +34,9 @@ class CentersController < ApplicationController
     if @center.save 
       current_user.add_rep_points(:center)
       flash[:notice] = "Your entry was successfully submitted. We will review it within 24 hours after which it will be added to the site."
-      current_user.add_rep_points(:center)
       redirect_to @center
     else
-      3.times { @center.images.build }
+      5.times { @center.images.build }
       render action: "new"
     end
   end
@@ -51,7 +51,6 @@ class CentersController < ApplicationController
 
   def update
     @center = Center.find(params[:id])
-    3.times { @center.images.build }
     revised_params = handle_city_creation(params[:center])
     if @center.update_attributes(revised_params)
       flash[:notice] = "The entry has been updated"

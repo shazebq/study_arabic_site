@@ -6,7 +6,9 @@
       <span class="subtitle_large_gray">(<%= review_count(@center) %>)</span><br />
     </div>
     <span class="bold"><%= center_location(@center) %></span>
-    <span class="info"><%#= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
+    <% if authorized?(@center.user) %>
+      <br /><span class="info"><%= link_to("Edit Center/Program Info", edit_center_path(@center)) %></span>
+    <% end %>
 
     <div class="row">
       <div class="span9 bottom_border_div"></div>

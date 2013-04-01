@@ -34,7 +34,7 @@ module ApplicationHelper
   end
 
   def authorized?(user)
-    if user_signed_in? && (@user == current_user)
+    if user_signed_in? && (user == current_user)
       true
     else
       false
