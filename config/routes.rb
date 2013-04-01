@@ -40,6 +40,7 @@ ArabicProject::Application.routes.draw do
   resources :centers do
     resources :reviews
     get 'search', :on => :collection
+    resources :images, only: [:new, :create]
   end
 
   resources :users do

@@ -1,0 +1,8 @@
+<%= provide :title, "Upload Image for #{@imageable.name}" %>
+<%= render partial: "shared/page_title", locals: { title: "Upload Image for #{@imageable.name}" } %>
+
+<%= form_for ([@imageable, @image]) do |f| %>
+  <%= f.file_field :photo %>
+  <br />
+  <%= f.submit "Upload", class: "btn_custom" %>
+<% end %>

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -37,6 +37,7 @@ gem 'will_paginate'
 gem 'rails_admin'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'foreman'
 
 group :development, :test do
   gem 'rspec-rails'
