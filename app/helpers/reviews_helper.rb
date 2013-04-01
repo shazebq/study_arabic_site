@@ -32,7 +32,7 @@ module ReviewsHelper
   def get_star_string(number)
     star_string = ""
     number.times do |n|
-      star_string += ("<i id='#{n + 1}' class='icon-star-empty'></i>")
+      star_string += ("<i id='star_#{n + 1}' class='icon-star-empty'></i>")
     end
     star_string.html_safe
   end

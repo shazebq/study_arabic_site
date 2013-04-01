@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :create]
+  before_filter :limit_user_content, only: [:new, :create]
 
   def new
     @imageable = get_somethingable(params)

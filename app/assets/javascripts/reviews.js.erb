@@ -9,7 +9,7 @@ $(document).ready(function() {
           $(this).prevAll().addClass("icon-star");
 
           // assigning the selected rating to the hidden html element
-          $("#review_rating").val(this.id);
+          $("#review_rating").val(this.id.split("_")[1]);
         }
         // if this is a filled star, then do this
         else if ($(this).hasClass("icon-star"))
@@ -17,7 +17,8 @@ $(document).ready(function() {
           $(this).nextAll().addClass("icon-star-empty");
           $(this).nextAll().removeClass("icon-star");
           // assigning the selected rating to the hidden html element
-          $("#review_rating").val(this.id);
+          // the id is star_1, star_2 etc
+          $("#review_rating").val(this.id.split("_")[1]);
         }
     });
 

@@ -1,15 +1,8 @@
 class Image < ActiveRecord::Base
   attr_accessible :imageable_id, :imageable_type, :photo, :as => [:default, :admin] 
-
   belongs_to :imageable, polymorphic: true
+  belongs_to :user
   has_attached_file :photo, :styles => { :original => "500x400#", :large => "275x220#", :medium => "175x140#", :thumb => "100x80#" }
-
-  #validates_attachment_presence :photo, :message => 'you need an image!'
-
-  #validates_attachment_content_type(:photo, content_type: ["image/jpeg", "image/jpg"])
-
-  #validates :photo, :attachment_presence => true
-  #validates_with AttachmentPresenceValidator, :attributes => :photo
 
   validates_attachment :photo, :presence => true,
                        :content_type => { :content_type => ["image/jpeg", "image/jpg"] }

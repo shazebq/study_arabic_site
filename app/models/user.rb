@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id", dependent: :destroy  
 
   has_one :image, as: :imageable, dependent: :destroy
+  has_many :images
 
   belongs_to :profile, polymorphic: true
   belongs_to :country
