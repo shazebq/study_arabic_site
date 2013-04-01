@@ -10,10 +10,11 @@ class ImagesController < ApplicationController
     @image = @imageable.images.new(params[:image])
     @image.user_id = current_user.id
     if @image.save
-      flash[:notice] = "You image has been successfully added."
-      redirect_to @imageable 
+      flash[:notice] = "You image has been successfully added"
+      redirect_to @imageable
     else
-      redirect_to "new"
+      flash.now[:alert] = "There was an error in uploading your image. Images must be in jpeg format."
+      render "new"
     end
   end
 
