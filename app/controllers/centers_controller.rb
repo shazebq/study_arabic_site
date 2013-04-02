@@ -29,7 +29,7 @@ class CentersController < ApplicationController
   end
 
   def create
-    revised_params = handle_city_creation(params[:center])
+    revised_params = handle_city_creation(params[:center], :address)
     @center = current_user.centers.new(revised_params)
     if @center.save 
       current_user.add_rep_points(:center)
@@ -51,7 +51,7 @@ class CentersController < ApplicationController
 
   def update
     @center = Center.find(params[:id])
-    revised_params = handle_city_creation(params[:center])
+    revised_params = handle_city_creation(params[:center], :address)
     if @center.update_attributes(revised_params)
       flash[:notice] = "The entry has been updated"
       redirect_to @center

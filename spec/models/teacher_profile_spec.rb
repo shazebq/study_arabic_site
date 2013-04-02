@@ -11,6 +11,8 @@ describe TeacherProfile do
   it { should(respond_to :user) }
   it { should(respond_to :languages) }
   it { should(respond_to :degree) }
+  it { should(respond_to :city) }
+  
   
   it "should create a user AND teacher profile" do
     @teacher_profile_with_user = { field_of_study: "bachelors in Arabic", university: "Cairo University", language_ids: [@language.id],

@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  include MiscTasks
   before_filter(:only => [:create, :new]) { |c| c.prevent_if_signed_in() } 
   before_filter(:only => [:update, :edit]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
 
@@ -9,7 +10,8 @@ class ProfilesController < ApplicationController
   end
   
   def create
-    render "new" unless params[:abc].blank? # attempt to curb bots
+    render "new" unless params[:abc].blank? # attempt to curb bots from registering
+    params[:teacher_profile] = handle_city_creation(params[:teacher_profile], :teacher_profile) if params[:controller] == "teacher_profiles"
     # note here, using the controller name to generalize the solution
     @profile = params[:controller].classify.constantize.new(params[params[:controller].singularize])
     if @profile.save
@@ -25,6 +27,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    params[:teacher_profile] = handle_city_creation(params[:teacher_profile], :teacher_profile) if params[:controller] == "teacher_profiles"
     @profile = params[:controller].classify.constantize.find(params[:id])
     if @profile.update_attributes(params[params[:controller].singularize])
       flash[:notice] = "Your profile has been successfully updated"

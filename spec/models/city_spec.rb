@@ -9,6 +9,7 @@ describe City do
 
   it { should respond_to(:country) }
   it { should respond_to(:addresses) }
+  it { should respond_to(:teacher_profiles) }
 
 end
 

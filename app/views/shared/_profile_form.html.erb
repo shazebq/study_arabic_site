@@ -26,8 +26,15 @@
     <%= user_form.text_field :username %></div>
     <div class="field"><%= user_form.label :email, "Email*" %>
     <%= user_form.text_field :email %></div>
-    <div class="field"><%= user_form.label :skype_id, "Skype ID" %>
-    <%= user_form.text_field :skype_id %></div>
+    <% if params[:controller] == "teacher_profiles" %>
+      <div class="field"><%= f.label :skype_id, "Skype ID" %>
+      <%= f.text_field :skype_id %></div>
+    <% end %>
+    <% if params[:controller] == "teacher_profiles" %>
+      <div class="field"><%= f.label :city_name, "City" %>
+      <%= f.text_field :city_name %></div>
+    <% end %>
+
     <div class="field margin_bottom_small"><%= user_form.label :country_id, "Country*" %>
     <%= user_form.select :country_id, Country.order(:name).collect { |c| [c.name, c.id] }, { :include_blank => true }, class: "country_select" %></div>
 
