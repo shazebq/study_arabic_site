@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @comment_new = @article.comments.create(params[:comment]) 
     if @comment_new.valid?
       current_user.add_rep_points(:comment)
-      flash[:notice] = "Your comment has been successfully added" 
+      flash[:notice] = "Your comment has been successfully added." 
     end
     render "articles/show"
   end
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.update_attributes(params[:comment])
     if @comment.valid?
-      flash[:notice] = "Your comment has been updated"
+      flash[:notice] = "Your comment has been updated."
       redirect_to @commentable 
     else
       render "edit" 
@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
   def destroy
     @article = Article.find(params[:article_id])
     Comment.find(params[:id]).destroy
-    flash[:notice] = "Your comment has been successfully deleted"
+    flash[:notice] = "Your comment has been successfully deleted."
     redirect_to article_path(@article)
   end
 end

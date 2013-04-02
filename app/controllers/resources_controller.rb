@@ -27,7 +27,7 @@ class ResourcesController < CategorizableItemsController
   def update
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(params[:resource])
-      flash[:notice] = "Your question has been updated"
+      flash[:notice] = "Your question has been updated."
       redirect_to @resource
     else
       render "edit"
@@ -36,7 +36,7 @@ class ResourcesController < CategorizableItemsController
 
   def destroy
     Resource.find(params[:id]).destroy
-    flash[:notice] = "Your resource has been successfully deleted"
+    flash[:notice] = "Your resource has been successfully deleted."
     redirect_to resources_path
   end
 

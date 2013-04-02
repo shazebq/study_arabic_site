@@ -53,7 +53,7 @@ class CentersController < ApplicationController
     @center = Center.find(params[:id])
     revised_params = handle_city_creation(params[:center], :address)
     if @center.update_attributes(revised_params)
-      flash[:notice] = "The entry has been updated"
+      flash[:notice] = "The entry has been successfully updated."
       redirect_to @center
     else
       render "new"

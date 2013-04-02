@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
     params[:teacher_profile] = handle_city_creation(params[:teacher_profile], :teacher_profile) if params[:controller] == "teacher_profiles"
     @profile = params[:controller].classify.constantize.find(params[:id])
     if @profile.update_attributes(params[params[:controller].singularize])
-      flash[:notice] = "Your profile has been successfully updated"
+      flash[:notice] = "Your profile has been successfully updated."
       redirect_to user_path(@profile.user)
     else
       render "new"

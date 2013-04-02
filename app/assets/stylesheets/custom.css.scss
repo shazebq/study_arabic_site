@@ -24,6 +24,8 @@ $notice_background: #AFD7AF;
 
 body
 {
+  font-family: 'Tauri', sans-serif;
+
   line-height: 18px;
 
   /* IE10 Consumer Preview */ 
@@ -82,6 +84,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .custom_nav
 {
   border: none !important;
+  font-size: 12px;
 }
 
 .custom_nav > li > a:hover {

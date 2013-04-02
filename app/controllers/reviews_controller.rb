@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
     @reviewable = get_somethingable(params)
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
-      flash[:notice] = "Your review has been successfully updated"
+      flash[:notice] = "Your review has been successfully updated."
       redirect_to_reviewable(@reviewable)
     else
       render "edit"
@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
   def destroy
     @reviewable = get_somethingable(params)
     Review.find(params[:id]).destroy
-    flash[:notice] = "Your review has been successfully deleted"
+    flash[:notice] = "Your review has been successfully deleted."
     redirect_to_reviewable(@reviewable)
   end
 
@@ -54,7 +54,7 @@ class ReviewsController < ApplicationController
     @reviewable = get_somethingable(params)
     if @reviewable.kind_of?(TeacherProfile)
       if @reviewable.user == current_user
-        flash[:notice] = "Sorry, you cannot review yourself"
+        flash[:notice] = "Sorry, you cannot review yourself."
         redirect_to user_path(@reviewable.user.id)
       end
     end
@@ -63,7 +63,7 @@ class ReviewsController < ApplicationController
   def limit_user_reviews
     @reviewable = get_somethingable(params)
     if @reviewable.users.include?(current_user)
-      flash[:notice] = "Sorry, you cannot write more than one review"
+      flash[:notice] = "Sorry, you cannot write more than one review."
       redirect_to :back 
     end
   end

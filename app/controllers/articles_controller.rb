@@ -1,6 +1,6 @@
 class ArticlesController < CategorizableItemsController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  before_filter :check_staff_or_admin, only: [:new, :create]
+  before_filter :check_staff_or_admin, only: [:new, :create, :edit, :update, :update]
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
   before_filter :limit_user_content, only: [:new, :create]
@@ -17,7 +17,7 @@ class ArticlesController < CategorizableItemsController
   def create
     @article = current_user.articles.new(params[:article])
     if @article.save
-      flash[:notice] = "Your article has been successfully created"
+      flash[:notice] = "Your article has been successfully created."
       redirect_to root_path
     else
       render "new"
