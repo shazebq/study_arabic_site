@@ -11,4 +11,8 @@ module ProfilesHelper
   def get_user_type(controller_name)
     controller_name.split("_")[0].singularize
   end
+
+  def get_teacher_location(teacher)
+    "#{teacher.city.name}, #{teacher.user.country.name}"
+  end
 end
