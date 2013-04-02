@@ -17,7 +17,7 @@
     <%= render partial: "shared/voteable_item_title", locals: { item: @forum_post, vote_span_class: "vote_count", action: "Asked by" }  %>
     <%= render partial: "shared/delete_edit_links", locals: { item: @forum_post } %>
     <div class="post">
-      <%=  @forum_post.content %>
+      <%=  modified_sf(@forum_post.content) %>
     </div>
 
     <br />

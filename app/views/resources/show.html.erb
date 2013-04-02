@@ -25,7 +25,7 @@
     <div class="span5">
       <p>
         <span class="bold caps">Description</span><br />
-        <%= @resource.description %>
+        <%= modified_sf(@resource.description) %>
       </p>
         <%= link_to "<i class='icon-download icon-large'></i>".html_safe, download_resource_path(@resource), class: "no_underline_color" %>
         <%= link_to "Download Resource", "/resources/#{@resource.id}/download", class: "bold" %>
