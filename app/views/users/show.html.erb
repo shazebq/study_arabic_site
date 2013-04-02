@@ -32,6 +32,18 @@
     <%= render partial: "shared/two_columns", locals: { key: "Languages", value: @user.profile.languages.pluck(:name).join(", ") } %>
   </div>
 
+  <div class="margin_bottom">
+    <%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
+
+    <% if user_signed_in? %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: @user.email } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Skype ID", value: @user.profile.skype_id } %>
+    <% else %>
+      <div class="custom_well">In order to view this teacher's contact information, you must <%= link_to("Sign in", new_user_session_path) %>
+      or <%= link_to("Register", new_student_profile_path) %>. We do this because we want to protect our teachers
+      from unwanted spam.</div>
+    <% end %>
+  </div>
   <!--not sure about including contact information yet, perhaps but require log in to see it-->
   <%#= render partial: "shared/two_columns", locals: { key: "Skype ID", value: @user.skype_id } %>
 <% end %>
