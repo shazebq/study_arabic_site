@@ -24,6 +24,7 @@ en:
         in_person: "In Person option"
         online: "Online option"
         language_ids: "Languages"
+        city_name: "City"
       address:
         address_line: "Address"
         country_id: "Country"

@@ -28,6 +28,7 @@ class TeacherProfile < ActiveRecord::Base
   attr_accessible :approved, as: :admin
 
   validates :skype_id, length: { maximum: 30 }
+  validates :city_name, presence: true, length: { maximum: 30 } 
   validates :age, presence: true, numericality: { integer: true, less_than: 100, greater_than: 15 }, reduce: true
   validates :gender, presence: true
   validates :gender, :format => { :with => /f|m/,
