@@ -28,24 +28,57 @@ body
 
   line-height: 18px;
 
-  /* IE10 Consumer Preview */ 
-  background-image: -ms-linear-gradient(top, #007974 0%, #BFDDDC 100%);
+  }
 
-  /* Mozilla Firefox */ 
-  background-image: -moz-linear-gradient(top, #007974 0%, #BFDDDC 100%);
+#header
+{
+  //background-color: $main_color;
+  height: 80px;
+background: #2f928e; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJmOTI4ZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDUzNGYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(left,  #2f928e 0%, #00534f 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#2f928e), color-stop(100%,#00534f)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  #2f928e 0%,#00534f 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  #2f928e 0%,#00534f 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  #2f928e 0%,#00534f 100%); /* IE10+ */
+background: linear-gradient(to right,  #2f928e 0%,#00534f 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f928e', endColorstr='#00534f',GradientType=1 ); /* IE6-8 */
+  
 
-  /* Opera */ 
-  background-image: -o-linear-gradient(top, #007974 0%, #BFDDDC 100%);
+ 
 
-  /* Webkit (Safari/Chrome 10) */ 
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #007974), color-stop(1, #BFDDDC));
+  a:link 
+  {
+    color: white;
+  }
 
-  /* Webkit (Chrome 11+) */ 
-  background-image: -webkit-linear-gradient(top, #007974 0%, #BFDDDC 100%);
-
-  /* W3C Markup, IE10 Release Preview */ 
-  background-image: linear-gradient(to bottom, #007974 0%, #BFDDDC 100%);
+  a:visited 
+  {
+    color: white;
+  }
 }
+
+#nav_bar
+{
+  height: 30px;
+background: #00625e; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjI1ZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDM0MzIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #00625e 0%, #003432 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00625e), color-stop(100%,#003432)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #00625e 0%,#003432 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #00625e 0%,#003432 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #00625e 0%,#003432 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #00625e 0%,#003432 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00625e', endColorstr='#003432',GradientType=0 ); /* IE6-8 */
+  
+  //border-top: 1px solid $light_gray;
+}
+
+
+
+
 
 // layout stuff
 // make dropdown showup on hover
@@ -112,27 +145,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .custom_nav > li.active_nav > a:visited {
     color: black !important;
-}
-
-#header
-{
-  margin-bottom: -20px;
-
-  a:link 
-  {
-    color: white;
-  }
-
-  a:visited 
-  {
-    color: white;
-  }
-
-  li
-  {
-    //border-right: solid 1px silver; 
-    //border-top: solid 1px silver; 
-  }
 }
 
 
