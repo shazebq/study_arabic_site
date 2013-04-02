@@ -27,16 +27,17 @@
                     <div class="input-append input-prepend">
                        <div class="btn-group">
                             <button class="btn dropdown-toggle search_input" data-toggle="dropdown">
-                              <span id="selected_item">Forums <i class="icon-caret-down"></i></span>
+                              <span><span id="current_selection" data-item="forum_posts">Forums</span> <i class="icon-caret-down"></i></span>
                             </button>
-                            <ul class="dropdown-menu align_left">
-                              <li><a href=#>something else</a></li>
-                              <li><a href=#>blah</a></li>
+                            <ul class="dropdown-menu align_left options_list">
+                              <% StaticPagesController::SEARCH_OPTIONS.each do |name, value| %>
+                                <li id="<%= value %>"><a href=#><%= name %></a></li>
+                              <% end %>
                             </ul>
                         </div>     
                           
                     <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", class: "span3 search_input") %>
-                    <%= hidden_field_tag(:item_type, "testing") %>
+                    <%= hidden_field_tag(:item_type, "forum_posts", id: "selected_option") %>
                     <button class="btn" type="submit" name="commit" id="search_button"><i class="icon-search icon"></i></button>
                     </div>
                   </div>
@@ -126,8 +127,6 @@
               </div>
             <% end %>
             <%= yield :side_bar %>
-            <br />
-            Some ads here. Other information, etc
         </div>
       </div>
     </div>

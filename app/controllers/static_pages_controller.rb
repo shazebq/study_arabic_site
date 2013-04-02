@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  SEARCH_OPTIONS = { "Forums" => "forum_posts", "Teachers" => "teacher_profiles", "Centers/Programs" => "centers",
+  SEARCH_OPTIONS = { "Teachers" => "teacher_profiles", "Centers/Programs" => "centers",
                       "Resources" => "resources", "Articles" => "articles" }
 
   def home

@@ -1,0 +1,19 @@
+$(document).ready(function() { 
+  $(".options_list li").on("click", function() {
+      // save the currently select items data
+      var new_value = $(this).attr("id");
+      var new_name = $(this).find("a").text();
+
+      // change the hidden field's value
+      $("#selected_option").val(this.id);
+
+      // move the current values into the list
+      $(this).attr("id", $("#current_selection").attr("data-item"));
+      $(this).find("a").text($("#current_selection").text());
+
+      // move the newly selected values into the currently selected element
+      $("#current_selection").attr("data-item", new_value);
+      $("#current_selection").text(new_name);
+  });
+
+});

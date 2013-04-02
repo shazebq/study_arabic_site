@@ -30,6 +30,12 @@ select.select_box
   height: 24px !important;
 }
 
+input[type="text"].search_input
+{
+    font-size:11px;
+}
+
+
 button.search_input
 {
   line-height: 10px;
