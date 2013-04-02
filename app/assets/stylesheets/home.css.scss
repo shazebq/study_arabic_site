@@ -25,9 +25,19 @@ select.select_box
 }
 
 
-#search_input
+.search_input
 {
-  height: 24px;
+  height: 24px !important;
+}
+
+button.search_input
+{
+  line-height: 10px;
+}
+
+.caret_modified
+{
+  //vertical-align: text-top;
 }
 
 #search_button

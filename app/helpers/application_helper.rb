@@ -98,6 +98,13 @@ module ApplicationHelper
       "<br /><div class='bold italic centered'>Sorry, no results were found. See all #{link_to(name, path)}.</div>".html_safe
     end
   end
+
+  # check if a teacher profile is being viewed
+  def teacher_profile_pages?
+    if params[:controller] == "users" && params[:action] == "show" && User.find(params[:id]).profile.kind_of?(TeacherProfile)
+      true
+    end
+  end
 end
 
 class BigDecimal

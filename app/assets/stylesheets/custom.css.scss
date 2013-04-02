@@ -73,8 +73,48 @@ background: -ms-linear-gradient(top,  #00625e 0%,#003432 100%); /* IE10+ */
 background: linear-gradient(to bottom,  #00625e 0%,#003432 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00625e', endColorstr='#003432',GradientType=0 ); /* IE6-8 */
   
-  //border-top: 1px solid $light_gray;
+  border-top: 1px solid $light_gray;
 }
+
+
+// overrid the default nav bar stuff
+.navbar-inner
+{
+  background-color: inherit; /* background color will be black for all browsers */
+  background-image: inherit;
+  background-repeat: no-repeat;
+  filter: inherit;
+  border: none;
+  padding-left: 0;
+}
+
+.navbar .nav > li > a {
+    color: white; 
+    float: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    text-shadow: none; 
+    border-right: 1px solid $light_gray;
+}
+
+.navbar .nav > li > a:hover {
+  background-color: white;
+}
+
+.navbar .nav > li.active_nav > a
+{
+  background-color: white;
+  color: black;
+}
+  
+
+a.left_nav_border
+{
+    border-left: 1px solid $light_gray;
+}
+
+
 
 
 
