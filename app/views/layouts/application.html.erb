@@ -20,7 +20,33 @@
             <span class="site_title">StudyArabic.com</span>
           </div>
 
-          <div class="span6">
+            <div class="span6" id="right_header">
+
+
+
+              <div class="row no_margin_left">
+                    <div class="span3 offset3 align_right"> 
+                      <div class="signin_container">
+                        <% if user_signed_in? %>
+                          <span class="dropdown">
+                              <a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
+                              <%= current_user.username %>
+                              <i class="icon-caret-down"></i>
+                              </a>
+                              <ul class="dropdown-menu align_left">
+                                <li><%= link_to("Profile", user_path(current_user)) %></li>
+                                <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
+                                <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
+                              </ul>
+                            </div> 
+                        <% else %>
+                          <span style="color: white;"><%= link_to("Sign In", new_user_session_path, class: "bold") %> or <%= render "shared/register_options" %></span>
+                        <% end %>
+                      </div><!--signin_container-->
+                    </div><!--span1 offset5-->
+
+              </div>
+
               <div class="search_box_home align_right">
                 <%= form_tag("/site_search", :method => "get", class: "form-search") do %>
                   <div class="form-inline">
@@ -36,15 +62,20 @@
                             </ul>
                         </div>     
                           
-                    <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", class: "span3 search_input") %>
+                    <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", placeholder: "Search", class: "span3 search_input") %>
                     <%= hidden_field_tag(:item_type, "forum_posts", id: "selected_option") %>
                     <button class="btn" type="submit" name="commit" id="search_button"><i class="icon-search icon"></i></button>
                     </div>
                   </div>
                 <% end %>
                 </div>
-              </div>
-          </div>
+
+
+
+            </div><!--span 6-->
+
+
+        </div><!--row-->
         
       </div>
     </div>
@@ -109,24 +140,7 @@
           <%= debug(params) if Rails.env.development? %> 
         </div>
         <div class="span3 sidebar">
-            <% if user_signed_in? %>
-              <ul class="nav">
-                <li class="dropdown">
-                <a class="dropdown-toggle disabled" data-toggle="dropdown" href="#"><%= current_user.username %>
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to("Profile", user_path(current_user)) %></li>
-                    <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
-                    <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
-                  </ul>
-                </li>
-              </ul>
-            <% else %>
-              <%= render "shared/sign_in_or_reg_pill" %> 
-              </div>
-            <% end %>
-            <%= yield :side_bar %>
+          <%= yield :side_bar %>
         </div>
       </div>
     </div>

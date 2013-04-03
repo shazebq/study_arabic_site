@@ -11,6 +11,7 @@ select.select_box
 
 .search_box_home
 {
+    clear: both;
     input, select, option 
     {
       -webkit-box-sizing: border-box;
@@ -74,4 +75,21 @@ button.search_input
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+.no_margin_left
+{
+  margin-left: -25px;
+}
+
+.signin_container
+{
+  margin-bottom: 5px;
+}
+
+#right_header
+{
+  height: 40px;
+}
+
+
 
