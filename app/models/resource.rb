@@ -27,12 +27,12 @@ class Resource < ActiveRecord::Base
   # need this for paper clip
   has_attached_file :resource_file, styles: lambda { |attachment|
                                               if attachment.instance.resource_file_content_type != "application/msword" && attachment.instance.resource_file_content_type != "text/plain"
-                                                { :thumb => ["425x550#", :png], :medium => ["850x1100#", :png] }
+                                                { :thumb => ["235x305#", :png] }
                                               else
                                                 {}
                                               end
-                                            },
-                                              :default_url => "/images/rails.png"
+                                            }#,
+                                             # :default_url => "/images/rails.png"
 
   validates_attachment_content_type(:resource_file, content_type: ["image/jpeg", "image/jpg", "application/pdf", "application/msword", "text/plain"])
   validates_attachment_size(:resource_file, :less_than => 10.megabytes) 

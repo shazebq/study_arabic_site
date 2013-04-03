@@ -1,3 +1,5 @@
+$light_gray: #F5F5F5;
+
 .preview_div
 {
   //background-color: #e8e8e8;
@@ -16,6 +18,14 @@
 #resource_thumbnail
 {
   border: #aaaaaa solid thin;
+}
+
+#no_preview
+{
+  height: 175px;
+  background-color: $light_gray; 
+  text-align: center;
+  padding-top: 130px;
 }
 
 .padded_cell

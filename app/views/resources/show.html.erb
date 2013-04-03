@@ -8,11 +8,12 @@
       <%= render partial: "shared/delete_edit_links", locals: { item: @resource } %>
     </div>
 
+
     <div class="row">
     <div class="span3 preview_div">
-      <% if @resource.resource_file.content_type == "application/msword" || @resource.resource_file.content_type == "text/plain" %>
+      <% if @resource.resource_file.content_type == "application/msword" || @resource.resource_file.content_type == "text/plain" || !(@resource.resource_file.exists?) %>
           <div id="resource_thumbnail">
-            <div style="height: 250px; background-color: #d4d4d4;"></div>
+            <div id="no_preview">No Preview Available</div>
           </div>
       <% else %>
           <div id="resource_thumbnail">
