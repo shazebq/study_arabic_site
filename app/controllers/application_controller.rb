@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   # before_filter for forum_posts, comments, reviews, answers, resources, centers
   def limit_user_content
-    if current_user.send(params[:controller]).where("created_at > ?", 24.hours.ago).count == 5
+    if current_user.send(params[:controller]).where("created_at > ?", 24.hours.ago).count == 5 && !(current_user.admin?)
       flash[:alert] = "Sorry, you have exceeded the maximum number of submissions in a 24 hour period.  Try again later."
       redirect_to :back || root_path
     end
