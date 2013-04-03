@@ -38,7 +38,7 @@
                                 <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
                                 <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
                               </ul>
-                            </div> 
+                            </span> 
                         <% else %>
                           <span style="color: white;"><%= link_to("Sign In", new_user_session_path, class: "bold") %> or <%= render "shared/register_options" %></span>
                         <% end %>

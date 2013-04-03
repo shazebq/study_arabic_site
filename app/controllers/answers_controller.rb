@@ -14,7 +14,6 @@ class AnswersController < ApplicationController
     @answer = @forum_post.answers.new
     @answer_new = @forum_post.answers.create(params[:answer])
     if @answer_new.valid?
-      current_user.add_rep_points(:answer)
       UserMailer.delay.answer_alert(@forum_post.user, @forum_post, @answer_new)  # send email to user who asked question
       UserMailer.delay.alert_other_answerers(@forum_post.answerers_list(current_answerer: @answer_new.user), @forum_post, @answer_new) if @forum_post.answers.count > 1
       flash[:notice] = "Your answer was successfully submitted."

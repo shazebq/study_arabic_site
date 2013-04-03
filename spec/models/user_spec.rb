@@ -22,15 +22,8 @@ describe User do
   describe "add_rep_points" do
     let(:user) { FactoryGirl.create(:user, reputation: 0) }
 
-    context "when user adds a comment" do
-      before { user.add_rep_points(:comment) }
-      it "should increase the user's reputation by 1 point" do
-        user.reputation.should == 1
-      end
-    end
-
     context "when user adds a forum_post" do
-      before { user.add_rep_points(:forum_post) }
+      before { user.add_rep_points("ForumPost") }
       it "should increase the user's reputation by 2 point" do
         user.reputation.should == 2
       end
@@ -38,7 +31,7 @@ describe User do
     end
 
     context "when user adds a answer" do
-      before { user.add_rep_points(:answer) }
+      before { user.add_rep_points("Answer") }
       it "should increase the user's reputation by 4 point" do
         user.reputation.should == 4
       end
@@ -46,33 +39,13 @@ describe User do
     end
 
     context "when user adds a resource" do
-      before { user.add_rep_points(:resource) }
+      before { user.add_rep_points("Resource") }
       it "should increase the user's reputation by 4 point" do
         user.reputation.should == 4
       end
 
     end
 
-    context "when user adds a center" do
-      before { user.add_rep_points(:center) }
-      it "should increase the user's reputation by 4 point" do
-        user.reputation.should == 4
-      end
-    end
-
-    context "when user adds a review" do
-      before { user.add_rep_points(:review) }
-      it "should increase the user's reputation by 2 point" do
-        user.reputation.should == 2
-      end
-    end
-
-    context "when user adds an up vote for something" do
-      before { user.add_rep_points(:up_vote) }
-      it "should increase the user's reputation by 2 point" do
-        user.reputation.should == 2
-      end
-    end
   end
 
   describe "user_voted_up? method" do

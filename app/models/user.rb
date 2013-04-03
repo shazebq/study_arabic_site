@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
 
-  REP_POINTS_HASH = { comment: 1, forum_post: 2, answer: 4, resource: 4, center: 4, review: 2, up_vote: 2, down_vote: -2}
+  REP_POINTS_HASH = { "ForumPost" => 2, "Article" => 4, "Answer" => 4, "Resource" => 4 }
 
   def send_on_create_confirmation_instructions
     Devise::Mailer.delay.confirmation_instructions(self)
@@ -60,11 +60,13 @@ class User < ActiveRecord::Base
     Devise::Mailer.delay.unlock_instructions(self)
   end
 
+  def add_rep_points(item)
+    self.reputation = self.reputation + REP_POINTS_HASH[item]
+    self.save
+  end
 
-
-  def add_rep_points(item_added)
-    logger.fatal "Terminating application"
-    self.reputation = self.reputation + REP_POINTS_HASH[item_added]
+  def subtract_rep_points(item)
+    self.reputation = self.reputation - REP_POINTS_HASH[item]
     self.save
   end
 

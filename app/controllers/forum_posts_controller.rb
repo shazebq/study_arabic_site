@@ -12,7 +12,6 @@ class ForumPostsController < CategorizableItemsController
   def create
     @forum_post = current_user.forum_posts.new(params[:forum_post])
     if @forum_post.save
-      current_user.add_rep_points(:forum_post)
       flash[:notice] = "Your question has been added"
       redirect_to forum_post_path(@forum_post)
     else

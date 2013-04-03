@@ -32,7 +32,6 @@ class CentersController < ApplicationController
     revised_params = handle_city_creation(params[:center], :address)
     @center = current_user.centers.new(revised_params)
     if @center.save 
-      current_user.add_rep_points(:center)
       flash[:notice] = "Your entry was successfully submitted. We will review it within 24 hours after which it will be added to the site."
       redirect_to @center
     else

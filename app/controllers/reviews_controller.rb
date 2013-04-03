@@ -14,7 +14,6 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.new(params[:review])
     @review.user_id = current_user.id
     if @review.save
-      current_user.add_rep_points(:review)
       flash[:notice] = "Your review has been successfully submitted."
       redirect_to_reviewable(@reviewable) 
     else

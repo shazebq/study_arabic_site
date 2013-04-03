@@ -2,12 +2,12 @@ module Voting
   def count_vote(voteable_id, voteable_type, user_id, type)
     if type == "up"
       new_vote = Vote.create(voteable_id: voteable_id, voteable_type: voteable_type, user_id: user_id)
-      voteable_type.constantize.find(voteable_id).user.add_rep_points(:up_vote)
+      voteable_type.constantize.find(voteable_id).user.add_rep_points(voteable_type)
     else
       down_vote = Vote.where("voteable_id = ? AND voteable_type = ? AND user_id = ?", voteable_id, voteable_type, user_id).first
       if down_vote
         # only situation, so far, when points need to be subtracted
-        voteable_type.constantize.find(voteable_id).user.add_rep_points(:down_vote)
+        voteable_type.constantize.find(voteable_id).user.subtract_rep_points(voteable_type)
         down_vote.destroy
       end
     end

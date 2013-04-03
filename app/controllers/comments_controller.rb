@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
     ## for the possibility that the comment was submitted with an error
     @comment_new = @article.comments.create(params[:comment]) 
     if @comment_new.valid?
-      current_user.add_rep_points(:comment)
       flash[:notice] = "Your comment has been successfully added." 
     end
     render "articles/show"
