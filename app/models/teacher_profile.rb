@@ -7,7 +7,7 @@ class TeacherProfile < ActiveRecord::Base
   pg_search_scope :search, against: [:specialties, :field_of_study, :university],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {reviews: :content, user: [:first_name, :last_name, :bio],
-                         languages: [:name], degrees: [:name], cities: [:name]} # needed so it searches associated records as well
+                         languages: [:name], degree: [:name], city: [:name]} # needed so it searches associated records as well
 
   #multisearchable :against => [:specialties, :field_of_study, :university]
 

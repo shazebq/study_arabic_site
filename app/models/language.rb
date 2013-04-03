@@ -1,4 +1,5 @@
 class Language < ActiveRecord::Base
+  include PgSearch
   attr_accessible :name
 
   has_many :teachers_languages
