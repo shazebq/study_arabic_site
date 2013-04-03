@@ -12,48 +12,48 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name, "Center or Program Name*", class: "required"  %>
+    <%= f.label :name %><%= mark_required(@center, :name) %><br />
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :description, "Brief Description*" %>
+    <%= f.label :description %><%= mark_required(@center, :description) %><br />
     <%= f.text_area :description %>
   </div>
   
   <div class="field">
-    <%= f.label :website %>
+    <%= f.label :website %><%= mark_required(@center, :website) %><br />
     <%= f.text_field :website %>
   </div>
   
   <div class="field">
-    <%= f.label :email, "Email Contact" %>
+    <%= f.label :email %><%= mark_required(@center, :email) %><br />
     <%= f.text_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :phone_number, "Phone Contact" %>
+    <%= f.label :phone_number %><%= mark_required(@center, :phone_number) %><br />
     <%= f.text_field :phone_number %>
   </div>
 
   <div class="field">
-    <%= f.label :year_established, "Year Established" %>
+    <%= f.label :year_established %><%= mark_required(@center, :year_established) %><br />
     <%= f.text_field :year_established %>
   </div>
   
 
   <%= f.fields_for :address do |address_form| %>
     <div class="field">
-      <%= address_form.label :address_line, "Address" %>
+      <%= address_form.label :address_line %><%= mark_required(@center.address, :address_line) %><br />
       <%= address_form.text_field :address_line %>
     </div>
     <div class="field">
-      <%= address_form.label :city_name, "City*" %>
+      <%= address_form.label :city_name %><%= mark_required(@center.address, :city_name) %><br />
       <%= address_form.text_field :city_name %>
     </div>
 
-    <div class="field">
-      <%= address_form.label :country_id, "Country*" %>
+    <div class="field margin_bottom_medium">
+      <%= address_form.label :country_id %><%= mark_required(@center.address, :country_id) %><br />
       <%= address_form.select :country_id, Country.all.collect { |c| [c.name, c.id] }, { :include_blank => true }, class: "country_select" %>
     </div>
   <% end %>
@@ -68,7 +68,7 @@
   </div>
 
   <div class="field">
-    <%= label :long_term, "Does this center or program offer long term programs (more than six months)?" %>
+    <%= label :long_term, "Does this center or program offer long term programs (more than six months)?" %><br />
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :long_term, true %>
@@ -78,7 +78,7 @@
   </div>
   
   <div class="field">
-    <%= label :private_instruction, "Does this center or program offer private instruction?" %>
+    <%= label :private_instruction, "Does this center or program offer private instruction?" %><br />
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :private_instruction, true %>
@@ -88,12 +88,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :price_per_hour_private, "Price Per Hour - Private Instruction (U.S. Dollars)" %>
+    <%= f.label :price_per_hour_private, "Price Per Hour - Private Instruction (U.S. Dollars)" %><br />
     <span class="prepend_char">$</span><%= f.text_field :price_per_hour_private, class: "small_input" %>
   </div>
 
   <div class="field">
-    <%= label :group_instruction, "Does this center or program offer group instruction?" %>
+    <%= label :group_instruction, "Does this center or program offer group instruction?" %><br />
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :group_instruction, true %>
@@ -103,17 +103,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :price_per_hour_group, "Price Per Hour - Group Instruction (U.S. Dollars)" %>
+    <%= f.label :price_per_hour_group, "Price Per Hour - Group Instruction (U.S. Dollars)" %><br />
     <span class="prepend_char">$</span><%= f.text_field :price_per_hour_group, class: "small_input" %>
   </div>
 
   <div class="field">
-    <%= f.label :total_price, "Total estimated price if only one type of program is offered (U.S. Dollars)" %>
+    <%= f.label :total_price, "Total estimated price if only one type of program is offered (U.S. Dollars)" %><br />
     <span class="prepend_char">$</span><%= f.text_field :total_price, class: "small_input" %>
   </div>
 
   <div class="field">
-    <%= f.label :housing_provided, "Does the center or program provide housing?" %>
+    <%= f.label :housing_provided, "Does the center or program provide housing?" %><br />
     <div class="form-inline">
       <%= f.label "Yes", class: "middle" %>
       <%= f.radio_button :housing_provided, true %>

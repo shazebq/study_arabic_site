@@ -11,12 +11,12 @@
   <% end %>
 
     <div class="field">
-      <%= f.label :title  %>
+      <%= f.label :title  %><%= mark_required(@article, :title) %><br />
       <%= f.text_field :title %>
     </div>
 
-    <div class="field">
-      <%= f.label :category_ids, "Category" %>
+    <div class="field margin_bottom_medium">
+      <%= f.label :category_ids %><%= mark_required(@article, :category_ids) %><br />
       <select id="article_category_ids" name="article[category_ids][]" data-placeholder="Categories"
               class="chzn-select" multiple tabindex="6"  multiple="multiple">
         <option value=""></option>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :content, "Content"  %>
+      <%= f.label :content %><%= mark_required(@article, :content) %><br />
       <%= f.text_area :content %>
     </div>
 

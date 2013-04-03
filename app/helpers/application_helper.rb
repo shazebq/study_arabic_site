@@ -105,6 +105,13 @@ module ApplicationHelper
       true
     end
   end
+
+  # returns asterist if the attribute is required
+  def mark_required(object, attribute)
+    if (object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator) || (object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::InclusionValidator)
+      "*"
+    end
+  end
 end
 
 class BigDecimal

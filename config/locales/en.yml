@@ -12,19 +12,30 @@ en:
       comment:
       teacher_profile:
       resource:
+      center:
     attributes:
+      center:
+        phone_number: "Phone Contact"
+        year_established: "Year Established"
+        email: "Email Contact"
       user:
         email: "Email"
         password: "Password"
         first_name: "First Name"
         last_name: "Last Name"
-        bio: "Description"
+        username: "Username"
+        bio: "Brief Description About Yourself"
         country_id: "Country"
       teacher_profile:
-        in_person: "In Person option"
-        online: "Online option"
+        in_person: "In Person Option"
+        online: "Online Option"
         language_ids: "Languages"
         city_name: "City"
+        skype_id: "Skype ID"
+        other_education: "Other Education"
+        years_of_experience: "Years of Experience"
+        employment_history: "Employment History"
+        price_per_hour: "Price Per Hour"
       address:
         address_line: "Address"
         country_id: "Country"

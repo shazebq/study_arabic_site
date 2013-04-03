@@ -46,6 +46,12 @@ label
   font-size: 13px;
   font-weight: bold;
   margin: 0;
+  display: inline;
+}
+
+label.checkbox
+{
+  display: block;
 }
 
 input

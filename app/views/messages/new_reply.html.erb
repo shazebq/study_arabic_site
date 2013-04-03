@@ -14,12 +14,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :subject  %>
+    <%= f.label :subject  %><%= mark_required(@message, :subject) %><br />
     <%= f.text_field :subject %>
   </div>
 
   <div class="field">
-    <%= f.label :content, "Message"  %>
+    <%= f.label :content %><%= mark_required(@message, :content) %><br />
     <%= f.text_area :content %>
   </div>
 

@@ -11,17 +11,17 @@
 
 <%= form_for([@reviewable, @review]) do |f| %>
     <div class="field">
-      <%= f.label :title  %>
+      <%= f.label :title  %><%= mark_required(@review, :title) %><br />
       <%= f.text_field :title %>
     </div>
 
     <div class="field">
-      <%= f.label :content  %>
+      <%= f.label :content  %><%= mark_required(@review, :content) %><br />
       <%= f.text_area :content %>
     </div>
 
     <div class="field">
-      <%= f.label :rating  %>
+      <%= f.label :rating  %><%= mark_required(@review, :rating) %><br />
       <div class="form_rating"><%= get_star_string(5) %></div>
     </div>
 
