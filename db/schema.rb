@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401232404) do
+ActiveRecord::Schema.define(:version => 20130403181514) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -213,7 +213,6 @@ ActiveRecord::Schema.define(:version => 20130401232404) do
     t.integer  "downloads_count"
     t.integer  "views_count"
     t.integer  "votes_count"
-    t.integer  "difficulty_level"
     t.integer  "user_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
@@ -223,6 +222,7 @@ ActiveRecord::Schema.define(:version => 20130401232404) do
     t.datetime "resource_file_updated_at"
     t.integer  "reviews_count"
     t.boolean  "approved"
+    t.integer  "level_id"
   end
 
   create_table "reviews", :force => true do |t|

@@ -42,6 +42,7 @@ en:
       resource:
         category_ids: "Category"
         resource_file: "File"
+        level_id: "Difficulty Level"
     errors:
       models:
         user:

@@ -45,6 +45,8 @@
 <% content_for(:side_bar) do %>
     <%= render partial: "categories/side_bar_categories", locals: { item: @resource } %> 
     <!--<div class="subtitle_large margin_bottom">Posted By</div>-->
+    <div class="subtitle_large margin_bottom_small">Difficulty Level</div>
+    <div class="margin_bottom"><span class="gray_badge"><%= @resource.try(:level).try(:title) %></span></div>
 
     <div>
       <div class="subtitle_large margin_bottom_small">Resource Statistics</div>

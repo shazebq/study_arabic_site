@@ -1,12 +1,14 @@
 module CategoriesSeed
-  category_set = [ [ "Egypt", "Jordan", "Yemen", "Morocco", "Lebanon", "Qatar", "Oman",
-                      "United States", "United Kingdom", "Saudi Arabia", "Other" ],
+  category_set = [ [ "Egypt", "Jordan", "Yemen", "Morocco", "Syria", "Lebanon", "Qatar", "Oman",
+                      "United States", "United Kingdom", "Saudi Arabia", "Tunisia" "Other",
+                      "Kuwait"],
 
-                  [ "Arabic Centers", "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", "Housing" ],
+                  [ "Arabic Centers/Programs", "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", 
+                    "Food", "Housing" ],
 
                   [ "Grammar", "Vocabulary", "Morphology",
-                    "Verbs", "Exercises", "Rhetoric", "Poetry", "Classical Arabic", "Islamic Texts",
-                    "Books", "Programs", "Study Advice" ] ]
+                    "Verbs", "Exercises", "Rhetoric", "Poetry", "Classical Arabic", "Islamic Texts", 
+                    "Quran", "Hadith", "Books", "Study Advice" ] ]
 
   parents = [ "Countries", "Study Abroad", "Arabic Language" ]
 
