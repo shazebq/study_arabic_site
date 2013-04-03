@@ -37,13 +37,22 @@
       <!-- Carousel nav -->
       <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
       <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-      <div class="centered"><%= link_to("Add an image", new_center_image_path(@center)) %></div>
+      <div class="centered"><%= link_to("Add a photo", new_center_image_path(@center)) %></div>
     </div><!--myCarousel div-->
   <% end %>
 
     <div class="margin_bottom">
       <span class="bold caps">About</span>
       <div><%= modified_sf(@center.description) %></div> 
+      
+      <% if @center.images.empty? %>
+        <br />
+        <span class="gray_badge middle">Note</span> 
+        <span class="middle">There are no photos of this center.
+          Help your fellow Arabic students by <%= link_to("adding one.", new_center_image_path(@center)) %>
+        </span>
+      <% end %>
+
     </div>
 
   </div><!--span9-->    

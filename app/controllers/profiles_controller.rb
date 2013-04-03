@@ -10,10 +10,15 @@ class ProfilesController < ApplicationController
   end
   
   def create
-    render "new" unless params[:abc].blank? # attempt to curb bots from registering
+    # attempt to curb bots from registering
+    render "new" unless params[:abc].blank? 
     params[:teacher_profile] = handle_city_creation(params[:teacher_profile], :teacher_profile) if params[:controller] == "teacher_profiles"
+
     # note here, using the controller name to generalize the solution
     @profile = params[:controller].classify.constantize.new(params[params[:controller].singularize])
+
+    # allows conditional validation for bio field
+    @profile.user.has_teacher_profile = true if params[:controller] == "teacher_profiles"
     if @profile.save
       sign_in @profile.user
       redirect_to @profile.user
