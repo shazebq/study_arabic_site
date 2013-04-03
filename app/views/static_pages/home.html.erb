@@ -3,7 +3,7 @@
 <!--featured article-->
 <div class="row">
   <div class="span9">
-    <div class="subtitle_largest"><%= link_to(@feature_article.try(:title), @feature_article) %></div>
+    <div class="subtitle_largest margin_bottom_small"><%= link_to(@feature_article.try(:title), @feature_article) %></div>
     <div><%= render partial: "articles/author_line", locals: { item: @feature_article } %></div>
   </div>
 </div>

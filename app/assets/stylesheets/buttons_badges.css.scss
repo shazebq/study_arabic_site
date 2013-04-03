@@ -17,7 +17,6 @@ $light: #BFDDDC;
   padding-left: 5px;
   vertical-align: top;
   font-size: 11px;
-  font-weight: bold;
 }
 
 
@@ -82,8 +81,8 @@ $light: #BFDDDC;
 .date_line
 {
   font-style: italic;
+  font-family: helvetica, sans-serif;
   color: $dark_gray;
-  font-weight: bold;
   font-size: 11px;
 }
 
@@ -117,37 +116,34 @@ $light: #BFDDDC;
   margin-right: 10px;
 }
 
-.btn_custom
-{
-  font-family: Helvetica, Arial, sans-serif;
-	font-size: 13px;
+.btn_custom {
+        font-family: 'Carrois Gothic', sans-serif;
+	font-size: 14px;
 	color: #ffffff;
-	padding: 7px 9px;
+	padding: 8px 8px;
 	background: -moz-linear-gradient(
 		top,
-		#bfdddc 0%,
-		#2f928f 13%,
-		#007975);
+		#4fa29f 0%,
+		#005a57);
 	background: -webkit-gradient(
 		linear, left top, left bottom, 
-		from(#bfdddc),
-		color-stop(0.13, #2f928f),
-		to(#007975));
+		from(#4fa29f),
+		to(#005a57));
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	border: 1px solid #4f4f4f;
+	border: 1px solid #000000;
 	-moz-box-shadow:
-		0px 1px 2px rgba(000,000,000,0.5),
-		inset 0px 0px 1px rgba(255,255,255,0.7);
+		0px 0px 0px rgba(000,000,000,0),
+		inset 0px 0px 0px rgba(255,255,255,0);
 	-webkit-box-shadow:
-		0px 1px 2px rgba(000,000,000,0.5),
-		inset 0px 0px 1px rgba(255,255,255,0.7);
+		0px 0px 0px rgba(000,000,000,0),
+		inset 0px 0px 0px rgba(255,255,255,0);
 	box-shadow:
-		0px 1px 2px rgba(000,000,000,0.5),
-		inset 0px 0px 1px rgba(255,255,255,0.7);
+		0px 0px 0px rgba(000,000,000,0),
+		inset 0px 0px 0px rgba(255,255,255,0);
 	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.4),
+		0px -1px 0px rgba(000,000,000,0.7),
 		0px 1px 0px rgba(255,255,255,0.3);
 }
 

@@ -51,8 +51,14 @@ a:active {text-decoration:underline;}
   color: #666666;
 }
 
+.subtitle_font
+{
+  
+}
+
 .subtitle_large_gray
 {
+  @extend .subtitle_font;
   font-size: 15px;
   color: $dark_gray;
   margin-bottom: 10px;
@@ -60,29 +66,34 @@ a:active {text-decoration:underline;}
 
 .subtitle_large_gray a:link
 {
+  @extend .subtitle_font;
   color: $dark_gray; 
 }
 
 .subtitle_large_gray a:visited
 {
+  @extend .subtitle_font;
   color: $dark_gray; 
 }
 
 
 .subtitle_large
 {
+  @extend .subtitle_font;
   font-size: 18px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .subtitle_largest
 {
+  @extend .subtitle_font;
   font-size: 24px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .subtitle_large_color
 {
+  @extend .subtitle_font;
   @extend .subtitle_large;
   color: $main_color; 
 }
@@ -129,7 +140,7 @@ body
 .site_title
 {
   font-size: 30px;
-  font-weight: bold;
+  //font-weight: bold;
   color: white;
 }
 
