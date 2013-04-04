@@ -1,7 +1,4 @@
 ArabicProject::Application.routes.draw do
-
-  
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   match "home" => "static_pages#home", :via => :get
@@ -53,10 +50,12 @@ ArabicProject::Application.routes.draw do
     put :destroy_multiple, :on => :collection
   end
 
-  resources :teacher_profiles do
-    resources :reviews
-    get 'search', :on => :collection
-  end
+  #scope ":locale" do
+    resources :teacher_profiles do
+      resources :reviews
+      get 'search', :on => :collection
+    end
+  #end
 
   resources :student_profiles
 

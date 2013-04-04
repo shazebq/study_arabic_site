@@ -1,4 +1,3 @@
-<% provide(:title, "Create a #{get_user_type(params[:controller]).capitalize} Account") %>
   <% if @profile.errors.any? %>
     <div class="error_alert">
       Your submission could not be accepted. Please correct the following errors:
@@ -12,13 +11,26 @@
 
 <% other_user_type = get_other_user_type(params[:controller]) %>
 
-    <div class="alert custom_alert">
-    <strong>Note: </strong>Are you an Arabic <%= other_user_type %>? Create a <%= link_to("#{other_user_type} account", controller: "#{other_user_type}_profiles", action: :new) %> instead.
+  <% if params[:controller] == "teacher_profiles" %>
+    <div>
+      <strong>
+      <%= link_to_unless_current "English", locale: "en" %> | 
+      <%= link_to_unless_current "العربية", locale: "ar" %><br />
+      </strong>
+      <div class="custom_alert">
+        <span class="gray_badge middle">لاحظ</span><span class="middle"> حاول أن تقوم بملء الاستمارة بالإنجيليزية لأنّ معظم الطلاب يتكلمون بها</span>
+      </div>
     </div>
+  <% end %>
+
+  <div class="custom_alert">
+    <span class="gray_badge middle">Note</span><span class="middle"> Are you an Arabic <%= other_user_type %>? Create a <%= link_to("#{other_user_type} account", controller: "#{other_user_type}_profiles", action: :new) %> instead.</span>
+  </div>
+
 
 <%= form_for(@profile) do |f| %>
   <%= f.fields_for :user do |user_form| %>
-    <div class="field">
+    <div class="field ">
       <%= user_form.label :first_name %><%= mark_required(@profile.user, :first_name) %><br />
       <%= user_form.text_field :first_name %>
     </div>
@@ -56,7 +68,7 @@
         <%= user_form.password_field :password %>
       </div>
       <div class="field">
-        <%= user_form.label :password_confirmation, "Password Confirmation*" %><%= mark_required(@profile.user, :password_confirmation) %><br />
+        <%= user_form.label :password_confirmation %>*<br />
         <%= user_form.password_field :password_confirmation %></div>
     <% end %>
 
@@ -142,6 +154,7 @@
   <% end %>
     <div class="actions">
     <%= f.submit "Submit", class: "btn_custom" %>
+
   </div>
 <% end %>
 

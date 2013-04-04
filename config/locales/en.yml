@@ -20,6 +20,7 @@ en:
         email: "Email Contact"
       user:
         email: "Email"
+        password_confirmation: "Password Confirmation"
         password: "Password"
         first_name: "First Name"
         last_name: "Last Name"
@@ -35,7 +36,7 @@ en:
         other_education: "Other Education"
         years_of_experience: "Years of Experience"
         employment_history: "Employment History"
-        price_per_hour: "Price Per Hour"
+        price_per_hour: "Price Per Hour (in American dollars)"
       address:
         address_line: "Address"
         country_id: "Country"
