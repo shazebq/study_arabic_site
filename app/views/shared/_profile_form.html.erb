@@ -14,8 +14,8 @@
   <% if params[:controller] == "teacher_profiles" %>
     <div>
       <strong>
-      <%= link_to_unless_current "English", locale: "en" %> | 
-      <%= link_to_unless_current "العربية", locale: "ar" %><br />
+      <%= link_to_unless_current "English", new_teacher_profile_path(locale: "en") %> | 
+      <%= link_to_unless_current "العربية", new_teacher_profile_path(locale: "ar") %><br />
       </strong>
       <div class="custom_alert">
         <span class="gray_badge middle">لاحظ</span><span class="middle"> حاول أن تقوم بملء الاستمارة بالإنجيليزية لأنّ معظم الطلاب يتكلمون بها</span>

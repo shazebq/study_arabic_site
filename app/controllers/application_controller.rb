@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
+  before_filter :set_locale
 
   PER_PAGE = 3
   protect_from_forgery
@@ -7,6 +8,13 @@ class ApplicationController < ActionController::Base
   # for devise, save the last page user was on or tyring to access before doing something that required authentication
   before_filter :store_location
 
+  # Rails will call this method to determine the default options that 
+  # should be passed in to URL generators. We need to set the locale option so 
+  # that this is automatically set whenever a URL is generated.
+  #def default_url_options(options = {})
+  #  {locale: I18n.locale}
+  #end
+  
   def store_location
     # store last url as long as it isn't a /users path
     session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
@@ -88,6 +96,12 @@ class ApplicationController < ActionController::Base
     else
       redirect_to reviewable
     end
+  end
+
+  private
+
+  def set_locale
+    I18n.locale = params[:locale] || "en"
   end
 
 end

@@ -50,7 +50,7 @@ ArabicProject::Application.routes.draw do
     put :destroy_multiple, :on => :collection
   end
 
-  #scope ":locale" do
+  #scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :teacher_profiles do
       resources :reviews
       get 'search', :on => :collection

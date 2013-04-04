@@ -1,6 +1,4 @@
 class TeacherProfilesController < ProfilesController
-  before_filter :set_locale
-
   def index
     @countries = Country.joins(:users).where("users.profile_type = ?", "TeacherProfile").uniq # all the countries that teachers are from (unique)
     if params[:ratings_option] == "order_by_reviews"
@@ -20,11 +18,6 @@ class TeacherProfilesController < ProfilesController
     render "index"
   end
 
-
-  private
-  def set_locale
-    I18n.locale = params[:locale] if params[:locale].present?
-  end
 end
   
 
