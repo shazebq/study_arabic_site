@@ -1,5 +1,5 @@
-<%= provide :title, "Register" %>
-<%= render partial: "shared/page_title", locals: { title: "Edit Your Profile" } %>
+<% provide(:title, "Register as a #{get_user_type(params[:controller]).capitalize}") %>
+<%= render partial: "shared/page_title", locals: { title:  "Register as a #{get_user_type(params[:controller]).capitalize}" } %>
 
 <%= render "shared/profile_form" %>
 
