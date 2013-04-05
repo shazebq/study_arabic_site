@@ -8,7 +8,7 @@ module CategoriesSeed
 
                   [ "Grammar", "Vocabulary", "Morphology",
                     "Verbs", "Exercises", "Rhetoric", "Poetry", "Classical Arabic", "Islamic Texts", 
-                    "Quran", "Hadith", "Books", "Study Advice" ] ]
+                    "Quran", "Hadith", "Books", "Study Advice", "Colloquial Arabic" ] ]
 
   parents = [ "Countries", "Study Abroad", "Arabic Language" ]
 
