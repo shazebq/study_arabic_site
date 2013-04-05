@@ -1,7 +1,8 @@
 require "spec_helper"
 
 describe "Authorization" do
-  let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
+  let!(:language) { FactoryGirl.create(:language) }
+  let!(:teacher_profile) { FactoryGirl.create(:teacher_profile, language_ids: [language.id]) }
   let!(:user) { FactoryGirl.create(:user, profile_id: teacher_profile.id, profile_type: "TeacherProfile") }
   
   context "when user is not signed in" do
@@ -13,11 +14,6 @@ describe "Authorization" do
     end
   end
 
-  #context "when user is signed in and is the owner of the profile" do
-  #  describe "updating  a profile" do
-  #  end
-  #end
-    
 end
 
 # comments

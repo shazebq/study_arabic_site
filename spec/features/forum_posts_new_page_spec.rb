@@ -48,13 +48,6 @@ describe User do
           click_button "Submit"
           current_path.should == forum_post_path(ForumPost.find_by_title("living abroad in cairo"))
         end
-
-        specify "clicking on submit button should increase the current user's reputation by 4 points" do
-          click_button "Submit"
-          user.reload
-          user.reputation.should == 2
-        end
-
       end
 
       context "with missing information" do

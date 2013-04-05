@@ -28,7 +28,7 @@ describe Article do
 
     it "should cause the reputation of the owner of the resource to increase by 2" do
       article.count_vote(@article1.id, "Article", user.id, "up")
-      @article1.user.reputation.should == 2
+      @article1.user.reputation.should == 4
     end
   end
 

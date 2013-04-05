@@ -72,7 +72,7 @@ describe Center do
   
   describe "validations" do
     before :each do
-      @center1 = Center.new(name: "New Center", description: "A wonderful place to study")
+      @center1 = Center.new(name: "New Center", description: "A wonderful place to study", website: "")
     end
     describe "website validation" do
       
@@ -83,12 +83,6 @@ describe Center do
         end
       end
 
-      describe "when the website is not formatted correctly" do
-        before { @center1.website = "yahooooo" }
-        it "should not be valid with an invalid url" do
-          @center1.should_not be_valid  
-        end
-      end
     end
     
     describe "price field validations" do
@@ -132,7 +126,7 @@ describe Center do
       end
 
       describe "when description is less than 2000 characters" do
-        before { @center1.description = "a" * 2000 }
+        before { @center1.description = "a" * 1000 }
         it "should be valid" do
           @center1.should be_valid
         end

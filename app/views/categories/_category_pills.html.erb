@@ -4,7 +4,7 @@
     <li class="<%= li_class2 || "not_active" %> parent_links"><%= link_to(category_title, send("category_#{params[:controller]}_path", CategoryParent.find_by_name(parent_name), order_by: @current_scope)) %></li>
   <% end %>
 
-  <% CategoryParent.find_by_name(parent_name).try(:categories).order(:name).try(:each) do |cat| %>
+  <% CategoryParent.find_by_name(parent_name).try(:categories).order(:name).each do |cat| %>
       <!--check which category is selected and make its li active-->
       <% li_class3 = @category.id == cat.id ? 'active' : 'not_active' if @category %>
       <li class="<%= li_class3 || "not_active" %>"><%= link_to("#{cat.name} (#{cat.send(params[:controller]).size})", send("category_#{params[:controller]}_path", cat, order_by: @current_scope)) %></li>

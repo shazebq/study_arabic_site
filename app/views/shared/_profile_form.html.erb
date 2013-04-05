@@ -82,7 +82,7 @@
     <% if params[:controller] == "teacher_profiles" %>
       <div class="field">
         <%= f.label :age %><%= mark_required(@profile, :age) %><br />
-        <%= f.text_field :age %>
+        <%= f.text_field :age, class: "small_input" %>
       </div>
       <div class="field">
         <%= f.label :gender %><%= mark_required(@profile, :gender) %><br />

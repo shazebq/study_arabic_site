@@ -35,5 +35,5 @@ ArabicProject::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  ENV['root_path'] =  "static_pages#about_us";
+  ENV['root_path'] =  "static_pages#contact";
 end

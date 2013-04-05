@@ -50,11 +50,6 @@ describe "new center page" do
       expect { click_button "Submit" }.to change(Address, :count)
     end
 
-    specify "clicking on submit button should increase the current user's reputation by 4 points" do
-      click_button "Submit"
-      user.reload
-      user.reputation.should == 4
-    end
   end
 end
 

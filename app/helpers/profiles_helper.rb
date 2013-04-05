@@ -13,6 +13,6 @@ module ProfilesHelper
   end
 
   def get_teacher_location(teacher)
-    "#{teacher.city.name}, #{teacher.user.country.name}"
+    "#{teacher.try(:city).try(:name)}, #{teacher.user.try(:country).try(:name)}"
   end
 end

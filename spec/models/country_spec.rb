@@ -12,11 +12,12 @@ describe Country do
   it { should respond_to :addresses }
 
   describe "getting the number of items that belong to a particular country" do
+    let!(:language) { FactoryGirl.create(:language) }
     let!(:country) { FactoryGirl.create(:country, name: "Canada") }
     let!(:address) { FactoryGirl.create(:address, country_id: country.id) }
     let!(:center) { FactoryGirl.create(:center, address_id: address.id) }
     let!(:center1) { FactoryGirl.create(:center, address_id: address.id) }
-    let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
+    let!(:teacher_profile) { FactoryGirl.create(:teacher_profile, language_ids: [language.id]) }
     let!(:user) { FactoryGirl.create(:user, country_id: country.id, profile_id: teacher_profile.id, profile_type: "TeacherProfile") }
 
     describe "getting the number of teachers from a certain country" do

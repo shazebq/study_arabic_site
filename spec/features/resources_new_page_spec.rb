@@ -3,6 +3,7 @@ include Devise::TestHelpers
 
 describe "new resource page" do
   create_categories
+  let!(:level) { FactoryGirl.create(:level, title: "advanced") }
 
   before do
     @user = FactoryGirl.create(:user, email: "shazebq@gmail.com")
@@ -43,19 +44,13 @@ describe "new resource page" do
         fill_in "resource_title", with: "fruit vocabulary"
         fill_in "resource_description", with: "a simple vocab sheet that has common fruit names with Arabic translations"
         select "Books", from: "resource_category_ids"
-        #page.attach_file("resource_resource_file", '/home/shazeb/Documents/test.txt')  # attach file
+        select "advanced", from: "resource_level_id"
       end
 
       specify "clicking submit button should create a resource" do
         expect { click_button "Submit" }.to change(Resource, :count).by(1)
         Resource.find_by_title("fruit vocabulary").categories.count.should == 1
         Resource.find_by_title("fruit vocabulary").user.email == "shazebq@gmail.com"
-      end
-
-      specify "clicking on submit button should increase the current user's reputation by 4 points" do
-        click_button "Submit"
-        @user.reload
-        @user.reputation.should == 4
       end
     end
   end

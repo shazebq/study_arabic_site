@@ -14,5 +14,7 @@ FactoryGirl.define do
     age 25
     gender "m"
     employment_history "previous job"
+    city_name "Cairo"
+    city_id 5
   end
 end

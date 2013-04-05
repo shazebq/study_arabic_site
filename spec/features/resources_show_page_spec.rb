@@ -2,6 +2,7 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe "show resource page" do
+  create_categories
   let!(:user) { FactoryGirl.create(:user)}
   let!(:category) { FactoryGirl.create(:category, name: "Vocabulary") }
   let!(:resource) { FactoryGirl.create(:resource, title: "Colors",
@@ -21,7 +22,6 @@ describe "show resource page" do
       end
     end
 
-    it { should have_selector("h3", text: resource.title)}
     it { should have_content("colors vocabulary worksheet")}
   end
 
@@ -102,8 +102,13 @@ describe "show resource page" do
   end
 
   describe "clicking review button" do
+    let(:user_5) { FactoryGirl.create(:user) }
+    before :each do
+      sign_in_user(user_5)
+      visit resource_path(resource)
+    end
     it "should redirect to new review page" do
-      click_button("Review this resource")
+      click_button("Review This Resource")
       current_path.should == new_resource_review_path(resource)
     end
   end

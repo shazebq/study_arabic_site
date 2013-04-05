@@ -100,10 +100,13 @@ def initialize_records
 end
 
 def create_teacher_records
-  let!(:teacher_profile) { FactoryGirl.create(:teacher_profile) }
+  let!(:language) { FactoryGirl.create(:language) }
+  let!(:degree) { FactoryGirl.create(:degree) }
+  let!(:city) { FactoryGirl.create(:city) }
+  let!(:teacher_profile) { FactoryGirl.create(:teacher_profile, language_ids: [language.id], degree_id: degree.id, city_id: city.id) }
   let!(:user) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile.id) }
   let!(:teacher_review) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile",
-                                              reviewable_id: teacher_profile.id, content: "wonderful teacher!!!") }
+                                              reviewable_id: teacher_profile.id, content: "wonderful teacher!!!", user_id: user.id) }
 end
 
 def create_student_records
@@ -117,6 +120,7 @@ def sign_in_user(the_user)
     the_user.profile_type = "StudentProfile"
     the_user.profile_id = @new_profile.id
     the_user.save
+    the_user.confirm!
   end
 
   visit new_user_session_path

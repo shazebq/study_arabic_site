@@ -9,6 +9,10 @@ ArabicProject::Application.routes.draw do
   match 'contact' => 'contact_messages#new', :as => 'contact', :via => :get
   match 'contact' => 'contact_messages#create', :as => 'contact', :via => :post
 
+  match "/404", :to => "errors#not_found"
+  match "/500", :to => "errors#application_error"
+  match "/422", :to => "errors#unauthorized"
+
   devise_for :users, :controllers => {:confirmations => "confirmations", :registrations => "registrations"}
 
   root(to: ENV["root_path"])
@@ -40,7 +44,7 @@ ArabicProject::Application.routes.draw do
     resources :images, only: [:new, :create]
   end
 
-  resources :users do
+  resources :users, only: :show do
     resources :messages
   end
 

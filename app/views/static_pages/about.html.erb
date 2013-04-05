@@ -2,19 +2,30 @@
 <%= render partial: "shared/page_title", locals: { title: "About" } %>
 
 <p>
-StudyArabic.com is a community driven and supported portal that offers students and teachers
+StudyArabic.com is a free, community driven and supported portal that offers students and teachers
 a place to share and exchange information, advice, and resources related to learning
 the Arabic language.
 </p>
 
 <p>
-<div class="subtitle_large margin_bottom_small">Studying Arabic Abroad</div>
+Arabic is an international language and one of the most spoken in the world. In addition to
+being increasingly important due to geopolitical reasons, it is the liturgical language of
+over one billion Muslims with an extremely rich literary tradition. Despite all of this, 
+students in the West do not have as much of an opportunity to learn Arabic as they do other 
+more established but perhaps less widespread and culturally influential languages. This
+site is, in a way, a small effort to help remedy this problem.
+</p>
+
+<br />
+
+<p>
+<div class="subtitle_large margin_bottom">Studying Arabic Abroad</div>
 I started this site as way to address a problem I faced as an American college student trying
 to choose a place to study Arabic abroad in the summer. As the summer approached,
 I spent a sizable amount of time researching various Arabic centers in the Middle East. 
 I found plenty of centers with websites claiming to offer top notch classes with the best 
 instructors but I had no way to verify with certainty how accurate their claims actually were. 
-Thus, the idea of a comprehensive database of <%= link_to("Arabic centers", centers_path, class: "bold") %> with accurate and up to date 
+Thus, the idea of a comprehensive directory of <%= link_to("Arabic centers", centers_path, class: "bold") %> with accurate and up to date 
 information and reviews was conceived.
 </p>
 
@@ -22,14 +33,17 @@ information and reviews was conceived.
 In addition to our list of centers and programs, you can also explore our <%= link_to("study abroad forums", category_forum_posts_path(Category.find_by_name("Study Abroad")), class: "bold") %> to
 find relevant and up to date information on finding housing, connecting with roommates, and traveling
 in the Middle East.
+</p>
+
+<br />
 
 <p>
-<div class="subtitle_large margin_bottom_small">Finding Teachers Online</div>
+<div class="subtitle_large margin_bottom">Finding Teachers Online</div>
 When I finished college, I knew I wanted to keep up with my study of Arabic and naturally,
 I looked to the internet as a medium to find a teacher I could skype with to keep my language
 skills sharp. After a while, I realized that there were a plethora of websites out there
 charging a premium price to find an Arabic tutor or teacher for you. Essentially,
-these sites are serving as unecessary middle men between you and your potential teacher pocketing
+these sites are serving as unnecessary middle men between you and your potential teacher pocketing
 most of the money you pay for themselves. I figured, why shouldn't I be able to deal with my online
 teacher directly instead of having to go through third party websites? With our database of <%= link_to("Arabic teachers", teacher_profiles_path, class: "bold") %>,
 we are attempting to do just that. I wanted to make the process of finding an online teacher
@@ -37,8 +51,10 @@ as transparent as possible and what you have with our system is a reliable list 
 from all over the world that you can contact directly with no strings attached.
 </p>
 
+<br />
+
 <p>
-<div class="subtitle_large margin_bottom_small">Sharing Information</div>
+<div class="subtitle_large margin_bottom">Sharing Information</div>
 Mastering a language is not really something you can fully do on your own. Thus, one of the primary
 objectives of StudyArabic.com is to provide a place for students to share tips and resources
 related to learning Arabic. Whether you're trying to find a roommate for your summer abroad program in Egypt
@@ -47,4 +63,21 @@ out there that is or has been in your shoes. Our <%= link_to("forums", forum_pos
 about anything related to studying Arabic.
 </p>
 
-Thank you for supporting StudyArabic.com!<br />
+<br />
+
+
+<p>
+<div class="subtitle_large margin_bottom">How You Can Help</div>
+As a community driven site, the success of StudyArabic.com hinges upon your participation and support.
+Thus, the best way to help the site is by asking and answering questions and sharing your experiences and advice.
+In addition, we know there is always room for improvement are constantly trying to add features and make 
+your experience better. If you have any suggestions or ideas, please <%= link_to("contact us", contact_path, class: "bold") %> and we'll be sure to respond promptly.
+</p>
+
+<br />
+
+
+<span class="bold">Thank you for supporting StudyArabic.com!</span>
+
+
+<br />

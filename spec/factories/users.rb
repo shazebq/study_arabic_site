@@ -10,5 +10,6 @@ FactoryGirl.define do
     country_id 1
     #encrypted_password "foobar"
     sequence(:username) { |i| "person_#{i}"}
+    after(:create) { |user| user.confirm! }
   end
 end

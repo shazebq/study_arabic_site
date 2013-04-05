@@ -17,6 +17,7 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
+    return render text: "contact"
   end
 
   # just redirects to the appropriate controller, passing the query along

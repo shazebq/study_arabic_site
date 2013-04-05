@@ -2,8 +2,10 @@ require "spec_helper"
 
 describe "new article page" do
   create_categories
+  let(:user) { FactoryGirl.create(:user, staff_writer: true) }  # only staff writers and admin can write articles
 
   before :each do
+    sign_in_user(user)
     visit new_article_path
   end
 

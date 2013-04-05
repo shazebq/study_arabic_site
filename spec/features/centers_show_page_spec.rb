@@ -4,7 +4,7 @@ describe "centers show page" do
   let!(:country) { FactoryGirl.create(:country) }
   let!(:city) { FactoryGirl.create(:city, country_id: country.id) }
   let!(:address) { FactoryGirl.create(:address, country_id: country.id, city_id: city.id) }
-  let!(:center) { FactoryGirl.create(:center, name: "Number 1 Arabic Center") }
+  let!(:center) { FactoryGirl.create(:center, name: "Number 1 Arabic Center", address_id: address.id) }
 
   before :each do
     visit center_path(center) 
@@ -29,8 +29,11 @@ describe "centers show page" do
   describe "edit link" do
     create_student_records
     before :each do
+      center.user_id = user.id
+      center.save
       sign_in_user(user)
     end
+
     it "should redirect to the edit page for the center when clicked" do
       click_link "Edit Center/Program Info"
       current_path.should == edit_center_path(center)

@@ -18,10 +18,6 @@ describe "user show page" do
       page.should have_content("#{user.first_name} #{user.last_name}")
     end
 
-    it "should display a teacher badge" do
-      page.should have_content("Teacher")
-    end
-
     it "should display the user's bio" do
       page.should have_content(user.bio)
     end
@@ -51,12 +47,13 @@ describe "user show page" do
 
     describe "clicking on the review button" do
       before :each do
-        sign_in_user(user)
+        @user_new = FactoryGirl.create(:user)
+        sign_in_user(@user_new)
         visit user_path(user)
       end
 
       it "should redirect to the teacher_review_path" do
-        click_button("Write a Review")
+        click_button("Review This Teacher")
         current_path.should == new_teacher_profile_review_path(teacher_profile) 
       end
     end

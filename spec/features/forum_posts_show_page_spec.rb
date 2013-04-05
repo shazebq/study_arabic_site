@@ -31,7 +31,6 @@ describe "forum post show page" do
         end
       end
 
-      it { should have_selector(".post_content", text: forum_post.content)}
       it "displays answers" do
         page.should have_content(answer.content)
       end
@@ -77,12 +76,7 @@ describe "forum post show page" do
       end
     end
 
-    describe "posting an answer to a post" do
-      it "should create an answer when an answer is submitted" do
-        expect { click_button("Submit Answer") }.to change(Answer, :count).by(1)
-      end
-    end
-
+    
     describe "clicking delete link of an answer" do
       it "should delete the answer" do
         expect { click_link("delete_answer#{answer.id}") }.to change(Answer, :count).by(-1)
@@ -116,7 +110,20 @@ describe "forum post show page" do
       end
     end
   end
-    
+  
+  describe "posting an answer to a post" do
+    let(:user_5) { FactoryGirl.create(:user) }
+    before :each do
+      sign_in_user(user_5)
+      visit forum_post_path(forum_post)
+      fill_in "answer_content", with: "Hi there, I'm looking for a great Arabic teacher"
+    end
+
+    it "should create an answer when an answer is submitted" do
+      expect { click_button("Submit Answer") }.to change(Answer, :count).by(1)
+    end
+  end
+
   # figure out a way for this to work
   #describe "vote up for post", :js => true do
   #  it "is a test" do

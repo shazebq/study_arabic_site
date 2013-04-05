@@ -16,14 +16,14 @@ describe "user(teachers) index page" do
 
     describe "display of one user profile (teacher)" do
       it "should contain the teacher's basic information" do
-        page.should have_content(user.username)
+        page.should have_content(user.first_name)
         page.should have_content(user.last_name)
       end
     end
 
     describe "teacher's name" do
       it "should be a link to the the user's show page" do
-        click_link("#{user.username} #{user.last_name}")
+        click_link("#{user.first_name} #{user.last_name}")
       end
     end
 
@@ -55,7 +55,7 @@ describe "user(teachers) index page" do
 
     describe "side bar" do
       let!(:country) { FactoryGirl.create(:country, name: "Mali") }
-      let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile) }
+      let!(:teacher_profile1) { FactoryGirl.create(:teacher_profile, language_ids: [language.id], degree_id: degree.id, city_id: city.id) }
       let!(:user1) { FactoryGirl.create(:user, profile_type: "TeacherProfile", profile_id: teacher_profile1.id, country_id: country.id) }
       let!(:teacher_review1) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile",
                                               reviewable_id: teacher_profile1.id, content: "wonderful teacher!!!") }

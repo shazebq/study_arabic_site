@@ -12,11 +12,5 @@ describe "centers index page" do
     end
   end
 
-  describe "general contents" do
-    it "should include the names of the centers" do
-      page.should have_content(center.name)
-    end
-  end
-
-  
+    
 end

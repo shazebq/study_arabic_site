@@ -17,12 +17,10 @@ describe "Category Pages" do
       end
     end
 
-    it { should have_selector("h3", text: "Forum Categories")}
-
     describe "parent category listing" do
       it { should have_content("Arabic Language")}
       it { should have_content("Study Abroad (General)")}
-      it { should have_content("Study Abroad (Country Specific)")}
+      it { should have_content("Study Abroad (Country)")}
 
       it { should have_selector(".categories_div", text: "Egypt")}
       it { should have_selector(".categories_div", text: "Books")}

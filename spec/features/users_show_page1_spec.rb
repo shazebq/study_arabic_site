@@ -2,9 +2,10 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe "user show page when user has a student profile" do
+  let!(:country) { FactoryGirl.create(:country) }
   let!(:level) { FactoryGirl.create(:level) }
   let!(:student_profile) { FactoryGirl.create(:student_profile, level_id: level.id) }
-  let!(:user) { FactoryGirl.create(:user, profile_type: "StudentProfile", profile_id: student_profile.id) }
+  let!(:user) { FactoryGirl.create(:user, profile_type: "StudentProfile", profile_id: student_profile.id, country_id: country.id) }
   let!(:teacher_review) { FactoryGirl.create(:review, reviewable_type: "TeacherProfile") }
 
   before do
@@ -15,13 +16,13 @@ describe "user show page when user has a student profile" do
 
   describe "general contents" do
     describe "page title" do
-      it "has the user's name as the title" do
-        page.html.should have_selector("title", text: "#{user.first_name} #{user.last_name}") 
+      it "has the user's username as the title" do
+        page.html.should have_selector("title", text: user.username) 
       end
     end
     
     it "should display the user's name" do
-      page.should have_content("#{user.first_name} #{user.last_name}")
+      page.should have_content(user.username)
     end
 
     it "should display a student badge" do
