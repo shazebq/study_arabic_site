@@ -52,7 +52,18 @@ ArabicProject::Application.configure do
     password: ENV["DEV_PASSWORD"]
   }
 
+  #config.paperclip_defaults = {
+  #  :storage => :s3,
+  #  :s3_credentials => {
+  #    :bucket => ENV["AWS_BUCKET"],
+  #    :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+  #    :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]
+  #  }
+  #}
+
+
   ENV['root_path'] =  "static_pages#home";
+
 end
 
 Paperclip.options[:command_path] = "/usr/local/bin/"

@@ -38,6 +38,7 @@ gem 'rails_admin'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'foreman'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'rspec-rails'
