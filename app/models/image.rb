@@ -10,6 +10,7 @@ class Image < ActiveRecord::Base
                         :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]
                     },
                     :url => "/:class/:attachment/:id_partition/:style/:filename",
+                    # not the standard U.S. one so it must be specified
                     s3_host_name: "s3-us-west-2.amazonaws.com"
 
 
