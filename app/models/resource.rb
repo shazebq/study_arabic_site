@@ -32,11 +32,21 @@ class Resource < ActiveRecord::Base
                                               else
                                                 {}
                                               end
-                                            }#,
-                                             # :default_url => "/images/rails.png"
+                                            },
+                    :storage => :s3,
+                    :s3_credentials => {
+                        :bucket => ENV["AWS_BUCKET"],
+                        :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+                        :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]
+                    },
+                    :url => "/:class/:attachment/:id_partition/:style/:filename",
+                    # not the standard U.S. one so it must be specified
+                    s3_host_name: "s3-us-west-2.amazonaws.com"
+
+                                           
 
   validates_attachment_content_type(:resource_file, content_type: ["image/jpeg", "image/jpg", "application/pdf", "application/msword", "text/plain"])
-  validates_attachment_size(:resource_file, :less_than => 10.megabytes) 
+  validates_attachment_size(:resource_file, :less_than => 4.megabytes) 
 
   before_post_process :process_only_valid
   validates :title, :description, :category_ids, presence: true

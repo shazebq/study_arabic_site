@@ -16,6 +16,7 @@ class Image < ActiveRecord::Base
 
   validates_attachment :photo, :presence => true,
                        :content_type => { :content_type => ["image/jpeg", "image/jpg"] }
+  validates_attachment_size(:photo, :less_than => 4.megabytes) 
                        
 
   #has_attached_file :photo, :styles => lambda { |attachment| attachment.instance.choose_styles }
