@@ -17,8 +17,8 @@
       <div class="span12">
 
         <div class="row">
-          <div class="span6">
-            <span class="site_title">StudyArabic.com</span>
+          <div class="span6 margin_top">
+            <span class="site_title_large">StudyArabic.com</span>
           </div>
 
             <div class="span6" id="right_header">
@@ -148,6 +148,12 @@
   </div>
 
 </div>
+
+<% if Rails.env.production? %>
+  <%= render "ga_script" %> 
+<% end %>
+
+
 </body>
 </html>
 
