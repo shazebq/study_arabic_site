@@ -149,8 +149,8 @@
 
 </div>
 
-<% if Rails.env.production? %>
-  <%= render "ga_script" %> 
+<% if Rails.env.development? %>
+  <%= render "layouts/ga_script" %> 
 <% end %>
 
 
