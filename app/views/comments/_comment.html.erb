@@ -4,10 +4,11 @@
     <%= render partial: "shared/date_line", locals: { item: comment } %>
     <%= render partial: "shared/delete_edit_nested", locals: { item: comment, parent: @article } %>
   </div> 
-  <%= modified_sf(comment.content) %>
+  <div class="margin_bottom_small"><%= modified_sf(comment.content) %></div>
 
-  <br />
-  <%= link_to("Reply", "#", class: "reply", :data => { :parent_id => comment.id, :parent_type => comment.class.name }) %> 
+  <%= link_to("Reply", "#", class: "reply bold", :data => { :parent_id => comment.id, :parent_type => comment.class.name }) %> 
+
+  <div class="bottom_border_div"></div>
 
   <div class='new_comment_div' id='<%= "new_comment_div_#{comment.id}" %>'>
     <%= form_for([comment, comment.comments.new]) do |f| %>
@@ -16,5 +17,8 @@
     <% end %> 
   </div>
 
+  <% if comment.comments.any? %>
+    <div class="nested_comment"><%= render partial: "comments/comment", collection: comment.comments.saved_records %></div>
+  <% end %>
 </div>
 
