@@ -32,6 +32,10 @@ ArabicProject::Application.routes.draw do
     end
   end
 
+  resources :comments do
+    resources :comments
+  end
+
   resources :articles do
     member do
       post "vote"

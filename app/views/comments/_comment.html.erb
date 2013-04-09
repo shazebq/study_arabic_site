@@ -1,0 +1,20 @@
+<div class="custom_well">
+  <div class="margin_bottom_small">
+    <%= render partial: "users/user_line", locals: { user: comment.user, action: "Posted by" } %>  
+    <%= render partial: "shared/date_line", locals: { item: comment } %>
+    <%= render partial: "shared/delete_edit_nested", locals: { item: comment, parent: @article } %>
+  </div> 
+  <%= modified_sf(comment.content) %>
+
+  <br />
+  <%= link_to("Reply", "#", class: "reply", :data => { :parent_id => comment.id, :parent_type => comment.class.name }) %> 
+
+  <div class='new_comment_div' id='<%= "new_comment_div_#{comment.id}" %>'>
+    <%= form_for([comment, comment.comments.new]) do |f| %>
+      <%= f.text_area :content, class: "comment_text_box" %><br />
+      <%= f.submit "Submit", class: "btn_custom" %>
+    <% end %> 
+  </div>
+
+</div>
+

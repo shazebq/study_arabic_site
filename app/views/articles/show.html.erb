@@ -34,16 +34,7 @@
 
     <div class="subtitle_large margin_bottom"><%= pluralize(@article.comments.count, "comment") %></div>
 
-    <% @article.comments.saved_records.each do |comment| %>
-      <div class="custom_well">
-        <div class="margin_bottom">
-          <%= render partial: "users/user_line", locals: { user: comment.user, action: "Posted by" } %>  
-          <%= render partial: "shared/date_line", locals: { item: comment } %>
-          <%= render partial: "shared/delete_edit_nested", locals: { item: comment, parent: @article } %>
-        </div> 
-        <%= modified_sf(comment.content) %>
-      </div>
-    <% end %>
+    <%= render partial: "comments/comment", collection: @article.comments.saved_records %>
 
   </div>
 </div>
