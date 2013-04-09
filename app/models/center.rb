@@ -25,8 +25,8 @@ class Center < ActiveRecord::Base
 
   before_validation :add_http
 
-  validates :name, presence: true, length: { maximum: 30 }
-  validates :description, presence: true, length: { maximum: 1000 } 
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :description, presence: true, length: { maximum: 1500 } 
   #validates :website, url: true
   validates :email, email_format: true 
   validates :phone_number, length: { maximum: 15 }
