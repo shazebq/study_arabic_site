@@ -67,7 +67,7 @@ ArabicProject::Application.configure do
 
   ENV['root_path'] =  "static_pages#home";
 
-  config.action_mailer.default_url_options = { :host => 'studyarabic.com' }
+  config.action_mailer.default_url_options = { :host => 'www.studyarabic.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
 
