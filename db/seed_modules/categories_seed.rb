@@ -1,6 +1,6 @@
 module CategoriesSeed
   category_set = [ [ "Egypt", "Jordan", "Yemen", "Morocco", "Syria", "Lebanon", "Qatar", "Oman",
-                      "United States", "United Kingdom", "Saudi Arabia", "Tunisia" "Other",
+                      "United States", "United Kingdom", "Saudi Arabia", "Tunisia", "Other",
                       "Kuwait"],
 
                   [ "Arabic Centers/Programs", "Traveling Abroad", "Sightseeing", "Roommates", "Getting Around", 
