@@ -19,6 +19,9 @@
     <%= render partial: "shared/voteable_item_title", locals: { item: @article, vote_span_class: "vote_count", action: "Posted by" }  %>
     <%= render partial: "shared/delete_edit_links", locals: { item: @article } %>
     <div class="post margin_bottom">
+      <% @article.images.each do |image| %>
+        <%= image_tag(image.photo(:original), class: "floatLeft") %>
+      <% end %>
       <%=  modified_sf(@article.content) %>
     </div>
 

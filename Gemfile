@@ -39,6 +39,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'foreman'
 gem 'aws-sdk'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails'

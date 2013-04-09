@@ -2,7 +2,8 @@ class Image < ActiveRecord::Base
   attr_accessible :imageable_id, :imageable_type, :photo, :as => [:default, :admin] 
   belongs_to :imageable, polymorphic: true
   belongs_to :user
-  has_attached_file :photo, :styles => { :original => "500x400#", :large => "275x220#", :medium => "175x140#", :thumb => "100x80#" },
+  # for original, maintain aspect ratio, width fixed to 500, height is scaled proportionally
+  has_attached_file :photo, :styles => {:original => "500>x500>", :medium => "225x180#", :thumb => "100x80#" },
                     :storage => :s3,
                     :s3_credentials => {
                         :bucket => ENV["AWS_BUCKET"],
@@ -15,7 +16,7 @@ class Image < ActiveRecord::Base
 
 
   validates_attachment :photo, :presence => true,
-                       :content_type => { :content_type => ["image/jpeg", "image/jpg"] }
+                       :content_type => { :content_type => ["image/jpeg", "image/jpg", "image/png"] }
   validates_attachment_size(:photo, :less_than => 4.megabytes) 
                        
 

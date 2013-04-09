@@ -30,7 +30,7 @@
         <% @center.images.each_with_index do |image, i| %>
           <% i == 0 ? img_class = "active item" : img_class = "item" %>
           <div class="<%= img_class %>">
-            <a href="<%= image.photo.url %>"><%= image_tag(image.photo.url(:large)) %></a>
+            <a href="<%= image.photo.url %>"><%= image_tag(image.photo.url(:medium)) %></a>
           </div>
         <% end %>
       </div>
