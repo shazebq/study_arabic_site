@@ -14,13 +14,15 @@ class CommentsController < ApplicationController
     @comment_new = @commentable.comments.create(params[:comment]) 
     if @comment_new.valid?
       flash[:notice] = "Your comment has been successfully added." 
-      redirect_to @commentable
+      redirect_to :back 
     else
       render "#{@commentable.class.to_s.tableize}/show"
     end
   end
 
   def edit
+    # save the original page on which the comment is actually located
+    session[:original_page] = request.referrer
     @commentable = get_somethingable(params) 
     instance_variable_set("@#{@commentable.class.name.underscore}", @commentable)
     @comment = Comment.find(params[:id])
@@ -31,7 +33,7 @@ class CommentsController < ApplicationController
     @comment.update_attributes(params[:comment])
     if @comment.valid?
       flash[:notice] = "Your comment has been updated."
-      redirect_to @commentable 
+      redirect_to session[:original_page]
     else
       render "edit" 
     end
