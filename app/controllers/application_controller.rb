@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
   before_filter :set_locale
 
-  PER_PAGE = 3
+  PER_PAGE = 10 
   protect_from_forgery
   before_filter :require_sign_in, only: :vote
   # for devise, save the last page user was on or tyring to access before doing something that required authentication

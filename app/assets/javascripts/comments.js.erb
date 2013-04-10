@@ -5,9 +5,14 @@ $(document).ready(function() {
   $(".reply").click(function(event) {
     // prevent it from jumping to the top
     event.preventDefault(); 
-    // make the selected comment box appear 
-    var parent_id = $(this).attr("data-parent-id");  
-    $("#new_comment_div_" + parent_id).show();
+    if ($(this).attr("data-signed-in") == "false")
+      alert("Please sign in or register first");
+    else
+    {
+      // make the selected comment box appear 
+      var parent_id = $(this).attr("data-parent-id");  
+      $("#new_comment_div_" + parent_id).show();
+    }
   });
 
 

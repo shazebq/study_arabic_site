@@ -9,13 +9,13 @@
   </div> 
   <div class="margin_bottom_small"><%= modified_sf(comment.content) %></div>
 
-  <%= link_to("Reply", "#", class: "reply bold", :data => { :parent_id => comment.id, :parent_type => comment.class.name }) %> 
+  <%= link_to("Reply", "#", class: "reply bold", :data => { :parent_id => comment.id, :parent_type => comment.class.name, signed_in: user_signed_in? }) %> 
 
   <div class="bottom_border_div"></div>
 
   <div class='new_comment_div' id='<%= "new_comment_div_#{comment.id}" %>'>
     <%= form_for([comment, comment.comments.new]) do |f| %>
-      <%= f.text_area :content, class: "comment_text_box" %><br />
+      <%= f.text_area :content, { class: "comment_text_box", id: "comment_text_box_#{comment.id}" } %><br />
       <%= f.submit "Submit", class: "btn_custom" %>
     <% end %> 
   </div>
