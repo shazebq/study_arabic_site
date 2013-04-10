@@ -7,6 +7,7 @@ class Comment < ActiveRecord::Base
 
   # to deal with the Comment.new dilemma where the new blank comment record in the controller is counted undesirably
   scope :saved_records, where("ID IS NOT ?", nil)
+  scope :most_recent, order("created_at DESC")
 
   validates :user_id, :content, presence: true
 

@@ -235,14 +235,20 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 {
   @extend .custom_alert;
   color: black;
-  //border: 1px solid black;
-  //width: 95%;
+}
+
+
+.comment_well
+{
+  background-color: $light_gray; 
+  border-radius: 5px;
 }
 
 .nested_comment
 {
   margin-left: 40px;
-  margin-right: -10px;
+  //border-left: 1px solid #cccccc;
+  //margin-right: -10px;
 }
 
 // this will limit indentation to five levels

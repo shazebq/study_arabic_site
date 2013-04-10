@@ -34,7 +34,7 @@
 
     <div class="subtitle_large margin_bottom"><%= pluralize(@article.comments.count, "comment") %></div>
 
-    <%= render partial: "comments/comment", collection: @article.comments.saved_records %>
+    <%= render partial: "comments/comment", collection: @article.comments.saved_records.most_recent %>
 
   </div>
 </div>

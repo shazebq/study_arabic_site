@@ -1,4 +1,7 @@
-<div class="custom_well">
+<!--because the first comment on an article needs the extra padding but the padding is not required after that-->
+<% comment.commentable.is_a?(Article) ? div_class = "custom_well" : div_class = "comment_well" %>
+
+<div class="<%= div_class %>">
   <div class="margin_bottom_small">
     <%= render partial: "users/user_line", locals: { user: comment.user, action: "Posted by" } %>  
     <%= render partial: "shared/date_line", locals: { item: comment } %>
