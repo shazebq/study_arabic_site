@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :limit_user_content, only: [:new, :create]
-  before_filter :set_commentable, only: [:create, :edit, :update]
+  before_filter :set_commentable, only: [:create, :edit, :destroy]
 
   def new
     @comment = Comment.new
@@ -23,8 +23,8 @@ class CommentsController < ApplicationController
   def edit
     # save the original page on which the comment is actually located
     session[:original_page] = request.referrer
-    @commentable = get_somethingable(params) 
-    instance_variable_set("@#{@commentable.class.name.underscore}", @commentable)
+    #@commentable = get_somethingable(params) 
+    #instance_variable_set("@#{@commentable.class.name.underscore}", @commentable)
     @comment = Comment.find(params[:id])
   end
 
@@ -40,10 +40,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:article_id])
+    #@commentable = Article.find(params[:article_id])
     Comment.find(params[:id]).destroy
     flash[:notice] = "Your comment has been successfully deleted."
-    redirect_to article_path(@article)
+    redirect_to :back 
   end
 
   private 

@@ -31,7 +31,7 @@
 
     <div class="subtitle_large margin_bottom"><%= pluralize(@forum_post.answers.count, "answer") %></div>
 
-    <% @forum_post.answers.by_votes.each do |answer| %>
+    <% @forum_post.answers.saved_records.by_votes.each do |answer| %>
         <div class="row no_left_margin custom_well">
           <div class="vote_arrow_div">
             <i class="icon-caret-up vote <%= arrow_class(answer) %>" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
@@ -45,7 +45,19 @@
               <%= render partial: "shared/voteable_item_title", locals: { item: answer, vote_span_class: "vote_count_answer", action: "Answered by" } %>
               <%= render partial: "shared/delete_edit_nested", locals: { item: answer, parent: @forum_post } %>
             </div>
-            <%= modified_sf(answer.content) %>
+          
+
+            <div class="margin_bottom_small"><%= modified_sf(answer.content) %></div>
+
+            <%= link_to("Add a comment to this answer", "#", class: "reply bold", :data => { :parent_id => answer.id, :parent_type => answer.class.name }) %> 
+            <div class='new_comment_div' id='<%= "new_comment_div_#{answer.id}" %>'>
+              <%= form_for([answer, answer.comments.new]) do |f| %>
+                <%= f.text_area :content, class: "comment_text_box" %><br />
+                <%= f.submit "Submit", class: "btn_custom" %>
+              <% end %> 
+            </div>
+            
+            <%= render partial: "comments/comment", collection: answer.comments.saved_records %>
           </div>
 
         </div>

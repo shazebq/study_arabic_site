@@ -16,6 +16,7 @@ class Answer < ActiveRecord::Base
 
   # orders by number of votes
   scope :by_votes, order("votes_count desc, id desc")
+  scope :saved_records, where("ID IS NOT ?", nil)
 
   def init
     self.votes_count ||= 0

@@ -27,9 +27,11 @@ ArabicProject::Application.routes.draw do
       member do
         post "vote"
       end
-
-      resources :comments
     end
+  end
+
+  resources :answers do
+    resources :comments
   end
 
   resources :comments do
