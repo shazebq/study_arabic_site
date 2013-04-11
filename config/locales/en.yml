@@ -37,6 +37,7 @@ en:
         years_of_experience: "Years of Experience"
         employment_history: "Employment History"
         price_per_hour: "Price Per Hour (in American dollars)"
+        date_of_birth: "Date of Birth"
       address:
         address_line: "Address"
         country_id: "Country"

@@ -14,7 +14,7 @@ group :assets do
   #gem 'font-awesome-rails'
   gem 'font-awesome-sass-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-
+  gem 'jquery-ui-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 

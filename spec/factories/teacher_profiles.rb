@@ -11,10 +11,10 @@ FactoryGirl.define do
     reviews_count 0
     price_per_hour 5
     approved true
-    age 25
     gender "m"
     employment_history "previous job"
     city_name "Cairo"
     city_id 5
+    date_of_birth Date.today - 20.years
   end
 end

@@ -21,13 +21,13 @@ describe "new teacher profile page" do
   describe "creating a new teacher account" do
     before :each do
       fill_in "teacher_profile_university", with: "Cairo University"
-      fill_in "teacher_profile_age", with: 29
       select "Male", from: "teacher_profile_gender"
       fill_in "teacher_profile_employment_history", with: "some arabic center"
       fill_in "teacher_profile_field_of_study", with: "Arabic Literature"
       fill_in "teacher_profile_years_of_experience", with: "5"
       fill_in "teacher_profile_price_per_hour", with: "5.50"
       fill_in "teacher_profile_specialties", with: "grammar, quran, islamic arabic"
+      fill_in "teacher_profile_date_of_birth", with: "1982-04-23" 
       choose "teacher_profile_online_true"
       choose "teacher_profile_in_person_true"
       fill_in "teacher_profile_user_attributes_username", with: "Billy"
@@ -39,7 +39,6 @@ describe "new teacher profile page" do
       fill_in "teacher_profile_user_attributes_bio", with: "great teacher with lots of experience"
       fill_in "teacher_profile_skype_id", with: "billyjones"
       fill_in "teacher_profile_city_name", with: "Cairo"
-      fill_in "teacher_profile_age", with: "25"
       fill_in "teacher_profile_specialties", with: "arabic"
       select "Egypt", from: "teacher_profile_user_attributes_country_id"
       select "Male", from: "teacher_profile_gender"
@@ -48,8 +47,13 @@ describe "new teacher profile page" do
       select "Master", from: "teacher_profile_degree_id"
     end
 
-    specify "clicking create account button should create a user and a new teacher_profile" do
+    specify "clicking submit button should create a user and a new teacher_profile" do
       expect { click_button "Submit" }.to change(TeacherProfile, :count)
+    end
+
+    specify "date of birth should be assigned to the teacher profile correctly" do
+      click_button "Submit"
+      TeacherProfile.first.date_of_birth.should == Date.new(1982, 4, 23)
     end
 
     #specify "clicking create account button should create a user and a new user" do

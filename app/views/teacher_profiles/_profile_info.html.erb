@@ -6,7 +6,7 @@
     </div>
       <div>
         <span class="bold">
-          <%= "#{get_teacher_location(teacher)} | #{gender_word(teacher.gender)} | #{teacher.age} years" %>
+          <%= "#{get_teacher_location(teacher)} | #{gender_word(teacher.gender)} | #{get_age(teacher.date_of_birth)} years" %>
           | <span class="red_badge"><%= pluralize(teacher.user.reputation, "point") %></span>
         </span>
       </div><!--country, age, gender, rep points-->

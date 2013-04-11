@@ -41,6 +41,15 @@ $(document).ready(function() {
                                                             }) + " #profiles_div");
   });
 
+  // datepicker for teacher's date of birth
+  $("#teacher_profile_date_of_birth").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '-100:-15',
+      dateFormat: 'yy-mm-dd',
+      defaultDate:'-100y'
+    });
+
 
 });
 

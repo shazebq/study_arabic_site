@@ -15,4 +15,10 @@ module ProfilesHelper
   def get_teacher_location(teacher)
     "#{teacher.try(:city).try(:name)}, #{teacher.user.try(:country).try(:name)}"
   end
+
+  def get_age(dob)
+    now = Time.now.utc.to_date
+    # subtract a year from the difference if the current month is before the dob month
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
 end

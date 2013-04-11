@@ -24,14 +24,14 @@ class TeacherProfile < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   attr_accessor :city_name
-  attr_accessible :field_of_study, :university, :in_person, :online, :years_of_experience,
+  attr_accessible :field_of_study, :date_of_birth, :university, :in_person, :online, :years_of_experience,
                   :user_attributes, :specialties, :price_per_hour, :age, :other_education,
                   :employment_history, :degree_id, :language_ids, :gender, :skype_id, :city_id, :city_name, :as => [:default, :admin] 
   attr_accessible :approved, as: :admin
 
   validates :skype_id, length: { maximum: 30 }
   validates :city_name, presence: true, length: { maximum: 30 } 
-  validates :age, presence: true, numericality: { integer: true, less_than: 100, greater_than: 15 }, reduce: true
+  validates :date_of_birth, presence: true
   validates :gender, presence: true
   validates :gender, :format => { :with => /f|m/,
     :message => "must be m or f" }, reduce: true

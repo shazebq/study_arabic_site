@@ -123,7 +123,7 @@ describe TeacherProfile do
       @teacher_profile1 = TeacherProfile.new(online: true, in_person: true, years_of_experience: 5,
                                              price_per_hour: 10, specialties: "literature, rhetoric",
                                              field_of_study: "Translation", employment_history: "job", gender: "m", 
-                                             age: 23, language_ids: [@language.id], city_name: "Cairo", city_id: 1)
+                                             date_of_birth: Date.today - 5.years, language_ids: [@language.id], city_name: "Cairo", city_id: 1)
     end
 
     describe "general validation" do
