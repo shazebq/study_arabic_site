@@ -13,7 +13,7 @@
 
   <div class="bottom_border_div"></div>
 
-  <div class='new_comment_div' id='<%= "new_comment_div_#{comment.id}" %>'>
+  <div class='new_comment_div nested_comment' id='<%= "new_#{comment.class.name}_comment_div_#{comment.id}" %>'>
     <%= form_for([comment, comment.comments.new]) do |f| %>
       <%= f.text_area :content, { class: "comment_text_box", id: "comment_text_box_#{comment.id}" } %><br />
       <%= f.submit "Submit", class: "btn_custom" %>

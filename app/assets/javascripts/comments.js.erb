@@ -11,7 +11,8 @@ $(document).ready(function() {
     {
       // make the selected comment box appear 
       var parent_id = $(this).attr("data-parent-id");  
-      $("#new_comment_div_" + parent_id).show();
+      var parent_type = $(this).attr("data-parent-type");
+      $("#new_" + parent_type + "_comment_div_" + parent_id).show();
     }
   });
 
