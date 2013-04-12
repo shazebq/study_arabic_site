@@ -21,3 +21,4 @@
 # Ignore files uploaded
 public/system/*
 #/config/application.yml
+config/application.yml
