@@ -48,7 +48,7 @@ class ResourcesController < CategorizableItemsController
     @resource.downloads_count += 1
     @resource.save
     # serve the paperclip file through the controller rather than the default way
-    send_file @resource.resource_file.path, :type => @resource.resource_file.content_type
+    redirect_to @resource.resource_file.url
   end
 
 end
