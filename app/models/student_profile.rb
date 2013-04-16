@@ -5,4 +5,9 @@ class StudentProfile < ActiveRecord::Base
   attr_accessible :level_id, :user_attributes, :as => [:default, :admin] 
 
   validates :level_id, presence: true
+
+  def to_param
+    "#{id}-#{username.parameterize}"
+  end
+
 end

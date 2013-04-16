@@ -63,6 +63,10 @@ class Resource < ActiveRecord::Base
     self.reviews_count ||= 0
   end
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   def process_only_valid
     unless self.valid?
       return false

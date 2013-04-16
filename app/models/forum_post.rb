@@ -37,6 +37,10 @@ class ForumPost < ActiveRecord::Base
     self.answers_count ||= 0
   end
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   # remove current answerer and keep it unique
   def answerers_list(opts = {})
     answerers = self.answers.map { |answer| answer.user }

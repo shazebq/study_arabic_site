@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   #include PgSearch
   #multisearchable :against => :name
-
+  
   attr_accessible :name, :category_parent_id, :as => [:default, :admin] 
 
   has_many :categories_categorizables, dependent: :destroy
@@ -12,6 +12,10 @@ class Category < ActiveRecord::Base
   has_many :articles, through: :categories_categorizables, source: :categorizable, source_type: "Article"
 
   belongs_to :category_parent
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 
   def self.popular_forums
     select("categories.*, COUNT(*)").

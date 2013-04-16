@@ -47,6 +47,10 @@ class Center < ActiveRecord::Base
     self.reviews_count ||= 0
   end
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
   private
   def destroy_address
     self.address.delete

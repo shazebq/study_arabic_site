@@ -87,6 +87,7 @@ class TeacherProfile < ActiveRecord::Base
     self.reviews_count ||= 0
   end
 
+  
 end
 
 # comments

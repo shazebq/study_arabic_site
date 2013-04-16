@@ -87,6 +87,11 @@ class User < ActiveRecord::Base
   def init
     self.reputation ||= 0
   end
+
+  def to_param
+    return "#{id}-#{first_name.parameterize}-#{last_name.parameterize}" if self.profile_type == "TeacherProfile"
+    return "#{id}-#{username.parameterize}" if self.profile_type == "StudentProfile"
+  end
    
   private
   def destroy_user_profile
