@@ -1,21 +1,22 @@
 class HomePagePresenter
   def feature_article
-    @feature_article = Article.most_recent.first
+    # user equal or syntax to memoize
+    @feature_article ||= Article.most_recent.first
   end
 
   def articles
-    Article.most_recent.limit(2).offset(1)
+    @articles ||= Article.most_recent.limit(2).offset(1)
   end
 
   def questions
-    @questions = ForumPost.most_views.limit(5)
+    @questions ||= ForumPost.most_views.limit(5)
   end
    
   def forums
-    Category.popular_forums.limit(5)
+    @forums ||= Category.popular_forums.limit(5)
   end
 
   def centers
-    Center.order_by_average_rating.limit(5)
+    @centers ||= Center.order_by_average_rating.limit(5)
   end
 end

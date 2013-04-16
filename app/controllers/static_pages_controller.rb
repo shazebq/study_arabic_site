@@ -12,10 +12,6 @@ class StaticPagesController < ApplicationController
   def register
   end
 
-  def contact
-    return render text: "contact"
-  end
-
   # just redirects to the appropriate controller, passing the query along
   def site_search
     redirect_to controller: params[:item_type], action: "search", query: params[:query] 
