@@ -3,12 +3,7 @@ class StaticPagesController < ApplicationController
                       "Resources" => "resources", "Articles" => "articles" }
 
   def home
-    #return render text: "StudyArabic.com will be up soon. Please check back later!"
-    @feature_article = Article.most_recent.first
-    @articles = Article.most_recent.limit(2).offset(1)
-    @questions = ForumPost.most_views.limit(5)
-    @forums = Category.popular_forums.limit(5)
-    @centers = Center.order_by_average_rating.limit(5)
+    @presenter = HomePagePresenter.new
   end
 
   def about

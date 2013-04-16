@@ -1,5 +1,4 @@
 class ContactMessage
-
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
@@ -11,6 +10,7 @@ class ContactMessage
   validates :message, presence: true, length: { maximum: 1000 } 
  
   # this is called when you create the contact message object 
+  # this allows mass assignment for a model which is not an active record model
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)

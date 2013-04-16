@@ -2,31 +2,31 @@
 <!--featured article-->
 <div class="row">
   <div class="span9">
-    <div class="subtitle_largest margin_bottom_small"><%= link_to(@feature_article.try(:title), @feature_article) %></div>
-    <div><%= render partial: "articles/author_line", locals: { item: @feature_article } %></div>
+    <div class="subtitle_largest margin_bottom_small"><%= link_to(@presenter.feature_article.try(:title), @presenter.feature_article) %></div>
+    <div><%= render partial: "articles/author_line", locals: { item: @presenter.feature_article } %></div>
   </div>
 </div>
 
 <div class="row">
   <div class="span9">
-    <%= image_tag(@feature_article.try(:images).try(:first).try(:photo,:medium), class: "floatLeft") %>
-    <%= truncate_text(simple_format(@feature_article.try(:content)), 675, @feature_article) %>
+    <%= image_tag(@presenter.feature_article.try(:images).try(:first).try(:photo,:medium), class: "floatLeft") %>
+    <%= truncate_text(simple_format(@presenter.feature_article.try(:content)), 675, @presenter.feature_article) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>
 
 <div class="row">
   <div class="article_span">
-      <div class="subtitle_large"><%= link_to(@articles.first.try(:title), @articles.first) %></div>
-      <div><%= render partial: "articles/author_line", locals: { item: @articles.first } %></div>
-      <%= image_tag(@articles.first.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
-      <%= truncate_text(simple_format(@articles.first.try(:content)), 350, @articles.first) %>
+      <div class="subtitle_large"><%= link_to(@presenter.articles.first.try(:title), @presenter.articles.first) %></div>
+      <div><%= render partial: "articles/author_line", locals: { item: @presenter.articles.first } %></div>
+      <%= image_tag(@presenter.articles.first.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
+      <%= truncate_text(simple_format(@presenter.articles.first.try(:content)), 350, @presenter.articles.first) %>
   </div>
   <div class="article_span_no_border">
-      <div class="subtitle_large"><%= link_to(@articles.last.try(:title), @articles.last) %></div>
-      <div><%= render partial: "articles/author_line", locals: { item: @articles.last } %></div>
-      <%= image_tag(@articles.last.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
-      <%= truncate_text(simple_format(@articles.last.try(:content)), 350, @articles.last) %>
+      <div class="subtitle_large"><%= link_to(@presenter.articles.last.try(:title), @presenter.articles.last) %></div>
+      <div><%= render partial: "articles/author_line", locals: { item: @presenter.articles.last } %></div>
+      <%= image_tag(@presenter.articles.last.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
+      <%= truncate_text(simple_format(@presenter.articles.last.try(:content)), 350, @presenter.articles.last) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>
@@ -37,21 +37,21 @@
 <% content_for :side_bar do %>
 
   <% @list = capture do %>
-    <% @questions.each do |question| %>
+    <% @presenter.questions.each do |question| %>
       <li><span class="normal"><%= link_to(question.title, question) %></span></li>
     <% end %>
   <% end %>
   <%= render partial: "side_bar_section", locals: { title: "Popular Questions" } %>
 
   <% @list = capture do %>
-    <% @forums.each do |forum| %>
+    <% @presenter.forums.each do |forum| %>
       <li><span class="normal"><%= link_to(forum.name, category_forum_posts_path(forum)) %></span></li>
     <% end %>
   <% end %>
   <%= render partial: "side_bar_section", locals: { title: "Popular Forums" } %>
 
   <% @list = capture do %>
-    <% @centers.each do |center| %>
+    <% @presenter.centers.each do |center| %>
       <li><span class="normal"><%= link_to(center.name, center) %></span></li>
     <% end %>
   <% end %>
