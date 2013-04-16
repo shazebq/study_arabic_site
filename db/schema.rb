@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411163312) do
+ActiveRecord::Schema.define(:version => 20130416033606) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.integer  "comments_count"
   end
 
+  add_index "answers", ["forum_post_id"], :name => "index_answers_on_forum_post_id"
+  add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
+
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
     t.text     "title"
@@ -44,12 +47,16 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.boolean  "approved"
   end
 
+  add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "category_parent_id"
   end
+
+  add_index "categories", ["category_parent_id"], :name => "index_categories_on_category_parent_id"
 
   create_table "categories_categorizables", :force => true do |t|
     t.integer  "category_id"
@@ -58,6 +65,9 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "categories_categorizables", ["categorizable_id", "categorizable_type"], :name => "catgories_join_index1"
+  add_index "categories_categorizables", ["category_id", "categorizable_id"], :name => "categories_join_index2"
 
   create_table "centers", :force => true do |t|
     t.text     "name"
@@ -83,6 +93,9 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.boolean  "approved"
   end
 
+  add_index "centers", ["address_id"], :name => "index_centers_on_address_id"
+  add_index "centers", ["user_id"], :name => "index_centers_on_user_id"
+
   create_table "cities", :force => true do |t|
     t.text     "name"
     t.integer  "country_id"
@@ -90,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.datetime "updated_at",  :null => false
     t.string   "country_iso"
   end
+
+  add_index "cities", ["country_id"], :name => "index_cities_on_country_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -101,6 +116,8 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.boolean  "approved"
     t.integer  "comments_count"
   end
+
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -143,6 +160,8 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.boolean  "approved"
   end
 
+  add_index "forum_posts", ["user_id"], :name => "index_forum_posts_on_user_id"
+
   create_table "images", :force => true do |t|
     t.string   "imageable_type"
     t.integer  "imageable_id"
@@ -154,6 +173,8 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.datetime "photo_updated_at"
     t.integer  "user_id"
   end
+
+  add_index "images", ["user_id"], :name => "index_images_on_user_id"
 
   create_table "languages", :force => true do |t|
     t.string   "name"
@@ -218,7 +239,11 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.integer  "reviews_count"
     t.boolean  "approved"
     t.integer  "level_id"
+    t.boolean  "processing"
   end
+
+  add_index "resources", ["level_id"], :name => "index_resources_on_level_id"
+  add_index "resources", ["user_id"], :name => "index_resources_on_user_id"
 
   create_table "reviews", :force => true do |t|
     t.text     "title"
@@ -232,12 +257,17 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.boolean  "approved"
   end
 
+  add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "index_reviews_on_reviewable_id_and_reviewable_type"
+  add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
+
   create_table "student_profiles", :force => true do |t|
     t.integer  "level_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "approved"
   end
+
+  add_index "student_profiles", ["level_id"], :name => "index_student_profiles_on_level_id"
 
   create_table "teacher_profiles", :force => true do |t|
     t.boolean  "online"
@@ -260,12 +290,17 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.date     "date_of_birth"
   end
 
+  add_index "teacher_profiles", ["city_id"], :name => "index_teacher_profiles_on_city_id"
+  add_index "teacher_profiles", ["degree_id"], :name => "index_teacher_profiles_on_degree_id"
+
   create_table "teachers_languages", :force => true do |t|
     t.integer  "language_id"
     t.integer  "teacher_profile_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "teachers_languages", ["teacher_profile_id", "language_id"], :name => "index_teachers_languages_on_teacher_profile_id_and_language_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -297,7 +332,9 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
+  add_index "users", ["country_id"], :name => "index_users_on_country_id"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["profile_id", "profile_type"], :name => "index_users_on_profile_id_and_profile_type"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "views", :force => true do |t|
@@ -309,6 +346,8 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.string   "ip_address"
   end
 
+  add_index "views", ["viewable_id", "viewable_type"], :name => "index_views_on_viewable_id_and_viewable_type"
+
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at",    :null => false
@@ -316,5 +355,8 @@ ActiveRecord::Schema.define(:version => 20130411163312) do
     t.integer  "voteable_id"
     t.string   "voteable_type"
   end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
 
 end
