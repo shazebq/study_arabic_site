@@ -44,6 +44,8 @@ class TeacherProfile < ActiveRecord::Base
   validates :employment_history, presence: true, length: { maximum: 500  }
   validates :price_per_hour, presence: true, numericality: { greater_than: 0.99, less_than: 100 }, reduce: true
   validates :in_person, :online, :inclusion => {:in => [true, false]}
+
+  scope :include_associated, includes(:city, :user => :country)
   
   scope :price_option, (lambda do |price| 
     if price.blank?

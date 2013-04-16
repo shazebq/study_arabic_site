@@ -5,7 +5,7 @@ class HomePagePresenter
   end
 
   def articles
-    @articles ||= Article.most_recent.limit(2).offset(1)
+    @articles ||= Article.most_recent.limit(2).includes(:user).offset(1)
   end
 
   def questions
