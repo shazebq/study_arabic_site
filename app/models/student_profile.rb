@@ -6,8 +6,4 @@ class StudentProfile < ActiveRecord::Base
 
   validates :level_id, presence: true
 
-  def to_param
-    "#{id}-#{username.parameterize}"
-  end
-
 end

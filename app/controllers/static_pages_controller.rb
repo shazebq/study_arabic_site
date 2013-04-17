@@ -16,4 +16,8 @@ class StaticPagesController < ApplicationController
   def site_search
     redirect_to controller: params[:item_type], action: "search", query: params[:query] 
   end
+
+  def contact
+    return render text: "fake contact page"
+  end
 end
