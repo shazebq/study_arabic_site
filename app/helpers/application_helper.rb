@@ -17,10 +17,15 @@ module ApplicationHelper
   end
 
   def user_type(user)
+    # good example of memoization
+    @user_type ||= get_user(user)  
+  end
+
+  def get_user(user)
     if user.profile_type == "TeacherProfile"
-      "Teacher"
+      return "Teacher"
     else
-      "Student"
+      return "Student"
     end
   end
 
@@ -106,7 +111,7 @@ module ApplicationHelper
     end
   end
 
-  # returns asterist if the attribute is required
+  # returns asterisk if the attribute is required
   def mark_required(object, attribute)
     if (object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator) || (object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::InclusionValidator)
       "*"
