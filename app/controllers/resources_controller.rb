@@ -13,7 +13,8 @@ class ResourcesController < CategorizableItemsController
     @resource = current_user.resources.new(params[:resource])
     if @resource.save
       flash[:notice] = "Your resource was successfully submitted."
-      redirect_to resource_path(@resource)
+      #redirect_to resource_path(@resource)
+      redirect_to file_upload_resource_path(@resource) 
     else
       render action: "new"
     end
@@ -41,14 +42,21 @@ class ResourcesController < CategorizableItemsController
 
   def show
     @resource = Resource.find(params[:id])
+    @resource.resource_file.key = params[:key]
+    @resource.save
+  end
+
+  def file_upload
+    @resource = Resource.find(params[:id])
+    @uploader = @resource.resource_file
+    @uploader.success_action_redirect = resource_url(@resource)
   end
 
   def download
     @resource = Resource.find(params[:id])
     @resource.downloads_count += 1
     @resource.save
-    # serve the paperclip file through the controller rather than the default way
-    redirect_to @resource.resource_file.url
+    redirect_to @resource.resource_file_url
   end
 
 end

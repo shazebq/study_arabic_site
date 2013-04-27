@@ -33,14 +33,14 @@
       <%= f.label :level_id %><%= mark_required(@resource, :level_id) %><br />
       <%= f.select :level_id, Level.all.collect { |l| [l.title, l.id] }, { :include_blank => true }  %>
     </div>
-    <div class="field">
-      <%= f.label :resource_file, "Upload Resource (PDF, MS Word, JPEG, and text files are acceptable)" %><br />
-      <%= f.file_field :resource_file %>
-    </div>
+
+
+      <%#= f.label :resource_file, "Upload Resource (PDF, MS Word, JPEG, and text files are acceptable)" %><br />
+      <%#= f.file_field :resource_file %>
 
     <br />
 
     <div class="actions">
-      <%= f.submit("Submit", class: "btn_custom") %>
+      <%= f.submit("Next", class: "btn_custom") %>
     </div>
 <% end %>

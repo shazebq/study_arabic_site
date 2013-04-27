@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416033606) do
+ActiveRecord::Schema.define(:version => 20130427042604) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20130416033606) do
     t.boolean  "approved"
     t.integer  "level_id"
     t.boolean  "processing"
+    t.string   "resource_file"
   end
 
   add_index "resources", ["level_id"], :name => "index_resources_on_level_id"

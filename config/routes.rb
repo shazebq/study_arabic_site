@@ -77,6 +77,7 @@ ArabicProject::Application.routes.draw do
     end
     get 'search', :on => :collection
     get 'download', :on => :member
+    get 'file_upload', :on => :member
     resources :reviews
   end
 
