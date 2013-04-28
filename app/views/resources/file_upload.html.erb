@@ -1,6 +1,8 @@
 <% provide :title, "Upload Resource" %>
 <%= render partial: "shared/page_title", locals: { title: "Upload Resource" } %>
 
+<div id="ajax_spinner_file_upload">Please wait. Uploading your file...<%= image_tag("/images/ajax-loader.gif") %></div>
+
 <%= direct_upload_form_for @uploader do |f| %>
   <div class="margin_bottom">
     
@@ -8,5 +10,5 @@
     <%= f.file_field :resource_file %>
     
   </div>
-  <%= f.submit "Upload Resource", class: "btn_custom" %>
+  <%= f.submit "Upload Resource", class: "btn_custom", id: "resource_file_submit" %>
 <% end %>

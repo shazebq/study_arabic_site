@@ -498,13 +498,30 @@ img.floatLeft
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 
-#ajax_spinner_div img
+#ajax_spinner_div img, #ajax_spinner_file_upload img
 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
   display: block;
 }
+
+#ajax_spinner_file_upload
+{
+  @extend #ajax_spinner_div;
+  padding: 5px;
+  width: 150px;
+  height: 80px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
 
 .abc_field
 {

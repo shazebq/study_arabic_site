@@ -10,4 +10,13 @@ $(document).ready(function() {
     success: function() {}
   });
 
+
+  $('#ajax_spinner_file_upload').hide();
+
+  $('#resource_file_submit').click(function() {
+      $('#ajax_spinner_file_upload').show();
+  });
+  
+
+
 });
