@@ -10,6 +10,7 @@
 <% end %>
 
 <%= form_for([@forum_post, @answer]) do |f| %>
-    <%= f.text_area :content, class: "general_text_box" %>
+    <%= f.cktext_area :content, class: "general_text_box" %>
+    <br />
     <%= f.submit "Submit Answer", class: "btn_custom" %>
 <% end %>

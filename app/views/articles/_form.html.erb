@@ -32,11 +32,14 @@
       <%= f.cktext_area :content %>
     </div>
 
-    <p class="bold">Add some photos to go along with your article</p>
-    <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
-      <div><%= image_form.file_field :photo %></div>
-    <% end %>
+    <br />
 
+    <div class="margin_bottom_small">
+      <div class="bold">Add a photo to go along with your article</div>
+      <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
+        <div><%= image_form.file_field :photo %></div>
+      <% end %>
+    </div>
 
     <div class="actions">
       <%= f.submit("Submit", class: "btn_custom") %>

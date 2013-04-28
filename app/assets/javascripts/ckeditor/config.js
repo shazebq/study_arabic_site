@@ -1,8 +1,9 @@
 $(document).ready(function() { 
     CKEDITOR.config.toolbar = [
-        [ 'Bold', 'Italic' ]
+        [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ]
     ];
 
-    alert("hello");
+
+    CKEDITOR.config.removePlugins = 'elementspath'
 });
 

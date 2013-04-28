@@ -4,6 +4,7 @@
 en:  
   activerecord:
     models: 
+      article:
       address: 
       user:
       forum_post:
@@ -56,6 +57,8 @@ en:
         category_ids: "Category"
         resource_file: "File"
         level_id: "Difficulty Level"
+      article:
+        category_ids: "Category"
     errors:
       models:
         user:

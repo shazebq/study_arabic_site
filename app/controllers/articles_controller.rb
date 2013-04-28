@@ -11,7 +11,7 @@ class ArticlesController < CategorizableItemsController
 
   def new
     @article = Article.new()
-    3.times { @article.images.build }  # default of 3 images for the article
+    1.times { @article.images.build }  # default of 3 images for the article
   end
 
   def create
