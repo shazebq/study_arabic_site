@@ -56,6 +56,9 @@ GEM
       uuidtools
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
+    ckeditor (4.0.4)
+      mime-types
+      orm_adapter
     cocaine (0.3.2)
     coderay (1.0.8)
     coffee-rails (3.2.2)
@@ -291,6 +294,7 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave_direct
+  ckeditor
   cocaine (= 0.3.2)
   coffee-rails
   daemons
