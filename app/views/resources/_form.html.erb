@@ -34,8 +34,7 @@
       <%= f.select :level_id, Level.all.collect { |l| [l.title, l.id] }, { :include_blank => true }  %>
     </div>
 
-
-      <%#= f.label :resource_file, "Upload Resource (PDF, MS Word, JPEG, and text files are acceptable)" %><br />
+      <%#= f.label :resource_file, "Upload Resource (PDF, MS Word, JPEG, and text files are acceptable)" %>
       <%#= f.file_field :resource_file %>
 
     <div class="actions">
