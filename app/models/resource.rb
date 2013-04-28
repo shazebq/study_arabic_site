@@ -51,6 +51,23 @@ class Resource < ActiveRecord::Base
       return false
     end
   end
+
+  # for validating carrierwave_direct files which are uploaded to s3
+  def self.validate_file_type(file_name)
+    begin
+      extension = file_name.split(".")[-1]
+      return false if extension.size <= 1
+    rescue
+      return false
+    end
+
+    if %w(jpg jpeg png pdf doc docx txt).include?(extension)
+      true
+    else
+      false
+    end
+  end
+
 end
 
 # validates_attachment_content_type :uploaded_file, :content_type =>['application/pdf']

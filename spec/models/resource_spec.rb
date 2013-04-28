@@ -45,6 +45,29 @@ describe Resource do
       end
     end
   end
+
+  describe "validate_file_type function" do
+    context "valid file type" do
+      it "should return true" do
+        file_name = "uploads/resources/something.jpg"  
+        Resource.validate_file_type(file_name).should == true
+      end
+    end
+
+    context "invalid file type" do
+      it "should return false" do
+        file_name1 = "uploads/resources/something.rb"
+        Resource.validate_file_type(file_name1).should == false
+      end
+    end
+
+    context "when there is no file extension" do
+      it "should return false" do
+        file_name1 = "uploads/resources/something"
+        Resource.validate_file_type(file_name1).should == false
+      end
+    end
+  end
 end
 
 # comments

@@ -120,6 +120,12 @@ module ApplicationHelper
       "*"
     end
   end
+
+  # get only approved records if resources, get all if any other controller
+  def filter_approved(items)
+    return items.only_approved if params[:controller] == "resources"
+    items
+  end
 end
 
 class BigDecimal

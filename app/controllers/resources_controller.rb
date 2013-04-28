@@ -12,7 +12,6 @@ class ResourcesController < CategorizableItemsController
     #return render text: params testing
     @resource = current_user.resources.new(params[:resource])
     if @resource.save
-      flash[:notice] = "Your resource was successfully submitted."
       #redirect_to resource_path(@resource)
       redirect_to file_upload_resource_path(@resource) 
     else
@@ -27,7 +26,7 @@ class ResourcesController < CategorizableItemsController
   def update
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(params[:resource])
-      flash[:notice] = "Your question has been updated."
+      flash[:notice] = "Your resource has been updated."
       redirect_to @resource
     else
       render "edit"
@@ -42,14 +41,29 @@ class ResourcesController < CategorizableItemsController
 
   def show
     @resource = Resource.find(params[:id])
-    @resource.resource_file.key = params[:key]
-    @resource.save
+    
   end
 
   def file_upload
     @resource = Resource.find(params[:id])
     @uploader = @resource.resource_file
-    @uploader.success_action_redirect = resource_url(@resource)
+    @uploader.success_action_redirect = confirm_upload_resource_url(@resource)
+  end
+
+  # responsible for validating the upload and marking the resource as marked as approved if the resource is valid
+  def confirm_upload
+    @resource = Resource.find(params[:id])
+    valid = Resource.validate_file_type(params[:key])
+    if valid
+      @resource.resource_file.key = params[:key] # sets the key for active record to about s3 file 
+      @resource.approved = true
+      @resource.save
+      flash[:notice] = "Your resource has been uploaded." 
+      redirect_to resource_path(@resource)
+    else
+      flash[:alert] = "File type must be valid"
+      redirect_to :back
+    end
   end
 
   def download

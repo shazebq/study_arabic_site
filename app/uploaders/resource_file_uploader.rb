@@ -2,6 +2,11 @@
 
 class ResourceFileUploader < CarrierWave::Uploader::Base
   include CarrierWaveDirect::Uploader
+
+  #def extension_white_list
+  #  %w(jpg jpeg png pdf doc docx txt)
+  #end
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

@@ -1,4 +1,12 @@
+<% provide :title, "Upload Resource" %>
+<%= render partial: "shared/page_title", locals: { title: "Upload Resource" } %>
+
 <%= direct_upload_form_for @uploader do |f| %>
-  <%= f.file_field :resource_file %>
-  <%= f.submit %>
+  <div class="margin_bottom">
+    
+    <span class="gray_badge middle">Note:</span> <span class="center">PDF, MS Word, JPEG, and text files are acceptable.<br />
+    <%= f.file_field :resource_file %>
+    
+  </div>
+  <%= f.submit "Upload Resource", class: "btn_custom" %>
 <% end %>
