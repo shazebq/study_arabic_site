@@ -14,10 +14,11 @@ class CommentsController < ApplicationController
     @comment_new = @commentable.comments.create(params[:comment]) 
     if @comment_new.valid?
       flash[:notice] = "Your comment has been successfully added." 
-      redirect_to :back || root_path 
     else
-      render "#{@commentable.class.to_s.tableize}/show"
+      flash[:alert] = "Your comment could not be added."
+      #render "#{@commentable.class.to_s.tableize}/show"
     end
+    redirect_to :back || root_path
   end
 
   def edit
