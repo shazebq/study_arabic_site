@@ -10,7 +10,7 @@
 <div class="row">
   <div class="span9">
     <%= image_tag(@presenter.feature_article.try(:images).try(:first).try(:photo,:medium), class: "floatLeft") %>
-    <%= truncate_text(simple_format(@presenter.feature_article.try(:content)), 675, @presenter.feature_article) %>
+    <%= truncate_text(simple_format(@presenter.feature_article.try(:content)), 800, @presenter.feature_article) %>
   </div>
   <div class="span9 bottom_border_div"></div>
 </div>

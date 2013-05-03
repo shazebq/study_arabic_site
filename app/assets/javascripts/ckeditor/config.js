@@ -5,5 +5,8 @@ $(document).ready(function() {
 
 
     CKEDITOR.config.removePlugins = 'elementspath'
+
+    CKEDITOR.config.linkShowAdvancedTab = false;
+    CKEDITOR.config.linkShowTargetTab = false;
 });
 
