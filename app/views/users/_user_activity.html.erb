@@ -1,0 +1,9 @@
+    <span class="subtitle_large"><%= pluralize @forum_posts.size, "Question" %></span>
+    <div class="custom_well">
+      <ul>
+        <% @forum_posts.each do |forum_post| %>
+          <li><%= forum_post.title %></li>
+        <% end %>
+      </ul>
+    </div>
+

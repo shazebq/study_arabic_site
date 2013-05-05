@@ -3,6 +3,18 @@
 <%= render partial: "basic_user_info", locals: { user: @user } %>
 <br />
 
+<% if user_type(@user) == "Student" %>
+
+  <div class="activity">
+
+    <div class="caps bold margin_bottom">Activity</div>
+
+    <%= render partial: "user_activity" %> 
+
+  </div>
+
+<% end %>
+
 <% if user_type(@user) == "Teacher" %>
 
   <div class="margin_bottom">
