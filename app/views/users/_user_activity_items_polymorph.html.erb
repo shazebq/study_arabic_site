@@ -1,0 +1,6 @@
+<% items.each do |item| %>
+    <!-- include anchor to redirect to the exact part of the page-->
+    <% path_name = "#{item.send(link).class.name.underscore}_path" %>
+    <li><%= link_to truncate(strip_tags(item.send(content_to_show)), length: 100, ommission: "..."), (send(path_name, item.send(link), anchor: "#{item.class.name.underscore}_#{item.id}")) %></li>
+<% end %>
+

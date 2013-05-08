@@ -32,7 +32,7 @@
     <div class="subtitle_large margin_bottom"><%= pluralize(@forum_post.answers.count, "answer") %></div>
 
     <% @forum_post.answers.saved_records.by_votes.each do |answer| %>
-        <div class="row no_left_margin custom_well">
+	<div class="row no_left_margin custom_well" id="<%= "answer_#{answer.id}" %>">
           <div class="vote_arrow_div">
             <i class="icon-caret-up vote <%= arrow_class(answer) %>" data-voteable_type="Answer" data-type="up" data-post_id=<%= @forum_post.id %>
                     data-answer_id=<%= answer.id %>></i>
@@ -64,7 +64,7 @@
 
 
           </div>
-
+	  
         </div>
     <% end %>
   </div>

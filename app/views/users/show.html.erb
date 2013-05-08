@@ -8,9 +8,9 @@
   <div class="activity">
     <div class="caps bold margin_bottom">Activity</div>
 
-    <%= render partial: "user_activity", locals: { items: @forum_posts, item_name: "Questions", content_to_show: :title, link: nil } %> 
-    <%= render partial: "user_activity", locals: { items: @answers, item_name: "Answers", content_to_show: :content, link: :forum_post  } %> 
-    <%= render partial: "user_activity", locals: { items: @reviews, item_name: "Reviews", content_to_show: :content, link: :reviewable } %> 
+    <%= render partial: "user_activity", locals: { items: @forum_posts, item_name: "Questions", content_to_show: :title, link: nil, polymorph: false } %> 
+    <%= render partial: "user_activity", locals: { items: @answers, item_name: "Answers", content_to_show: :content, link: :forum_post, polymorph: false  } %> 
+    <%= render partial: "user_activity", locals: { items: @reviews, item_name: "Reviews", content_to_show: :content, link: :reviewable, polymorph: true } %> 
 
   </div>
 

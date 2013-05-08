@@ -1,7 +1,7 @@
 <div class="subtitle_large margin_bottom"><%= pluralize(item.reviews.size, "review") %></div>
 <div>
   <% item.reviews.each do |review| %>
-    <div class="custom_well">
+    <div class="custom_well" id="<%= "review_#{review.id}" %>">
       <div class="margin_bottom_small">
         <span class="rating_container rating_font"><%= generate_stars(review.rating).html_safe %></span>
         <span class="subtitle_large"><%= review.title %></span>
@@ -14,3 +14,4 @@
     </div>
   <% end %>
 </div>
+

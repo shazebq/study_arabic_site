@@ -2,10 +2,12 @@
     <% if items.size > 0 %>
       <div class="custom_well">
         <ul>
-          <% items.each do |item| %>
-            <li><%= link_to truncate(strip_tags(item.send(content_to_show)), length: 100, ommission: "..."), (link == nil ? item : item.send(link)) %></li>
-          <% end %>
-        </ul>
+	  <% if polymorph %>
+	    <%= render partial: "user_activity_items_polymorph", locals: { items: items, content_to_show: content_to_show, link: link } %>
+   	  <% else %>
+	    <%= render partial: "user_activity_items", locals: { items: items, content_to_show: content_to_show, link: link } %>
+	  <% end %>
+	</ul>
       </div>
-  <% end %>
+    <% end %>
 

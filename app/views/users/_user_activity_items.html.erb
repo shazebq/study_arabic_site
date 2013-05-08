@@ -1,0 +1,5 @@
+<% items.each do |item| %>
+	<!-- include anchor to redirect to the exact part of the page-->
+	<li><%= link_to truncate(strip_tags(item.send(content_to_show)), length: 100, ommission: "..."), (link == nil ? item : send("#{link.to_s}_path", item.send(link), anchor: "#{item.class.name.underscore}_#{item.id}")) %></li>
+<% end %>
+
