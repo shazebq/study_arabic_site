@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
 
   def require_user_is_owner(controller, id)
     resource = controller.classify.constantize.find(id)
-    unless resource.user == current_user
+    unless resource.user == current_user || current_user.try(:admin?)
       redirect_to root_path 
     end
   end
