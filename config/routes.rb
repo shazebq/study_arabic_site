@@ -46,10 +46,20 @@ ArabicProject::Application.routes.draw do
     get 'search', :on => :collection
   end
 
-  resources :centers do
-    resources :reviews
-    get 'search', :on => :collection
-    resources :images, only: [:new, :create]
+  #resources :centers do
+  #  resources :reviews
+  #  get 'search', :on => :collection
+  #  resources :images, only: [:new, :create]
+  #end
+
+  # use scope method to change the path name for users but
+  # keep the same controller name
+  scope do
+    resources :centers, path: 'arabic_centers_programs' do
+      resources :reviews
+      get 'search', :on => :collection
+      resources :images, only: [:new, :create]
+    end
   end
 
   resources :users, only: :show do

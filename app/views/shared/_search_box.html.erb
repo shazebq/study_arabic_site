@@ -1,4 +1,5 @@
-<%= form_tag("/#{params[:controller]}/search", :method => "get") do %>
+<!-- something like search_centers_path or search_resources_path, etc -->
+<%= form_tag(send("search_#{params[:controller]}_path"), :method => "get") do %>
   <div class="input-append">
       <%= text_field_tag(:query, nil, class: "span4") %>
       <button class="btn" type="submit"><%= "Search #{item_type}" %></button>
