@@ -17,7 +17,7 @@ ArabicProject::Application.routes.draw do
 
   root(to: ENV["root_path"])
 
-  resources :forum_posts do
+  resources :forum_posts, path: "arabic-questions-answers" do
     member do
       post "vote"
     end
@@ -46,21 +46,11 @@ ArabicProject::Application.routes.draw do
     get 'search', :on => :collection
   end
 
-  #resources :centers do
-  #  resources :reviews
-  #  get 'search', :on => :collection
-  #  resources :images, only: [:new, :create]
-  #end
-
-  # use scope method to change the path name for users but
-  # keep the same controller name
-  scope do
-    resources :centers, path: 'arabic_centers_programs' do
+    resources :centers, path: "arabic-centers-programs" do
       resources :reviews
       get 'search', :on => :collection
       resources :images, only: [:new, :create]
     end
-  end
 
   resources :users, only: :show do
     resources :messages
@@ -72,16 +62,14 @@ ArabicProject::Application.routes.draw do
     put :destroy_multiple, :on => :collection
   end
 
-  #scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    resources :teacher_profiles do
-      resources :reviews
-      get 'search', :on => :collection
-    end
-  #end
+  resources :teacher_profiles, path: "arabic-teacher-profiles"  do
+    resources :reviews
+    get 'search', :on => :collection
+  end
 
   resources :student_profiles
 
-  resources :resources do
+  resources :resources, path: "arabic-learning-resources" do
     member do
       post "vote"
     end
@@ -91,7 +79,7 @@ ArabicProject::Application.routes.draw do
     get 'confirm_upload', :on => :member
     resources :reviews
   end
-
+    
   resources :categories, only: [:index] do
     resources :forum_posts
     resources :resources
