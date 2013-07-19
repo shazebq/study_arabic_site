@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:sent_messages) }
   it { should respond_to(:received_messages) }
   it { should respond_to(:votes) }
+  it { should respond_to(:notifications) }
 
 
   describe "add_rep_points" do

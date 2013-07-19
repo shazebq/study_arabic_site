@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_one :image, as: :imageable, dependent: :destroy
   has_many :images
 
+  has_many :notifications, foreign_key: "recipient_id", dependent: :destroy
+
   belongs_to :profile, polymorphic: true
   belongs_to :country
   accepts_nested_attributes_for :image
