@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427042604) do
+ActiveRecord::Schema.define(:version => 20130719225056) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -200,6 +200,18 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.datetime "updated_at",       :null => false
     t.boolean  "sender_delete"
     t.boolean  "recipient_delete"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "recipient_id"
+    t.integer  "responsible_party_id"
+    t.integer  "recipient_object_id"
+    t.string   "recipient_object_type"
+    t.string   "responsible_party_object_id"
+    t.string   "responsible_party_object_type"
+    t.string   "verb"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "pg_search_documents", :force => true do |t|
