@@ -14,8 +14,8 @@ class AnswersController < ApplicationController
     @answer = @forum_post.answers.new
     @answer_new = @forum_post.answers.create(params[:answer])
     if @answer_new.valid?
-      UserMailer.delay.answer_alert(@forum_post.user, @forum_post, @answer_new)  # send email to user who asked question
-      UserMailer.delay.alert_other_answerers(@forum_post.answerers_list(current_answerer: @answer_new.user), @forum_post, @answer_new) if @forum_post.answers.count > 1
+      #UserMailer.delay.answer_alert(@forum_post.user, @forum_post, @answer_new)  # send email to user who asked question
+      #UserMailer.delay.alert_other_answerers(@forum_post.answerers_list(current_answerer: @answer_new.user), @forum_post, @answer_new) if @forum_post.answers.count > 1
       Notification.generate_notification(@forum_post.user, current_user, @forum_post, @answer_new)
       flash[:notice] = "Your answer was successfully submitted."
     end

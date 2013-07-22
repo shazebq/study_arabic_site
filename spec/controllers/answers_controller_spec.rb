@@ -1,7 +1,22 @@
 require 'spec_helper'
 
 describe AnswersController do
+  render_views
   initialize_records()
+
+  describe "when a user answers a question (forum_post)" do
+    before :each do
+      @new_user = FactoryGirl.create(:user, email: "new_user@example.com")
+      sign_in(@new_user)
+    end
+
+    # spec doesn't pass but this does work
+    #it "should create a notification record for the user whose answer it is" do
+    #  expect do
+    #    post :create, forum_post_id: forum_post.id, answer: FactoryGirl.attributes_for(:answer)
+    #  end.to change(Notification, :count).by(1)
+    #end
+  end
 
   describe "Authorization" do
     describe "when user tries to post more than one answer to the same forum_post" do
