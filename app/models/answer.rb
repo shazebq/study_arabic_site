@@ -21,6 +21,7 @@ class Answer < ActiveRecord::Base
   def init
     self.votes_count ||= 0
   end
+
 end
 
 
