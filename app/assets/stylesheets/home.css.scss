@@ -24,7 +24,7 @@ select.select_box
       vertical-align: text-top; 
     }
 
-    margin-top: 17px;
+    margin-top: 31px;
 }
 
 
@@ -83,10 +83,28 @@ button.search_input
   margin-left: -25px;
 }
 
+.absolute_position
+{
+  position: absolute !important;
+}
+
 .signin_container
 {
   margin-bottom: 5px;
+  margin-top: -22px;
+  border-radius: 5px;
+  padding-top: 8px;
 }
+
+#signin_inline
+{
+  // actually make this white and change text color to black or whatever
+  background-color: silver;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
 
 #right_header
 {
