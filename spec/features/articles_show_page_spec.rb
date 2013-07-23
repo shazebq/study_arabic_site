@@ -54,6 +54,11 @@ describe "articles show page" do
     it "should create a comment and redirect to the same article path" do
       expect { click_button "Submit Comment" }.to change(Comment, :count).by(1)   
     end
+
+    it "should create a notification for the user whose article it is" do
+      expect { click_button "Submit Comment" }.to change(Notification, :count).by(1)   
+      Notification.last.recipient.should == article.user
+    end
   end
 
   describe "clicking on the edit or delete link for a comment" do

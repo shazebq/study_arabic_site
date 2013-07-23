@@ -41,7 +41,7 @@ class ForumPost < ActiveRecord::Base
     "#{id}-#{title.parameterize}"
   end
 
-  # remove current answerer and keep it unique
+  # remove current answerer and keep it unique (to send email to all others who have answered the question)
   def answerers_list(opts = {})
     answerers = self.answers.map { |answer| answer.user }
     answerers.delete(opts[:current_answerer]) if opts[:current_answerer]
