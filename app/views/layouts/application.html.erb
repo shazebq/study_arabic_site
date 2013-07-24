@@ -23,16 +23,16 @@
 
             <div class="span6" id="right_header">
 
-
-
               <div class="row no_margin_left">
                     <div class="span3 offset3 align_right"> 
                       <div class="signin_container">
 			<span id="signin_inline">
-			  <i class="icon-exclamation-sign icon-2x"></i>
-			  <i class="icon-envelope icon-2x"></i>
+
                           <% if user_signed_in? %>
-                            <span class="dropdown">
+
+				  <%= render partial: "layouts/notifications" %>  
+
+                              <span class="dropdown">
                                 <a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
                                 <%= current_user.username %>
                                 <i class="icon-caret-down"></i>

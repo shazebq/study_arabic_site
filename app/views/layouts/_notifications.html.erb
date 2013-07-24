@@ -1,0 +1,17 @@
+<span class="dropdown">
+	<a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
+	<i class="icon-exclamation-sign icon-2x"></i>
+    
+	</a>
+	<% if current_user.new_notifications.size > 0 %> 
+		<ul class="dropdown-menu align_left">
+			<% current_user.new_notifications.each do |notification| %>
+                <li><%= notification_link(notification) %></li>    
+			<% end %>
+		</ul>
+	<% else %>
+		<ul class="dropdown-menu align_left">
+            <li>No new notifications</li> 
+		</ul>
+	<% end %>
+</span>

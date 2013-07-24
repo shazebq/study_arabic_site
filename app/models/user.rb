@@ -94,6 +94,10 @@ class User < ActiveRecord::Base
     return "#{id}-#{first_name.parameterize}-#{last_name.parameterize}" if self.profile_type == "TeacherProfile"
     return "#{id}-#{username.parameterize}" if self.profile_type == "StudentProfile"
   end
+
+  def new_notifications
+    self.notifications.only_new
+  end
    
   private
   def destroy_user_profile
