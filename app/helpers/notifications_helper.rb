@@ -22,7 +22,6 @@ module NotificationsHelper
   def link(notification)
     # for review and answer first
     # then edge cases like comment and vote
-    
   end
 
 end

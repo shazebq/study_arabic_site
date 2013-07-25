@@ -6,7 +6,7 @@
 	<% if current_user.new_notifications.size > 0 %> 
 		<ul class="dropdown-menu align_left wider">
 			<% current_user.new_notifications.each do |notification| %>
-                <li><%= notification_link(notification) %></li>    
+                <li><%= link_to(notification_sentence(notification), send("#{notification.responsible_party_object_type.underscore}_link", notification.responsible_party_object)) %></li>    
 			<% end %>
 		</ul>
 	<% else %>
@@ -14,5 +14,4 @@
             <li>No new notifications</li> 
 		</ul>
 	<% end %>
-
 </span>

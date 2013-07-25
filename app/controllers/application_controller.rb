@@ -133,12 +133,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   private
 
   def set_locale
     I18n.locale = params[:locale] || "en"
   end
-
 end
 
