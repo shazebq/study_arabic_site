@@ -1,10 +1,5 @@
 module NotificationsHelper
   VERBS = {:answer => "answered", :vote  => "up voted", :comment => "commented on", :review => "reviewed"}
-  #STANDARD_ITEMS = ["Answer", "Review", "Vote"]
-
-  def notification_link(notification)
-    notification_sentence(notification)         
-  end
 
   def notification_sentence(notification)
     # e.g. jsmith answered your question 
@@ -18,10 +13,4 @@ module NotificationsHelper
     end
     sentence = "#{responsible_party} #{verb} #{sentence_object}"
   end
-
-  def link(notification)
-    # for review and answer first
-    # then edge cases like comment and vote
-  end
-
 end
