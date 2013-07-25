@@ -3,6 +3,10 @@ module ApplicationHelper
     CategoryParent.find_by_name(category_name).categories.order(:name)
   end
 
+  def yahoo
+    "yahoo"
+  end
+
   def scope_name_to_link_text(original)
     if original.include?("_")
       list = original.split("_")

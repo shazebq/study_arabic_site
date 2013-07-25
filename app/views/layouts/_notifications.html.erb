@@ -4,7 +4,7 @@
     
 	</a>
 	<% if current_user.new_notifications.size > 0 %> 
-		<ul class="dropdown-menu align_left">
+		<ul class="dropdown-menu align_left wider">
 			<% current_user.new_notifications.each do |notification| %>
                 <li><%= notification_link(notification) %></li>    
 			<% end %>
@@ -14,4 +14,5 @@
             <li>No new notifications</li> 
 		</ul>
 	<% end %>
+
 </span>

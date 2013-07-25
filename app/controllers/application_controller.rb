@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
+  helper_method :answer_link
+
   before_filter :set_locale
 
   PER_PAGE = 10 
@@ -87,7 +89,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   # needed because teacher_profiles are reviewable but I want the redirection
   # to go to the user show page
   def redirect_to_reviewable(reviewable)
@@ -97,6 +98,18 @@ class ApplicationController < ActionController::Base
       redirect_to reviewable
     end
   end
+
+  # link generators for non conventional objects (answers, reviews)
+  def answer_link(answer)
+    forum_post_url(answer.forum_post, anchor: "answer_#{answer.id}")
+  end
+
+  def review_link(review)
+    teacher_profile_path(review.reviewable, anchor: "review_#{review.id}")
+  end
+
+  # create link generators for comments and votes
+
 
   private
 

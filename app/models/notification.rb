@@ -7,7 +7,6 @@ class Notification < ActiveRecord::Base
   belongs_to :recipient_object, polymorphic: true
   belongs_to :responsible_party_object, polymorphic: true
 
-  VERBS = [:answer => "answered", :vote  => "up voted", :comment => "commented on", :review => "reviewed"]
 
   scope :only_new, where("checked IS NOT true") 
   scope :by_votes, order("votes_count desc, id desc")
