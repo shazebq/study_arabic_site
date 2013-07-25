@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
   helper_method :answer_link
+  helper_method :comment_link
+  helper_method :review_link
+  helper_method :vote_link
 
   before_filter :set_locale
 
@@ -101,7 +104,7 @@ class ApplicationController < ActionController::Base
 
   # link generators for non conventional objects (answers, reviews)
   def answer_link(answer)
-    forum_post_url(answer.forum_post, anchor: "answer_#{answer.id}")
+    forum_post_path(answer.forum_post, anchor: "answer_#{answer.id}")
   end
 
   def review_link(review)
@@ -110,8 +113,24 @@ class ApplicationController < ActionController::Base
 
   # create link generators for comments and votes
   def comment_link(comment)
-    # find out what the highest level parent is
-    # could be an article or forum_post right now
+    parent = get_comment_parent(comment)
+    send("#{parent.class.name.underscore}_path", parent, anchor: "comment_#{comment.id}")
+  end
+
+  def vote_link(vote)
+    if vote.voteable.is_a?(Answer)
+      forum_post_path(vote.voteable.forum_post, anchor: "answer_#{vote.voteable.id}")
+    else
+      send("#{vote.voteable.class.name.underscore}_path", vote.voteable)
+    end
+  end
+
+  def get_comment_parent(comment)
+    if comment.respond_to?(:commentable)
+      get_comment_parent(comment.commentable)
+    else
+      comment
+    end
   end
 
 
