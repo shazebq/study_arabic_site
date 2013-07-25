@@ -109,6 +109,10 @@ class ApplicationController < ActionController::Base
   end
 
   # create link generators for comments and votes
+  def comment_link(comment)
+    # find out what the highest level parent is
+    # could be an article or forum_post right now
+  end
 
 
   private
