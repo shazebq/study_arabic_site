@@ -2,6 +2,19 @@ require "spec_helper"
 
 describe ArticlesController do
 
+  describe "GET #show" do
+    let!(:parent) { FactoryGirl.create(:category, name: "Arabic Language") }
+    let!(:article) { FactoryGirl.create(:article, category_ids: [parent.id]) }
+    context "if a notification parameter is included" do
+      let(:notification) { FactoryGirl.create(:notification) }
+      it "marks the notification as checked" do
+        get :show, id: article, notification: notification.id 
+        notification.reload
+        notification.checked.should == true 
+      end
+    end
+  end
+
   describe "authorization" do
     let(:user) { FactoryGirl.create(:user) }
 

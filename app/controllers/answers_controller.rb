@@ -53,6 +53,5 @@ class AnswersController < ApplicationController
       redirect_to @forum_post 
     end
   end
-
   
 end

@@ -4,9 +4,11 @@
     
 	</a>
 	<% if current_user.new_notifications.size > 0 %> 
-		<ul class="dropdown-menu align_left wider">
+		<ul class="dropdown-menu align_left wider notifications">
 			<% current_user.new_notifications.each do |notification| %>
-                <li><%= link_to(notification_sentence(notification), send("#{notification.responsible_party_object_type.underscore}_link", notification.responsible_party_object)) %></li>    
+        <li id='<%= "notification_#{notification.id}" %>'>
+        <%= link_to(notification_sentence(notification), send("#{notification.responsible_party_object_type.underscore}_link", notification.responsible_party_object, notification: notification.id)) %>
+        </li>    
 			<% end %>
 		</ul>
 	<% else %>

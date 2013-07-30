@@ -4,6 +4,7 @@ class ArticlesController < CategorizableItemsController
   before_filter(:only => [:destroy, :update]) { |c| c.require_user_is_owner(params[:controller], params[:id]) }
   before_filter :count_view, only: :show
   before_filter :limit_user_content, only: [:new, :create]
+  before_filter :check_if_notification_destination, only: :show
 
   def show
     @article = Article.find(params[:id])

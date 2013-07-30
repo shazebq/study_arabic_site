@@ -8,6 +8,15 @@ describe ForumPostsController do
       get :show, id: forum_post
       assigns(:forum_post).should == forum_post
     end
+
+    context "if a notification parameter is included" do
+      let(:notification) { FactoryGirl.create(:notification) }
+      it "marks the notification as checked" do
+        get :show, id: forum_post, notification: notification.id 
+        notification.reload
+        notification.checked.should == true 
+      end
+    end
   end
 
   describe "Authorization" do
