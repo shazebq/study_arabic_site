@@ -12,8 +12,10 @@ class Notification < ActiveRecord::Base
   scope :by_votes, order("votes_count desc, id desc")
 
   def self.generate_notification(recipient, responsible_party, recipient_object, responsible_party_object)
-    create(recipient_id: recipient.id, responsible_party_id: responsible_party.id,
-           recipient_object_id: recipient_object.id, recipient_object_type: recipient_object.class.name,
-           responsible_party_object_id: responsible_party_object.id, responsible_party_object_type: responsible_party_object.class.name)
+    unless recipient == responsible_party
+      create(recipient_id: recipient.id, responsible_party_id: responsible_party.id,
+            recipient_object_id: recipient_object.id, recipient_object_type: recipient_object.class.name,
+            responsible_party_object_id: responsible_party_object.id, responsible_party_object_type: responsible_party_object.class.name)
+    end
   end
 end

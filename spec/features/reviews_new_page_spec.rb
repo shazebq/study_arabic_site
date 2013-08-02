@@ -12,6 +12,15 @@ describe "new review page" do
       visit new_teacher_profile_review_path(teacher_profile)
     end
 
+    # figure out a way to be able to click an element in capybara
+    #describe "clicking submit review on the teacher profile page" do
+    #  before :each do
+    #    fill_in "review_title", with: "Nice resource!"
+    #  end
+    #  it "should create a review" do
+    #    expect { click_button "Submit" }.to change(Review, :count).by(1)   
+    #  end
+    #end
   end
 
   describe "resource reviews" do
