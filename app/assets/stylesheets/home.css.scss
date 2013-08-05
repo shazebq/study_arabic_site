@@ -91,24 +91,24 @@ button.search_input
 .signin_container
 {
   margin-bottom: 5px;
-  margin-top: -22px;
+  margin-top: -10px;
   border-radius: 5px;
-  padding-top: 8px;
 }
 
 #signin_inline
 {
   // actually make this white and change text color to black or whatever
-  background-color: silver;
+  background-color: white;
   border-radius: 5px;
   padding: 10px;
+  a:link {color:$main_color;}      /* unvisited link */
+  a:visited {color:$main_color;}  /* visited link */
 }
 
 .wider
 {
   width: 250px;
 }
-
 
 
 #right_header

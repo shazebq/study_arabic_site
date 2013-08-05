@@ -167,6 +167,15 @@ body
   text-align: center;
 }
 
+.active_item
+{
+  color: black; 
+}
+
+.inactive_item
+{
+  color: $dark_gray;
+}
 
 
 

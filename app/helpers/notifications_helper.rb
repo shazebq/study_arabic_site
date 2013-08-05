@@ -13,4 +13,12 @@ module NotificationsHelper
     end
     sentence = "#{responsible_party} #{verb} #{sentence_object}"
   end
+
+  def notification_class(current_user, items)
+    if current_user.send(items).any?
+      "active_item"
+    else
+      "inactive_item"
+    end
+  end
 end
