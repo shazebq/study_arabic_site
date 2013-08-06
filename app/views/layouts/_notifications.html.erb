@@ -1,6 +1,9 @@
 <span class="dropdown">
 	<a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
-    <i class='icon-exclamation-sign icon-2x <%= notification_class(current_user, :new_notifications) %>'></i>
+    <i class='icon-exclamation-sign icon-2x <%= check_active_icon(current_user, :new_notifications) %>'></i>
+    <% if current_user.new_notifications.any? %>
+      <span class='red_badge_tiny'><%= current_user.new_notifications.size %></span>
+    <% end %>
 	</a>
 	<% if current_user.new_notifications.size > 0 %> 
 		<ul class="dropdown-menu align_left wider notifications">

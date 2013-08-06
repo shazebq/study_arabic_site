@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722154634) do
+ActiveRecord::Schema.define(:version => 20130806230619) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20130722154634) do
     t.datetime "updated_at",       :null => false
     t.boolean  "sender_delete"
     t.boolean  "recipient_delete"
+    t.boolean  "checked"
   end
 
   create_table "notifications", :force => true do |t|

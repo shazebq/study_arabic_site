@@ -3,8 +3,12 @@ module ApplicationHelper
     CategoryParent.find_by_name(category_name).categories.order(:name)
   end
 
-  def yahoo
-    "yahoo"
+  def check_active_icon(current_user, items)
+    if current_user.send(items).any?
+      "active_item"
+    else
+      "inactive_item"
+    end
   end
 
   def scope_name_to_link_text(original)
