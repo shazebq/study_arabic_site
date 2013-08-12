@@ -14,7 +14,8 @@ class Message < ActiveRecord::Base
   # i.e. messages which have not been marked as "delete"
   scope :active_messages, lambda { |message_type| where("#{message_type}_delete IS NOT true") } 
 
-  scope :unread_messages, where("checked IS NOT true") 
+  # unread messages, only in the case of received messages
+  scope :unread_messages, lambda { active_messages("recipient").where("checked IS NOT true") }
 
   validates :subject, :content, :sender_id, :recipient_id, presence: true
   validates :subject, length: { maximum: 130 }

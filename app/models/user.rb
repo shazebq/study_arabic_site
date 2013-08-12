@@ -50,6 +50,8 @@ class User < ActiveRecord::Base
   scope :students, where(profile_type: "StudentProfile")
 
   REP_POINTS_HASH = { "ForumPost" => 2, "Article" => 4, "Answer" => 4, "Resource" => 4 }
+  
+  delegate :unread_messages, :to => :received_messages
 
   def should_validate_bio?
     self.has_teacher_profile
@@ -98,7 +100,7 @@ class User < ActiveRecord::Base
   def new_notifications
     self.notifications.only_new
   end
-   
+
   private
   def destroy_user_profile
     self.profile.delete

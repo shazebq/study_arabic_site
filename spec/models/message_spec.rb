@@ -54,8 +54,8 @@ describe Message do
     describe "unread messages scope" do
       before { original_message.update_attributes(checked: true) }
       it "should return messages which are unread i.e. where checked is not true" do
-        user2.received_messages.unread_messages.should_not include(original_message)  
-        user2.received_messages.unread_messages.should include(second_reply)
+        user2.unread_messages.should_not include(original_message)  
+        user2.unread_messages.should include(second_reply)
       end
     end
 

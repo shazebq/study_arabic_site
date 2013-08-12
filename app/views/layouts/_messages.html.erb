@@ -1,6 +1,6 @@
 <a href='<%= user_messages_path(current_user) %>'>
   <i class='icon-envelope-alt icon-2x <%= check_active_icon(current_user, :received_messages) %>'></i>
-  <% if current_user.received_messages.any? %>
-    <span class='red_badge_tiny'><%= current_user.received_messages.size %></span>
+  <% if current_user.unread_messages.any? %>
+    <span class='red_badge_tiny'><%= current_user.unread_messages.size %></span>
   <% end %>
 </a>
