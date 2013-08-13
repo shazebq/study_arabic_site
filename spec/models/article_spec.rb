@@ -16,6 +16,7 @@ describe Article do
   it { should respond_to :images }
   it { should respond_to :categories }
   it { should respond_to :comments }
+  it { should respond_to :photos }
 
   describe "validations" do
     before { @article1 = Article.new(title: "study advice", content: "some more info here", user_id: 5) }
