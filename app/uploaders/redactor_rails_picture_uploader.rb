@@ -32,12 +32,10 @@ class RedactorRailsPictureUploader < CarrierWave::Uploader::Base
   process :read_dimensions
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [118, 100]
-  end
+  process :resize_to_limit => [675, 800]
 
-  version :content do
-    process :resize_to_limit => [800, 800]
+  version :thumb do
+    process :resize_to_fill => [200, 200]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

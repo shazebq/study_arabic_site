@@ -11,13 +11,14 @@ class ArticlesController < CategorizableItemsController
 
   def new
     @article = Article.new()
-    #1.times { @article.images.build }  # default of 3 images for the article
-    3.times { @article.photos.build }
+    # no longer need this as I'm using inline images in the content field
+    #3.times { @article.photos.build }
   end
 
   def create
     @article = current_user.articles.new(params[:article])
     if @article.save
+      @article.add_thumbnail_url
       flash[:notice] = "Your article has been successfully created."
       redirect_to root_path
     else

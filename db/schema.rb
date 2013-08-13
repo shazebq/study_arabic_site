@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813165620) do
+ActiveRecord::Schema.define(:version => 20130813212149) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130813165620) do
     t.datetime "updated_at",     :null => false
     t.integer  "comments_count"
     t.boolean  "approved"
+    t.string   "thumbnail_url"
   end
 
   add_index "articles", ["user_id"], :name => "index_articles_on_user_id"

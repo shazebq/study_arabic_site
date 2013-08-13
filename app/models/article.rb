@@ -45,4 +45,16 @@ class Article < ActiveRecord::Base
     self.votes_count ||= 0
     self.comments_count ||= 0
   end
+
+  def add_thumbnail_url
+    article_content = Nokogiri::HTML(self.content)
+    url = article_content.css("img").first["src"].rpartition("/")
+    url[-1] = "thumb_" + url[-1]
+    url = url.join
+    self.update_attribute(:thumbnail_url, url)
+  end
 end
+
+
+
+
