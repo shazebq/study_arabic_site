@@ -44,6 +44,8 @@ gem 'carrierwave'
 gem 'carrierwave_direct'
 gem 'fog', '~> 1.3.1'
 gem 'ckeditor'
+gem 'redactor-rails'
+gem "mini_magick"
 
 
 group :development, :test do

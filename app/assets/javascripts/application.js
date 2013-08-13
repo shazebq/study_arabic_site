@@ -15,4 +15,5 @@
 //= require jquery-ui
 //= require bootstrap
 //= require ckeditor/init
+//= require redactor-rails
 //= require_tree .

@@ -1,4 +1,6 @@
 ArabicProject::Application.routes.draw do
+  mount RedactorRails::Engine => '/redactor_rails'
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   match "home" => "static_pages#home", :via => :get
