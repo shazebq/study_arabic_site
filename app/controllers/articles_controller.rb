@@ -33,6 +33,7 @@ class ArticlesController < CategorizableItemsController
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
+      @article.add_thumbnail_url
       flash[:notice] = "Your article has been successfully updated"
       redirect_to root_path 
     else
