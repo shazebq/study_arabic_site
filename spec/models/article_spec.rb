@@ -16,6 +16,7 @@ describe Article do
   it { should respond_to :images }
   it { should respond_to :categories }
   it { should respond_to :comments }
+  it { should respond_to :photos }
 
   describe "validations" do
     before { @article1 = Article.new(title: "study advice", content: "some more info here", user_id: 5) }
@@ -42,6 +43,31 @@ describe Article do
     #  @article1.user.reputation.should == 0
     #end
   end
+
+  describe "add_thumbnail_url method" do
+    before :each do
+      @article1.content = "<p>
+                        some text here
+                        </p>
+                        <p>
+                          <img src='https://safiles.s3.amazonaws.com/uploads/redactor_rails/picture/data/2/Boston_City_Flow.jpg'>
+                        </p>
+                        <p>
+                          more text here and then another image
+                        </p>
+                        <p>
+                          <img src='https://safiles.s3.amazonaws.com/uploads/redactor_rails/picture/data/3/code2.png'>
+                        </p>"
+      @article1.save
+    end
+
+    it "should return the thumbnail url of the first image associated with the article" do
+      @article1.add_thumbnail_url
+      @article1.reload
+      @article1.thumbnail_url.should == 'https://safiles.s3.amazonaws.com/uploads/redactor_rails/picture/data/2/thumb_Boston_City_Flow.jpg'
+    end
+  end
+
 
 end
 

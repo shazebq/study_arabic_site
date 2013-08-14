@@ -12,7 +12,7 @@ class Article < ActiveRecord::Base
     using: {tsearch: {dictionary: "english"}},
     associated_against: {categories: :name, comments: :content} # needed so it searches associated records as well
 
-  attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids , :images_attributes, :as => [:default, :admin] 
+  attr_accessible :content, :title, :user_id, :views_count, :votes_count, :category_ids , :photos_attributes, :images_attributes, :as => [:default, :admin] 
   after_initialize :init
 
   has_many :views, as: :viewable, dependent: :destroy
@@ -25,6 +25,8 @@ class Article < ActiveRecord::Base
 
   has_many :images, as: :imageable, dependent: :destroy
 
+  has_many :photos, as: :photographable, dependent: :destroy
+
   belongs_to :user
 
   validates :title, :content, :category_ids, presence: true
@@ -34,6 +36,8 @@ class Article < ActiveRecord::Base
 
   accepts_nested_attributes_for :images
 
+  accepts_nested_attributes_for :photos
+
   SCOPES = ["most_recent", "most_views", "most_votes"]
 
   def init
@@ -41,4 +45,16 @@ class Article < ActiveRecord::Base
     self.votes_count ||= 0
     self.comments_count ||= 0
   end
+
+  def add_thumbnail_url
+    article_content = Nokogiri::HTML(self.content)
+    url = article_content.css("img").first["src"].rpartition("/")
+    url[-1] = "thumb_" + url[-1]
+    url = url.join
+    self.update_attribute(:thumbnail_url, url)
+  end
 end
+
+
+
+

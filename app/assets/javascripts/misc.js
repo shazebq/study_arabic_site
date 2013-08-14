@@ -16,7 +16,5 @@ $(document).ready(function() {
   $('#resource_file_submit').click(function() {
       $('#ajax_spinner_file_upload').show();
   });
-  
-
 
 });

@@ -28,18 +28,10 @@
 
     <div class="field">
       <%= f.label :content %><%= mark_required(@article, :content) %><br />
-      <%#= f.text_area :content %>
-      <%= f.cktext_area :content %>
+      <%= f.text_area :content, :class => "redactor", :rows => 100 %>
+      <%#= f.cktext_area :content %>
     </div>
-
     <br />
-
-    <div class="margin_bottom_small">
-      <div class="bold">Add a photo to go along with your article</div>
-      <%= f.fields_for :images, :html => { :multipart => true } do |image_form| %>
-        <div><%= image_form.file_field :photo %></div>
-      <% end %>
-    </div>
 
     <div class="actions">
       <%= f.submit("Submit", class: "btn_custom") %>

@@ -7,8 +7,10 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  =  ENV["AWS_BUCKET"] # required
 
-  config.max_file_size     = 100.megabytes        # defaults to 5.megabytes
+  config.max_file_size     = 100.megabytes        
   # see https://github.com/jnicklas/carrierwave#using-amazon-s3
   # for more optional configuration
+
+  config.cache_dir = "#{Rails.root}/tmp/uploads"
 end
 
