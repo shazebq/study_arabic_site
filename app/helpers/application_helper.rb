@@ -58,7 +58,7 @@ module ApplicationHelper
     # note here that you have to add the h method to escape any html from the user submitted text!
     # even though rails automatically escapes html from user submitted data, I am wrapping it in the raw method
     # which makes it html safe. So in this case, just escase the text, and then you're fine.
-    raw(truncate(h(text), length: length, omission: (link_to "<span style='font-style: italic'> ...continue reading</span>".html_safe, item), separator: " ")) 
+    raw(truncate(h(text), length: length, omission: (link_to "<span style='font-style: italic'> ...continue</span>".html_safe, item), separator: " ")) 
   end
 
   # this should be used in any case where the image
