@@ -23,8 +23,7 @@ select.select_box
     {
       vertical-align: text-top; 
     }
-
-    margin-top: 31px;
+    
 }
 
 
@@ -100,9 +99,22 @@ button.search_input
   // actually make this white and change text color to black or whatever
   background-color: white;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   a:link {color:$main_color;}      /* unvisited link */
   a:visited {color:$main_color;}  /* visited link */
+  display:inline-block; 
+  line-height: 20px;
+  margin-top: -15px;
+}
+
+.low_vert
+{
+  vertical-align: -15px;
+}
+
+.low_vert1
+{
+  vertical-align: -8px;
 }
 
 .wider
