@@ -134,6 +134,14 @@ module ApplicationHelper
     return items.only_approved if params[:controller] == "resources"
     items
   end
+  
+  def height_class
+    if user_signed_in?
+      "signedin_height"
+    else
+      "not_signedin_height"
+    end
+  end
 end
 
 class BigDecimal
