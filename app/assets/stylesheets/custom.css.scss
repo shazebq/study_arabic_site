@@ -240,6 +240,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   color: black;
 }
 
+.custom_well_white
+{
+  @extend .custom_well;
+  background-color: white;
+}
+
 
 .comment_well
 {
