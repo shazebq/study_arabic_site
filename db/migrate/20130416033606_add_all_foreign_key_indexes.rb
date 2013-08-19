@@ -42,8 +42,8 @@ class AddAllForeignKeyIndexes < ActiveRecord::Migration
   end
 
   def down
-    remove_index :anwers, :user_id
-    remove_index :anwers, :forum_post_id
+    remove_index :answers, :user_id
+    remove_index :answers, :forum_post_id
 
     remove_index :articles, :user_id
     

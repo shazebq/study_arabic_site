@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813212149) do
+ActiveRecord::Schema.define(:version => 20130819225902) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -387,6 +387,8 @@ ActiveRecord::Schema.define(:version => 20130813212149) do
     t.string   "ip_address"
   end
 
+  add_index "views", ["ip_address"], :name => "index_views_on_ip_address"
+  add_index "views", ["session_id"], :name => "index_views_on_session_id"
   add_index "views", ["viewable_id", "viewable_type"], :name => "index_views_on_viewable_id_and_viewable_type"
 
   create_table "votes", :force => true do |t|
