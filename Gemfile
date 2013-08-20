@@ -47,6 +47,7 @@ gem 'ckeditor'
 gem 'redactor-rails'
 gem "mini_magick"
 
+gem "bullet", :group => "development"
 
 group :development, :test do
   gem 'rspec-rails'
