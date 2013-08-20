@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, 
                   :last_name, :username, :bio, :country_id, :image_attributes, :as => [:default, :admin] 
+  # only an admin can change the admin attribute
   attr_accessible :admin, as: :admin
 
   attr_accessor :has_teacher_profile

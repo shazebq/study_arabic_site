@@ -52,5 +52,4 @@ class ArticlesController < CategorizableItemsController
     end
   end
 
-
 end
