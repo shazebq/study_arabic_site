@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820205119) do
+ActiveRecord::Schema.define(:version => 20130821175352) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(:version => 20130820205119) do
     t.integer  "responsible_party_id"
     t.integer  "recipient_object_id"
     t.string   "recipient_object_type"
-    t.string   "responsible_party_object_id"
+    t.integer  "responsible_party_object_id"
     t.string   "responsible_party_object_type"
     t.string   "verb"
     t.datetime "created_at",                    :null => false

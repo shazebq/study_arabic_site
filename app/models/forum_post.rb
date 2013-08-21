@@ -23,6 +23,7 @@ class ForumPost < ActiveRecord::Base
 
   has_many :comments, as: :commentable, dependent: :destroy
 
+  has_many :recipient_notifications, class_name: "Notification", :as => :recipient_object, dependent: :destroy
 
   validates :title, :content, :category_ids, presence: true
 

@@ -4,5 +4,7 @@ class Vote < ActiveRecord::Base
   belongs_to :voteable, polymorphic: true, counter_cache: true
   belongs_to :user
 
+  has_many :responsible_party_notifications, class_name: "Notification", :as => :responsible_party_object, dependent: :destroy
+
   validates_uniqueness_of :user_id, :scope => [:voteable_id, :voteable_type]
 end

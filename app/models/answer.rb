@@ -11,6 +11,9 @@ class Answer < ActiveRecord::Base
 
   has_many :comments, :as => :commentable, dependent: :destroy
 
+  has_many :responsible_party_notifications, class_name: "Notification", :as => :responsible_party_object, dependent: :destroy
+  has_many :recipient_notifications, class_name: "Notification", :as => :recipient_object, dependent: :destroy
+
   validates :content, presence: true, length: { maximum: 10000 } 
   validates :forum_post_id, presence: true
 

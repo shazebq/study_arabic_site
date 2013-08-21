@@ -18,4 +18,14 @@ class Notification < ActiveRecord::Base
             responsible_party_object_id: responsible_party_object.id, responsible_party_object_type: responsible_party_object.class.name)
     end
   end
+
+  # checks to see if the original trigger object still exists as it could have been
+  # deleted via a downvote, comment deletion, etc
+  def objects_still_exist?
+    if responsible_party_object_type.constantize.find_by_id(responsible_party_object_id) && recipient_object_type.constantize.find_by_id(recipient_object_id)
+      true
+    else
+      false
+    end
+  end
 end

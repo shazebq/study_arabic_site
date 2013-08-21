@@ -27,6 +27,8 @@ class Article < ActiveRecord::Base
 
   has_many :photos, as: :photographable, dependent: :destroy
 
+  has_many :recipient_notifications, class_name: "Notification", :as => :recipient_object, dependent: :destroy
+
   belongs_to :user
 
   validates :title, :content, :category_ids, presence: true

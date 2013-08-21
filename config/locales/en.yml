@@ -39,6 +39,7 @@ en:
         employment_history: "Employment History"
         price_per_hour: "Price Per Hour (in American dollars)"
         date_of_birth: "Date of Birth"
+        field_of_study: "Field of Study"
       address:
         address_line: "Address"
         country_id: "Country"
