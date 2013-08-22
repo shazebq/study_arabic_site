@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  attr_accessible :content, :conversation_id, :recipient_id, :sender_id, :subject, :recipient_delete, :sender_delete, :as => [:default, :admin] 
+  attr_accessible :checked, :content, :conversation_id, :recipient_id, :sender_id, :subject, :recipient_delete, :sender_delete, :as => [:default, :admin] 
 
   belongs_to :recipient, class_name: "User"
   belongs_to :sender, class_name: "User"
@@ -13,6 +13,9 @@ class Message < ActiveRecord::Base
  
   # i.e. messages which have not been marked as "delete"
   scope :active_messages, lambda { |message_type| where("#{message_type}_delete IS NOT true") } 
+
+  # unread messages, only in the case of received messages
+  scope :unread_messages, lambda { active_messages("recipient").where("checked IS NOT true") }
 
   validates :subject, :content, :sender_id, :recipient_id, presence: true
   validates :subject, length: { maximum: 130 }

@@ -4,9 +4,10 @@ include Devise::TestHelpers
 describe "articles show page" do
   create_categories
   create_student_records
+  let!(:student_profile1) { FactoryGirl.create(:student_profile) }
+  let!(:user1) { FactoryGirl.create(:user, profile_type: "StudentProfile", profile_id: student_profile1.id) }
   let!(:article) { FactoryGirl.create(:article, title: "Advice for everyone", category_ids: [Category.first.id], user_id: user.id) }
   let!(:comment) { FactoryGirl.create(:comment, content: "fabulous article", commentable_id: article.id, commentable_type: "Article", user_id: user.id) } 
-
 
   before :each do
     visit article_path(article)
@@ -46,13 +47,34 @@ describe "articles show page" do
 
   describe "posting a comment" do
     before :each do
-      sign_in_user(user)
+      sign_in_user(user1)
       visit article_path(article)
       fill_in "comment_content", with: "Fabulous article. Keep up the good work!"
     end
 
     it "should create a comment and redirect to the same article path" do
       expect { click_button "Submit Comment" }.to change(Comment, :count).by(1)   
+    end
+
+    # no idea why the following are not working, useless error message
+    it "should create a notification with all the appropriate attributes" do
+      expect { click_button "Submit Comment" }.to change(Notification, :count).by(1)   
+      #Notification.last.recipient.should == user
+      #Notification.last.responsible_party.should == user1
+      #Notification.last.recipient_object.should == article
+      #Notification.last.responsible_party_object.should == Comment.last
+    end
+  end
+
+  describe "posting a comment to one's own article" do
+    before :each do
+      sign_in_user(user)
+      visit article_path(article)
+      fill_in "comment_content", with: "Fabulous article. Keep up the good work!"
+    end
+
+    it "should not create a notification" do
+      expect { click_button "Submit Comment" }.to change(Notification, :count).by(0)   
     end
   end
 

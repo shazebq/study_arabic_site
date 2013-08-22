@@ -60,7 +60,14 @@ ArabicProject::Application.configure do
   #    :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]
   #  }
   #}
-
+ 
+  # bullet configuration, not currently using this
+  #config.after_initialize do
+  #  Bullet.enable = true
+  #  Bullet.alert = true
+  #  # if there's an alert that you want to disable
+  #  Bullet.add_whitelist :type => :counter_cache, :class_name => "Category", :association => :forum_posts
+  #end
 
   ENV['root_path'] =  "static_pages#home";
 

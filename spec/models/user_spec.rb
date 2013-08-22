@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:sent_messages) }
   it { should respond_to(:received_messages) }
   it { should respond_to(:votes) }
+  it { should respond_to(:notifications) }
 
 
   describe "add_rep_points" do
@@ -112,18 +113,36 @@ describe User do
         end
       end
 
-      describe "skype_id validation" do
-        describe "long skype_id" do
-          #before { @user1.skype_id = "a" * 100 }
-          #it "should not be valid" do
-          #  @user1.should_not be_valid
-          #end
-        end
-      end
-
     end
 
+  end
 
+  describe "any_notifications?" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:notification) { FactoryGirl.create(:notification, recipient_id: user.id) }
+
+    context "user has an unchecked notification" do
+      before :each do
+        user.reload
+        notification.reload
+      end
+      it "should return true" do
+        user.new_notifications.size.should == 1 
+      end
+    end
+
+    context "user has a notification but it has been checked" do
+      before :each do
+        notification.checked = true
+        notification.save
+        notification.reload
+      end
+
+      it "should return false" do
+        user.new_notifications.size.should == 0
+      end
+    end
+      
   end
 
 

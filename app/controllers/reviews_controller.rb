@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.new(params[:review])
     @review.user_id = current_user.id
     if @review.save
+      Notification.generate_notification(@reviewable.user, current_user, @reviewable, @review) if @reviewable.is_a?(TeacherProfile)
       flash[:notice] = "Your review has been successfully submitted."
       redirect_to_reviewable(@reviewable) 
     else

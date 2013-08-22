@@ -24,54 +24,57 @@
 
             <div class="span6" id="right_header">
 
-
-
               <div class="row no_margin_left">
-                    <div class="span3 offset3 align_right"> 
+                    <div class="span5 offset1 align_right"> 
                       <div class="signin_container">
-                        <% if user_signed_in? %>
-                          <span class="dropdown">
-                              <a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
-                              <%= current_user.username %>
-                              <i class="icon-caret-down"></i>
-                              </a>
-                              <ul class="dropdown-menu align_left">
-                                <li><%= link_to("Profile", user_path(current_user)) %></li>
-                                <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
-                                <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
-                              </ul>
-                            </span> 
-                        <% else %>
-                          <span style="color: white;"><%= link_to("Sign In", new_user_session_path, class: "bold") %> or <%= render "shared/register_options" %></span>
-                        <% end %>
-                      </div><!--signin_container-->
-                    </div><!--span1 offset5-->
+                        <span id='signin_inline' class='<%= "#{height_class}" %>'>
+                              <% if user_signed_in? %>
+                                <span class="low_vert right_margin_medium"><%= render partial: "layouts/notifications" %></span>
+                                <span class="low_vert right_margin_medium"><%= render partial: "layouts/messages" %></span>
+                                <span class="low_vert subtitle_large"> | </span>
+                                <span class="low_vert dropdown">
+                                  <a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
+                                  <%= current_user.username %>
+                                  <i class="icon-caret-down"></i>
+                                  </a>
+                                  <ul class="dropdown-menu align_left">
+                                    <li><%= link_to("Profile", user_path(current_user)) %></li>
+                                    <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
+                                    <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
+                                  </ul>
+                                </span> 
+                              <% else %>
+                                <span class="low_vert1 subtitle_small"><%= link_to("Sign In", new_user_session_path, class: "bold") %> | <%= render "shared/register_options" %></span>
+                              <% end %>
 
+                              <div class="search_box_home">
+                              <%= form_tag("/site_search", :method => "get", class: "form-search") do %>
+                                <div class="form-inline">
+                                  <div class="input-append input-prepend">
+                                    <div class="btn-group">
+                                          <button class="btn dropdown-toggle search_input" data-toggle="dropdown">
+                                            <span><span id="current_selection" data-item="forum_posts">Forums</span> <i class="icon-caret-down"></i></span>
+                                          </button>
+                                          <ul class="dropdown-menu align_left options_list">
+                                            <% StaticPagesController::SEARCH_OPTIONS.each do |name, value| %>
+                                              <li id="<%= value %>"><a href=#><%= name %></a></li>
+                                            <% end %>
+                                          </ul>
+                                      </div>     
+                                        
+                                  <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", placeholder: "Search", class: "span3 search_input") %>
+                                  <%= hidden_field_tag(:item_type, "forum_posts", id: "selected_option") %>
+                                  <button class="btn" type="submit" name="commit" id="search_button"><i class="icon-search icon"></i></button>
+                                  </div>
+                                </div>
+                              <% end %>
+                            </div>
+                        </span><!--sigin_inline-->
+                      </div><!--signin_container-->
+                    </div><!--span3 offset3-->
               </div>
 
-              <div class="search_box_home align_right">
-                <%= form_tag("/site_search", :method => "get", class: "form-search") do %>
-                  <div class="form-inline">
-                    <div class="input-append input-prepend">
-                       <div class="btn-group">
-                            <button class="btn dropdown-toggle search_input" data-toggle="dropdown">
-                              <span><span id="current_selection" data-item="forum_posts">Forums</span> <i class="icon-caret-down"></i></span>
-                            </button>
-                            <ul class="dropdown-menu align_left options_list">
-                              <% StaticPagesController::SEARCH_OPTIONS.each do |name, value| %>
-                                <li id="<%= value %>"><a href=#><%= name %></a></li>
-                              <% end %>
-                            </ul>
-                        </div>     
-                          
-                    <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", placeholder: "Search", class: "span3 search_input") %>
-                    <%= hidden_field_tag(:item_type, "forum_posts", id: "selected_option") %>
-                    <button class="btn" type="submit" name="commit" id="search_button"><i class="icon-search icon"></i></button>
-                    </div>
-                  </div>
-                <% end %>
-                </div>
-
+              
 
 
             </div><!--span 6-->
@@ -124,8 +127,6 @@
 </div>
 
 
-
-
 <div class="container" id="page_area">
   <div class ="row">
     <div class="span12">
@@ -143,6 +144,8 @@
         </div>
         <div class="span3 sidebar">
           <%= yield :side_bar %>
+          <%= render partial: "ads/amazon_carousel" %>
+          <%= render partial: "ads/adsense1" %>         
         </div>
       </div>
     </div>
@@ -153,7 +156,6 @@
 <% if Rails.env.production? %>
   <%= render "layouts/ga_script" %> 
 <% end %>
-
 
 </body>
 </html>

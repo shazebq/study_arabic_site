@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427042604) do
+ActiveRecord::Schema.define(:version => 20130821190039) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -45,9 +45,12 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.datetime "updated_at",     :null => false
     t.integer  "comments_count"
     t.boolean  "approved"
+    t.string   "thumbnail_url"
   end
 
   add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
+  add_index "articles", ["views_count"], :name => "index_articles_on_views_count"
+  add_index "articles", ["votes_count"], :name => "index_articles_on_votes_count"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -94,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
   end
 
   add_index "centers", ["address_id"], :name => "index_centers_on_address_id"
+  add_index "centers", ["approved"], :name => "index_centers_on_approved"
+  add_index "centers", ["reviews_count"], :name => "index_centers_on_reviews_count"
   add_index "centers", ["user_id"], :name => "index_centers_on_user_id"
 
   create_table "cities", :force => true do |t|
@@ -160,7 +165,10 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.boolean  "approved"
   end
 
+  add_index "forum_posts", ["answers_count"], :name => "index_forum_posts_on_answers_count"
   add_index "forum_posts", ["user_id"], :name => "index_forum_posts_on_user_id"
+  add_index "forum_posts", ["views_count"], :name => "index_forum_posts_on_views_count"
+  add_index "forum_posts", ["votes_count"], :name => "index_forum_posts_on_votes_count"
 
   create_table "images", :force => true do |t|
     t.string   "imageable_type"
@@ -200,7 +208,26 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.datetime "updated_at",       :null => false
     t.boolean  "sender_delete"
     t.boolean  "recipient_delete"
+    t.boolean  "checked"
   end
+
+  add_index "messages", ["recipient_id", "checked"], :name => "index_messages_on_recipient_id_and_checked"
+  add_index "messages", ["recipient_id", "recipient_delete"], :name => "index_messages_on_recipient_id_and_recipient_delete"
+  add_index "messages", ["sender_id", "sender_delete"], :name => "index_messages_on_sender_id_and_sender_delete"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "recipient_id"
+    t.integer  "responsible_party_id"
+    t.integer  "recipient_object_id"
+    t.string   "recipient_object_type"
+    t.integer  "responsible_party_object_id"
+    t.string   "responsible_party_object_type"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "checked"
+  end
+
+  add_index "notifications", ["recipient_id", "checked"], :name => "index_notifications_on_recipient_id_and_checked"
 
   create_table "pg_search_documents", :force => true do |t|
     t.text     "content"
@@ -208,6 +235,14 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.string   "searchable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "photographable_id"
+    t.string   "photographable_type"
+    t.string   "photo_file"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -222,6 +257,23 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "redactor_assets", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "data_file_name",                  :null => false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    :limit => 30
+    t.string   "type",              :limit => 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "redactor_assets", ["assetable_type", "assetable_id"], :name => "idx_redactor_assetable"
+  add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_redactor_assetable_type"
 
   create_table "resources", :force => true do |t|
     t.text     "title"
@@ -243,8 +295,11 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.string   "resource_file"
   end
 
+  add_index "resources", ["downloads_count"], :name => "index_resources_on_downloads_count"
   add_index "resources", ["level_id"], :name => "index_resources_on_level_id"
   add_index "resources", ["user_id"], :name => "index_resources_on_user_id"
+  add_index "resources", ["views_count"], :name => "index_resources_on_views_count"
+  add_index "resources", ["votes_count"], :name => "index_resources_on_votes_count"
 
   create_table "reviews", :force => true do |t|
     t.text     "title"
@@ -293,6 +348,7 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
 
   add_index "teacher_profiles", ["city_id"], :name => "index_teacher_profiles_on_city_id"
   add_index "teacher_profiles", ["degree_id"], :name => "index_teacher_profiles_on_degree_id"
+  add_index "teacher_profiles", ["reviews_count"], :name => "index_teacher_profiles_on_reviews_count"
 
   create_table "teachers_languages", :force => true do |t|
     t.integer  "language_id"
@@ -335,6 +391,8 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["country_id"], :name => "index_users_on_country_id"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["id", "admin"], :name => "index_users_on_id_and_admin"
+  add_index "users", ["id", "staff_writer"], :name => "index_users_on_id_and_staff_writer"
   add_index "users", ["profile_id", "profile_type"], :name => "index_users_on_profile_id_and_profile_type"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
@@ -347,6 +405,7 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.string   "ip_address"
   end
 
+  add_index "views", ["ip_address", "viewable_id", "viewable_type", "session_id"], :name => "views_unique_index"
   add_index "views", ["viewable_id", "viewable_type"], :name => "index_views_on_viewable_id_and_viewable_type"
 
   create_table "votes", :force => true do |t|
@@ -357,6 +416,7 @@ ActiveRecord::Schema.define(:version => 20130427042604) do
     t.string   "voteable_type"
   end
 
+  add_index "votes", ["user_id", "voteable_id", "voteable_type"], :name => "votes_unique_index"
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
   add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
 

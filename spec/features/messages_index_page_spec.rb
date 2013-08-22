@@ -20,6 +20,12 @@ describe "message index page" do
       click_link("a new message")
       current_path.should == message_path(message)
     end
+
+    it "should change the checked attribute of the message to true" do
+      click_link("a new message")
+      message.reload
+      message.checked.should == true
+    end
   end
 
   describe "clicking check boxes for multiple messages and hitting delete" do

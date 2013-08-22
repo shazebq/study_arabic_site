@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   before_filter :only_recipient_can_reply, only: [:new_reply, :create_reply]
   before_filter :cannot_message_yourself, only: [:new, :create]
   before_filter :must_be_sender_or_recipient, only: [:show, :destroy]
+  before_filter :mark_as_read, only: :show
 
   def index
     @received_messages = User.find(params[:user_id]).received_messages.active_messages("recipient")
@@ -103,6 +104,13 @@ class MessagesController < ApplicationController
     message = Message.find(params[:id])
     unless current_user == message.recipient || current_user == message.sender
       redirect_to root_path
+    end
+  end
+
+  def mark_as_read
+    message = Message.find(params[:id])
+    if message.recipient == current_user
+      message.update_attributes(checked: true)
     end
   end
 end

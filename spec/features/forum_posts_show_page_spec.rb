@@ -122,6 +122,18 @@ describe "forum post show page" do
     it "should create an answer when an answer is submitted" do
       expect { click_button("Submit Answer") }.to change(Answer, :count).by(1)
     end
+
+    it "should create a notification for the question owner" do
+      expect { click_button("Submit Answer") }.to change(Notification, :count).by(1) 
+    end
+
+    specify "the notification should have the correct attributes" do
+      click_button("Submit Answer")
+      Notification.first.recipient.should == forum_post.user
+      Notification.first.responsible_party.should == user_5
+      Notification.first.recipient_object.should == forum_post
+      Notification.first.responsible_party_object.should == Answer.find_by_content("Hi there, I'm looking for a great Arabic teacher")
+    end
   end
 
   # figure out a way for this to work

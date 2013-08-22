@@ -26,6 +26,14 @@ $light: #BFDDDC;
   background-color: $contrast;
 }
 
+.red_badge_tiny
+{
+  @extend .red_badge;
+  font-size: 8px;
+  margin-left: -10px;
+  vertical-align: 0 !important;
+}
+
 .green_badge_connected
 {
   @extend .general_badge;
@@ -106,6 +114,11 @@ $light: #BFDDDC;
   margin-right: 3px;
 }
 
+.right_margin_medium
+{
+  margin-right: 5px;
+}
+
 .left_margin
 {
   margin-left: 10px;
@@ -117,10 +130,10 @@ $light: #BFDDDC;
 }
 
 .btn_custom {
-        font-family: 'Carrois Gothic', sans-serif;
+  font-family: 'Carrois Gothic', sans-serif;
 	font-size: 14px;
 	color: #ffffff;
-	padding: 8px 8px;
+	padding: 4px 8px;
 	background: -moz-linear-gradient(
 		top,
 		#4fa29f 0%,

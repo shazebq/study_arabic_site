@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
+  helper_method :answer_link
+  helper_method :comment_link
+  helper_method :review_link
+  helper_method :vote_link
+
   before_filter :set_locale
 
   PER_PAGE = 10 
@@ -87,7 +92,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   # needed because teacher_profiles are reviewable but I want the redirection
   # to go to the user show page
   def redirect_to_reviewable(reviewable)
@@ -98,11 +102,50 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # link generators for non conventional objects (answers, reviews)
+  def answer_link(answer, options = {})
+    forum_post_path(answer.forum_post, anchor: "answer_#{answer.id}", notification: options[:notification])
+  end
+
+  def review_link(review, options = {})
+    user_path(review.reviewable.user, anchor: "review_#{review.id}", notification: options[:notification])
+  end
+
+  # create link generators for comments and votes
+  def comment_link(comment, options = {})
+    parent = get_comment_parent(comment)
+    if parent.is_a?(Answer)
+      parent = parent.forum_post
+    end
+    send("#{parent.class.name.underscore}_path", parent, anchor: "comment_#{comment.id}", notification: options[:notification])
+  end
+
+  def vote_link(vote, options = {})
+    if vote.voteable.is_a?(Answer)
+      forum_post_path(vote.voteable.forum_post, anchor: "answer_#{vote.voteable.id}")
+    else
+      send("#{vote.voteable.class.name.underscore}_path", vote.voteable, notification: options[:notification])
+    end
+  end
+
+  def get_comment_parent(comment, options = {})
+    if comment.respond_to?(:commentable)
+      get_comment_parent(comment.commentable)
+    else
+      comment
+    end
+  end
+
+  def check_if_notification_destination
+    if params[:notification]
+      Notification.find_by_id(params[:notification]).try(:update_attributes, :checked => true)
+    end
+  end
+
   private
 
   def set_locale
     I18n.locale = params[:locale] || "en"
   end
-
 end
 

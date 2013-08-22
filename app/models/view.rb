@@ -5,3 +5,4 @@ class View < ActiveRecord::Base
 
   validates_uniqueness_of :ip_address, :scope => [:viewable_id, :viewable_type, :session_id]
 end
+

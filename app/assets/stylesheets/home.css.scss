@@ -11,7 +11,8 @@ select.select_box
 
 .search_box_home
 {
-    clear: both;
+    //clear: both;
+    margin-top: 10px;
     input, select, option 
     {
       -webkit-box-sizing: border-box;
@@ -23,6 +24,7 @@ select.select_box
     {
       vertical-align: text-top; 
     }
+    
 }
 
 
@@ -53,13 +55,6 @@ button.search_input
 }
 
 
-.search_box_home
-{
-  //border: solid 1px $main_color;
-  //border-radius: 5px;
-  //height: 24px;
-}
-
 .no_border
 {
   border: 0;
@@ -81,15 +76,71 @@ button.search_input
   margin-left: -25px;
 }
 
+.absolute_position
+{
+  position: absolute !important;
+}
+
 .signin_container
 {
-  margin-bottom: 5px;
+  //margin-bottom: 5px;
+  margin-top: -10px;
+  //border-radius: 20px;
 }
+
+#signin_inline
+{
+  // actually make this white and change text color to black or whatever
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  a:link {color:$main_color;}      /* unvisited link */
+  a:visited {color:$main_color;}  /* visited link */
+  display:inline-block; 
+  margin-top: -15px;
+}
+
+.signedin_height
+{
+  height: 70px;
+}
+
+.not_signedin_height
+{
+  height: 55px;
+}
+
+.low_vert
+{
+  //vertical-align: -15px;
+}
+
+.low_vert1
+{
+  //vertical-align: -8px;
+}
+
+.wider
+{
+  width: 250px;
+}
+
 
 #right_header
 {
   height: 40px;
 }
 
+.small_thumb
+{
+  width: 100px;
+  height: 100px;
+}
+
+.centered
+{
+  margin-left:auto;
+  margin-right:auto;
+}
 
 

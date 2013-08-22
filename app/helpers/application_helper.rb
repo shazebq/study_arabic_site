@@ -3,6 +3,14 @@ module ApplicationHelper
     CategoryParent.find_by_name(category_name).categories.order(:name)
   end
 
+  def check_active_icon(current_user, items)
+    if current_user.send(items).any?
+      "active_item"
+    else
+      "inactive_item"
+    end
+  end
+
   def scope_name_to_link_text(original)
     if original.include?("_")
       list = original.split("_")
@@ -50,7 +58,7 @@ module ApplicationHelper
     # note here that you have to add the h method to escape any html from the user submitted text!
     # even though rails automatically escapes html from user submitted data, I am wrapping it in the raw method
     # which makes it html safe. So in this case, just escase the text, and then you're fine.
-    raw(truncate(h(text), length: length, omission: (link_to "<span style='font-style: italic'> ...continue reading</span>".html_safe, item), separator: " ")) 
+    raw(truncate(h(text), length: length, omission: (link_to "<span style='font-style: italic'> ...continue</span>".html_safe, item), separator: " ")) 
   end
 
   # this should be used in any case where the image
@@ -125,6 +133,14 @@ module ApplicationHelper
   def filter_approved(items)
     return items.only_approved if params[:controller] == "resources"
     items
+  end
+  
+  def height_class
+    if user_signed_in?
+      "signedin_height"
+    else
+      "not_signedin_height"
+    end
   end
 end
 

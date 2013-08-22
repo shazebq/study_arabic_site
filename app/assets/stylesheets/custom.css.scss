@@ -199,14 +199,14 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   background-color: white;
   padding-left: 25px;
   //padding-right: 20px;
-  border-radius: 15px;
+  //border-radius: 15px;
   min-height: 1000px;
   padding-top: 20px;
 }
 
 #main_content
 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .custom_alert
@@ -238,6 +238,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 {
   @extend .custom_alert;
   color: black;
+}
+
+.custom_well_white
+{
+  @extend .custom_well;
+  background-color: white;
 }
 
 
@@ -381,6 +387,12 @@ h3
 {
   border-bottom: 1px solid #CCCCCC;
   margin-bottom: 10px;
+}
+
+.border_div_with_margin
+{
+  @extend .bottom_border_div;
+  margin-top: 10px;
 }
 
 // buttons from rails button_to method

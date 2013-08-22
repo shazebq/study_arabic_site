@@ -6,33 +6,34 @@
 <!--featured article-->
 <div class="row">
   <div class="span9">
-    <div class="subtitle_largest margin_bottom_small"><%= link_to(@presenter.feature_article.try(:title), @presenter.feature_article) %></div>
+    <div class="subtitle_largest margin_bottom_small"><%= link_to(@presenter.feature_article.title, @presenter.feature_article) %></div>
     <div><%= render partial: "articles/author_line", locals: { item: @presenter.feature_article } %></div>
   </div>
 </div>
 
 <div class="row">
   <div class="span9">
-    <%= image_tag(@presenter.feature_article.try(:images).try(:first).try(:photo,:medium), class: "floatLeft") %>
-    <%= truncate_text(simple_format(@presenter.feature_article.try(:content)), 800, @presenter.feature_article) %>
+    <%= image_tag(@presenter.feature_article.try(:thumbnail_url), class: "floatLeft") %>
+    <%= truncate_text(strip_tags(@presenter.feature_article.content), 1100, @presenter.feature_article) %>
   </div>
-  <div class="span9 bottom_border_div"></div>
+  <div class="span9 border_div_with_margin"></div>
 </div>
 
+<!-- for the second and third articles, just the frame of the image smaller -->
 <div class="row">
   <div class="article_span">
-      <div class="subtitle_large"><%= link_to(@presenter.articles.first.try(:title), @presenter.articles.first) %></div>
+      <div class="subtitle_large"><%= link_to(@presenter.articles.first.title, @presenter.articles.first) %></div>
       <div><%= render partial: "articles/author_line", locals: { item: @presenter.articles.first } %></div>
-      <%= image_tag(@presenter.articles.first.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
-      <%= truncate_text(simple_format(@presenter.articles.first.try(:content)), 350, @presenter.articles.first) %>
+      <%= image_tag(@presenter.articles.first.try(:thumbnail_url), class: "floatLeft small_thumb") %>
+      <%= truncate_text(strip_tags(@presenter.articles.first.content), 430, @presenter.articles.first) %>
   </div>
   <div class="article_span_no_border">
-      <div class="subtitle_large"><%= link_to(@presenter.articles.last.try(:title), @presenter.articles.last) %></div>
+      <div class="subtitle_large"><%= link_to(@presenter.articles.last.title, @presenter.articles.last) %></div>
       <div><%= render partial: "articles/author_line", locals: { item: @presenter.articles.last } %></div>
-      <%= image_tag(@presenter.articles.last.try(:images).try(:first).try(:photo, :thumb), class: "floatLeft" ) %>
-      <%= truncate_text(simple_format(@presenter.articles.last.try(:content)), 350, @presenter.articles.last) %>
+      <%= image_tag(@presenter.articles.last.try(:thumbnail_url), class: "floatLeft small_thumb") %>
+      <%= truncate_text(strip_tags(@presenter.articles.last.try(:content)), 430, @presenter.articles.last) %>
   </div>
-  <div class="span9 bottom_border_div"></div>
+  <div class="span9 border_div_with_margin"></div>
 </div>
 
 <div class="subtitle_large_color margin_bottom">Have a Question? Browse Our Forums</div>

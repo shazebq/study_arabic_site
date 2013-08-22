@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     # for the possibility that the comment was submitted with an error
     @comment_new = @commentable.comments.create(params[:comment]) 
     if @comment_new.valid?
+      Notification.generate_notification(@comment_new.commentable.user, current_user, @comment_new.commentable, @comment_new)
       flash[:notice] = "Your comment has been successfully added." 
     else
       flash[:alert] = "Your comment could not be added."

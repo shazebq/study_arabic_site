@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_one :image, as: :imageable, dependent: :destroy
   has_many :images
 
+  has_many :notifications, foreign_key: "recipient_id", dependent: :destroy
+
   belongs_to :profile, polymorphic: true
   belongs_to :country
   accepts_nested_attributes_for :image
@@ -34,6 +36,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, 
                   :last_name, :username, :bio, :country_id, :image_attributes, :as => [:default, :admin] 
+  # only an admin can change the admin attribute
   attr_accessible :admin, as: :admin
 
   attr_accessor :has_teacher_profile
@@ -48,6 +51,8 @@ class User < ActiveRecord::Base
   scope :students, where(profile_type: "StudentProfile")
 
   REP_POINTS_HASH = { "ForumPost" => 2, "Article" => 4, "Answer" => 4, "Resource" => 4 }
+  
+  delegate :unread_messages, :to => :received_messages
 
   def should_validate_bio?
     self.has_teacher_profile
@@ -92,7 +97,11 @@ class User < ActiveRecord::Base
     return "#{id}-#{first_name.parameterize}-#{last_name.parameterize}" if self.profile_type == "TeacherProfile"
     return "#{id}-#{username.parameterize}" if self.profile_type == "StudentProfile"
   end
-   
+
+  def new_notifications
+    self.notifications.only_new
+  end
+
   private
   def destroy_user_profile
     self.profile.delete

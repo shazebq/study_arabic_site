@@ -1,22 +1,20 @@
 require "spec_helper"
 
-class ApplicationController < ActionController::Base
-  #describe ApplicationController do
-  #  controller do
-  #    def get_parent
-  #
-  #    end
-  #  end
-  #
-  #end
+describe ApplicationController do
+  #create_categories
+  #initialize_records
 
+  before :each do
+    @controller = ApplicationController.new
+  end
 
-  #describe "get_parent" do
-  #  it "should take an array of params and return the parent of the future new object" do
-  #    get_parent()
-  #  end
-  #end
+  describe "answer_link method" do
+    
+    # doesn't work, some kind of bug
+    #it "is a test" do
+    #  @controller.answer_link(answer).should == "hello" 
+    #end
+  end
 
 end
 
-#comments

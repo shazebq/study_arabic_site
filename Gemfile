@@ -44,7 +44,10 @@ gem 'carrierwave'
 gem 'carrierwave_direct'
 gem 'fog', '~> 1.3.1'
 gem 'ckeditor'
+gem 'redactor-rails'
+gem "mini_magick"
 
+gem "bullet", :group => "development"
 
 group :development, :test do
   gem 'rspec-rails'

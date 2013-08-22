@@ -1,6 +1,12 @@
 <%= provide :title, "Arabic Teacher Directory" %>
-<%= render partial: "shared/page_title", locals: { title: "Arabic Teacher Directory" } %>
-<%= render partial: "shared/search_box", locals: { item_type: "Teachers" } %>
+
+<%= render partial: "shared/page_title", locals: { title: "Teacher Directory" } %>
+<% if user_signed_in? %>
+  <%= render partial: "shared/search_box", locals: { item_type: "Teachers" } %>
+<% else %>
+  <%= render partial: "shared/search_and_new", locals: { item_type: "Teachers", new_button_text: "Register As a Teacher" }  %>
+<% end %>
+
 <div class="row">
   <div class="span3">
     <p class="subtitle_large">Ratings</p>

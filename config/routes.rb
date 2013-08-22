@@ -1,4 +1,6 @@
 ArabicProject::Application.routes.draw do
+  mount RedactorRails::Engine => '/redactor_rails'
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   match "home" => "static_pages#home", :via => :get
@@ -46,11 +48,11 @@ ArabicProject::Application.routes.draw do
     get 'search', :on => :collection
   end
 
-    resources :centers, path: "arabic-centers-programs" do
-      resources :reviews
-      get 'search', :on => :collection
-      resources :images, only: [:new, :create]
-    end
+  resources :centers, path: "arabic-centers-programs" do
+    resources :reviews
+    get 'search', :on => :collection
+    resources :images, only: [:new, :create]
+  end
 
   resources :users, only: :show do
     resources :messages

@@ -35,6 +35,31 @@ describe MessagesController do
 
     end
   end
+
+  describe "checking a message" do
+    before { sign_in(user1) }
+
+    context "when the user checks a received message" do
+      it "should change the checked attribute of the message to true" do
+        get :show, id: first_reply.id 
+        response.response_code.should == 200
+        first_reply.reload
+        first_reply.checked.should == true
+      end
+    end
+
+    context "when the user checks a sent message" do
+      it "should not change the checked attribute of the message true" do
+        get :show, id: original_message.id 
+        response.response_code.should == 200
+        first_reply.reload
+        first_reply.checked.should_not == true
+      end
+    end
+      
+  end
+
+
 end
 
 # comments
