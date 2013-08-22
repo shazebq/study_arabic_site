@@ -50,10 +50,14 @@ class Article < ActiveRecord::Base
 
   def add_thumbnail_url
     article_content = Nokogiri::HTML(self.content)
-    url = article_content.css("img").first["src"].rpartition("/")
-    url[-1] = "thumb_" + url[-1]
-    url = url.join
-    self.update_attribute(:thumbnail_url, url)
+    tag = article_content.css("img")
+    unless tag.empty?
+      # break in to array at the last slash
+      url = tag.first["src"].rpartition("/")
+      url[-1] = "thumb_" + url[-1]
+      url = url.join
+      self.update_attribute(:thumbnail_url, url)
+    end
   end
 end
 
