@@ -44,7 +44,9 @@
                                   </ul>
                                 </span> 
                               <% else %>
-                                <span class="low_vert1 subtitle_small"><%= link_to("Sign In", new_user_session_path, class: "bold") %> | <%= render "shared/register_options" %></span>
+                                <div class="margin_top_small"> 
+                                  <span class="low_vert1 subtitle_large"><%= link_to("Sign In", new_user_session_path, class: "bold") %> | <%= render "shared/register_options" %></span>
+                                </div>
                               <% end %>
 
                               <div class="search_box_home">
