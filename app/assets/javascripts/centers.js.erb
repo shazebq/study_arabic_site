@@ -18,7 +18,7 @@ $(document).ready(function() {
     var ratings_option = $("li.ratings_option.active")[0].id
     var country_option = $("li.country_option.active")[0].id
 
-    $("#centers_list").load("/centers?" + $.param({ ratings_option: ratings_option,
+    $("#centers_list").load("/arabic-centers-programs?" + $.param({ ratings_option: ratings_option,
                                                              country_option: country_option,  
                                                              page: 1
                                                   }) + " #centers_div"
