@@ -15,7 +15,7 @@
         <%= modified_sf(@resource.description) %>
       </p>
         <%= link_to "<i class='icon-download icon-large'></i>".html_safe, download_resource_path(@resource), class: "no_underline_color" %>
-        <%= link_to "Download Resource", "/arabic-learning-resources/#{@resource.id}/download", class: "bold" %>
+        <%= link_to "Download Resource", "/resources/#{@resource.id}/download", class: "bold" %>
     </div>
 
     <%= button_to("Review This Resource", new_resource_review_path(@resource), class: "btn_custom", method: :get) %>
