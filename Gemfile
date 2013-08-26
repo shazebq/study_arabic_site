@@ -45,7 +45,8 @@ gem 'carrierwave_direct'
 gem 'fog', '~> 1.3.1'
 gem 'ckeditor'
 gem 'redactor-rails'
-gem "mini_magick"
+gem 'mini_magick'
+gem 'geocoder'
 
 gem "bullet", :group => "development"
 

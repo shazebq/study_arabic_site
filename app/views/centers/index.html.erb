@@ -15,15 +15,14 @@
 <div id="centers_list">
   <div id="centers_div">
       <%= anticipate_no_records(@centers, "centers or programs", centers_path) %>
-          <!--
           <ul class="nav nav-tabs">
             <li class="active">
-              <a href="#">Home</a>
+              <a href="#">List View</a>
             </li>
             <li>
               <a href="#">Map View</a>
             </li>
-          </ul> -->
+          </ul>
       <% @centers.each_with_index do |center, i| %>
         <%= render partial: "shared/index_with_image", 
                   locals: { image: center.images.first.try(:photo).try(:url, :thumb), 

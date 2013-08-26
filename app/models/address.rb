@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
-  attr_accessible :address_line, :city_name, :country_id, :city_id, :as => [:default, :admin] 
+  attr_accessible :address_line, :city_name, :country_id, :city_id, :latitude, :longitude, :as => [:default, :admin]
   attr_accessor :city_name
   belongs_to :country
   belongs_to :city
@@ -10,9 +10,13 @@ class Address < ActiveRecord::Base
   validates :country_id, :city_name, presence: true 
   validates :address_line, length: { maximum: 65 }, reduce: true
 
-  # sort of a virtual attribute
-  #def city_name
-  #  self.city.try(:name) 
-  #end
+  geocoded_by :full_address
+  # set this up as delayed job
+  after_validation :geocode
+
+  def full_address
+    "#{address_line}, #{city.name}, #{country.name}"
+  end
+
 end
 
