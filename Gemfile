@@ -47,6 +47,7 @@ gem 'ckeditor'
 gem 'redactor-rails'
 gem 'mini_magick'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 gem "bullet", :group => "development"
 

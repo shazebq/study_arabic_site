@@ -19,6 +19,12 @@ describe Address do
       address_new.full_address.should == "150 Fennel Court, Morgan Hill, United States"
     end
   end
+
+  describe "city_and_country" do
+    it "should return a string with just the city and country" do
+      address_new.city_and_country.should == "Morgan Hill, United States"
+    end
+  end
 end
 
 #comments

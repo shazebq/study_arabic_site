@@ -10,13 +10,29 @@ class Address < ActiveRecord::Base
   validates :country_id, :city_name, presence: true 
   validates :address_line, length: { maximum: 65 }, reduce: true
 
-  geocoded_by :full_address
-  # set this up as delayed job
-  after_validation :geocode
-
+  unless Rails.env == "test"
+    geocoded_by :full_address
+    # set this up as delayed job
+    after_validation :geocode
+  end
+  
   def full_address
     "#{address_line}, #{city.name}, #{country.name}"
   end
 
+  def city_and_country
+    "#{city.name}, #{country.name}"
+  end
+
+  def populate_lat_long
+    if country.name == "United States"
+      geo_data = Geocoder.search(full_address)
+    else
+      geo_data = Geocoder.search(city_and_country)
+    end
+    latitude = geo_data[0].latitude
+    longitude = geo_data[0].longitude
+    save
+  end
 end
 
