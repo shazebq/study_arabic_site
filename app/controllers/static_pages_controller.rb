@@ -20,4 +20,8 @@ class StaticPagesController < ApplicationController
   def contact
     return render text: "fake contact page"
   end
+
+  def foo
+    render "foo", layout: false
+  end
 end

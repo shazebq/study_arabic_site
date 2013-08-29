@@ -1,0 +1,14 @@
+#map-canvas
+{
+  height: 250px;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+}
+
+// needed to override bootstrap's max-width: 100% property
+#map-canvas img
+{
+  max-width: none;
+}
+

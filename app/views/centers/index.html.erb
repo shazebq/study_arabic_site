@@ -23,6 +23,7 @@
               <a href="#">Map View</a>
             </li>
           </ul>
+      <div id="map-canvas"></div>
       <% @centers.each_with_index do |center, i| %>
         <%= render partial: "shared/index_with_image", 
                   locals: { image: center.images.first.try(:photo).try(:url, :thumb), 
