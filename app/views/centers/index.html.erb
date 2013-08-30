@@ -3,6 +3,11 @@
 
 <%= render partial: "shared/search_and_new", locals: { item_type: "Centers", new_button_text: "Add a Center/Program" }  %>
 
+<% content_for(:page_specific_js) do %>
+  <%= render partial: "map", locals: { centers: @centers } %> 
+<% end %>
+
+
 <ul class="nav nav-pills custom">
   <li class="active center_options ratings_option" id="order_by_average_rating">
     <a href="#">Highest Rated</a>
@@ -23,7 +28,13 @@
               <a href="#">Map View</a>
             </li>
           </ul>
-      <div id="map-canvas"></div>
+
+
+      <%= content_tag "div", id: "map-canvas", data: { centers: @centers } do %>
+      
+      <% end %>
+
+
       <% @centers.each_with_index do |center, i| %>
         <%= render partial: "shared/index_with_image", 
                   locals: { image: center.images.first.try(:photo).try(:url, :thumb), 

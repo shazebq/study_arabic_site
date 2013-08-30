@@ -25,14 +25,13 @@ class Address < ActiveRecord::Base
   end
 
   def populate_lat_long
-    if country.name == "United States"
+    if self.country.name == "United States"
       geo_data = Geocoder.search(full_address)
     else
       geo_data = Geocoder.search(city_and_country)
     end
-    latitude = geo_data[0].latitude
-    longitude = geo_data[0].longitude
-    save
+    self.update_attribute :latitude, geo_data[0].latitude
+    self.update_attribute :longitude, geo_data[0].longitude
   end
 end
 
