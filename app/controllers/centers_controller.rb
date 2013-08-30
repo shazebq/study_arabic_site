@@ -14,6 +14,7 @@ class CentersController < ApplicationController
     else
       @centers = (Center.includes(:images).only_approved.order_by_average_rating + Center.includes(:images).only_approved.zero_review_records).paginate(page: params[:page], per_page: PER_PAGE)
     end
+    @centers_for_map = Center.get_mappable_attributes(@centers)  
   end
 
   def search

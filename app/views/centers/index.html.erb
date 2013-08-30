@@ -29,11 +29,9 @@
             </li>
           </ul>
 
-
-      <%= content_tag "div", id: "map-canvas", data: { centers: @centers } do %>
-      
+      <%= content_tag "div", id: "map-canvas", data: { centers: @centers_for_map } do %>
+    
       <% end %>
-
 
       <% @centers.each_with_index do |center, i| %>
         <%= render partial: "shared/index_with_image", 

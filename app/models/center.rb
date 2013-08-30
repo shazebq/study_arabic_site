@@ -51,6 +51,21 @@ class Center < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  def self.get_mappable_attributes(centers)
+    centers.to_json(:only => :name, 
+                    :include => 
+                      {:address => 
+                        { 
+                          :only => [:latitude, :longitude], 
+                          :include => 
+                            { :country => { :only => :name },
+                              :city => { :only => :name }
+                            } 
+                        } 
+                      }
+                    )
+  end
+
   private
   def destroy_address
     self.address.delete
@@ -61,5 +76,7 @@ class Center < ActiveRecord::Base
       self.website = 'http://' + self.website
     end
   end
+
+
 
 end
