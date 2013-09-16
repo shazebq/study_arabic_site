@@ -32,7 +32,7 @@
     <%= render partial: "shared/two_columns", locals: { key: "Education", value: nil } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "Field of Study", value: (@user.profile.field_of_study) } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "University", value: @user.profile.university } %>
-    <%= render partial: "shared/two_columns_indented", locals: { key: "Highest Degree", value: @user.profile.degree.name } %>
+    <%= render partial: "shared/two_columns_indented", locals: { key: "Highest Degree", value: @user.profile.try(:degree).try(:name) } %>
     <%= render partial: "shared/two_columns_indented", locals: { key: "Other Education/Training", value: modified_sf(@user.profile.other_education) } %>
   </div>
 
