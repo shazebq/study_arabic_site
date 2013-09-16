@@ -24,6 +24,8 @@ class Address < ActiveRecord::Base
     "#{city.name}, #{country.name}"
   end
 
+  # for anything outside of U.S. which is basically just
+  # Egypt right now, geo only the city and country
   def populate_lat_long
     if self.country.name == "United States"
       geo_data = Geocoder.search(full_address)

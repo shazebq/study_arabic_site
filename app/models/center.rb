@@ -51,8 +51,9 @@ class Center < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  # grabs only the attributes that are needed for the maps
   def self.get_mappable_attributes(centers)
-    centers.to_json(:only => :name, 
+    centers.as_json(:only => [:name, :id], 
                     :include => 
                       {:address => 
                         { 
@@ -62,7 +63,7 @@ class Center < ActiveRecord::Base
                               :city => { :only => :name }
                             } 
                         } 
-                      }
+                      },
                     )
   end
 

@@ -3,6 +3,7 @@
 
 <%= render partial: "shared/search_and_new", locals: { item_type: "Centers", new_button_text: "Add a Center/Program" }  %>
 
+<!-- load the google maps api here so that it doens't load it for every page -->
 <% content_for(:page_specific_js) do %>
   <%= render partial: "map", locals: { centers: @centers } %> 
 <% end %>
