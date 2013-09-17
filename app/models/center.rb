@@ -1,4 +1,5 @@
 class Center < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   include ReviewableScoping
   include ApprovedScoping
   extend ReviewableScoping
@@ -52,6 +53,7 @@ class Center < ActiveRecord::Base
   end
 
   # grabs only the attributes that are needed for the maps
+  # with methods, you can add the result of some method call
   def self.get_mappable_attributes(centers)
     centers.as_json(:only => [:name, :id], 
                     :include => 
@@ -64,7 +66,12 @@ class Center < ActiveRecord::Base
                             } 
                         } 
                       },
+                     :methods => :center_link
                     )
+  end
+
+  def center_link
+    center_path(self)  
   end
 
   private
