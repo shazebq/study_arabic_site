@@ -15,6 +15,7 @@ class CentersController < ApplicationController
       @centers = (Center.includes(:images).only_approved.order_by_average_rating + Center.includes(:images).only_approved.zero_review_records).paginate(page: params[:page], per_page: PER_PAGE)
     end
     @centers_for_map = Center.get_mappable_attributes(@centers)  
+    @map_center = params[:country_option] == "all" || params[:country_option].blank? ? Country::DEFAULT_LAT_LONG : Country.find(params[:country_option]).get_lat_long
   end
 
   def search

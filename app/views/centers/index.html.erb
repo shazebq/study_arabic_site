@@ -21,7 +21,7 @@
   <div id="centers_div">
       <%= anticipate_no_records(@centers, "centers or programs", centers_path) %>
       <% unless @centers.empty? %>
-        <%= content_tag "div", id: "map-canvas", data: { centers: @centers_for_map } do %>
+        <%= content_tag "div", id: "map-canvas", data: { centers: @centers_for_map, map_center: @map_center } do %>
         <br />
       <% end %>
     

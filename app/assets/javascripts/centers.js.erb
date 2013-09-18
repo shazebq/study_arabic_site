@@ -1,8 +1,11 @@
 $(document).ready(function() {  
   function map_setup() {
+    latitude = ($("#map-canvas").data("map-center"))["latitude"];
+    longitude = ($("#map-canvas").data("map-center"))["longitude"];
+    
     var mapOptions = {
       // center on the U.S. for now
-      center: new google.maps.LatLng(35.0, -9.0),
+      center: new google.maps.LatLng(latitude, longitude),
       zoom: 2,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
