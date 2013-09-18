@@ -17,15 +17,21 @@ class Address < ActiveRecord::Base
   end
   
   def full_address
-    "#{address_line}, #{city.name}, #{country.name}"
+    if address_line?
+      "#{address_line}, #{city.name}, #{country.name}"
+    else
+      city_and_country
+    end
   end
 
   def city_and_country
     "#{city.name}, #{country.name}"
   end
 
+  # note: this method will popuate all existing addresses with lat, long 
+  # run the method on next deployment
   # for anything outside of U.S. which is basically just
-  # Egypt right now, geo only the city and country
+  # Egypt right now, geocode only the city and country
   def populate_lat_long
     if self.country.name == "United States"
       geo_data = Geocoder.search(full_address)
