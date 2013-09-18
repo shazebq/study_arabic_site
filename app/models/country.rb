@@ -6,7 +6,7 @@ class Country < ActiveRecord::Base
   has_many :addresses
   has_many :cities
 
-  DEFAULT_LAT_LONG = { latitude: 35.0, longitude: -9.0 }  
+  DEFAULT_LAT_LONG = { latitude: 35.0, longitude: -9.0, zoom: 2 }  
 
   def teacher_profiles_in_country
     User.teachers.where(country_id: id).size
@@ -18,7 +18,7 @@ class Country < ActiveRecord::Base
 
   def get_lat_long
     if self.latitude? && self.longitude?
-      { latitude: self.latitude, longitude: self.longitude }
+      { latitude: self.latitude, longitude: self.longitude, zoom: 4 }
     else
       DEFAULT_LAT_LONG
     end

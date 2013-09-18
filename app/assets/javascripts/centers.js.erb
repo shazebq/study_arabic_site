@@ -2,11 +2,11 @@ $(document).ready(function() {
   function map_setup() {
     latitude = ($("#map-canvas").data("map-center"))["latitude"];
     longitude = ($("#map-canvas").data("map-center"))["longitude"];
+    zoom = ($("#map-canvas").data("map-center"))["zoom"];
     
     var mapOptions = {
-      // center on the U.S. for now
       center: new google.maps.LatLng(latitude, longitude),
-      zoom: 2,
+      zoom: zoom,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -49,8 +49,10 @@ $(document).ready(function() {
     });
   }
 
-  // loads the map when the page loads for the first time
-  google.maps.event.addDomListener(window, 'load', map_setup);
+  // loads the map when the page loads for the first time currently only on the centers page
+  if ($('#map-canvas').length){
+    google.maps.event.addDomListener(window, 'load', map_setup);
+  }
 
   $(".center_options").click(function() {
     
