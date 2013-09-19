@@ -1,27 +1,31 @@
 $(document).ready(function() {  
   function map_setup() {
-    latitude = ($("#map-canvas").data("map-center"))["latitude"];
-    longitude = ($("#map-canvas").data("map-center"))["longitude"];
-    zoom = ($("#map-canvas").data("map-center"))["zoom"];
+    latitude = ($("#map-data").data("map-center"))["latitude"];
+    longitude = ($("#map-data").data("map-center"))["longitude"];
+    zoom = ($("#map-data").data("map-center"))["zoom"];
     
     var mapOptions = {
       center: new google.maps.LatLng(latitude, longitude),
       zoom: zoom,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
+    var map = new google.maps.Map(document.getElementsByClassName("map")[0],
         mapOptions);
 
-    set_markers(map)
+    if ($('#centers_list').length)
+    {
+      set_markers(map);
+    }
+    else
+    {
+      set_marker(map, latitude, longitude)
+    }
+
   }
 
   function set_markers(map) {
-    centers = ( $("#map-canvas").data("centers") );
-
+    centers = ( $("#map-data").data("centers") );
     markers = new Array();
-    //info_windows = new Array();
-
-    // loop through each of the centers and create a marker for each one using the lat and long attributes
     info_window = new google.maps.InfoWindow({});
 
     count = 0;
@@ -39,6 +43,13 @@ $(document).ready(function() {
     }
   }
 
+  function set_marker(map, latitude, longitude) {
+    new google.maps.Marker({
+                              position: new google.maps.LatLng(latitude, longitude),
+                              map: map
+                          });
+  }
+
   // need this closure in order for the the multiple info window thing to work
   function bind_info_window(marker, map, info_window, center_link, center_name, center_city) {
     google.maps.event.addListener(marker, 'click', function() {
@@ -50,7 +61,7 @@ $(document).ready(function() {
   }
 
   // loads the map when the page loads for the first time currently only on the centers page
-  if ($('#map-canvas').length){
+  if ($('.map').length){
     google.maps.event.addDomListener(window, 'load', map_setup);
   }
 

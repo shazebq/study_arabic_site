@@ -6,8 +6,16 @@
   padding: 0;
 }
 
+#map-canvas-show
+{
+  @extend #map-canvas;
+  height: 200px;
+  margin-left: -5px;
+  width: 227px;
+}
+
 // needed to override bootstrap's max-width: 100% property
-#map-canvas img
+#map-canvas img, #map-canvas-show img
 {
   max-width: none;
 }

@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+  include Mapping
   attr_accessible :address_line, :city_name, :country_id, :city_id, :latitude, :longitude, :as => [:default, :admin]
   attr_accessor :city_name
   belongs_to :country
@@ -16,6 +17,8 @@ class Address < ActiveRecord::Base
     after_validation :geocode
   end
   
+  DEFAULT_LAT_LONG = { latitude: 35.0, longitude: -9.0, zoom: 2 }  
+
   def full_address
     if address_line?
       "#{address_line}, #{city.name}, #{country.name}"

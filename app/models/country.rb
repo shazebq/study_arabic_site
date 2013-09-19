@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  include PgSearch
+  include PgSearch, Mapping 
   #multisearchable :against => :name
   attr_accessible :iso, :name, :as => [:default, :admin] 
   has_many :users
@@ -15,12 +15,5 @@ class Country < ActiveRecord::Base
   def centers_in_country
     Center.joins(:address).where("addresses.country_id" => id).size
   end
-
-  def get_lat_long
-    if self.latitude? && self.longitude?
-      { latitude: self.latitude, longitude: self.longitude, zoom: 4 }
-    else
-      DEFAULT_LAT_LONG
-    end
-  end
+  
 end

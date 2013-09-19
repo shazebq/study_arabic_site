@@ -44,6 +44,7 @@ class CentersController < ApplicationController
 
   def show 
     @center = Center.find(params[:id]) 
+    @map_center = @center.address.get_lat_long
   end
 
   def edit
