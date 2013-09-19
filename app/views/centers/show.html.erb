@@ -92,19 +92,12 @@
   </div>
 
   <div class="span3">
-    <%= content_tag "div", class: "map", id: "map-canvas-show" do %><% end %>
-    <%= content_tag "div", id: "map-data", data: { map_center: @map_center } do %><% end %>
+    <% if @center.address.latitude? && @center.address.longitude? %>
+      <%= content_tag "div", class: "map", id: "map-canvas-show" do %><% end %>
+      <%= content_tag "div", id: "map-data", data: { map_center: @map_center } do %><% end %>
+    <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
 
 <br />
 <div>

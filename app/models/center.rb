@@ -55,7 +55,7 @@ class Center < ActiveRecord::Base
   # grabs only the attributes that are needed for the maps
   # with methods, you can add the result of some method call
   def self.get_mappable_attributes(centers)
-    centers.as_json(:only => [:name, :id], 
+    centers.reject { |c| c.address.latitude.nil? || c.address.longitude.nil? }.as_json(:only => [:name, :id], 
                     :include => 
                       {:address => 
                         { 

@@ -17,8 +17,6 @@ class Address < ActiveRecord::Base
     after_validation :geocode
   end
   
-  DEFAULT_LAT_LONG = { latitude: 35.0, longitude: -9.0, zoom: 2 }  
-
   def full_address
     if address_line?
       "#{address_line}, #{city.name}, #{country.name}"
@@ -36,13 +34,12 @@ class Address < ActiveRecord::Base
   # for anything outside of U.S. which is basically just
   # Egypt right now, geocode only the city and country
   def populate_lat_long
-    if self.country.name == "United States"
-      geo_data = Geocoder.search(full_address)
-    else
-      geo_data = Geocoder.search(city_and_country)
+    geo_data = Geocoder.search(full_address)
+    unless geo_data.blank?
+      self.update_attribute :latitude, geo_data[0].latitude
+      self.update_attribute :longitude, geo_data[0].longitude
     end
-    self.update_attribute :latitude, geo_data[0].latitude
-    self.update_attribute :longitude, geo_data[0].longitude
   end
+
 end
 

@@ -27,6 +27,10 @@ describe Country do
     end
 
     describe "getting the number of centers in a certain country" do
+      before :each do
+        center.update_attribute(:approved, true)
+        center1.update_attribute(:approved, true)
+      end
       it "should return 1" do
         country.centers_in_country.should == 2
       end

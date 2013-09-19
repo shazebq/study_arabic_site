@@ -13,7 +13,7 @@ class Country < ActiveRecord::Base
   end
 
   def centers_in_country
-    Center.joins(:address).where("addresses.country_id" => id).size
+    Center.only_approved.joins(:address).where("addresses.country_id" => id).size
   end
   
 end

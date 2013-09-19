@@ -25,6 +25,14 @@ describe Address do
       address_new.city_and_country.should == "Morgan Hill, United States"
     end
   end
+
+  # write test for populate lat_long---double check this, geocoder API not responding
+  describe "populate lat_long" do
+    it "should update the lat long fields of the address" do
+      #address_new.populate_lat_long
+    end
+  end
+
 end
 
 #comments
