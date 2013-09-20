@@ -62,4 +62,13 @@
   <% end %>
   <% @extra_line = capture { "Explore #{ link_to("Arabic Centers", centers_path) } throughout the Middle East".html_safe } %>
   <%= render partial: "side_bar_section", locals: { title: "Study Abroad" } %>
+
+  <% @list = capture do %>
+    <% Notification.order("created_at DESC").limit(4).each do |notification| %>
+      <li><span class="normal"><%= link_to(public_activity_sentence(notification), notification_link(notification)) %></span></li>
+    <% end %>
+  <% end %>
+  <% @extra_line = nil %>
+  <%= render partial: "static_pages/side_bar_section", locals: { title: "Latest Activity" } %>
+
 <% end %>

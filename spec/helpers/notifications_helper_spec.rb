@@ -21,6 +21,12 @@ describe NotificationsHelper do
 
       end
     end
+
+    describe "public_activity_sentence" do
+      it "should create an appropriate sentence for the public activity feed" do
+        public_activity_sentence(comment_notification).should == "#{user1.username} commented on #{user.username}'s answer"   
+      end
+    end
   end
 
   context "when notification is an answer to a user's question" do
@@ -33,6 +39,12 @@ describe NotificationsHelper do
     describe "sentence method" do
       it "should create an appropriate sentence" do
         notification_sentence(answer_notification).should == "#{user1.username} answered your question"     
+      end
+    end
+
+    describe "public_activity_sentence" do 
+      it "should create an appropriate sentence for the public activity feed" do
+        public_activity_sentence(answer_notification).should == "#{user1.username} answered #{user.username}'s question"
       end
     end
 
@@ -59,6 +71,12 @@ describe NotificationsHelper do
       end
     end
 
+    describe "public_activity_sentence" do 
+      it "should create an appropriate sentence for the public activity feed" do
+        public_activity_sentence(review_notification).should == "#{teacher_reviewer.username} reviewed #{teacher_profile.user.username}'s teacher profile"
+      end
+    end
+
     describe "link method" do 
       it "should create a link to to the teacher profile page, review element" do
 
@@ -66,5 +84,7 @@ describe NotificationsHelper do
     end
 
   end
+
+
 
 end

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :comment_link
   helper_method :review_link
   helper_method :vote_link
+  helper_method :notification_link
 
   before_filter :set_locale
 
@@ -134,6 +135,11 @@ class ApplicationController < ActionController::Base
     else
       comment
     end
+  end
+
+  def notification_link(notification)
+    send("#{notification.responsible_party_object_type.underscore}_link", 
+         notification.responsible_party_object, notification: notification.id)
   end
 
   def check_if_notification_destination
