@@ -1,4 +1,5 @@
 class Center < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   include ReviewableScoping
   include ApprovedScoping
   extend ReviewableScoping
@@ -51,6 +52,28 @@ class Center < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  # grabs only the attributes that are needed for the maps
+  # with methods, you can add the result of some method call
+  def self.get_mappable_attributes(centers)
+    centers.reject { |c| c.address.latitude.nil? || c.address.longitude.nil? }.as_json(:only => [:name, :id], 
+                    :include => 
+                      {:address => 
+                        { 
+                          :only => [:latitude, :longitude], 
+                          :include => 
+                            { :country => { :only => :name },
+                              :city => { :only => :name }
+                            } 
+                        } 
+                      },
+                     :methods => :center_link
+                    )
+  end
+
+  def center_link
+    center_path(self)  
+  end
+
   private
   def destroy_address
     self.address.delete
@@ -61,5 +84,7 @@ class Center < ActiveRecord::Base
       self.website = 'http://' + self.website
     end
   end
+
+
 
 end

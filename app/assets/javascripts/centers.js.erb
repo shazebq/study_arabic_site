@@ -1,4 +1,70 @@
 $(document).ready(function() {  
+  function map_setup() {
+    latitude = ($("#map-data").data("map-center"))["latitude"];
+    longitude = ($("#map-data").data("map-center"))["longitude"];
+    zoom = ($("#map-data").data("map-center"))["zoom"];
+    
+    var mapOptions = {
+      center: new google.maps.LatLng(latitude, longitude),
+      zoom: zoom,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementsByClassName("map")[0],
+        mapOptions);
+
+    if ($('#centers_list').length)
+    {
+      set_markers(map);
+    }
+    else
+    {
+      set_marker(map, latitude, longitude)
+    }
+
+  }
+
+  function set_markers(map) {
+    centers = ( $("#map-data").data("centers") );
+    markers = new Array();
+    info_window = new google.maps.InfoWindow({});
+
+    count = 0;
+    $.each(centers, function() {
+      markers[count] = new google.maps.Marker({
+                                    position: new google.maps.LatLng(this["address"]["latitude"],this["address"]["longitude"]),
+                                    map: map
+                                });
+      count += 1
+    });
+
+    for (var i=0;i< markers.length;i++)
+    {
+      bind_info_window(markers[i], map, info_window, centers[i]["center_link"], centers[i]["name"], centers[i]["address"]["city"]["name"]);
+    }
+  }
+
+  function set_marker(map, latitude, longitude) {
+    new google.maps.Marker({
+                              position: new google.maps.LatLng(latitude, longitude),
+                              map: map
+                          });
+  }
+
+  // need this closure in order for the the multiple info window thing to work
+  function bind_info_window(marker, map, info_window, center_link, center_name, center_city) {
+    google.maps.event.addListener(marker, 'click', function() {
+      var complete_link = '<div><a href="' + center_link + '">' + center_name + '</a><br />' + center_city + '</div>'
+      // only the first word of the center is showing up
+      info_window.setContent(complete_link);
+      info_window.open(map, marker);
+    });
+  }
+
+  // loads the map when the page loads for the first time currently only on the centers page
+  if ($('.map').length){
+    google.maps.event.addDomListener(window, 'load', map_setup);
+  }
+
   $(".center_options").click(function() {
     
     // make switches to active class
@@ -19,10 +85,11 @@ $(document).ready(function() {
     var country_option = $("li.country_option.active")[0].id
 
     $("#centers_list").load("/arabic-centers-programs?" + $.param({ ratings_option: ratings_option,
-                                                             country_option: country_option,  
-                                                             page: 1
-                                                  }) + " #centers_div"
-      );
+                                                                    country_option: country_option,  
+                                                                    page: 1}) + " #centers_div",
+      function() {
+        map_setup();
+      });
 
   });
 

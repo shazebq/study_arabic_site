@@ -1,5 +1,10 @@
 <%= provide :title, @center.name %>
 
+<!-- load the google maps api here so that it doens't load it for every page -->
+<% content_for(:page_specific_js) do %>
+  <%= render partial: "map", locals: { centers: @centers } %> 
+<% end %>
+
     <div class="margin_bottom_small">
       <span class="site_title middle"><%= link_to(@center.name, @center) %></span>
       <%= average_stars(@center) %>
@@ -58,38 +63,41 @@
   </div><!--span9-->    
 </div><!--row-->
 
-<div class="margin_bottom">
-  <%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: mail_to(@center.email) } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Phone Number", value: @center.phone_number } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Website", value: link_to(@center.website, @center.website) } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.try(:address_line)}<br />#{center_location(@center)}".html_safe} %>
+<div class="row">
+  <div class="span6"> 
+    <div class="margin_bottom">
+      <%= render partial: "shared/two_columns", locals: { key: "Contact Information", value: nil } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Email", value: mail_to(@center.email) } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Phone Number", value: @center.phone_number } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Website", value: link_to(@center.website, @center.website) } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Address", value: "#{@center.address.try(:address_line)}<br />#{center_location(@center)}".html_safe} %>
+    </div>
+
+    <div class="margin_bottom">
+      <%= render partial: "shared/two_columns", locals: { key: "Prices", value: nil } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Private)", value: number_to_currency(@center.price_per_hour_private) } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Group)", value: number_to_currency(@center.price_per_hour_group) } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Total Price (If only one program)", value: number_to_currency(@center.total_price) } %>
+    </div>
+
+    <div class="margin_bottom">
+      <%= render partial: "shared/two_columns", locals: { key: "General Information", value: nil } %>
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Year Established", value: @center.year_established } %> 
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Short Term Program(s)", value: bool_display(@center.short_term) } %> 
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Long Term Program(s)", value: bool_display(@center.long_term) } %> 
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Group Instruction", value: bool_display(@center.group_instruction) } %> 
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Private Instruction", value: bool_display(@center.private_instruction) } %> 
+      <%= render partial: "shared/two_columns_indented", locals: { key: "Housing Provided", value: bool_display(@center.housing_provided) } %>
+    </div>
+  </div>
+
+  <div class="span3">
+    <% if @center.address.latitude? && @center.address.longitude? %>
+      <%= content_tag "div", class: "map", id: "map-canvas-show" do %><% end %>
+      <%= content_tag "div", id: "map-data", data: { map_center: @map_center } do %><% end %>
+    <% end %>
+  </div>
 </div>
-
-<div class="margin_bottom">
-  <%= render partial: "shared/two_columns", locals: { key: "Prices", value: nil } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Private)", value: number_to_currency(@center.price_per_hour_private) } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Price Per Hour (Group)", value: number_to_currency(@center.price_per_hour_group) } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Total Price (If only one program)", value: number_to_currency(@center.total_price) } %>
-</div>
-
-<div class="margin_bottom">
-  <%= render partial: "shared/two_columns", locals: { key: "General Information", value: nil } %>
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Year Established", value: @center.year_established } %> 
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Short Term Program(s)", value: bool_display(@center.short_term) } %> 
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Long Term Program(s)", value: bool_display(@center.long_term) } %> 
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Group Instruction", value: bool_display(@center.group_instruction) } %> 
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Private Instruction", value: bool_display(@center.private_instruction) } %> 
-  <%= render partial: "shared/two_columns_indented", locals: { key: "Housing Provided", value: bool_display(@center.housing_provided) } %>
-</div>
-
-
-
-
-
-
-
-
 
 <br />
 <div>

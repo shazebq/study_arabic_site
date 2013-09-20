@@ -13,7 +13,7 @@ describe Answer do
 
   describe "count_vote" do
     it "adds the vote to the forum if it is voted up and removes the vote if it is voted down" do
-      expect { answer.count_vote(answer.id, "Answer", 1, "up") }.to change(answer.votes, :count).by(1)
+      expect { answer.count_vote(answer.id, "Answer", user.id, "up") }.to change(answer.votes, :count).by(1)
     end
   end
 

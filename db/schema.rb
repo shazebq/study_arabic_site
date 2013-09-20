@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821190039) do
+ActiveRecord::Schema.define(:version => 20130917185300) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address_line"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20130821190039) do
     t.integer  "country_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "answers", :force => true do |t|
@@ -129,6 +131,8 @@ ActiveRecord::Schema.define(:version => 20130821190039) do
     t.string   "iso"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "degrees", :force => true do |t|

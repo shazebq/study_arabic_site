@@ -1,7 +1,12 @@
 <%= provide :title, "Arabic Centers and Programs" %>
 <%= render partial: "shared/page_title", locals: { title: "Centers and Programs" } %>
-
 <%= render partial: "shared/search_and_new", locals: { item_type: "Centers", new_button_text: "Add a Center/Program" }  %>
+
+<!-- load the google maps api here so that it doens't load it for every page -->
+<% content_for(:page_specific_js) do %>
+  <%= render partial: "map", locals: { centers: @centers } %> 
+<% end %>
+
 
 <ul class="nav nav-pills custom">
   <li class="active center_options ratings_option" id="order_by_average_rating">
@@ -15,6 +20,13 @@
 <div id="centers_list">
   <div id="centers_div">
       <%= anticipate_no_records(@centers, "centers or programs", centers_path) %>
+      <% unless @centers.empty? %>
+        <%= content_tag "div", class: "map", id: "map-canvas" do %>
+        <br />
+        <% end %>
+        <%= content_tag "div", id: "map-data", data: { centers: @centers_for_map, map_center: @map_center } do %><% end %>
+      <% end %>
+
       <% @centers.each_with_index do |center, i| %>
         <%= render partial: "shared/index_with_image", 
                   locals: { image: center.images.first.try(:photo).try(:url, :thumb), 
