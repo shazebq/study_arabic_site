@@ -14,5 +14,9 @@ module NotificationsHelper
     sentence = "#{responsible_party} #{verb} #{sentence_object}"
   end
 
+  def public_activity_setence
+
+  end
+
   
 end

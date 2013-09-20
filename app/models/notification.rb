@@ -9,7 +9,6 @@ class Notification < ActiveRecord::Base
   belongs_to :responsible_party_object, polymorphic: true
 
   scope :only_new, where("checked IS NOT true") 
-  scope :by_votes, order("votes_count desc, id desc")
 
   def self.generate_notification(recipient, responsible_party, recipient_object, responsible_party_object)
     unless recipient == responsible_party
