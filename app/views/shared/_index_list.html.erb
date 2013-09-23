@@ -1,7 +1,7 @@
   <div class="row">
     <% filter_approved(@items).each do |item| %>
     <div class="span6">
-      <div class="margin_bottom_small">
+      <div class="margin_bottom_small subtitle_small">
         <%= link_to(item.title, item) %>
         <span class="left_margin"><%= render partial: "shared/date_line", locals: { item: item } %></span>
       </div>
