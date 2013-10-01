@@ -35,13 +35,13 @@ $(document).ready(function() {
         //};
         //
         
-        getSentences();
-        
         var count = 0;
         context.font = "30px sans-serif"
         context.fillStyle = "navy";
         context.fillText ("Hello World", 100, 80);
-        
+       
+        var foo = getSentences();
+        console.log(foo);
 
         if (!paused)
         {
@@ -53,20 +53,16 @@ $(document).ready(function() {
     }
 
 
+    // lines is an array of sentences
+   
     function getSentences() {
         var textFile = "/game/sentences.html";
-        // lines is an array of sentences
-        $.get(textFile, function(text) {
-          var lines = text.split("\n");
-          foo(lines);
-        }, 'text');
+        var result = $.ajax({
+            url: textFile, 
+            async: false
+        });
+        return result.responseText.split("\n");
     }
-
-    function foo(sentences) {
-        console.log("in foo now"); 
-        console.log(sentences);
-    }
-
 
     function init(){
         setUpUi();
