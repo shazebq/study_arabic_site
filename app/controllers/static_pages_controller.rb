@@ -24,4 +24,8 @@ class StaticPagesController < ApplicationController
   def foo
     render "foo", layout: false
   end
+
+  def game
+    render "game", layout: false
+  end
 end
