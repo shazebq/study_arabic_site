@@ -39,19 +39,34 @@ $(document).ready(function() {
         var count = 0;
         context.font = "30px sans-serif"
         context.fillStyle = "navy";
-        context.fillText (sentences[count], 100, 80);
-        var x = 100;
+        context.fillText (sentences[count], 500, 80);
+        var x = 500;
         var letters = sentences[count].split("");
+        context.fillStyle = "orange"; 
+
+        // this the the key righ here!
+        var test = letters.slice(0, 5).join("");
+        context.fillText (test, 500, 80);
 
         if (!paused)
         {
             context.fillStyle = "orange"; 
             $(window).keypress(function(e) {
-                // every time a key is pressed, add a letter from the line 
-                context.fillText (letters[count], x, 80);
-                // add the width of the previous letter to the x coordinate of the new letter
-                x += context.measureText(letters[count]).width;
-                count += 1;
+                var letter = getLetter(e);
+                if (letter == letters[count])
+                {
+                    // every time a key is pressed, add a letter from the line 
+                    context.fillText (letters[count], x, 80);
+                    // add the width of the previous letter to the x coordinate of the new letter
+                    x -= context.measureText(letters[count]).width;
+                    count += 1;
+                }
+                // if the wrong letter in input
+                else
+                {
+                    // alert("wrong letter!");
+                    // need a sound here and some kind of error symbol maybe? 
+                }
             });
         }
     }
@@ -59,7 +74,7 @@ $(document).ready(function() {
     // lines is an array of sentences
     function getSentences() {
         var result = false;
-        var textFile = "/game/sentences.html";
+        var textFile = "/game/arabic_sentences.html";
         $.ajax({
             url: textFile, 
             success: function(text) { result = text; },
