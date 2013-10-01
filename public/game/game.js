@@ -35,25 +35,26 @@ $(document).ready(function() {
         //};
         //
         
+        var sentences = getSentences();
         var count = 0;
         context.font = "30px sans-serif"
         context.fillStyle = "navy";
-        context.fillText ("Hello World", 100, 80);
-       
-        var sentences = getSentences();
+        context.fillText (sentences[count], 100, 80);
+        var x = 100;
+        var letters = sentences[count].split("");
 
         if (!paused)
         {
+            context.fillStyle = "orange"; 
             $(window).keypress(function(e) {
-                // every time a key is pressed, print a new line
-                // clear canvas
-                context.clearRect(0, 0, canvasWidth, canvasHeight);  
-                context.fillText (sentences[count], 100, 80);
+                // every time a key is pressed, add a letter from the line 
+                context.fillText (letters[count], x, 80);
+                // add the width of the previous letter to the x coordinate of the new letter
+                x += context.measureText(letters[count]).width;
                 count += 1;
             });
         }
     }
-
 
     // lines is an array of sentences
     function getSentences() {
