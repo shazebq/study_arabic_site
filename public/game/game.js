@@ -40,28 +40,31 @@ $(document).ready(function() {
         context.fillStyle = "navy";
         context.fillText ("Hello World", 100, 80);
        
-        var foo = getSentences();
-        console.log(foo);
+        var sentences = getSentences();
 
         if (!paused)
         {
             $(window).keypress(function(e) {
                 // every time a key is pressed, print a new line
-                console.log("wooow"); 
+                // clear canvas
+                context.clearRect(0, 0, canvasWidth, canvasHeight);  
+                context.fillText (sentences[count], 100, 80);
+                count += 1;
             });
         }
     }
 
 
     // lines is an array of sentences
-   
     function getSentences() {
+        var result = false;
         var textFile = "/game/sentences.html";
-        var result = $.ajax({
+        $.ajax({
             url: textFile, 
+            success: function(text) { result = text; },
             async: false
         });
-        return result.responseText.split("\n");
+        return result.split("\n");
     }
 
     function init(){
