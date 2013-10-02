@@ -78,7 +78,33 @@ $(document).ready(function() {
     }
 
     var InputHandler = function() {
+        this.handleCorrectInput = function(game, sentence, highlighter) {
+            game.clearCanvas();
+            sentence.redraw();
+            sentence.correctCount += 1;
+            currentSnippet = sentence.getCurrentSnippet();
+            highlighter.highlight(currentSnippet);
+            // user completes a sentence
+            
+        }
+
+        // check if user has completed the sentence such that a new sentence is necessary
+        this.checkForNextSentence = function(game, sentence) {
+            if (sentence.correctCount == sentence.letters.length)
+            {
+                game.sentenceNumber += 1;
+                sentence = new Sentence(game.sentences[game.sentenceNumber]);
+                game.clearCanvas();
+                sentence.redraw();
+            }  
+            return sentence;
+        }
+
+        this.handleIncorrectInput = function() {
+          console.log("wrong letter");
+        }
     }
+
 
     function runGame() {
         var game = new Game();
@@ -96,24 +122,13 @@ $(document).ready(function() {
                     e.preventDefault();
                 if (letter == sentence.letters[sentence.correctCount])
                 {
-                    game.clearCanvas();
-                    sentence.redraw();
-                    sentence.correctCount += 1;
-                    currentSnippet = sentence.getCurrentSnippet();
-                    highlighter.highlight(currentSnippet);
-                    // user completes a sentence
-                    if (sentence.correctCount == sentence.letters.length)
-                    {
-                        game.sentenceNumber += 1;
-                        sentence = new Sentence(game.sentences[game.sentenceNumber]);
-                        game.clearCanvas();
-                        sentence.redraw();
-                    }
+                    inputHandler.handleCorrectInput(game, sentence, highlighter);
+                    sentence = inputHandler.checkForNextSentence(game, sentence);
                 }
                 // if the wrong letter in input
                 else
                 {
-                     
+                    inputHandler.handleIncorrectInput(); 
                 }
             });
         }
