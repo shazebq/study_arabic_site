@@ -57,6 +57,10 @@ $(document).ready(function() {
             this.setState();
             context.fillText (sentenceString, 500, 80);
         }
+
+        this.getCurrentSnippet = function() {
+            return this.letters.slice(0, this.correctCount).join("");
+        }
     }
 
     var Highlighter = function() {
@@ -64,6 +68,12 @@ $(document).ready(function() {
 
         this.setState = function() {
             context.fillStyle = "rgba(255, 204, 0, 0.5)"; 
+        }
+
+        this.highlight = function(currentSnippet) {
+            this.width = -(context.measureText(currentSnippet).width);
+            this.setState();
+            context.fillRect(500, 55, this.width, 30);
         }
     }
 
@@ -74,24 +84,31 @@ $(document).ready(function() {
         var game = new Game();
         var sentence = new Sentence(game.sentences[game.sentenceNumber]);
         var inputHandler = new InputHandler();
+        var highlighter = new Highlighter();
         sentence.redraw();
-
-
-        //context.fillText (sentences[sentenceNumber], 500, 80);
-        //var rectWidth = 0;
-        //var letters = getLetters(sentences[sentenceNumber])
 
         if (!paused)
         {
             $(window).keypress(function(e) {
                 var letter = game.getUserLetter(e);
                 // prevent scrolling when space bar is hit
-                console.log(letter);
                 if (letter == " ")
                     e.preventDefault();
                 if (letter == sentence.letters[sentence.correctCount])
                 {
-                    console.log("good job"); 
+                    game.clearCanvas();
+                    sentence.redraw();
+                    sentence.correctCount += 1;
+                    currentSnippet = sentence.getCurrentSnippet();
+                    highlighter.highlight(currentSnippet);
+                    // user completes a sentence
+                    if (sentence.correctCount == sentence.letters.length)
+                    {
+                        game.sentenceNumber += 1;
+                        sentence = new Sentence(game.sentences[game.sentenceNumber]);
+                        game.clearCanvas();
+                        sentence.redraw();
+                    }
                 }
                 // if the wrong letter in input
                 else
@@ -101,35 +118,6 @@ $(document).ready(function() {
             });
         }
     }
-
-    function handleCorrectInput() {
-        redrawSentence(sentences[sentenceNumber]);
-        correctCount += 1;
-        var currentSnippet = letters.slice(0, correctCount).join("");
-        rectWidth = -(context.measureText(currentSnippet).width);
-        setHighlightState();
-        context.fillRect(500, 55, rectWidth, 30);
-        
-        // user completes a sentence
-        if (correctCount == letters.length)
-        {
-            moveToNextSentence();   
-        }
-    }
-
-    function moveToNextSentence() {
-        sentenceNumber += 1;
-        correctCount = 0;
-        letters = getLetters(sentences[sentenceNumber])
-        context.clearRect(0, 0, canvasWidth, canvasHeight);
-        redrawSentence(sentences[sentenceNumber]);
-    }
-
-    function handleIncorrectInput() {
-        console.log("wrong letter"); 
-        // need a sound here and some kind of error symbol maybe?
-    }
-
 
     function init(){
         setUpUi();
