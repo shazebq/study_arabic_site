@@ -37,38 +37,55 @@ $(document).ready(function() {
         
         var sentences = getSentences();
         var count = 0;
-        context.font = "30px sans-serif"
-        context.fillStyle = "navy";
-        context.fillText (sentences[count], 500, 80);
-        var x = 500;
+        setSentenceState();
+        context.font = "bold 30px 'courier new'"
+        context.fillText (sentences[0], 500, 80);
+        var rectWidth = 0;
         var letters = sentences[count].split("");
-        context.fillStyle = "orange"; 
-
-        // this the the key righ here!
-        var test = letters.slice(0, 5).join("");
-        context.fillText (test, 500, 80);
 
         if (!paused)
         {
-            context.fillStyle = "orange"; 
             $(window).keypress(function(e) {
                 var letter = getLetter(e);
+                // prevent scrolling when space bar is hit
+                if (letter == " ")
+                    e.preventDefault();
                 if (letter == letters[count])
                 {
-                    // every time a key is pressed, add a letter from the line 
-                    context.fillText (letters[count], x, 80);
-                    // add the width of the previous letter to the x coordinate of the new letter
-                    x -= context.measureText(letters[count]).width;
+                    context.clearRect(0, 0, canvasWidth, canvasHeight);
+                    redrawSentence(sentences);
                     count += 1;
+                    var currentSnippet = letters.slice(0, count).join("");
+                    rectWidth = -(context.measureText(currentSnippet).width);
+                    setHighlightState();
+                    context.fillRect(500, 55, rectWidth, 30);
+                    
+                    if (count == letters.length)
+                    {
+                        console.log("you win!");
+                    }
                 }
                 // if the wrong letter in input
                 else
                 {
-                    // alert("wrong letter!");
+                    console.log("wrong letter"); 
                     // need a sound here and some kind of error symbol maybe? 
                 }
             });
         }
+    }
+
+    function setSentenceState() {
+        context.fillStyle = "rgba(45, 39, 97, 1)"; 
+    }
+
+    function setHighlightState() {
+        context.fillStyle = "rgba(255, 204, 0, 0.5)"; 
+    }
+
+    function redrawSentence(sentences) {
+        setSentenceState();
+        context.fillText (sentences[0], 500, 80);
     }
 
     // lines is an array of sentences

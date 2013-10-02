@@ -3,7 +3,7 @@ html, body { height: 100%; width: 100%; }
 canvas { display: block; }
 
 body {
-	font-family: Verdana, Arial, sans-serif;
+	font-family: serif, Verdana, Arial, sans-serif;
 	font-size: 18px;	
 }
 
