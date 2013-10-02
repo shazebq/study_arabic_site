@@ -1,117 +1,135 @@
 $(document).ready(function() {
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
+    context.font = "bold 30px 'courier new'"
 
     // Canvas dimensions
     var canvasWidth = canvas.width();
     var canvasHeight = canvas.height();
-
     var paused = true;
 
-    var Asteroid = function(x, y) {
-        this.x = x;
-        this.y = y;
-    };
+    // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
+    
+    var Game = function() {
+        this.getSentences = function() {
+            // lines is an array of sentences
+            var result = false;
+            var textFile = "/game/arabic_sentences.html";
+            $.ajax({
+                url: textFile, 
+                success: function(text) { result = text; },
+                async: false
+            });
+            return result.split("\n");
+        }
 
-    var asteroid = new Asteroid(0,0);
+        this.sentenceNumber = 0;
+        this.level = 0;
+        this.sentences = this.getSentences();
+        
+        this.getUserLetter = function(e) {
+            var charCode = e.which; // charCode will contain the code of the character inputted
+            var letter = String.fromCharCode(charCode); // theChar will contain the actual character
+            return letter;
+        }
 
-    function getLetter(e) {
-        var charCode = e.which; // charCode will contain the code of the character inputted
-        var letter = String.fromCharCode(charCode); // theChar will contain the actual character
-        return letter;
+        this.clearCanvas = function() {
+          context.clearRect(0, 0, canvasWidth, canvasHeight);
+        }
+    }
+
+    var Sentence = function(sentenceString) {
+        this.sentenceString = sentenceString; 
+        this.correctCount = 0;
+
+        this.getLetters = function() {
+            var letters = sentenceString.split("");
+            return letters;
+        }
+
+        this.letters = this.getLetters();
+
+        this.setState = function() {
+            context.fillStyle = "rgba(45, 39, 97, 1)"; 
+        }
+
+        this.redraw = function() {
+            this.setState();
+            context.fillText (sentenceString, 500, 80);
+        }
+    }
+
+    var Highlighter = function() {
+        this.width = 0;
+
+        this.setState = function() {
+            context.fillStyle = "rgba(255, 204, 0, 0.5)"; 
+        }
+    }
+
+    var InputHandler = function() {
     }
 
     function runGame() {
-        //context.clearRect(0, 0, canvasWidth, canvasHeight);
-        //context.fillStyle = "black";
-        //context.fillRect(asteroid.x, asteroid.y, 40, 40); // redraw the sqaure in a new position
-        //asteroid.x += 5;
-        //asteroid.y += 5;
+        var game = new Game();
+        var sentence = new Sentence(game.sentences[game.sentenceNumber]);
+        var inputHandler = new InputHandler();
+        sentence.redraw();
 
-        // if not paused
-        //if (!paused)
-        //{
-        //    setTimeout(runGame, 33);
-        //};
-        //
-        
-        var sentences = getSentences();
-        var correctCount = 0;
-        var sentenceNumber = 0;
-        
-        setSentenceState();
-        context.font = "bold 30px 'courier new'"
-        context.fillText (sentences[sentenceNumber], 500, 80);
-        var rectWidth = 0;
-        var letters = getLetters(sentences[sentenceNumber])
+
+        //context.fillText (sentences[sentenceNumber], 500, 80);
+        //var rectWidth = 0;
+        //var letters = getLetters(sentences[sentenceNumber])
 
         if (!paused)
         {
             $(window).keypress(function(e) {
-                var letter = getLetter(e);
+                var letter = game.getUserLetter(e);
                 // prevent scrolling when space bar is hit
+                console.log(letter);
                 if (letter == " ")
                     e.preventDefault();
-                if (letter == letters[correctCount])
+                if (letter == sentence.letters[sentence.correctCount])
                 {
-                    context.clearRect(0, 0, canvasWidth, canvasHeight);
-                    redrawSentence(sentences[sentenceNumber]);
-                    correctCount += 1;
-                    var currentSnippet = letters.slice(0, correctCount).join("");
-                    rectWidth = -(context.measureText(currentSnippet).width);
-                    setHighlightState();
-                    context.fillRect(500, 55, rectWidth, 30);
-                   
-                    // user completes a sentence
-                    if (correctCount == letters.length)
-                    {
-                        sentenceNumber += 1;
-                        correctCount = 0;
-                        letters = getLetters(sentences[sentenceNumber])
-                        context.clearRect(0, 0, canvasWidth, canvasHeight);
-                        redrawSentence(sentences[sentenceNumber]);
-                    }
+                    console.log("good job"); 
                 }
                 // if the wrong letter in input
                 else
                 {
-                    console.log("wrong letter"); 
-                    // need a sound here and some kind of error symbol maybe? 
+                     
                 }
             });
         }
     }
 
-    // get the letters of one sentence
-    function getLetters(sentence) {
-        var letters = sentence.split("");
-        return letters;
+    function handleCorrectInput() {
+        redrawSentence(sentences[sentenceNumber]);
+        correctCount += 1;
+        var currentSnippet = letters.slice(0, correctCount).join("");
+        rectWidth = -(context.measureText(currentSnippet).width);
+        setHighlightState();
+        context.fillRect(500, 55, rectWidth, 30);
+        
+        // user completes a sentence
+        if (correctCount == letters.length)
+        {
+            moveToNextSentence();   
+        }
     }
 
-    function setSentenceState() {
-        context.fillStyle = "rgba(45, 39, 97, 1)"; 
+    function moveToNextSentence() {
+        sentenceNumber += 1;
+        correctCount = 0;
+        letters = getLetters(sentences[sentenceNumber])
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        redrawSentence(sentences[sentenceNumber]);
     }
 
-    function setHighlightState() {
-        context.fillStyle = "rgba(255, 204, 0, 0.5)"; 
+    function handleIncorrectInput() {
+        console.log("wrong letter"); 
+        // need a sound here and some kind of error symbol maybe?
     }
 
-    function redrawSentence(sentence) {
-        setSentenceState();
-        context.fillText (sentence, 500, 80);
-    }
-
-    // lines is an array of sentences
-    function getSentences() {
-        var result = false;
-        var textFile = "/game/arabic_sentences.html";
-        $.ajax({
-            url: textFile, 
-            success: function(text) { result = text; },
-            async: false
-        });
-        return result.split("\n");
-    }
 
     function init(){
         setUpUi();
