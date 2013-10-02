@@ -36,12 +36,14 @@ $(document).ready(function() {
         //
         
         var sentences = getSentences();
-        var count = 0;
+        var correctCount = 0;
+        var sentenceNumber = 0;
+        
         setSentenceState();
         context.font = "bold 30px 'courier new'"
-        context.fillText (sentences[0], 500, 80);
+        context.fillText (sentences[sentenceNumber], 500, 80);
         var rectWidth = 0;
-        var letters = sentences[count].split("");
+        var letters = getLetters(sentences[sentenceNumber])
 
         if (!paused)
         {
@@ -50,19 +52,24 @@ $(document).ready(function() {
                 // prevent scrolling when space bar is hit
                 if (letter == " ")
                     e.preventDefault();
-                if (letter == letters[count])
+                if (letter == letters[correctCount])
                 {
                     context.clearRect(0, 0, canvasWidth, canvasHeight);
-                    redrawSentence(sentences);
-                    count += 1;
-                    var currentSnippet = letters.slice(0, count).join("");
+                    redrawSentence(sentences[sentenceNumber]);
+                    correctCount += 1;
+                    var currentSnippet = letters.slice(0, correctCount).join("");
                     rectWidth = -(context.measureText(currentSnippet).width);
                     setHighlightState();
                     context.fillRect(500, 55, rectWidth, 30);
-                    
-                    if (count == letters.length)
+                   
+                    // user completes a sentence
+                    if (correctCount == letters.length)
                     {
-                        console.log("you win!");
+                        sentenceNumber += 1;
+                        correctCount = 0;
+                        letters = getLetters(sentences[sentenceNumber])
+                        context.clearRect(0, 0, canvasWidth, canvasHeight);
+                        redrawSentence(sentences[sentenceNumber]);
                     }
                 }
                 // if the wrong letter in input
@@ -75,6 +82,12 @@ $(document).ready(function() {
         }
     }
 
+    // get the letters of one sentence
+    function getLetters(sentence) {
+        var letters = sentence.split("");
+        return letters;
+    }
+
     function setSentenceState() {
         context.fillStyle = "rgba(45, 39, 97, 1)"; 
     }
@@ -83,9 +96,9 @@ $(document).ready(function() {
         context.fillStyle = "rgba(255, 204, 0, 0.5)"; 
     }
 
-    function redrawSentence(sentences) {
+    function redrawSentence(sentence) {
         setSentenceState();
-        context.fillText (sentences[0], 500, 80);
+        context.fillText (sentence, 500, 80);
     }
 
     // lines is an array of sentences
