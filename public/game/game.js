@@ -10,6 +10,8 @@ $(document).ready(function() {
 
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
     
+    
+    
     var Game = function() {
         this.getSentences = function() {
             // lines is an array of sentences
@@ -26,6 +28,13 @@ $(document).ready(function() {
         this.sentenceNumber = 0;
         this.level = 0;
         this.sentences = this.getSentences();
+        this.points = 0;
+        this.gameDisplay = new GameDisplay();
+
+        this.addPoints = function() {
+            this.points += 5;
+            this.gameDisplay.updateScore(this.points);
+        }
         
         this.getUserLetter = function(e) {
             var charCode = e.which; // charCode will contain the code of the character inputted
@@ -35,6 +44,17 @@ $(document).ready(function() {
 
         this.clearCanvas = function() {
           context.clearRect(0, 0, canvasWidth, canvasHeight);
+        }
+    }
+
+    var GameDisplay = function() {
+        
+        this.updateScore = function(points) {
+            // update the UI to display the new score
+            // console.log("score has been updated to:" + points);
+        }
+
+        this.updateLevel = function() {
         }
     }
 
@@ -95,6 +115,7 @@ $(document).ready(function() {
                 game.sentenceNumber += 1;
                 sentence = new Sentence(game.sentences[game.sentenceNumber]);
                 game.clearCanvas();
+                game.addPoints();
                 sentence.redraw();
             }  
             return sentence;
@@ -104,7 +125,6 @@ $(document).ready(function() {
           console.log("wrong letter");
         }
     }
-
 
     function runGame() {
         var game = new Game();
@@ -124,6 +144,7 @@ $(document).ready(function() {
                 {
                     inputHandler.handleCorrectInput(game, sentence, highlighter);
                     sentence = inputHandler.checkForNextSentence(game, sentence);
+                    console.log("points: " + game.points);
                 }
                 // if the wrong letter in input
                 else
