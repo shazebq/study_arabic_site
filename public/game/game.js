@@ -8,10 +8,9 @@ $(document).ready(function() {
     var canvasHeight = canvas.height();
     var paused = true;
 
+    
+    
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
-    
-    
-    
     var Game = function() {
         
         this.getSentences = function() {
@@ -72,16 +71,20 @@ $(document).ready(function() {
             context.fillStyle = "rgba(0, 195, 209, 1)"; 
         }
 
-        this.clearCover = function() {
-            
+        this.update = function() {
+            context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
+            context.fillRect(this.x, this.y, 50, 50);
+            this.y = this.y - 2;
+            // if it has reach the boundary
+            //if (this.y < this.boundary) 
         }
-    }
 
-    
+    }
 
     var Sentence = function(sentenceString) {
         this.sentenceString = sentenceString; 
         this.correctCount = 0;
+        this.y = 200;
 
         this.getLetters = function() {
             var letters = sentenceString.split("");
@@ -96,7 +99,7 @@ $(document).ready(function() {
 
         this.redraw = function() {
             this.setState();
-            context.fillText (sentenceString, 500, 200);
+            context.fillText (sentenceString, 500, this.y);
         }
 
         this.getCurrentSnippet = function() {
@@ -119,7 +122,7 @@ $(document).ready(function() {
     }
 
     var InputHandler = function() {
-        this.handleCorrectInput = function(game, sentence, highlighter) {
+        this.handleCorrectInput = function() {
             game.clearCanvas();
             sentence.redraw();
             sentence.correctCount += 1;
@@ -129,7 +132,7 @@ $(document).ready(function() {
         }
 
         // check if user has completed the sentence such that a new sentence is necessary
-        this.checkForNextSentence = function(game, sentence) {
+        this.checkForNextSentence = function() {
             if (sentence.correctCount == sentence.letters.length)
             {
                 game.sentenceNumber += 1;
@@ -146,18 +149,20 @@ $(document).ready(function() {
         }
     }
 
+    // use global variables so as not to have to continually pass them as parameters
+    var game = new Game();
+    var sentence = new Sentence(game.sentences[game.sentenceNumber]);
+    var inputHandler = new InputHandler();
+    var highlighter = new Highlighter();
+    var cover = new Cover();
+
+    
     function runGame() {
-        var game = new Game();
-        var sentence = new Sentence(game.sentences[game.sentenceNumber]);
-        var inputHandler = new InputHandler();
-        var highlighter = new Highlighter();
-        var cover = new Cover();
+        
         sentence.redraw();
 
         function moveCover() {
-            context.clearRect(0, cover.boundary, canvasWidth, canvasHeight);
-            context.fillRect(cover.x, cover.y, 50, 50);
-            cover.y = cover.y - 2;
+            cover.update(); 
             if (go == true) { setTimeout(moveCover, 33); }
         };
 
