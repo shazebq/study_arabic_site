@@ -58,6 +58,19 @@ $(document).ready(function() {
         }
     }
 
+    var cover = function() {
+        this.x = 0;
+        this.y = 0;
+
+        this.setState = function() {
+            context.fillStyle = "rgba(0, 195, 209, 1)"; 
+        }
+
+        this.clearCover = function() {
+            
+        }
+    }
+
     var Sentence = function(sentenceString) {
         this.sentenceString = sentenceString; 
         this.correctCount = 0;
@@ -75,7 +88,7 @@ $(document).ready(function() {
 
         this.redraw = function() {
             this.setState();
-            context.fillText (sentenceString, 500, 80);
+            context.fillText (sentenceString, 500, 200);
         }
 
         this.getCurrentSnippet = function() {
@@ -93,7 +106,7 @@ $(document).ready(function() {
         this.highlight = function(currentSnippet) {
             this.width = -(context.measureText(currentSnippet).width);
             this.setState();
-            context.fillRect(500, 55, this.width, 30);
+            context.fillRect(500, 175, this.width, 30);
         }
     }
 
@@ -105,7 +118,6 @@ $(document).ready(function() {
             currentSnippet = sentence.getCurrentSnippet();
             highlighter.highlight(currentSnippet);
             // user completes a sentence
-            
         }
 
         // check if user has completed the sentence such that a new sentence is necessary
