@@ -66,6 +66,7 @@ $(document).ready(function() {
     var Cover = function() {
         this.x = 400;
         this.y = canvasHeight - 50;
+        this.boundary = 211;
 
         this.setState = function() {
             context.fillStyle = "rgba(0, 195, 209, 1)"; 
@@ -154,7 +155,7 @@ $(document).ready(function() {
         sentence.redraw();
 
         function moveCover() {
-            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            context.clearRect(0, cover.boundary, canvasWidth, canvasHeight);
             context.fillRect(cover.x, cover.y, 50, 50);
             cover.y = cover.y - 2;
             if (go == true) { setTimeout(moveCover, 33); }
