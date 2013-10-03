@@ -28,7 +28,12 @@ body {
   width: 150px;
   background-color: silver;
   height: 300px;
+  font-family: sans-serif;
 }
 
+#gameInfo
+{
+  font-size: 30px;
+}
 
 

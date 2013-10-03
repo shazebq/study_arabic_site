@@ -51,7 +51,7 @@ $(document).ready(function() {
         
         this.updateScore = function(points) {
             // update the UI to display the new score
-            // console.log("score has been updated to:" + points);
+            $("#score").html(points);
         }
 
         this.updateLevel = function() {
