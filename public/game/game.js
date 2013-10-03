@@ -13,6 +13,7 @@ $(document).ready(function() {
     
     
     var Game = function() {
+        
         this.getSentences = function() {
             // lines is an array of sentences
             var result = false;
@@ -43,7 +44,7 @@ $(document).ready(function() {
         }
 
         this.clearCanvas = function() {
-          context.clearRect(0, 0, canvasWidth, canvasHeight);
+          context.clearRect(0, 0, 500, 210);
         }
     }
 
@@ -57,10 +58,14 @@ $(document).ready(function() {
         this.updateLevel = function() {
         }
     }
+    var go = true
+    $( "#stopAnimation" ).click(function() {
+        go = false;
+    });
 
-    var cover = function() {
-        this.x = 0;
-        this.y = 0;
+    var Cover = function() {
+        this.x = 400;
+        this.y = canvasHeight - 50;
 
         this.setState = function() {
             context.fillStyle = "rgba(0, 195, 209, 1)"; 
@@ -70,6 +75,8 @@ $(document).ready(function() {
             
         }
     }
+
+    
 
     var Sentence = function(sentenceString) {
         this.sentenceString = sentenceString; 
@@ -143,7 +150,17 @@ $(document).ready(function() {
         var sentence = new Sentence(game.sentences[game.sentenceNumber]);
         var inputHandler = new InputHandler();
         var highlighter = new Highlighter();
+        var cover = new Cover();
         sentence.redraw();
+
+        function moveCover() {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            context.fillRect(cover.x, cover.y, 50, 50);
+            cover.y = cover.y - 2;
+            if (go == true) { setTimeout(moveCover, 33); }
+        };
+
+        moveCover();
 
         if (!paused)
         {
