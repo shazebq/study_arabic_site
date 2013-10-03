@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
     context.font = "bold 30px 'courier new'"
@@ -7,8 +9,6 @@ $(document).ready(function() {
     var canvasWidth = canvas.width();
     var canvasHeight = canvas.height();
     var paused = true;
-
-    
     
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
     var Game = function() {
@@ -64,7 +64,8 @@ $(document).ready(function() {
 
     var Cover = function() {
         this.x = 400;
-        this.y = canvasHeight - 50;
+        this.initialY = canvasHeight - 50;
+        this.y = this.initialY; 
         this.boundary = 211;
 
         this.setState = function() {
@@ -75,10 +76,15 @@ $(document).ready(function() {
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 50, 50);
             this.y = this.y - 2;
-            // if it has reach the boundary
-            //if (this.y < this.boundary) 
-        }
+            if (this.y < this.boundary) 
+            {
+                gameElements.game.sentenceNumber += 1;
 
+                gameElements.sentence.redraw();
+
+                this.y = this.initialY; 
+            }
+        }
     }
 
     var Sentence = function(sentenceString) {
@@ -123,25 +129,25 @@ $(document).ready(function() {
 
     var InputHandler = function() {
         this.handleCorrectInput = function() {
-            game.clearCanvas();
-            sentence.redraw();
-            sentence.correctCount += 1;
-            currentSnippet = sentence.getCurrentSnippet();
-            highlighter.highlight(currentSnippet);
+            gameElements.game.clearCanvas();
+            gameElements.sentence.redraw();
+            gameElements.sentence.correctCount += 1;
+            currentSnippet = gameElements.sentence.getCurrentSnippet();
+            gameElements.highlighter.highlight(currentSnippet);
             // user completes a sentence
         }
 
         // check if user has completed the sentence such that a new sentence is necessary
         this.checkForNextSentence = function() {
-            if (sentence.correctCount == sentence.letters.length)
+            if (gameElements.sentence.correctCount === gameElements.sentence.letters.length)
             {
-                game.sentenceNumber += 1;
-                sentence = new Sentence(game.sentences[game.sentenceNumber]);
-                game.clearCanvas();
-                game.addPoints();
-                sentence.redraw();
+                gameElements.game.sentenceNumber += 1;
+                gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
+                gameElements.game.clearCanvas();
+                gameElements.game.addPoints();
+                gameElements.sentence.redraw();
             }  
-            return sentence;
+            return gameElements.sentence;
         }
 
         this.handleIncorrectInput = function() {
@@ -150,20 +156,24 @@ $(document).ready(function() {
     }
 
     // use global variables so as not to have to continually pass them as parameters
-    var game = new Game();
-    var sentence = new Sentence(game.sentences[game.sentenceNumber]);
-    var inputHandler = new InputHandler();
-    var highlighter = new Highlighter();
-    var cover = new Cover();
 
+    Elements = function() {
+        this.game = new Game();
+        this.sentence = new Sentence(this.game.sentences[this.game.sentenceNumber]);
+        this.inputHandler = new InputHandler();
+        this.highlighter = new Highlighter();
+        this.cover = new Cover();
+    }
+
+    gameElements = new Elements();
     
     function runGame() {
         
-        sentence.redraw();
+        gameElements.sentence.redraw();
 
         function moveCover() {
-            cover.update(); 
-            if (go == true) { setTimeout(moveCover, 33); }
+            gameElements.cover.update(); 
+            if (go === true) { setTimeout(moveCover, 33); }
         };
 
         moveCover();
@@ -171,20 +181,20 @@ $(document).ready(function() {
         if (!paused)
         {
             $(window).keypress(function(e) {
-                var letter = game.getUserLetter(e);
+                var letter = gameElements.game.getUserLetter(e);
                 // prevent scrolling when space bar is hit
-                if (letter == " ")
+                if (letter === " ")
                     e.preventDefault();
-                if (letter == sentence.letters[sentence.correctCount])
+                if (letter === gameElements.sentence.letters[gameElements.sentence.correctCount])
                 {
-                    inputHandler.handleCorrectInput(game, sentence, highlighter);
-                    sentence = inputHandler.checkForNextSentence(game, sentence);
-                    console.log("points: " + game.points);
+                    gameElements.inputHandler.handleCorrectInput();
+                    gameElements.inputHandler.checkForNextSentence();
+                    console.log("points: " + gameElements.game.points);
                 }
                 // if the wrong letter in input
                 else
                 {
-                    inputHandler.handleIncorrectInput(); 
+                    gameElements.inputHandler.handleIncorrectInput(); 
                 }
             });
         }
