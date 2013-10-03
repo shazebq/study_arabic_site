@@ -45,6 +45,13 @@ $(document).ready(function() {
         this.clearCanvas = function() {
           context.clearRect(0, 0, 500, 210);
         }
+
+        this.showNextSentence = function() {
+            gameElements.game.sentenceNumber += 1;
+            gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
+            gameElements.game.clearCanvas();
+            gameElements.sentence.redraw();
+        }
     }
 
     var GameDisplay = function() {
@@ -66,7 +73,7 @@ $(document).ready(function() {
         this.x = 400;
         this.initialY = canvasHeight - 50;
         this.y = this.initialY; 
-        this.boundary = 211;
+        this.boundary = 210;
 
         this.setState = function() {
             context.fillStyle = "rgba(0, 195, 209, 1)"; 
@@ -76,12 +83,9 @@ $(document).ready(function() {
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 50, 50);
             this.y = this.y - 2;
-            if (this.y < this.boundary) 
+            if (this.y < (gameElements.sentence.y - 10)) 
             {
-                gameElements.game.sentenceNumber += 1;
-
-                gameElements.sentence.redraw();
-
+                gameElements.game.showNextSentence();
                 this.y = this.initialY; 
             }
         }
@@ -141,11 +145,8 @@ $(document).ready(function() {
         this.checkForNextSentence = function() {
             if (gameElements.sentence.correctCount === gameElements.sentence.letters.length)
             {
-                gameElements.game.sentenceNumber += 1;
-                gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
-                gameElements.game.clearCanvas();
+                gameElements.game.showNextSentence(); 
                 gameElements.game.addPoints();
-                gameElements.sentence.redraw();
             }  
             return gameElements.sentence;
         }
@@ -154,9 +155,7 @@ $(document).ready(function() {
           console.log("wrong letter");
         }
     }
-
-    // use global variables so as not to have to continually pass them as parameters
-
+ 
     Elements = function() {
         this.game = new Game();
         this.sentence = new Sentence(this.game.sentences[this.game.sentenceNumber]);
@@ -164,7 +163,7 @@ $(document).ready(function() {
         this.highlighter = new Highlighter();
         this.cover = new Cover();
     }
-
+    // global object which contains all of the game elements
     gameElements = new Elements();
     
     function runGame() {
