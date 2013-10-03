@@ -50,6 +50,7 @@ $(document).ready(function() {
             gameElements.game.sentenceNumber += 1;
             gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
             gameElements.game.clearCanvas();
+            gameElements.cover.restartCover();
             gameElements.sentence.redraw();
         }
     }
@@ -82,12 +83,16 @@ $(document).ready(function() {
         this.update = function() {
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 50, 50);
-            this.y = this.y - 2;
+            this.y = this.y - 1;
             if (this.y < (gameElements.sentence.y - 10)) 
             {
                 gameElements.game.showNextSentence();
-                this.y = this.initialY; 
+                this.restartCover();
             }
+        }
+
+        this.restartCover = function() {
+            this.y = this.initialY; 
         }
     }
 
