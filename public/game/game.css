@@ -19,15 +19,11 @@ body {
 #gameCanvas
 {
   background-color: white;
-  //width: 740px;
 }
 
 #levelColumn
 {
-  float: left;
-  width: 150px;
   background-color: silver;
-  height: 300px;
   font-family: sans-serif;
 }
 

@@ -4,6 +4,8 @@ $(document).ready(function() {
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
     context.font = "bold 30px 'courier new'"
+    //context.textAlign = 'center';
+  
 
     // Canvas dimensions
     var canvasWidth = canvas.width();
@@ -43,7 +45,7 @@ $(document).ready(function() {
         }
 
         this.clearCanvas = function() {
-          context.clearRect(0, 0, 500, 210);
+          context.clearRect(0, 0, canvasWidth, 210);
         }
 
         this.showNextSentence = function() {
@@ -71,7 +73,7 @@ $(document).ready(function() {
     });
 
     var Cover = function() {
-        this.x = 400;
+        this.x = canvasWidth/2 - 25;
         this.initialY = canvasHeight - 50;
         this.y = this.initialY; 
         this.boundary = 210;
@@ -100,6 +102,7 @@ $(document).ready(function() {
         this.sentenceString = sentenceString; 
         this.correctCount = 0;
         this.y = 200;
+        this.x = canvasWidth - 10;
 
         this.getLetters = function() {
             var letters = sentenceString.split("");
@@ -114,7 +117,7 @@ $(document).ready(function() {
 
         this.redraw = function() {
             this.setState();
-            context.fillText (sentenceString, 500, this.y);
+            context.fillText (sentenceString, this.x, this.y);
         }
 
         this.getCurrentSnippet = function() {
@@ -132,7 +135,7 @@ $(document).ready(function() {
         this.highlight = function(currentSnippet) {
             this.width = -(context.measureText(currentSnippet).width);
             this.setState();
-            context.fillRect(500, 175, this.width, 30);
+            context.fillRect(gameElements.sentence.x, 175, this.width, 30);
         }
     }
 
