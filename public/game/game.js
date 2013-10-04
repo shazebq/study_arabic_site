@@ -82,6 +82,7 @@ $(document).ready(function() {
         }
 
         this.update = function() {
+            this.setState();
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 50, 50);
             this.y = this.y - 1;
