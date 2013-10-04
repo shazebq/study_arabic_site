@@ -20,7 +20,7 @@
           Score: <span id="score">0</span>
         </div>
         
-        <div class="levelBox">
+        <div class="info">
 
           <div id="level">Level 1</div>
 
@@ -29,17 +29,24 @@
             <div id="test1">Test</div>
           </div>
 
+          <button id="startButton">Start</button>
+          <button id="stopButton">Pause</button>
+
         </div>
 
       </div>
 
-			<canvas id="gameCanvas" dir="rtl" width="900" height="500">
+			<canvas id="gameCanvas" dir="rtl" width="900" height="400">
 				<!-- Insert fallback content here -->
 			</canvas>
 
-      <button id="startButton">Start</button>
-      <button id="stopButton">Pause</button>
-
+      <div id="levelRow">
+        <% 1.upto(15) do |n| %> 
+          <div class="levelBox">
+            <%= n %> 
+          </div>
+        <% end %>
+      </div>
 
 		</div>
 	</body>

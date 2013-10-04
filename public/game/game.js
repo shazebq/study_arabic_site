@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-    
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
     context.font = "bold 30px 'courier new'"
