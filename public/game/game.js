@@ -23,16 +23,24 @@ $(document).ready(function() {
                 success: function(text) { result = text; },
                 async: false
             });
-            return result.split("\n");
+            var sentences = result.split("\n");
+            // subtract 1 because it seems include an empty string
+            this.totalSentences = sentences.length - 1; 
+            return sentences;
         }
 
         this.sentenceNumber = 0;
         this.currentLevel = 1;
         this.sentences = this.getSentences(1);
+        this.correctSentences = 0;
         this.points = 0;
+        this.totalSentences;
+        this.completedLevels = [];
+
 
         this.addPoints = function() {
-            this.points += 5;
+            this.correctSentences += 1;
+            this.points = this.correctSentences * 5; 
             gameElements.gameDisplay.updateScore(this.points);
         }
         
@@ -47,12 +55,43 @@ $(document).ready(function() {
         }
 
         this.showNextSentence = function(newLevel) {
+            
             if (newLevel === true) { this.sentenceNumber = 0; }
             else { this.sentenceNumber += 1; }
-            gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
-            this.clearCanvas();
-            gameElements.cover.restartCover();
-            gameElements.sentence.redraw();
+            
+            if (this.checkIfLastSentence() === true)
+            {
+                this.handleLastSentence();
+            }
+            else
+            {
+                gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
+                this.clearCanvas();
+                gameElements.cover.restartCover();
+                gameElements.sentence.redraw();
+            }
+        }
+
+        this.checkIfLastSentence = function() {
+            if (this.sentenceNumber > this.totalSentences - 1) { return true; }
+            else { return false; }
+        }
+
+        this.handleLastSentence = function() {
+            // you've already completed the last sentece of the level
+            // if the user got everything correct, then move the next incomplete level
+            console.log("totalrsentences " + this.totalSentences);
+            console.log("correct sentences " + this.correctSentences);
+            if (this.totalSentences === this.correctSentences)
+            {
+                // write function to figure out next incomplete level or congratulations message if all levels have been completed
+                this.completedLevels.push(this.currentLevel); 
+                this.newLevel(2)
+            }
+            else
+            {
+                this.newLevel(this.currentLevel);
+            }
         }
 
         this.newLevel = function(level) {
@@ -61,6 +100,31 @@ $(document).ready(function() {
             this.showNextSentence(true);
         }
     }
+
+
+    // get the next level in order
+    function getNextLevel(allLevels, completedLevels, currentLevel) {
+      diff = []
+      for (var i = 0; i < completedLevels.length; i++)
+      {
+          var level = completedLevels[i];
+          var indexToRemove = allLevels.indexOf(level);
+          allLevels.splice(indexToRemove, 1);
+      }
+      var incompleteLevels = allLevels;
+      if (incompletedLevels.length == 0)
+      {
+          // user has completed the game!
+      }
+      else
+      {
+          // go to the next possible level
+          // if 
+
+      }
+    }
+
+
 
     var GameDisplay = function() {
         var _this = this;
@@ -71,15 +135,11 @@ $(document).ready(function() {
 
         this.updateLevel = function(levelNumber) {
             // make all other level boxes inactive
-             
+            $(".levelBox").removeClass("currentLevel");
             // make the new level box active
             $("#levelBox_" + levelNumber).addClass("currentLevel");
-              
         }
-
-        
     }
-
 
     var go = true
     $( "#stopAnimation" ).click(function() {
@@ -168,8 +228,8 @@ $(document).ready(function() {
         this.checkForNextSentence = function() {
             if (gameElements.sentence.correctCount === gameElements.sentence.letters.length)
             {
-                gameElements.game.showNextSentence(); 
                 gameElements.game.addPoints();
+                gameElements.game.showNextSentence(); 
             }  
             return gameElements.sentence;
         }
