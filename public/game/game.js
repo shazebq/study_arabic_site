@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
 
         this.sentenceNumber = 0;
-        this.level = 0;
+        this.currentLevel = 1;
         this.sentences = this.getSentences(1);
         this.points = 0;
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
         }
 
         this.newLevel = function(level) {
-            gameElements.gameDisplay.updateLevel(); 
+            this.currentLevel = level;
             this.sentences = this.getSentences(level);
             this.showNextSentence(true);
         }
@@ -69,14 +69,15 @@ $(document).ready(function() {
             $("#score").html(points);
         }
 
-        this.updateLevel = function() {
-            console.log("you're in a new level");
+        this.updateLevel = function(levelNumber) {
+            // make all other level boxes inactive
+             
+            // make the new level box active
+            $("#levelBox_" + levelNumber).addClass("currentLevel");
+              
         }
 
-        $(".levelBox").click(function() {
-            var level = this.id.split("_")[1];        
-            gameElements.game.newLevel(level); 
-        });
+        
     }
 
 
@@ -176,6 +177,13 @@ $(document).ready(function() {
         this.handleIncorrectInput = function() {
           console.log("wrong letter");
         }
+
+
+        $(".levelBox").click(function() {
+            var level = this.id.split("_")[1];        
+            gameElements.game.newLevel(level); 
+            gameElements.gameDisplay.updateLevel(level);
+        });
     }
  
     Elements = function() {
