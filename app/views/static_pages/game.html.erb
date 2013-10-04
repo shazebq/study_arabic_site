@@ -42,8 +42,8 @@
 
       <div id="levelRow">
         <% 1.upto(15) do |n| %> 
-          <div class="levelBox">
-            <%= n %> 
+          <div class="levelBox" id="<%= "levelBox_#{n}" %>">
+            <%= n %>
           </div>
         <% end %>
       </div>

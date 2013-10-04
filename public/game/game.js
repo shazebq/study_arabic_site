@@ -14,10 +14,10 @@ $(document).ready(function() {
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
     var Game = function() {
         
-        this.getSentences = function() {
+        this.getSentences = function(level) {
             // lines is an array of sentences
             var result = false;
-            var textFile = "/game/arabic_sentences.html";
+            var textFile = "/game/sentences" + level + ".html";
             $.ajax({
                 url: textFile, 
                 success: function(text) { result = text; },
@@ -28,13 +28,12 @@ $(document).ready(function() {
 
         this.sentenceNumber = 0;
         this.level = 0;
-        this.sentences = this.getSentences();
+        this.sentences = this.getSentences(1);
         this.points = 0;
-        this.gameDisplay = new GameDisplay();
 
         this.addPoints = function() {
             this.points += 5;
-            this.gameDisplay.updateScore(this.points);
+            gameElements.gameDisplay.updateScore(this.points);
         }
         
         this.getUserLetter = function(e) {
@@ -47,25 +46,40 @@ $(document).ready(function() {
           context.clearRect(0, 0, canvasWidth, 210);
         }
 
-        this.showNextSentence = function() {
-            gameElements.game.sentenceNumber += 1;
+        this.showNextSentence = function(newLevel) {
+            if (newLevel === true) { this.sentenceNumber = 0; }
+            else { this.sentenceNumber += 1; }
             gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
-            gameElements.game.clearCanvas();
+            this.clearCanvas();
             gameElements.cover.restartCover();
             gameElements.sentence.redraw();
+        }
+
+        this.newLevel = function(level) {
+            gameElements.gameDisplay.updateLevel(); 
+            this.sentences = this.getSentences(level);
+            this.showNextSentence(true);
         }
     }
 
     var GameDisplay = function() {
-        
+        var _this = this;
         this.updateScore = function(points) {
             // update the UI to display the new score
             $("#score").html(points);
         }
 
         this.updateLevel = function() {
+            console.log("you're in a new level");
         }
+
+        $(".levelBox").click(function() {
+            var level = this.id.split("_")[1];        
+            gameElements.game.newLevel(level); 
+        });
     }
+
+
     var go = true
     $( "#stopAnimation" ).click(function() {
         go = false;
@@ -170,6 +184,7 @@ $(document).ready(function() {
         this.inputHandler = new InputHandler();
         this.highlighter = new Highlighter();
         this.cover = new Cover();
+        this.gameDisplay = new GameDisplay();
     }
     // global object which contains all of the game elements
     gameElements = new Elements();
