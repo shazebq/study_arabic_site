@@ -35,8 +35,19 @@ $(document).ready(function() {
         this.correctSentences = 0;
         this.points = 0;
         this.totalSentences;
-        this.completedLevels = [];
 
+        this.getAllLevels = function() {
+            var levelList = [];
+            for (var j = 1; j <= 3; j++)
+            {
+                levelList.push(j);
+            }
+            return levelList;
+        }
+
+        this.allLevels = this.getAllLevels();
+        // no level have been completed upon starting the game
+        this.completedLevels = [];
 
         this.addPoints = function() {
             this.correctSentences += 1;
@@ -73,58 +84,71 @@ $(document).ready(function() {
         }
 
         this.checkIfLastSentence = function() {
+            console.log("checking is it's the last sentence");
             if (this.sentenceNumber > this.totalSentences - 1) { return true; }
             else { return false; }
         }
 
         this.handleLastSentence = function() {
-            // you've already completed the last sentece of the level
-            // if the user got everything correct, then move the next incomplete level
-            console.log("totalrsentences " + this.totalSentences);
-            console.log("correct sentences " + this.correctSentences);
+            // if the user got everything correct, then move the next incomplete level (if there are any more)
+            console.log("total sentences: " + this.totalSentences)
+            console.log("correct sentences: " + this.correctSentences)
             if (this.totalSentences === this.correctSentences)
             {
-                // write function to figure out next incomplete level or congratulations message if all levels have been completed
-                this.completedLevels.push(this.currentLevel); 
-                this.newLevel(2)
+                var nextLevel = this.getNextLevel();
+                if (nextLevel === 0)
+                {
+                    console.log("Congratulations!, you win");
+                }
+                else
+                {
+                    console.log("next level is " + nextLevel);
+                    this.completedLevels.push(this.currentLevel);
+                    this.currentLevel = nextLevel;
+                    this.newLevel(nextLevel)
+                }
             }
             else
             {
+                // repeat the same level
                 this.newLevel(this.currentLevel);
             }
         }
 
         this.newLevel = function(level) {
             this.currentLevel = level;
+            this.correctSentences = 0;
             this.sentences = this.getSentences(level);
             this.showNextSentence(true);
         }
+
+        this.getNextLevel = function() {
+            if (this.allLevels.length == (this.completedLevels.length + 1))
+            {
+                return 0;
+            }
+            else
+            {
+                var incompleteLevels = this.allLevels.slice();
+                for (var i = 0; i < this.completedLevels.length; i++)
+                {
+                    var level = this.completedLevels[i];
+                    var indexToRemove = this.allLevels.indexOf(level);
+                    incompleteLevels.splice(indexToRemove, 1);
+                }
+                // go to the next possible level
+                var currentIndex = incompleteLevels.indexOf(this.currentLevel)
+                console.log("CURRENT INDEX: " + currentIndex);
+                var nextLevel = incompleteLevels[currentIndex + 1]
+                // if there is no larger level, loop back to the beginning of the array
+                if (nextLevel === undefined)
+                {
+                    nextLevel = incompleteLevels[0];
+                }
+                return nextLevel;
+            }
+        }
     }
-
-
-    // get the next level in order
-    function getNextLevel(allLevels, completedLevels, currentLevel) {
-      diff = []
-      for (var i = 0; i < completedLevels.length; i++)
-      {
-          var level = completedLevels[i];
-          var indexToRemove = allLevels.indexOf(level);
-          allLevels.splice(indexToRemove, 1);
-      }
-      var incompleteLevels = allLevels;
-      if (incompletedLevels.length == 0)
-      {
-          // user has completed the game!
-      }
-      else
-      {
-          // go to the next possible level
-          // if 
-
-      }
-    }
-
-
 
     var GameDisplay = function() {
         var _this = this;
@@ -240,7 +264,7 @@ $(document).ready(function() {
 
 
         $(".levelBox").click(function() {
-            var level = this.id.split("_")[1];        
+            var level = parseInt(this.id.split("_")[1]);
             gameElements.game.newLevel(level); 
             gameElements.gameDisplay.updateLevel(level);
         });
