@@ -1,4 +1,5 @@
 $(document).ready(function() { 
+  $('a').tooltip(); 
   $('#ajax_spinner_div').hide();
   jQuery.ajaxSetup({
     beforeSend: function() {
