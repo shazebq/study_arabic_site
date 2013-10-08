@@ -46,6 +46,12 @@ body {
 #level-table td
 {
   text-align:center; 
+  width: 100px;
+}
+
+#level-table
+{
+  layout: fixed !important;
 }
 
 .level-span

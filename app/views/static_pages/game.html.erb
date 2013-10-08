@@ -31,14 +31,16 @@
           <tr>
             <% 1.upto(8) do |n| %> 
               <td class="levelBox" id="<%= "levelBox_#{n}" %>">
-                <span class="level-span" data-toggle="tooltip" title="<%= TypingGameHelper::LETTER_GROUPS[n - 1] %>">Level <%= n %></span>
+                <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                <span class="bold">Level <%= n %></span>
               </td>
             <% end %>
           </tr>
           <tr>
             <% 9.upto(16) do |n| %> 
               <td class="levelBox" id="<%= "levelBox_#{n}" %>">
-                <span class="level-span" data-toggle="tooltip" title="<%= TypingGameHelper::LETTER_GROUPS[n - 1] %>">Level <%= n %></span>
+                <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                <span class="bold">Level <%= n %></span>
               </td>
             <% end %>
           </tr>
