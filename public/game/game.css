@@ -51,7 +51,7 @@ body {
 
 .currentLevel
 {
-  background-color: purple;
+  border: solid 3px;  
 }
 
 .completedLevel

@@ -103,8 +103,8 @@ $(document).ready(function() {
                 else
                 {
                     console.log("next level is " + nextLevel);
-                    this.completedLevels.push(this.currentLevel);
-                    this.currentLevel = nextLevel;
+                    this.markLevelAsCompleted(this.currentLevel);
+                    //this.currentLevel = nextLevel;
                     this.newLevel(nextLevel)
                 }
             }
@@ -115,8 +115,14 @@ $(document).ready(function() {
             }
         }
 
+        this.markLevelAsCompleted = function() {
+            this.completedLevels.push(this.currentLevel);
+            gameElements.gameDisplay.colorCompletedLevelBox();
+        }
+
         this.newLevel = function(level) {
             this.currentLevel = level;
+            gameElements.gameDisplay.updateLevel();
             this.correctSentences = 0;
             this.sentences = this.getSentences(level);
             this.showNextSentence(true);
@@ -157,12 +163,22 @@ $(document).ready(function() {
             $("#score").html(points);
         }
 
-        this.updateLevel = function(levelNumber) {
+        this.updateLevel = function() {
             // make all other level boxes inactive
             $(".levelBox").removeClass("currentLevel");
             // make the new level box active
-            $("#levelBox_" + levelNumber).addClass("currentLevel");
+            $("#levelBox_" + gameElements.game.currentLevel).addClass("currentLevel");
         }
+
+        this.colorCompletedLevelBox = function() {
+            $("#levelBox_" + gameElements.game.currentLevel).addClass("completedLevel");
+        }
+
+        this.initializeCurrentLevel = function() {
+            $("#levelBox_1").addClass("currentLevel"); 
+        }
+
+        this.initializeCurrentLevel();
     }
 
     var go = true
