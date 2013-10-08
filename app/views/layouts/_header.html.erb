@@ -1,0 +1,115 @@
+<div id="header">
+  <div class="container">
+    <div class="row margin_top">
+      <div class="span12">
+
+        <div class="row">
+          <div class="span6 margin_top">
+            <%= image_tag "/images/logo.gif", id: "logo" %>
+          </div>
+
+            <div class="span6" id="right_header">
+
+              <div class="row no_margin_left">
+                    <div class="span5 offset1 align_right"> 
+                      <div class="signin_container">
+                        <span id='signin_inline' class='<%= "#{height_class}" %>'>
+                              <% if user_signed_in? %>
+                                <span class="low_vert right_margin_medium"><%= render partial: "layouts/notifications" %></span>
+                                <span class="low_vert right_margin_medium"><%= render partial: "layouts/messages" %></span>
+                                <span class="low_vert subtitle_large"> | </span>
+                                <span class="low_vert dropdown">
+                                  <a class="dropdown-toggle bold" data-toggle="dropdown" href="#">
+                                  <%= current_user.username %>
+                                  <i class="icon-caret-down"></i>
+                                  </a>
+                                  <ul class="dropdown-menu align_left">
+                                    <li><%= link_to("Profile", user_path(current_user)) %></li>
+                                    <li><%= link_to("Messages", user_messages_path(current_user)) %></li>
+                                    <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
+                                  </ul>
+                                </span> 
+                              <% else %>
+                                <div class="margin_top_small"> 
+                                  <span class="low_vert1 subtitle_large"><%= link_to("Sign In", new_user_session_path, class: "bold") %> | <%= render "shared/register_options" %></span>
+                                </div>
+                              <% end %>
+
+                              <div class="search_box_home">
+                              <%= form_tag("/site_search", :method => "get", class: "form-search") do %>
+                                <div class="form-inline">
+                                  <div class="input-append input-prepend">
+                                    <div class="btn-group">
+                                          <button class="btn dropdown-toggle search_input" data-toggle="dropdown">
+                                            <span><span id="current_selection" data-item="forum_posts">Forums</span> <i class="icon-caret-down"></i></span>
+                                          </button>
+                                          <ul class="dropdown-menu align_left options_list">
+                                            <% StaticPagesController::SEARCH_OPTIONS.each do |name, value| %>
+                                              <li id="<%= value %>"><a href=#><%= name %></a></li>
+                                            <% end %>
+                                          </ul>
+                                      </div>     
+                                        
+                                  <%= text_field_tag(:query, nil, id: "appendedInputButtons", type: "text", placeholder: "Search", class: "span3 search_input") %>
+                                  <%= hidden_field_tag(:item_type, "forum_posts", id: "selected_option") %>
+                                  <button class="btn" type="submit" name="commit" id="search_button"><i class="icon-search icon"></i></button>
+                                  </div>
+                                </div>
+                              <% end %>
+                            </div>
+                        </span><!--sigin_inline-->
+                      </div><!--signin_container-->
+                    </div><!--span3 offset3-->
+              </div>
+
+              
+
+
+            </div><!--span 6-->
+
+
+        </div><!--row-->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="nav_bar">
+  <div class="container">
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <ul class="nav">
+            <li class="<%= params[:action] == "home" ? "active_nav" : "not_active" %>"><%= link_to("Home", "/", class: "left_nav_border") %></li>
+            <li class="<%= params[:controller] == "centers" ? "active_nav" : "not_active" %>"><%= link_to("Centers/Programs", centers_path) %></li>
+            <li class="<%= params[:controller] == "teacher_profiles" || teacher_profile_pages? ? "active_nav" : "not_active" %>"><%= link_to("Teachers", teacher_profiles_path) %></li>
+            <li class="<%= params[:controller] == "resources" ? "active_nav" : "not_active" %>"><%= link_to("Resources", resources_path) %></li>
+            <li class="<%= params[:controller] == "articles" ? "active_nav" : "not_active" %>"><%= link_to("Articles", articles_path) %></li>
+            <li class="dropdown <%= params[:controller] == "categories" || params[:controller] == "forum_posts" ? "active_nav" : "not_active" %>">
+            <a class="dropdown-toggle disabled" data-toggle="dropdown" href="<%= forum_posts_path %>">Forums
+                <i class="icon-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Arabic Language")) if Category.find_by_name("Arabic Language") %>">Arabic Language</a></li>
+                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Study Abroad")) if Category.find_by_name("Study Abroad") %>">Study Abroad (General)</a></li>
+                <li><a href="<%= category_forum_posts_path(Category.find_by_name("Countries")) if Category.find_by_name("Study Abroad") %>">Study Abroad (By Country)</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown <%= params[:controller] == "contact_messages" || params[:action] == "about" ? "active_nav" : "not_active" %>">
+            <a class="dropdown-toggle disabled" data-toggle="dropdown" href="<%= about_path %>">About
+                <i class="icon-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to("About Us", about_path) %></li>
+                <li><%= link_to("Contact Us", contact_path) %></li>
+              </ul>
+              </li>
+          </ul>
+
+      </div>
+    </div>
+
+  </div>
+</div>

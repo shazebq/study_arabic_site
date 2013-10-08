@@ -26,6 +26,6 @@ class StaticPagesController < ApplicationController
   end
 
   def game
-    render "game", layout: false
+    render :layout => 'game_page_layout'
   end
 end

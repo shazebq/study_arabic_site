@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render partial: "layouts/asset_tag_helper" %> 
+</head>
+<body>
+
+<%= render partial: "layouts/header" %> 
+
+<div class="container" id="page_area">
+  <div class ="row">
+    <div class="span12">
+      hello, this is the new game page
+      <%= yield %>
+
+    </div>
+  </div>
+</div>
+
+<% if Rails.env.production? %>
+  <%= render "layouts/ga_script" %> 
+<% end %>
+
+</body>
+</html>
