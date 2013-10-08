@@ -11,7 +11,7 @@
 	
 	<body>
 
-    <div id="content"> 
+    <div id="gameContainer"> 
 
       <div id="levelColumn">
 
@@ -40,14 +40,20 @@
 				<!-- Insert fallback content here -->
 			</canvas>
 
-      <div id="levelRow">
-        <% 1.upto(15) do |n| %> 
-          <div class="levelBox" id="<%= "levelBox_#{n}" %>">
-            <%= n %>
-          </div>
-        <% end %>
-      </div>
+      <table class="table table-bordered" id="level-table">
+          <tr>
+            <% 1.upto(8) do |n| %> 
+              <td class="levelBox" id="<%= "levelBox_#{n}" %>">Level <%= n %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <% 9.upto(16) do |n| %> 
+              <td>Level <%= n %></td>
+            <% end %>
+          </tr>
+      </table>
 
+      
 		</div>
 	</body>
 </html>

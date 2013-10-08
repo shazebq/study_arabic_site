@@ -7,12 +7,8 @@ body {
 	font-size: 18px;	
 }
 
-#content
+#gameContainer
 {
-  margin-top: 100px;
-  width: 900px;
-  margin-left: auto;
-  margin-right: auto;
   border: solid 1px;
 }
 
@@ -37,18 +33,6 @@ body {
   overflow: hidden;
 }
 
-.levelBox
-{
-  width: 57px;
-  height: 57px;
-  float: left;
-  background-color: silver;
-  border-right: solid 1px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 57px;
-}
-
 .currentLevel
 {
   border: solid 3px;  
@@ -59,4 +43,8 @@ body {
   background-color: #00CC66
 }
 
+#level-table td
+{
+  text-align:center; 
+}
 
