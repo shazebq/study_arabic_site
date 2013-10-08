@@ -30,15 +30,18 @@
       <table class="table table-bordered" id="level-table">
           <tr>
             <% 1.upto(8) do |n| %> 
-              <td class="levelBox" id="<%= "levelBox_#{n}" %>">Level <%= n %></td>
+              <td class="levelBox" id="<%= "levelBox_#{n}" %>">
+                <span class="level-span" data-toggle="tooltip" title="<%= TypingGameHelper::LETTER_GROUPS[n - 1] %>">Level <%= n %></span>
+              </td>
             <% end %>
           </tr>
           <tr>
             <% 9.upto(16) do |n| %> 
-              <td>Level <%= n %></td>
+              <td class="levelBox" id="<%= "levelBox_#{n}" %>">
+                <span class="level-span" data-toggle="tooltip" title="<%= TypingGameHelper::LETTER_GROUPS[n - 1] %>">Level <%= n %></span>
+              </td>
             <% end %>
           </tr>
       </table>
 
-      <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a> 
 		</div>

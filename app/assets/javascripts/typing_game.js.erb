@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('span').tooltip(); 
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
     context.font = "bold 30px 'courier new'"
@@ -180,7 +181,7 @@ $(document).ready(function() {
         this.initializeCurrentLevel();
     }
 
-    var go = true
+    var go = false; 
     $( "#stopAnimation" ).click(function() {
         go = false;
     });
