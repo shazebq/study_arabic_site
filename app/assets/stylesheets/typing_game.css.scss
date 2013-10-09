@@ -1,3 +1,5 @@
+$light: #BFDDDC;
+
 * { margin: 0; padding: 0; }
 html, body { height: 100%; width: 100%; }
 canvas { display: block; }
@@ -10,27 +12,45 @@ body {
 #gameContainer
 {
   border: solid 1px;
+  height: 600px; 
 }
 
 #gameCanvas
 {
-  background-color: white;
+  //background-color: orange;
+  position: absolute;
+  z-index: 1;
+}
+
+#game-start
+{
+  padding: 10px;
+  position: absolute;
+  height: 200px;
+  width: 250px;
+  z-index: 2;
+  background: $light; 
+  margin-left: auto;
+  margin-right: auto;
+  //border-radius: 10px;
+}
+
+#canvas-container
+{
+  position: relative;
+}
+
+#levels-div
+{
+  z-index: 2;
+  position: relative;
+  top: 400px;
 }
 
 #levelColumn
 {
   background-color: silver;
   font-family: sans-serif;
-}
-
-#gameInfo
-{
-  font-size: 30px;
-}
-
-#levelRow
-{
-  overflow: hidden;
 }
 
 .currentLevel

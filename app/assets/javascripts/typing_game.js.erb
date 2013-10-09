@@ -51,7 +51,7 @@ $(document).ready(function() {
 
         this.addPoints = function() {
             this.correctSentences += 1;
-            this.points = this.correctSentences * 5; 
+            this.points += 5 
             gameElements.gameDisplay.updateScore(this.points);
         }
         
@@ -181,11 +181,6 @@ $(document).ready(function() {
         this.initializeCurrentLevel();
     }
 
-    var go = false; 
-    $( "#stopAnimation" ).click(function() {
-        go = false;
-    });
-
     var Cover = function() {
         this.x = canvasWidth/2 - 25;
         this.initialY = canvasHeight - 50;
@@ -303,7 +298,7 @@ $(document).ready(function() {
 
         function moveCover() {
             gameElements.cover.update(); 
-            if (go === true) { setTimeout(moveCover, 33); }
+            if (paused !== true) { setTimeout(moveCover, 33); }
         };
 
         moveCover();

@@ -1,49 +1,52 @@
     <div id="gameContainer"> 
 
       <div id="levelColumn">
-
-        <button id="stopAnimation">Stop Animation</button>
         <div id="gameInfo">
           Score: <span id="score">0</span>
         </div>
         
         <div class="info">
+          <button class="btn_custom" id="startButton">Unpause</button>
+          <button class="btn_custom" id="stopButton">Pause</button>
+        </div>
 
-          <div id="level">Level 1</div>
 
-          <div class="options">
-            <div id="practice1">Practice</div>
-            <div id="test1">Test</div>
-          </div>
+        
+      </div>
 
-          <button id="startButton">Start</button>
-          <button id="stopButton">Pause</button>
+      <div id="canvas-container"> 
+        <canvas id="gameCanvas" dir="rtl" width="939" height="400">
+          <!-- Insert fallback content here -->
+        </canvas>
 
+        <div class="site_title" id="game-start">
+          <div id="start-3">3</div>
+          <div id="start-2">2</div>
+          <div id="start-1">1</div>
+          <div id="start-go">Go!</div>
         </div>
 
       </div>
 
-			<canvas id="gameCanvas" dir="rtl" width="900" height="400">
-				<!-- Insert fallback content here -->
-			</canvas>
-
-      <table class="table table-bordered" id="level-table">
-          <tr>
-            <% 1.upto(8) do |n| %> 
-              <td class="levelBox" id="<%= "levelBox_#{n}" %>">
-                <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
-                <span class="bold">Level <%= n %></span>
-              </td>
-            <% end %>
-          </tr>
-          <tr>
-            <% 9.upto(16) do |n| %> 
-              <td class="levelBox" id="<%= "levelBox_#{n}" %>">
-                <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
-                <span class="bold">Level <%= n %></span>
-              </td>
-            <% end %>
-          </tr>
-      </table>
+      <div id="levels-div">
+        <table class="table table-bordered" id="level-table">
+            <tr>
+              <% 1.upto(8) do |n| %> 
+                <td class="levelBox" id="<%= "levelBox_#{n}" %>">
+                  <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                  <span class="bold">Level <%= n %></span>
+                </td>
+              <% end %>
+            </tr>
+            <tr>
+              <% 9.upto(16) do |n| %> 
+                <td class="levelBox" id="<%= "levelBox_#{n}" %>">
+                  <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                  <span class="bold">Level <%= n %></span>
+                </td>
+              <% end %>
+            </tr>
+        </table>
+      </div>
 
 		</div>
