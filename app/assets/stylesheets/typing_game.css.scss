@@ -25,14 +25,24 @@ body {
 #game-start
 {
   padding: 10px;
-  position: absolute;
-  height: 200px;
-  width: 250px;
+  position: relative;
+  height: 100px;
+  width: 200px;
   z-index: 2;
   background: $light; 
   margin-left: auto;
   margin-right: auto;
-  //border-radius: 10px;
+  border-radius: 10px;
+  top: 90px;
+  // needed to horizontally center the child div
+  text-align: center;
+}
+
+#start-numbers-container
+{
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 50px;
 }
 
 #canvas-container
@@ -44,7 +54,7 @@ body {
 {
   z-index: 2;
   position: relative;
-  top: 400px;
+  top: 298px;
 }
 
 #levelColumn
