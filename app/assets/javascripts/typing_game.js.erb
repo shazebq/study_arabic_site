@@ -14,6 +14,12 @@ $(document).ready(function() {
     
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
     var Game = function() {
+
+        this.pauseGame = function()
+        {
+            paused = true;
+            $(window).unbind("keypress");           
+        }
         
         this.getSentences = function(level) {
             // lines is an array of sentences
@@ -166,7 +172,8 @@ $(document).ready(function() {
     }
 
     var GameDisplay = function() {
-        this.alertDiv = $("#game-start")
+        this.alertDiv = $("#game-start");
+        this.alertDelay = 1000;
         var _this = this;
         this.updateScore = function(points) {
             // update the UI to display the new score
@@ -201,15 +208,17 @@ $(document).ready(function() {
             var message = "Good job! You completed level " + level;
             this.alertDiv.html(message); 
             this.alertDiv.css("z-index", 1);
-            that = this;
-            //paused = true;
-            setTimeout(this.moveAlertBack, 1000)
+            gameElements.game.pauseGame();    
+            setTimeout(this.moveAlertBack, this.alertDelay);
         }
 
         // where user reaches the end of a level but didn't get all the sentences correct
         this.levelRestartAlert = function() {
             var message = "Good try but you didn't pass the level. Try again!";
             this.alertDiv.html(message);
+            this.alertDiv.css("z-index", 1);
+            gameElements.game.pauseGame();    
+            setTimeout(this.moveAlertBack, this.alertDelay);
         }
 
         this.gameCompletionAlert = function() {
@@ -217,9 +226,9 @@ $(document).ready(function() {
         }
 
         this.moveAlertBack = function() {
-            //paused = false;
-            //runGame();
             $("#game-start").css("z-index", -1);
+            paused = false;
+            runGame();
         }
 
         this.initializeCurrentLevel();
@@ -363,7 +372,6 @@ $(document).ready(function() {
     gameElements = new Elements();
     
     function runGame() {
-        
         gameElements.sentence.redraw();
 
         function moveCover() {
@@ -385,7 +393,6 @@ $(document).ready(function() {
                 {
                     gameElements.inputHandler.handleCorrectInput();
                     gameElements.inputHandler.checkForNextSentence();
-                    console.log("points: " + gameElements.game.points);
                 }
                 // if the wrong letter in input
                 else
