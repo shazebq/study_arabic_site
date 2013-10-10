@@ -201,11 +201,12 @@ $(document).ready(function() {
     }
 
     var Cover = function() {
-        this.x = canvasWidth/2 - 25;
-        this.initialY = canvasHeight - 50;
+        this.x = 0;
+        this.initialY = canvasHeight;
         this.y = this.initialY; 
         this.boundary = 210;
-        this.speed = 1;
+        this.levelToSpeed = {"Beginner": 0.5, "Intermediate": 1, "Advanced": 2}  
+        this.speed = this.levelToSpeed["Beginner"];
 
         this.setState = function() {
             context.fillStyle = "rgba(0, 195, 209, 1)"; 
@@ -214,7 +215,7 @@ $(document).ready(function() {
         this.update = function() {
             this.setState();
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
-            context.fillRect(this.x, this.y, 50, 50);
+            context.fillRect(this.x, this.y, 940, 500);
             this.y = this.y - this.speed;
             if (this.y < (gameElements.sentence.y - 10)) 
             {
@@ -228,8 +229,7 @@ $(document).ready(function() {
         }
 
         this.changeSpeed = function(difficultyLevel) {
-            var levelToSpeed = {"Beginner": 0.5, "Intermediate": 1, "Advanced": 2}  
-            this.speed = levelToSpeed[difficultyLevel]
+            this.speed = this.levelToSpeed[difficultyLevel]
         }
     }
 
