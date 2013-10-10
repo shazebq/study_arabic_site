@@ -111,8 +111,8 @@ $(document).ready(function() {
                 var nextLevel = this.getNextLevel();
                 if (nextLevel === 0)
                 {
-                    // initialize everything back to normal
                     gameElements.gameDisplay.gameCompletionAlert(); 
+                    newGame();
                 }
                 else
                 {
@@ -173,7 +173,7 @@ $(document).ready(function() {
 
     var GameDisplay = function() {
         this.alertDiv = $("#game-start");
-        this.alertDelay = 1000;
+        this.alertDelay = 2000;
         var _this = this;
         this.updateScore = function(points) {
             // update the UI to display the new score
@@ -206,29 +206,40 @@ $(document).ready(function() {
 
         this.levelCompletionAlert = function(level) {
             var message = "Good job! You completed level " + level;
-            this.alertDiv.html(message); 
-            this.alertDiv.css("z-index", 1);
-            gameElements.game.pauseGame();    
-            setTimeout(this.moveAlertBack, this.alertDelay);
+            this.displayMessage(message);
         }
 
         // where user reaches the end of a level but didn't get all the sentences correct
         this.levelRestartAlert = function() {
             var message = "Good try but you didn't pass the level. Try again!";
+            this.displayMessage(message);
+        }
+
+        this.gameCompletionAlert = function() {
+            var message = "Congratulations! You have successfully completed the StudyArabic.com Arabic Typing Tutor!";
+            this.displayMessage(message);
+        }
+
+        this.displayMessage = function(message) {
             this.alertDiv.html(message);
             this.alertDiv.css("z-index", 1);
             gameElements.game.pauseGame();    
             setTimeout(this.moveAlertBack, this.alertDelay);
         }
 
-        this.gameCompletionAlert = function() {
-                 
-        }
-
         this.moveAlertBack = function() {
             $("#game-start").css("z-index", -1);
             paused = false;
             runGame();
+        }
+
+        this.reinitializeUi = function() {
+            $(".levelBox").removeClass("currentLevel");
+            $(".levelBox").removeClass("completedLevel");
+            this.initializeCurrentLevel();
+            this.initializeRemainingSentences();
+            // foobar 
+            // figure out how to return level to whatever it was or grab what it is currently and initialize with that
         }
 
         this.initializeCurrentLevel();
@@ -370,7 +381,16 @@ $(document).ready(function() {
     }
     // global object which contains all of the game elements
     gameElements = new Elements();
-    
+
+    function newGame() {
+        gameElements.game.pauseGame();
+        gameElements.game.clearCanvas();
+        // clear all the UI stuff -- score, lines remaining, difficulty level
+        // foobar 
+        gameElements = new Elements();
+        runGame();
+    }
+
     function runGame() {
         gameElements.sentence.redraw();
 
