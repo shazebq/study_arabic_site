@@ -1,8 +1,6 @@
 $(document).ready(function() {
     $('span').tooltip(); 
 
-    
-
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
     context.font = "bold 30px 'courier new'"
@@ -107,19 +105,20 @@ $(document).ready(function() {
                 var nextLevel = this.getNextLevel();
                 if (nextLevel === 0)
                 {
-                    console.log("Congratulations!, you win");
+                    // initialize everything back to normal
+                    gameElements.gameDisplay.gameCompletionAlert(); 
                 }
                 else
                 {
-                    console.log("next level is " + nextLevel);
                     this.markLevelAsCompleted(this.currentLevel);
-                    //this.currentLevel = nextLevel;
+                    gameElements.gameDisplay.levelCompletionAlert(this.currentLevel);
                     this.newLevel(nextLevel)
                 }
             }
             else
             {
                 // repeat the same level
+                gameElements.gameDisplay.levelRestartAlert(this.currentLevel);
                 this.newLevel(this.currentLevel);
             }
         }
@@ -167,6 +166,7 @@ $(document).ready(function() {
     }
 
     var GameDisplay = function() {
+        this.alertDiv = $("#game-start")
         var _this = this;
         this.updateScore = function(points) {
             // update the UI to display the new score
@@ -195,6 +195,31 @@ $(document).ready(function() {
 
         this.initializeRemainingSentences = function() {
             $("#lines-remaining").html(gameElements.game.remainingSentences);
+        }
+
+        this.levelCompletionAlert = function(level) {
+            var message = "Good job! You completed level " + level;
+            this.alertDiv.html(message); 
+            this.alertDiv.css("z-index", 1);
+            that = this;
+            //paused = true;
+            setTimeout(this.moveAlertBack, 1000)
+        }
+
+        // where user reaches the end of a level but didn't get all the sentences correct
+        this.levelRestartAlert = function() {
+            var message = "Good try but you didn't pass the level. Try again!";
+            this.alertDiv.html(message);
+        }
+
+        this.gameCompletionAlert = function() {
+                 
+        }
+
+        this.moveAlertBack = function() {
+            //paused = false;
+            //runGame();
+            $("#game-start").css("z-index", -1);
         }
 
         this.initializeCurrentLevel();
@@ -382,21 +407,21 @@ $(document).ready(function() {
         var delay = 200 
 
         startButton.hide();
-        //stopButton.hide();
+        stopButton.hide();
 
-        //$("#start-numbers-container div").hide();
+        $("#start-numbers-container div").hide();
         //$( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-        //    $( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-        //      $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
-        //            $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
-        //                // set paused to false
-        //                //$("#game-start").css("z-index", -1);
-        //                paused = false;
-        //                stopButton.show();
-        //                runGame();
-        //            });
-        //        });
-        //    });
+            //$( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
+              $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
+                    $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
+                        // set paused to false
+                        $("#game-start").css("z-index", -1);
+                        paused = false;
+                        stopButton.show();
+                        runGame();
+                    });
+                });
+            //});
         //});
        
        startButton.click(function(){
