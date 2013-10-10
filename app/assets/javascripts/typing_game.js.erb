@@ -29,6 +29,7 @@ $(document).ready(function() {
             var sentences = result.split("\n");
             // subtract 1 because it seems include an empty string
             this.totalSentences = sentences.length - 1; 
+            this.remainingSentences = this.totalSentences;
             return sentences;
         }
 
@@ -38,6 +39,7 @@ $(document).ready(function() {
         this.correctSentences = 0;
         this.points = 0;
         this.totalSentences;
+        this.remainingSentences;
 
         this.getAllLevels = function() {
             var levelList = [];
@@ -52,10 +54,13 @@ $(document).ready(function() {
         // no level have been completed upon starting the game
         this.completedLevels = [];
 
+        // add points and update remaining sentences
         this.addPoints = function() {
             this.correctSentences += 1;
             this.points += 5 
+            this.remainingSentences -= 1;
             gameElements.gameDisplay.updateScore(this.points);
+            gameElements.gameDisplay.updateRemainingSentences();
         }
         
         this.getUserLetter = function(e) {
@@ -71,7 +76,10 @@ $(document).ready(function() {
         this.showNextSentence = function(newLevel) {
             
             if (newLevel === true) { this.sentenceNumber = 0; }
-            else { this.sentenceNumber += 1; }
+            else 
+            {
+                this.sentenceNumber += 1; 
+            }
             
             if (this.checkIfLastSentence() === true)
             {
@@ -93,9 +101,7 @@ $(document).ready(function() {
         }
 
         this.handleLastSentence = function() {
-            // if the user got everything correct, then move the next incomplete level (if there are any more)
-            console.log("total sentences: " + this.totalSentences)
-            console.log("correct sentences: " + this.correctSentences)
+            // if the user got everything correct, then move to the next incomplete level (if there are any more)
             if (this.totalSentences === this.correctSentences)
             {
                 var nextLevel = this.getNextLevel();
@@ -128,6 +134,7 @@ $(document).ready(function() {
             gameElements.gameDisplay.updateLevel();
             this.correctSentences = 0;
             this.sentences = this.getSentences(level);
+            gameElements.gameDisplay.updateRemainingSentences();
             this.showNextSentence(true);
         }
 
@@ -166,6 +173,10 @@ $(document).ready(function() {
             $("#score").html(points);
         }
 
+        this.updateRemainingSentences = function() {
+            $("#lines-remaining").html(gameElements.game.remainingSentences);    
+        }
+
         this.updateLevel = function() {
             // make all other level boxes inactive
             $(".levelBox").removeClass("currentLevel");
@@ -173,12 +184,17 @@ $(document).ready(function() {
             $("#levelBox_" + gameElements.game.currentLevel).addClass("currentLevel");
         }
 
+
         this.colorCompletedLevelBox = function() {
             $("#levelBox_" + gameElements.game.currentLevel).addClass("completedLevel");
         }
 
         this.initializeCurrentLevel = function() {
             $("#levelBox_1").addClass("currentLevel"); 
+        }
+
+        this.initializeRemainingSentences = function() {
+            $("#lines-remaining").html(gameElements.game.remainingSentences);
         }
 
         this.initializeCurrentLevel();
@@ -189,6 +205,7 @@ $(document).ready(function() {
         this.initialY = canvasHeight - 50;
         this.y = this.initialY; 
         this.boundary = 210;
+        this.speed = 1;
 
         this.setState = function() {
             context.fillStyle = "rgba(0, 195, 209, 1)"; 
@@ -198,7 +215,7 @@ $(document).ready(function() {
             this.setState();
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 50, 50);
-            this.y = this.y - 1;
+            this.y = this.y - this.speed;
             if (this.y < (gameElements.sentence.y - 10)) 
             {
                 gameElements.game.showNextSentence();
@@ -208,6 +225,11 @@ $(document).ready(function() {
 
         this.restartCover = function() {
             this.y = this.initialY; 
+        }
+
+        this.changeSpeed = function(difficultyLevel) {
+            var levelToSpeed = {"Beginner": 0.5, "Intermediate": 1, "Advanced": 2}  
+            this.speed = levelToSpeed[difficultyLevel]
         }
     }
 
@@ -298,8 +320,9 @@ $(document).ready(function() {
             newOptionElement.attr("id", currentOption);
             newOptionElement.html(currentOption);
 
+            // change speed of cover
+            gameElements.cover.changeSpeed(newOption);
         }); 
-        
 
     }
 
@@ -324,6 +347,7 @@ $(document).ready(function() {
         };
 
         moveCover();
+        gameElements.gameDisplay.initializeRemainingSentences();
 
         if (!paused)
         {
