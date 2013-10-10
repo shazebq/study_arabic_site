@@ -1,14 +1,33 @@
     <div id="gameContainer"> 
 
       <div id="game-header">
-        <div class="site_title">
-          Score: <span id="score">0</span>
-        </div>
-        
-        <button class="btn_custom" id="startButton">Unpause</button>
-        <button class="btn_custom" id="stopButton">Pause</button>
-      </div>
+        <table class="subtitle_large" id="menu-table">
+          <th>
+            <td>Score: <span id="score">0</span></td>
+            <td>Lines Remaining: <span id="lines-remaining">0</span></td>
+            <td>Difficulty Level: 
+                 <div class="btn-group">
+                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Beginner 
+                    <span class="caret"></span>
+                  </a>
+                    
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Intermediate</a></li>
+                    <li><a href="#">Advanced</a></li>
+                  </ul>
+                  </div> 
+              
+            </td>
 
+            <td>
+              <button class="btn_custom" type="button" id="startButton">Unpause</button>
+              <button class="btn_custom" type="button" id="stopButton">Pause</button>
+            </td>
+          </th>
+        </table>
+      </div>
+      
       <div id="canvas-container"> 
         <canvas id="gameCanvas" dir="rtl" width="939" height="400">
           <!-- Insert fallback content here -->

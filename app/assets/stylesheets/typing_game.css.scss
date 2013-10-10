@@ -1,4 +1,5 @@
 $light: #BFDDDC;
+$main_color: #007974;
 
 * { margin: 0; padding: 0; }
 html, body { height: 100%; width: 100%; }
@@ -9,10 +10,37 @@ body {
 	font-size: 18px;	
 }
 
+#menu-table
+{
+  td
+  {
+     border: 1px solid $main_color;
+     padding: 8px;
+  }
+}
+
+.center-align
+{
+  text-align: center;
+}
+
+.left-align
+{
+  text-align: left;
+  width: 150px;
+}
+
+.right-align
+{
+  text-align: right;
+  width: 150px;
+}
+
 #game-header
 {
   background: $light;
   padding: 10px;
+  height: 50px;
 }
 
 #gameContainer
@@ -60,7 +88,7 @@ body {
 {
   z-index: 2;
   position: relative;
-  top: 298px;
+  top: 275px;
 }
 
 #levelColumn

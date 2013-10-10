@@ -339,23 +339,22 @@ $(document).ready(function() {
         var delay = 200 
 
         startButton.hide();
-        stopButton.hide();
+        //stopButton.hide();
 
-        $("#start-numbers-container div").hide();
-        $( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-            $( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-              $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
-                    $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
-                        // remove the container
-                        // set paused to false
-                        $("#game-start").css("z-index", -1);
-                        paused = false;
-                        stopButton.show();
-                        runGame();
-                    });
-                });
-            });
-        });
+        //$("#start-numbers-container div").hide();
+        //$( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
+        //    $( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
+        //      $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
+        //            $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
+        //                // set paused to false
+        //                //$("#game-start").css("z-index", -1);
+        //                paused = false;
+        //                stopButton.show();
+        //                runGame();
+        //            });
+        //        });
+        //    });
+        //});
        
        startButton.click(function(){
          $(this).hide();
