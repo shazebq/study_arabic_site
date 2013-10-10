@@ -282,8 +282,27 @@ $(document).ready(function() {
             gameElements.game.newLevel(level); 
             gameElements.gameDisplay.updateLevel(level);
         });
+
+        $("#difficulty-option a").click(function(e) {
+            e.preventDefault(); 
+            var newOptionElement = $(this);
+            var newOption = this.id;  
+
+            // grab selected-option, change it's id and html to newOption
+            var currentOptionElement = $(".current-option")
+            var currentOption = currentOptionElement.attr("id");
+
+            currentOptionElement.html(newOption + '<span class="caret"></span>');
+            currentOptionElement.attr("id", newOption);
+
+            newOptionElement.attr("id", currentOption);
+            newOptionElement.html(currentOption);
+
+        }); 
+        
+
     }
- 
+
     Elements = function() {
         this.game = new Game();
         this.sentence = new Sentence(this.game.sentences[this.game.sentenceNumber]);

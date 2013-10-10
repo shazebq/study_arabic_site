@@ -6,26 +6,28 @@
             <td>Score: <span id="score">0</span></td>
             <td>Lines Remaining: <span id="lines-remaining">0</span></td>
             <td>Difficulty Level: 
-                 <div class="btn-group">
-                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    Beginner 
-                    <span class="caret"></span>
-                  </a>
-                    
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Intermediate</a></li>
-                    <li><a href="#">Advanced</a></li>
-                  </ul>
-                  </div> 
+                 <div class="btn-group" id="difficulty-level-div">
+                    <a class="btn dropdown-toggle current-option" data-toggle="dropdown" href="#" id="Beginner">
+                      Beginner 
+                      <span class="caret"></span>
+                    </a>
+                      
+                    <ul class="dropdown-menu" id="difficulty-option">
+                      <li><a href="#" id="Intermediate">Intermediate</a></li>
+                      <li><a href="#" id="Advanced">Advanced</a></li>
+                    </ul>
+                 </div> 
               
             </td>
 
-            <td>
+            <td id="pause-button-cell">
               <button class="btn_custom" type="button" id="startButton">Unpause</button>
               <button class="btn_custom" type="button" id="stopButton">Pause</button>
             </td>
           </th>
         </table>
+
+        
       </div>
       
       <div id="canvas-container"> 

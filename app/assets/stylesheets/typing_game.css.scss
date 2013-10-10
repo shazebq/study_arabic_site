@@ -17,6 +17,19 @@ body {
      border: 1px solid $main_color;
      padding: 8px;
   }
+
+  #pause-button-cell
+  {
+    //background: blue;
+    width: 380px;
+    text-align: right;
+    border: none;
+  }
+
+  #difficulty-level-div
+  {
+    width: 110px;
+  }
 }
 
 .center-align
