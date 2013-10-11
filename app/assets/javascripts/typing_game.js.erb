@@ -12,6 +12,8 @@ $(document).ready(function() {
     var canvasWidth = canvas.width();
     var canvasHeight = canvas.height();
     var paused = true;
+    var sentenceY = 100;
+    var sentenceClearBoundary = 110;
     
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
     var Game = function() {
@@ -76,7 +78,7 @@ $(document).ready(function() {
         }
 
         this.clearCanvas = function() {
-          context.clearRect(0, 0, canvasWidth, 210);
+          context.clearRect(0, 0, canvasWidth, sentenceClearBoundary);
         }
 
         this.showNextSentence = function(newLevel) {
@@ -283,14 +285,11 @@ $(document).ready(function() {
     }
 
 
-
-
-
     var Cover = function() {
         this.x = 0;
         this.initialY = canvasHeight;
         this.y = this.initialY; 
-        this.boundary = 210;
+        this.boundary = sentenceClearBoundary;
         this.levelToSpeed = {"Beginner": 0.5, "Intermediate": 1, "Advanced": 2}  
         this.speed = this.levelToSpeed["Beginner"];
 
@@ -368,7 +367,6 @@ $(document).ready(function() {
             gameElements.sentence.correctCount += 1;
             currentSnippet = gameElements.sentence.getCurrentSnippet();
             gameElements.highlighter.highlight(currentSnippet);
-            // user completes a sentence
         }
 
         // check if user has completed the sentence such that a new sentence is necessary
