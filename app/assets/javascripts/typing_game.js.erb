@@ -174,10 +174,15 @@ $(document).ready(function() {
     var GameDisplay = function() {
         this.alertDiv = $("#game-start");
         this.alertDelay = 2000;
+        this.score = $("#score");
         var _this = this;
         this.updateScore = function(points) {
             // update the UI to display the new score
-            $("#score").html(points);
+            this.score.html(points);
+        }
+
+        this.initializeScore = function() {
+            this.score.html(0);
         }
 
         this.updateRemainingSentences = function() {
@@ -202,6 +207,14 @@ $(document).ready(function() {
 
         this.initializeRemainingSentences = function() {
             $("#lines-remaining").html(gameElements.game.remainingSentences);
+        }
+
+        this.initializeDifficultyLevel = function() {
+            var difficultyOptions = '<a class="btn dropdown-toggle current-option" data-toggle="dropdown" href="#" id="Beginner">' +
+                                    'Beginner<span class="caret"></span></a><ul class="dropdown-menu" id="difficulty-option">' +
+                                    '<li><a href="#" id="Intermediate">Intermediate</a></li>' +
+                                    '<li><a href="#" id="Advanced">Advanced</a></li></ul>'
+            $("#difficulty-level-div").html(difficultyOptions);
         }
 
         this.levelCompletionAlert = function(level) {
@@ -238,12 +251,13 @@ $(document).ready(function() {
             $(".levelBox").removeClass("completedLevel");
             this.initializeCurrentLevel();
             this.initializeRemainingSentences();
-            // foobar 
-            // figure out how to return level to whatever it was or grab what it is currently and initialize with that
+            this.initializeScore();
+            this.initializeDifficultyLevel();
         }
 
         this.initializeCurrentLevel();
     }
+
 
     var Cover = function() {
         this.x = 0;
@@ -386,7 +400,8 @@ $(document).ready(function() {
         gameElements.game.pauseGame();
         gameElements.game.clearCanvas();
         // clear all the UI stuff -- score, lines remaining, difficulty level
-        // foobar 
+        // foobar
+        gameElements.gameDisplay.reinitializeUi();
         gameElements = new Elements();
         runGame();
     }
