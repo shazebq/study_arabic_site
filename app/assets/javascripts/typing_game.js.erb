@@ -130,8 +130,12 @@ $(document).ready(function() {
         }
 
         this.markLevelAsCompleted = function() {
-            this.completedLevels.push(this.currentLevel);
-            gameElements.gameDisplay.colorCompletedLevelBox();
+            // if the completedLevel array doesn't already have the currentLevel in it, then and only then you can add it.
+            if ($.inArray(this.currentLevel, this.completedLevels) === -1)
+            {
+                this.completedLevels.push(this.currentLevel);
+                gameElements.gameDisplay.colorCompletedLevelBox();
+            }
         }
 
         this.newLevel = function(level) {
@@ -144,7 +148,9 @@ $(document).ready(function() {
         }
 
         this.getNextLevel = function() {
-            if (this.allLevels.length == (this.completedLevels.length + 1))
+            // including the current level
+            var allCompletedLevels = (this.completedLevels.concat(this.currentLevel)).sort(sortFunction);
+            if (this.allLevels.sort(sortFunction).join(",") === allCompletedLevels.join(","))
             {
                 return 0;
             }
@@ -169,6 +175,11 @@ $(document).ready(function() {
                 return nextLevel;
             }
         }
+    }
+
+    /// for numerical sorting
+    function sortFunction(a, b){
+        return (a - b) //causes an array to be sorted numerically and ascending
     }
 
     var GameDisplay = function() {
