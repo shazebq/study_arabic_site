@@ -1,5 +1,7 @@
 $(document).ready(function() {
     $('span').tooltip(); 
+    var startButton = $("#startButton");
+    var stopButton = $("#stopButton");
 
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
@@ -91,10 +93,14 @@ $(document).ready(function() {
             }
             else
             {
-                gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
-                this.clearCanvas();
-                gameElements.cover.restartCover();
-                gameElements.sentence.redraw();
+              // foobar
+              if (paused !== true)
+              {
+                  gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
+                  this.clearCanvas();
+                  gameElements.cover.restartCover();
+                  gameElements.sentence.redraw();
+              }
             }
         }
 
@@ -229,7 +235,7 @@ $(document).ready(function() {
         }
 
         this.levelCompletionAlert = function(level) {
-            var message = "Good job! You completed level " + level;
+            var message = "Good job! You completed level " + level + ".";
             this.displayMessage(message, "Okay");
         }
 
@@ -240,12 +246,14 @@ $(document).ready(function() {
         }
 
         this.gameCompletionAlert = function() {
-            var message = "Congratulations! You have successfully completed the StudyArabic.com Arabic Typing Tutor!";
+            var message = "Congratulations! You have completed all of the levels!";
             this.displayMessage(message, "Start New Game");
         }
 
         this.displayMessage = function(message, buttonMessage) {
-            var message = message + '<br /><button class="btn_custom" type="button" id="proceed">' + buttonMessage + '</button>'
+            startButton.hide();
+            stopButton.hide();
+            var message = message + '<br /><br /><button class="btn_custom" type="button" id="proceed">' + buttonMessage + '</button>'
             this.alertDiv.html(message);
             this.alertDiv.css("z-index", 1);
             gameElements.game.pauseGame();    
@@ -257,6 +265,8 @@ $(document).ready(function() {
         this.moveAlertBack = function() {
             $("#game-start").css("z-index", -1);
             paused = false;
+            stopButton.show();
+            gameElements.game.showNextSentence(true);
             runGame();
         }
 
@@ -314,7 +324,7 @@ $(document).ready(function() {
         this.sentenceString = sentenceString; 
         this.correctCount = 0;
         this.y = 200;
-        this.x = canvasWidth - 10;
+        this.x = canvasWidth - 30;
 
         this.getLetters = function() {
             var letters = sentenceString.split("");
@@ -425,8 +435,6 @@ $(document).ready(function() {
     }
 
     function runGame() {
-        gameElements.sentence.redraw();
-
         function moveCover() {
             gameElements.cover.update(); 
             if (paused !== true) { setTimeout(moveCover, 33); }
@@ -437,6 +445,7 @@ $(document).ready(function() {
 
         if (!paused)
         {
+            gameElements.sentence.redraw();
             $(window).keypress(function(e) {
                 var letter = gameElements.game.getUserLetter(e);
                 // prevent scrolling when space bar is hit
@@ -462,8 +471,6 @@ $(document).ready(function() {
     }
 
     function setUpUi(){
-        var startButton = $("#startButton");
-        var stopButton = $("#stopButton");
         var delay = 200 
 
         startButton.hide();
