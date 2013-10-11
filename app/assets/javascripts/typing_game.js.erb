@@ -230,25 +230,28 @@ $(document).ready(function() {
 
         this.levelCompletionAlert = function(level) {
             var message = "Good job! You completed level " + level;
-            this.displayMessage(message);
+            this.displayMessage(message, "Okay");
         }
 
         // where user reaches the end of a level but didn't get all the sentences correct
         this.levelRestartAlert = function() {
             var message = "Good try but you didn't pass the level. Try again!";
-            this.displayMessage(message);
+            this.displayMessage(message, "Okay");
         }
 
         this.gameCompletionAlert = function() {
             var message = "Congratulations! You have successfully completed the StudyArabic.com Arabic Typing Tutor!";
-            this.displayMessage(message);
+            this.displayMessage(message, "Start New Game");
         }
 
-        this.displayMessage = function(message) {
+        this.displayMessage = function(message, buttonMessage) {
+            var message = message + '<br /><button class="btn_custom" type="button" id="proceed">' + buttonMessage + '</button>'
             this.alertDiv.html(message);
             this.alertDiv.css("z-index", 1);
             gameElements.game.pauseGame();    
-            setTimeout(this.moveAlertBack, this.alertDelay);
+            $("#proceed").on("click", function() {
+                _this.moveAlertBack();
+            })
         }
 
         this.moveAlertBack = function() {
@@ -268,6 +271,9 @@ $(document).ready(function() {
 
         this.initializeCurrentLevel();
     }
+
+
+
 
 
     var Cover = function() {
