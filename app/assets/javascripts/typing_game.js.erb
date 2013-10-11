@@ -5,10 +5,9 @@ $(document).ready(function() {
 
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
+    // have to use monospace font for Arabic to work correctly
     context.font = "bold 30px 'courier new'"
-    //context.textAlign = 'center';
   
-
     // Canvas dimensions
     var canvasWidth = canvas.width();
     var canvasHeight = canvas.height();
@@ -26,7 +25,7 @@ $(document).ready(function() {
         this.getSentences = function(level) {
             // lines is an array of sentences
             var result = false;
-            var textFile = "/game/sentences" + level + ".html";
+            var textFile = "/game/levels/level" + level + ".html";
             $.ajax({
                 url: textFile, 
                 success: function(text) { result = text; },
@@ -46,10 +45,11 @@ $(document).ready(function() {
         this.points = 0;
         this.totalSentences;
         this.remainingSentences;
+        this.totalLevels = 16;
 
         this.getAllLevels = function() {
             var levelList = [];
-            for (var j = 1; j <= 3; j++)
+            for (var j = 1; j <= this.totalLevels; j++)
             {
                 levelList.push(j);
             }
@@ -323,7 +323,7 @@ $(document).ready(function() {
     var Sentence = function(sentenceString) {
         this.sentenceString = sentenceString; 
         this.correctCount = 0;
-        this.y = 200;
+        this.y = 100;
         this.x = canvasWidth - 30;
 
         this.getLetters = function() {
@@ -357,7 +357,7 @@ $(document).ready(function() {
         this.highlight = function(currentSnippet) {
             this.width = -(context.measureText(currentSnippet).width);
             this.setState();
-            context.fillRect(gameElements.sentence.x, 175, this.width, 30);
+            context.fillRect(gameElements.sentence.x, 75, this.width, 30);
         }
     }
 
@@ -479,7 +479,7 @@ $(document).ready(function() {
         $("#start-numbers-container div").hide();
         //$( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
             //$( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-              $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
+              //$( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
                     $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
                         // set paused to false
                         $("#game-start").css("z-index", -1);
@@ -487,7 +487,7 @@ $(document).ready(function() {
                         stopButton.show();
                         runGame();
                     });
-                });
+                //});
             //});
         //});
        
