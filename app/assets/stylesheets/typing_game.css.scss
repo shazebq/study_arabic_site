@@ -114,12 +114,12 @@ body {
 
 .currentLevel
 {
-  border: solid 3px;  
+  border: solid 3px $main_color !important;  
 }
 
 .completedLevel
 {
-  background-color: #00CC66
+  background-color: $light;
 }
 
 #level-table td
