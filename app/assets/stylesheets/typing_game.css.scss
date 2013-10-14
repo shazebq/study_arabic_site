@@ -134,9 +134,16 @@ body {
   layout: fixed !important;
 }
 
-.level-span
+.level-font
 {
-  font-size: 15px;
+  font-size: 20px;
+  color: $main_color;
+}
+
+.level-font-large
+{
+  @extend .level-font;
+  font-size: 30px;
 }
 
 div[class="tooltip-inner"]

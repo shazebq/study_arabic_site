@@ -50,20 +50,24 @@
       <div id="levels-div">
         <table class="table table-bordered" id="level-table">
             <tr>
-              <% 1.upto(8) do |n| %> 
+              <% 1.upto(9) do |n| %> 
                 <td class="levelBox" id="<%= "levelBox_#{n}" %>">
-                  <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                  <div class="level-font margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
                   <span class="bold">Level <%= n %></span>
                 </td>
               <% end %>
             </tr>
             <tr>
-              <% 9.upto(16) do |n| %> 
+              <% 10.upto(17) do |n| %> 
                 <td class="levelBox" id="<%= "levelBox_#{n}" %>">
-                  <div class="site_title margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                  <div class="level-font margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
                   <span class="bold">Level <%= n %></span>
                 </td>
               <% end %>
+                <td class="levelBox" id="<%= "levelBox_#{18}" %>">
+                  <div class="level-font-large margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[17] %></div>
+                  <span class="bold">Level <%= 18 %></span>
+                </td>
             </tr>
         </table>
       </div>

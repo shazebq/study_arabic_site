@@ -385,9 +385,12 @@ $(document).ready(function() {
 
 
         $(".levelBox").click(function() {
-            var level = parseInt(this.id.split("_")[1]);
-            gameElements.game.newLevel(level); 
-            gameElements.gameDisplay.updateLevel(level);
+            if (paused !== true)
+            {
+              var level = parseInt(this.id.split("_")[1]);
+              gameElements.game.newLevel(level); 
+              gameElements.gameDisplay.updateLevel(level);
+            }
         });
 
         $("#difficulty-option a").click(function(e) {
