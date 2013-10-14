@@ -8,7 +8,7 @@ ArabicProject::Application.routes.draw do
   match "register" => "static_pages#register", :via => :get
   match "site_search" => "static_pages#site_search", :via => :get
   match "foo" => "static_pages#foo", :via => :get
-  match "game" => "static_pages#game", :via => :get
+  match "arabic_typing_tutor" => "static_pages#typing_tutor", :via => :get
 
   match 'contact' => 'contact_messages#new', :as => 'contact', :via => :get
   match 'contact' => 'contact_messages#create', :as => 'contact', :via => :post

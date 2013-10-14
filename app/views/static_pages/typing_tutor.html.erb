@@ -1,0 +1,78 @@
+<%= provide :title, "Arabic Typing Tutor" %>
+<%= render partial: "shared/page_title", locals: { title: "Arabic Typing Tutor" } %>
+
+    <div id="gameContainer"> 
+
+
+      <div id="game-header">
+        <table class="subtitle_large" id="menu-table">
+          <th>
+            <td>Score: <span id="score">0</span></td>
+            <td>Lines Remaining: <span id="lines-remaining">0</span></td>
+            <td>Difficulty Level: 
+                 <div class="btn-group" id="difficulty-level-div">
+                    <a class="btn dropdown-toggle current-option" data-toggle="dropdown" href="#" id="Beginner">
+                      Beginner 
+                      <span class="caret"></span>
+                    </a>
+                      
+                    <ul class="dropdown-menu" id="difficulty-option">
+                      <li><a href="#" id="Intermediate">Intermediate</a></li>
+                      <li><a href="#" id="Advanced">Advanced</a></li>
+                    </ul>
+                 </div> 
+              
+            </td>
+
+            <td id="pause-button-cell">
+              <button class="btn_custom" type="button" id="startButton">Unpause</button>
+              <button class="btn_custom" type="button" id="stopButton">Pause</button>
+            </td>
+          </th>
+        </table>
+
+        
+      </div>
+      
+      <div id="canvas-container"> 
+        <canvas id="gameCanvas" dir="rtl" width="938" height="400">
+          <!-- Insert fallback content here -->
+        </canvas>
+
+        <div class="site_title" id="game-start">
+          <div id="start-numbers-container">
+            <div id="start-3">3</div>
+            <div id="start-2">2</div>
+            <div id="start-1">1</div>
+            <div id="start-go">GO!</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="levels-div">
+        <table class="table table-bordered" id="level-table">
+            <tr>
+              <% 1.upto(9) do |n| %> 
+                <td class="levelBox" id="<%= "levelBox_#{n}" %>">
+                  <div class="level-font margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                  <span class="bold">Level <%= n %></span>
+                </td>
+              <% end %>
+            </tr>
+            <tr>
+              <% 10.upto(17) do |n| %> 
+                <td class="levelBox" id="<%= "levelBox_#{n}" %>">
+                  <div class="level-font margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[n - 1] %></div>
+                  <span class="bold">Level <%= n %></span>
+                </td>
+              <% end %>
+                <td class="levelBox" id="<%= "levelBox_#{18}" %>">
+                  <div class="level-font-large margin_bottom_small"><%= TypingGameHelper::LETTER_GROUPS[17] %></div>
+                  <span class="bold">Level <%= 18 %></span>
+                </td>
+            </tr>
+        </table>
+      </div>
+
+		</div>

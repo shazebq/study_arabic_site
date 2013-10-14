@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
     render "foo", layout: false
   end
 
-  def game
+  def typing_tutor 
     render :layout => 'game_page_layout'
   end
 end
