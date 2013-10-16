@@ -14,6 +14,9 @@ $(document).ready(function() {
     var canvasWidth = canvas.width();
     var canvasHeight = canvas.height();
     var paused = true;
+    // so that levels are selectable when game is paused but not when there is an alert box present
+    // thus, create second boolean variable
+    var clickableLevels = false;
     var sentenceY = 100;
     var sentenceClearBoundary = 110;
     
@@ -97,8 +100,7 @@ $(document).ready(function() {
             }
             else
             {
-              // foobar
-              if (paused !== true)
+              if (paused !== true || clickableLevels === true)
               {
                   gameElements.sentence = new Sentence(gameElements.game.sentences[gameElements.game.sentenceNumber]);
                   this.clearCanvas();
@@ -260,6 +262,7 @@ $(document).ready(function() {
             this.alertDiv.html(message);
             this.alertDiv.css("z-index", 2);
             gameElements.game.pauseGame();    
+            clickableLevels = false;
             $("#proceed").on("click", function() {
                 _this.moveAlertBack();
             })
@@ -268,6 +271,7 @@ $(document).ready(function() {
         this.moveAlertBack = function() {
             $("#game-start").css("z-index", -1);
             paused = false;
+            clickableLevelLevels = true;
             stopButton.show();
             gameElements.game.showNextSentence(true);
             runGame();
@@ -303,7 +307,7 @@ $(document).ready(function() {
         this.initialY = canvasHeight;
         this.y = this.initialY; 
         this.boundary = sentenceClearBoundary;
-        this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 5}  
+        this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 2}  
         this.speed = this.levelToSpeed["Beginner"];
 
         this.setState = function() {
@@ -397,7 +401,7 @@ $(document).ready(function() {
 
 
         $(".levelBox").click(function() {
-            if (paused !== true)
+            if (paused !== true || clickableLevels === true)
             {
               var level = parseInt(this.id.split("_")[1]);
               gameElements.game.newLevel(level); 
@@ -507,6 +511,7 @@ $(document).ready(function() {
                         // set paused to false
                         $("#game-start").css("z-index", -1);
                         paused = false;
+                        clickableLevels = true;
                         stopButton.show();
                         showKeyboardButton.show();
                         runGame();
