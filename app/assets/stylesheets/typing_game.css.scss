@@ -21,9 +21,15 @@ body {
   #pause-button-cell
   {
     //background: blue;
-    width: 380px;
+    //width: 55px;
     text-align: right;
     border: none;
+  }
+
+  #keyboard-button-cell
+  {
+    @extend #pause-button-cell;
+    width: 300px;
   }
 
   #difficulty-level-div
@@ -59,7 +65,7 @@ body {
 #gameContainer
 {
   border: solid 1px;
-  height: 610px; 
+  height: 603px; 
 }
 
 #gameCanvas
@@ -104,7 +110,7 @@ body {
 {
   z-index: 2;
   position: relative;
-  top: 280px;
+  top: 57px;
 }
 
 #levelColumn
@@ -127,11 +133,7 @@ body {
 {
   text-align:center; 
   width: 100px;
-}
-
-#level-table
-{
-  layout: fixed !important;
+  cursor:pointer;
 }
 
 .level-font
@@ -151,4 +153,15 @@ div[class="tooltip-inner"]
   font-size: 20px;
 }
 
+#arabic-keyboard
+{
+  border: solid 5px;
+  z-index: -10;
+  position: relative;
+  opacity:0.4;
+  filter:alpha(opacity=40); /* For IE8 and earlier */
+  display: block;
+  margin: auto;
+  top: 30px;
+}
 

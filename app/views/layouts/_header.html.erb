@@ -97,7 +97,7 @@
               </ul>
             </li>
 
-            <li class="<%= params[:action] == "typing_tutor" ? "active_nav" : "not_active" %>"><%= link_to("Typing Tutor", arabic_typing_tutor_path) %></li>
+            <li class="<%= params[:action] == "typing_tutor" ? "active_nav" : "not_active" %>"><%= link_to("Typing Tutor", "/arabic-typing-tutor" ) %></li>
 
             <li class="dropdown <%= params[:controller] == "contact_messages" || params[:action] == "about" ? "active_nav" : "not_active" %>">
             <a class="dropdown-toggle disabled" data-toggle="dropdown" href="<%= about_path %>">About

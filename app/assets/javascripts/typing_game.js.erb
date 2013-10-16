@@ -2,6 +2,8 @@ $(document).ready(function() {
     $('span').tooltip(); 
     var startButton = $("#startButton");
     var stopButton = $("#stopButton");
+    var showKeyboardButton = $("#show-keyboard");
+    var hideKeyboardButton = $("#hide-keyboard");
 
     var canvas = $("#gameCanvas");
     var context = canvas.get(0).getContext("2d");
@@ -107,7 +109,6 @@ $(document).ready(function() {
         }
 
         this.checkIfLastSentence = function() {
-            console.log("checking is it's the last sentence");
             if (this.sentenceNumber > this.totalSentences - 1) { return true; }
             else { return false; }
         }
@@ -173,7 +174,6 @@ $(document).ready(function() {
                 }
                 // go to the next possible level
                 var currentIndex = incompleteLevels.indexOf(this.currentLevel)
-                console.log("CURRENT INDEX: " + currentIndex);
                 var nextLevel = incompleteLevels[currentIndex + 1]
                 // if there is no larger level, loop back to the beginning of the array
                 if (nextLevel === undefined)
@@ -192,6 +192,7 @@ $(document).ready(function() {
 
     var GameDisplay = function() {
         this.alertDiv = $("#game-start");
+        this.keyboardImage = $("#arabic-keyboard")
         this.alertDelay = 2000;
         this.score = $("#score");
         var _this = this;
@@ -279,6 +280,18 @@ $(document).ready(function() {
             this.initializeRemainingSentences();
             this.initializeScore();
             this.initializeDifficultyLevel();
+        }
+
+        this.showKeyboard = function() {
+            showKeyboardButton.hide();
+            hideKeyboardButton.show();
+            this.keyboardImage.css("z-index", 10);
+        }
+
+        this.hideKeyboard = function() {
+            hideKeyboardButton.hide();
+            showKeyboardButton.show();
+            this.keyboardImage.css("z-index", -10);
         }
 
         this.initializeCurrentLevel();
@@ -380,7 +393,6 @@ $(document).ready(function() {
         }
 
         this.handleIncorrectInput = function() {
-          console.log("wrong letter");
         }
 
 
@@ -411,6 +423,14 @@ $(document).ready(function() {
             // change speed of cover
             gameElements.cover.changeSpeed(newOption);
         }); 
+
+        showKeyboardButton.click(function() {
+            gameElements.gameDisplay.showKeyboard();
+        })
+
+        hideKeyboardButton.click(function() {
+            gameElements.gameDisplay.hideKeyboard();
+        })
 
     }
 
@@ -476,6 +496,8 @@ $(document).ready(function() {
 
         startButton.hide();
         stopButton.hide();
+        showKeyboardButton.hide();
+        hideKeyboardButton.hide();
 
         $("#start-numbers-container div").hide();
         $( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
@@ -486,6 +508,7 @@ $(document).ready(function() {
                         $("#game-start").css("z-index", -1);
                         paused = false;
                         stopButton.show();
+                        showKeyboardButton.show();
                         runGame();
                     });
                 });
