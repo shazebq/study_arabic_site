@@ -31,11 +31,12 @@ class User < ActiveRecord::Base
   after_initialize :init
 
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, 
-                  :last_name, :username, :bio, :country_id, :image_attributes, :as => [:default, :admin] 
+                  :last_name, :username, :bio, :country_id, :image_attributes, :provider, :uid, :name, :as => [:default, :admin] 
   # only an admin can change the admin attribute
   attr_accessible :admin, as: :admin
 
@@ -102,11 +103,24 @@ class User < ActiveRecord::Base
     self.notifications.only_new
   end
 
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create( first_name:auth.extra.raw_info.first_name,
+                          last_name:auth.extra.raw_info.last_name,
+                          provider:auth.provider,
+                          uid:auth.uid,
+                          email:auth.info.email,
+                          password:Devise.friendly_token[0,20]
+                        )
+    end
+    user
+  end 
+
   private
   def destroy_user_profile
     self.profile.delete
   end
 end
-
 
 #comments
