@@ -258,7 +258,7 @@ $(document).ready(function() {
             stopButton.hide();
             var message = message + '<br /><br /><button class="btn_custom" type="button" id="proceed">' + buttonMessage + '</button>'
             this.alertDiv.html(message);
-            this.alertDiv.css("z-index", 1);
+            this.alertDiv.css("z-index", 2);
             gameElements.game.pauseGame();    
             $("#proceed").on("click", function() {
                 _this.moveAlertBack();
@@ -285,7 +285,7 @@ $(document).ready(function() {
         this.showKeyboard = function() {
             showKeyboardButton.hide();
             hideKeyboardButton.show();
-            this.keyboardImage.css("z-index", 10);
+            this.keyboardImage.css("z-index", 1);
         }
 
         this.hideKeyboard = function() {
