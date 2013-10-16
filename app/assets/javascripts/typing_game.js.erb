@@ -303,7 +303,7 @@ $(document).ready(function() {
         this.initialY = canvasHeight;
         this.y = this.initialY; 
         this.boundary = sentenceClearBoundary;
-        this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 2}  
+        this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 5}  
         this.speed = this.levelToSpeed["Beginner"];
 
         this.setState = function() {
@@ -316,7 +316,7 @@ $(document).ready(function() {
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 940, 500);
             this.y = this.y - this.speed;
-            if (this.y < (gameElements.sentence.y - 10)) 
+            if (this.y < (gameElements.sentence.y - 20)) 
             {
                 gameElements.game.showNextSentence();
                 this.restartCover();
@@ -500,9 +500,9 @@ $(document).ready(function() {
         hideKeyboardButton.hide();
 
         $("#start-numbers-container div").hide();
-        $( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-            $( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-              $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
+        //$( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
+            //$( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
+              //$( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
                     $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
                         // set paused to false
                         $("#game-start").css("z-index", -1);
@@ -511,9 +511,9 @@ $(document).ready(function() {
                         showKeyboardButton.show();
                         runGame();
                     });
-                });
-            });
-        });
+                //});
+            //});
+        //});
        
        startButton.click(function(){
          $(this).hide();
