@@ -1,4 +1,4 @@
 <span class="info"><%= "#{item.created_at.strftime("%b %d, %Y")} by" %> 
-  <%= link_to(item.user.username, item.user) %>
+  <%= link_to(item.user.display_name, item.user) %>
 </span>
 

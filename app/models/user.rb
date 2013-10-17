@@ -44,9 +44,9 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
-  validates :username, presence: true, length: { maximum: 30 }, uniqueness: true 
-  validates :country_id, presence: true, numericality: { integer: true }, reduce: true
-  validates :bio, presence: true, length: { maximum: 1000 }, :if => :should_validate_bio?
+  #validates :username, presence: true, length: { maximum: 30 }, uniqueness: true 
+  validates :country_id, numericality: { integer: true }, reduce: true, :if => :is_teacher?
+  validates :bio, length: { maximum: 1000 }, :if => :is_teacher?
 
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   
   delegate :unread_messages, :to => :received_messages
 
-  def should_validate_bio?
+  def is_teacher?
     self.has_teacher_profile
   end
 
@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
 
   def to_param
     return "#{id}-#{first_name.parameterize}-#{last_name.parameterize}" if self.profile_type == "TeacherProfile"
-    return "#{id}-#{username.parameterize}" if self.profile_type == "StudentProfile"
+    return "#{id}-#{display_name.parameterize}" if self.profile_type == "StudentProfile"
   end
 
   def new_notifications
@@ -106,16 +106,34 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      user = User.create( first_name:auth.extra.raw_info.first_name,
+      user = User.create!( first_name:auth.extra.raw_info.first_name,
                           last_name:auth.extra.raw_info.last_name,
                           provider:auth.provider,
                           uid:auth.uid,
                           email:auth.info.email,
                           password:Devise.friendly_token[0,20]
                         )
+      if user.persisted?
+        # create student profile
+        student_profile = StudentProfile.new
+        student_profile.user = user
+        student_profile.save!
+      end
     end
     user
   end 
+
+  def confirmation_required?
+    if self.provider?
+      false
+    else
+      super
+    end
+  end
+
+  def display_name
+    self.username || "#{self.first_name.capitalize} #{self.last_name[0].capitalize}"
+  end
 
   private
   def destroy_user_profile

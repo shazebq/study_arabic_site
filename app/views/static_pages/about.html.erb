@@ -2,6 +2,7 @@
 <%= render partial: "shared/page_title", locals: { title: "About" } %>
 
 <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+<%= current_user.class.name %>
 
 <p>
 StudyArabic.com is a free, community driven and supported portal that offers students and teachers

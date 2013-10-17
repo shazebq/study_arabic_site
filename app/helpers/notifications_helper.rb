@@ -21,7 +21,7 @@ module NotificationsHelper
   end
 
   def get_responsible_party(notification)
-    notification.responsible_party.username
+    notification.responsible_party.display_name
   end
 
   def get_sentence_object(notification)
@@ -36,7 +36,7 @@ module NotificationsHelper
 
   # pa = public activity
   def get_pa_sentence_object(notification)
-    item_owner = "#{notification.recipient.username}'s"
+    item_owner = "#{notification.recipient.display_name}'s"
     if notification.recipient_object_type == "ForumPost"
       item = "question"
     else

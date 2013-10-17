@@ -1,7 +1,7 @@
 <div style="color: #007974; font-size: 18px; font-weight: bold;" class="subtitle_large_color">Welcome to StudyArabic.com</div>
 <hr>
 
-<p><%= @resource.username.capitalize %>, you can confirm your account email through the link below:</p>
+<p><%= @resource.first_name.capitalize %>, you can confirm your account email through the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
 
