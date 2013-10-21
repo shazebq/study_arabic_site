@@ -1,5 +1,5 @@
 class Vote < ActiveRecord::Base
-  attr_accessible :user_id, :voteable_id, :voteable_type, :as => [:default, :admin] 
+  attr_accessible :user_id, :voteable_id, :voteable_type, :as => [:default, :admin]
 
   belongs_to :voteable, polymorphic: true, counter_cache: true
   belongs_to :user
