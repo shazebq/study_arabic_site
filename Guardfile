@@ -1,6 +1,7 @@
 require 'active_support/core_ext'
 
 # Any changes to the files in the following directories will now be picked up by Guard and Spork will be reloaded.
+interactor :simple
 
 guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
