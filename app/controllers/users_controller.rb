@@ -8,4 +8,8 @@ class UsersController < ApplicationController
     @reviews = @user.reviews
     @comments = @user.comments
   end
+
+  def test_method
+    "blah"
+  end
 end
