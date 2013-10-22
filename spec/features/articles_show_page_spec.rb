@@ -22,8 +22,8 @@ describe "articles show page" do
   describe "comment form" do
     context "when user is not logged in" do
       specify "page should have option to sign up or register" do
-        page.should have_content("Already have an account?")
-        page.should have_content("Don't have an account yet?")
+        page.should have_content("Sign In With Facebook")
+        page.should have_content("Sign In With Google")
       end
     end
 

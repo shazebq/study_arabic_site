@@ -17,13 +17,13 @@ describe StudentProfile do
     describe "level validation" do
       describe "when level is not present" do
         it "should be valid" do
-          @student_profile1.should_not be_valid
+          @student_profile1.should be_valid
         end
       end
 
-      describe "when level is not present" do
+      describe "when level is present" do
         before { @student_profile1.level_id = 5 }
-        it "should not be valid" do
+        it "should be valid" do
           @student_profile.should be_valid
         end
       end

@@ -1,8 +1,7 @@
 <%= provide :title, "About StudyArab.com" %>
 <%= render partial: "shared/page_title", locals: { title: "About" } %>
 
-<%= current_user.first_name %>
-
+<div class="margin_bottom_largest">
 <p>
 StudyArabic.com is a free, community driven and supported portal that offers students and teachers
 a place to share and exchange information, advice, and resources related to learning
@@ -18,27 +17,23 @@ more established but perhaps less widespread and culturally influential language
 site is, in a way, a small effort to help remedy this problem.
 </p>
 
-<br />
+</div>
 
-<p>
-<div class="subtitle_large margin_bottom">Studying Arabic Abroad</div>
+<div class="margin_bottom_largest">
+<div class="subtitle_large margin_bottom_medium">Studying Arabic Abroad</div>
 This site was started as a way to address a problem faced by many American college students trying
 to choose a place to study Arabic abroad in the summer. There are plenty of Arabic centers with websites
 claiming to offer top notch classes with the best instructors but it's difficult to verify with certainty how accurate their claims actually are. 
 Thus, the idea of a comprehensive directory of <%= link_to("Arabic centers", centers_path, class: "bold") %> with accurate and up to date 
 information and reviews was conceived.
-</p>
 
-<p>
 In addition to our list of centers and programs, you can also explore our <%= link_to("study abroad forums", category_forum_posts_path(Category.find_by_name("Study Abroad")), class: "bold") %> to
 find relevant and up to date information on finding housing, connecting with roommates, and traveling
 in the Middle East.
-</p>
+</div>
 
-<br />
-
-<p>
-<div class="subtitle_large margin_bottom">Finding Teachers Online</div>
+<div class="margin_bottom_largest">
+<div class="subtitle_large margin_bottom_medium">Finding Teachers Online</div>
 There are a plethora of websites out there
 charging a premium price to find an Arabic tutor or teacher for you. 
 However, most of these sites are serving as unnecessary middle men between you and your potential teacher pocketing
@@ -47,32 +42,25 @@ teacher directly instead of having to go through third party websites? With our 
 we are attempting to help you do just that. We wanted to make the process of finding an online teacher
 as transparent as possible and what you have with our system is a reliable list of experienced teachers
 from all over the world that you can contact directly with no strings attached.
-</p>
+</div>
 
-<br />
-
-<p>
-<div class="subtitle_large margin_bottom">Sharing Information</div>
+<div class="margin_bottom_largest">
+<div class="subtitle_large margin_bottom_medium">Sharing Information</div>
 Mastering a language is not really something you can fully do on your own. Thus, one of the primary
 objectives of StudyArabic.com is to provide a place for students to share tips and resources
 related to learning Arabic. Whether you're trying to find a roommate for your summer abroad program in Egypt
 or you're looking for advice on how to read newspapers, chances are there is another student
 out there that is or has been in your shoes. Our <%= link_to("forums", forum_posts_path, class: "bold") %> offer students the ability to exchange information
 about anything related to studying Arabic.
-</p>
+</div>
 
-<br />
-
-
-<p>
-<div class="subtitle_large margin_bottom">How You Can Help</div>
+<div class="margin_bottom_largest">
+<div class="subtitle_large margin_bottom_medium">How You Can Help</div>
 As a community driven site, the success of StudyArabic.com hinges upon your participation and support.
 Thus, the best way to help the site is by asking and answering questions and sharing your experiences and advice.
 In addition, we know there is always room for improvement are constantly trying to add features and make 
 your experience better. If you have any suggestions or ideas, please <%= link_to("contact us", contact_path, class: "bold") %> and we'll be sure to respond promptly.
-</p>
-
-<br />
+</div>
 
 <span class="bold">Thank you for supporting StudyArabic.com!</span>
 
