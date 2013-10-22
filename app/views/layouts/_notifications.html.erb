@@ -5,19 +5,19 @@
       <span class='red_badge_tiny'><%= current_user.new_notifications.size %></span>
     <% end %>
 	</a>
-	<% if current_user.new_notifications.size > 0 %> 
+	<% if current_user.new_notifications.size > 0 %>
 		<ul class="dropdown-menu align_left wider notifications">
 			<% current_user.new_notifications.each do |notification| %>
         <li id='<%= "notification_#{notification.id}" %>'>
           <%= link_to(notification_sentence(notification), notification_link(notification)) %>
-        </li>    
+        </li>
 			<% end %>
 		</ul>
 	<% else %>
 		<ul class="dropdown-menu align_left">
       <li>
         <a href="#">No new notifications</a>
-      </li> 
+      </li>
 		</ul>
 	<% end %>
 </span>

@@ -17,7 +17,7 @@ ArabicProject::Application.routes.draw do
   match "/500", :to => "errors#application_error"
   match "/422", :to => "errors#unauthorized"
 
-  devise_for :users, :controllers => {:confirmations => "confirmations", :registrations => "registrations"}
+  devise_for :users, :controllers => {:confirmations => "confirmations", :registrations => "registrations", omniauth_callbacks: "omniauth_callbacks"}
 
   root(to: ENV["root_path"])
 

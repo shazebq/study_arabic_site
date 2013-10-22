@@ -142,6 +142,10 @@ module ApplicationHelper
       "not_signedin_height"
     end
   end
+
+  def facebook_icon
+    "<i class='icon-camera-retro'></i>"
+  end
 end
 
 class BigDecimal

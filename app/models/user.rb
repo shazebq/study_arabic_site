@@ -31,21 +31,24 @@ class User < ActiveRecord::Base
   after_initialize :init
 
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, 
-                  :last_name, :username, :bio, :country_id, :image_attributes, :as => [:default, :admin] 
+                  :last_name, :username, :bio, :country_id, :image_attributes, :provider, :uid, :name, :as => [:default, :admin] 
   # only an admin can change the admin attribute
   attr_accessible :admin, as: :admin
 
+  # virtual attribute
   attr_accessor :has_teacher_profile
 
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
-  validates :username, presence: true, length: { maximum: 30 }, uniqueness: true 
-  validates :country_id, presence: true, numericality: { integer: true }, reduce: true
-  validates :bio, presence: true, length: { maximum: 1000 }, :if => :should_validate_bio?
+  #validates :username, presence: true, length: { maximum: 30 }, uniqueness: true 
+  validates :country_id, numericality: { integer: true }, reduce: true, :if => :is_teacher?
+  validates :bio, length: { maximum: 1000 }, :if => :is_teacher?
+  validates :bio, length: { maximum: 1000 }, :allow_blank => :true, :if => :is_student?
 
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
@@ -54,8 +57,12 @@ class User < ActiveRecord::Base
   
   delegate :unread_messages, :to => :received_messages
 
-  def should_validate_bio?
+  def is_teacher?
     self.has_teacher_profile
+  end
+
+  def is_student?
+    true if self.has_teacher_profile != true
   end
 
   def send_on_create_confirmation_instructions
@@ -95,11 +102,62 @@ class User < ActiveRecord::Base
 
   def to_param
     return "#{id}-#{first_name.parameterize}-#{last_name.parameterize}" if self.profile_type == "TeacherProfile"
-    return "#{id}-#{username.parameterize}" if self.profile_type == "StudentProfile"
+    return "#{id}-#{display_name.parameterize}" if self.profile_type == "StudentProfile"
   end
 
   def new_notifications
     self.notifications.only_new
+  end
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create!( first_name:auth.extra.raw_info.first_name,
+                          last_name:auth.extra.raw_info.last_name,
+                          provider:auth.provider,
+                          uid:auth.uid,
+                          email:auth.info.email,
+                          password:Devise.friendly_token[0,20]
+                        )
+      if user.persisted?
+        # create student profile
+        student_profile = StudentProfile.new
+        student_profile.user = user
+        student_profile.save!
+      end
+    end
+    user
+  end 
+
+  def self.find_for_google_oauth2(auth, signed_in_resource=nil)
+    data = auth.info
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+        user = User.create(first_name: data["first_name"],
+                           last_name: data["last_name"],
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           email: data["email"],
+                           password: Devise.friendly_token[0,20]
+                          )
+    end
+    user
+  end
+
+  def confirmation_required?
+    if self.provider?
+      false
+    else
+      super
+    end
+  end
+
+  def display_name
+    if self.username.blank?
+      "#{self.first_name.capitalize} #{self.last_name[0].capitalize}"
+    else
+      self.username
+    end
   end
 
   private
@@ -107,6 +165,5 @@ class User < ActiveRecord::Base
     self.profile.delete
   end
 end
-
 
 #comments

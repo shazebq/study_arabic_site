@@ -24,9 +24,8 @@ $notice_background: #AFD7AF;
 
 body
 {
-  //font-family: 'Tauri', sans-serif;
-  font-family: 'Carrois Gothic', sans-serif;
-  
+  font-family: 'Noto Sans', sans-serif !important;
+  //font-family: 'Carrois Gothic', sans-serif !important;
   line-height: 18px;
 }
 
@@ -289,6 +288,11 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .margin_bottom
 {
   margin-bottom: 15px;
+}
+
+.margin_bottom_largest
+{
+  margin-bottom: 20px;
 }
 
 .margin_bottom_medium

@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    $('span').tooltip(); 
+  if ($("#gameCanvas").length === 1)
+  {
+
+    //$('span').tooltip();
     var startButton = $("#startButton");
     var stopButton = $("#stopButton");
     var showKeyboardButton = $("#show-keyboard");
@@ -9,7 +12,7 @@ $(document).ready(function() {
     var context = canvas.get(0).getContext("2d");
     // have to use monospace font for Arabic to work correctly
     context.font = "bold 30px 'courier new'"
-  
+
     // Canvas dimensions
     var canvasWidth = canvas.width();
     var canvasHeight = canvas.height();
@@ -19,28 +22,28 @@ $(document).ready(function() {
     var clickableLevels = false;
     var sentenceY = 100;
     var sentenceClearBoundary = 110;
-    
+
     // create a game object which keeps track of sentences, sentenceNumber, correctCount, etc
     var Game = function() {
 
         this.pauseGame = function()
         {
             paused = true;
-            $(window).unbind("keypress");           
+            $(window).unbind("keypress");
         }
-        
+
         this.getSentences = function(level) {
             // lines is an array of sentences
             var result = false;
             var textFile = "/game/levels/level" + level + ".html";
             $.ajax({
-                url: textFile, 
+                url: textFile,
                 success: function(text) { result = text; },
                 async: false
             });
             var sentences = result.split("\n");
             // subtract 1 because it seems include an empty string
-            this.totalSentences = sentences.length - 1; 
+            this.totalSentences = sentences.length - 1;
             this.remainingSentences = this.totalSentences;
             return sentences;
         }
@@ -70,12 +73,12 @@ $(document).ready(function() {
         // add points and update remaining sentences
         this.addPoints = function() {
             this.correctSentences += 1;
-            this.points += 5 
+            this.points += 5
             this.remainingSentences -= 1;
             gameElements.gameDisplay.updateScore(this.points);
             gameElements.gameDisplay.updateRemainingSentences();
         }
-        
+
         this.getUserLetter = function(e) {
             var charCode = e.which; // charCode will contain the code of the character inputted
             var letter = String.fromCharCode(charCode); // theChar will contain the actual character
@@ -87,13 +90,13 @@ $(document).ready(function() {
         }
 
         this.showNextSentence = function(newLevel) {
-            
+
             if (newLevel === true) { this.sentenceNumber = 0; }
-            else 
+            else
             {
-                this.sentenceNumber += 1; 
+                this.sentenceNumber += 1;
             }
-            
+
             if (this.checkIfLastSentence() === true)
             {
                 this.handleLastSentence();
@@ -122,7 +125,7 @@ $(document).ready(function() {
                 var nextLevel = this.getNextLevel();
                 if (nextLevel === 0)
                 {
-                    gameElements.gameDisplay.gameCompletionAlert(); 
+                    gameElements.gameDisplay.gameCompletionAlert();
                     newGame();
                 }
                 else
@@ -208,7 +211,7 @@ $(document).ready(function() {
         }
 
         this.updateRemainingSentences = function() {
-            $("#lines-remaining").html(gameElements.game.remainingSentences);    
+            $("#lines-remaining").html(gameElements.game.remainingSentences);
         }
 
         this.updateLevel = function() {
@@ -224,7 +227,7 @@ $(document).ready(function() {
         }
 
         this.initializeCurrentLevel = function() {
-            $("#levelBox_1").addClass("currentLevel"); 
+            $("#levelBox_1").addClass("currentLevel");
         }
 
         this.initializeRemainingSentences = function() {
@@ -261,7 +264,7 @@ $(document).ready(function() {
             var message = message + '<br /><br /><button class="btn_custom" type="button" id="proceed">' + buttonMessage + '</button>'
             this.alertDiv.html(message);
             this.alertDiv.css("z-index", 2);
-            gameElements.game.pauseGame();    
+            gameElements.game.pauseGame();
             clickableLevels = false;
             $("#proceed").on("click", function() {
                 _this.moveAlertBack();
@@ -305,14 +308,14 @@ $(document).ready(function() {
     var Cover = function() {
         this.x = 0;
         this.initialY = canvasHeight;
-        this.y = this.initialY; 
+        this.y = this.initialY;
         this.boundary = sentenceClearBoundary;
-        this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 2}  
+        this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 2}
         this.speed = this.levelToSpeed["Beginner"];
 
         this.setState = function() {
-            //context.fillStyle = "rgba(0, 195, 209, 1)"; 
-            context.fillStyle = "rgba(192, 192, 192, 1)"; 
+            //context.fillStyle = "rgba(0, 195, 209, 1)";
+            context.fillStyle = "rgba(192, 192, 192, 1)";
         }
 
         this.update = function() {
@@ -320,7 +323,7 @@ $(document).ready(function() {
             context.clearRect(0, this.boundary, canvasWidth, canvasHeight);
             context.fillRect(this.x, this.y, 940, 500);
             this.y = this.y - this.speed;
-            if (this.y < (gameElements.sentence.y - 20)) 
+            if (this.y < (gameElements.sentence.y - 20))
             {
                 gameElements.game.showNextSentence();
                 this.restartCover();
@@ -328,7 +331,7 @@ $(document).ready(function() {
         }
 
         this.restartCover = function() {
-            this.y = this.initialY; 
+            this.y = this.initialY;
         }
 
         this.changeSpeed = function(difficultyLevel) {
@@ -337,7 +340,7 @@ $(document).ready(function() {
     }
 
     var Sentence = function(sentenceString) {
-        this.sentenceString = sentenceString; 
+        this.sentenceString = sentenceString;
         this.correctCount = 0;
         this.y = 100;
         this.x = canvasWidth - 30;
@@ -350,7 +353,7 @@ $(document).ready(function() {
         this.letters = this.getLetters();
 
         this.setState = function() {
-            context.fillStyle = "rgba(45, 39, 97, 1)"; 
+            context.fillStyle = "rgba(45, 39, 97, 1)";
         }
 
         this.redraw = function() {
@@ -367,7 +370,7 @@ $(document).ready(function() {
         this.width = 0;
 
         this.setState = function() {
-            context.fillStyle = "rgba(255, 204, 0, 0.5)"; 
+            context.fillStyle = "rgba(255, 204, 0, 0.5)";
         }
 
         this.highlight = function(currentSnippet) {
@@ -391,8 +394,8 @@ $(document).ready(function() {
             if (gameElements.sentence.correctCount === gameElements.sentence.letters.length)
             {
                 gameElements.game.addPoints();
-                gameElements.game.showNextSentence(); 
-            }  
+                gameElements.game.showNextSentence();
+            }
             return gameElements.sentence;
         }
 
@@ -404,15 +407,15 @@ $(document).ready(function() {
             if (paused !== true || clickableLevels === true)
             {
               var level = parseInt(this.id.split("_")[1]);
-              gameElements.game.newLevel(level); 
+              gameElements.game.newLevel(level);
               gameElements.gameDisplay.updateLevel(level);
             }
         });
 
         $("#difficulty-option a").click(function(e) {
-            e.preventDefault(); 
+            e.preventDefault();
             var newOptionElement = $(this);
-            var newOption = this.id;  
+            var newOption = this.id;
 
             // grab selected-option, change it's id and html to newOption
             var currentOptionElement = $(".current-option")
@@ -426,7 +429,7 @@ $(document).ready(function() {
 
             // change speed of cover
             gameElements.cover.changeSpeed(newOption);
-        }); 
+        });
 
         showKeyboardButton.click(function() {
             gameElements.gameDisplay.showKeyboard();
@@ -461,7 +464,7 @@ $(document).ready(function() {
 
     function runGame() {
         function moveCover() {
-            gameElements.cover.update(); 
+            gameElements.cover.update();
             if (paused !== true) { setTimeout(moveCover, 33); }
         };
 
@@ -484,7 +487,7 @@ $(document).ready(function() {
                 // if the wrong letter in input
                 else
                 {
-                    gameElements.inputHandler.handleIncorrectInput(); 
+                    gameElements.inputHandler.handleIncorrectInput();
                 }
             });
         }
@@ -496,7 +499,7 @@ $(document).ready(function() {
     }
 
     function setUpUi(){
-        var delay = 200 
+        var delay = 200
 
         startButton.hide();
         stopButton.hide();
@@ -519,7 +522,7 @@ $(document).ready(function() {
                 //});
             //});
         //});
-       
+
        startButton.click(function(){
          $(this).hide();
          stopButton.show();
@@ -537,6 +540,8 @@ $(document).ready(function() {
     }
 
     init();
+
+   }
 
 });
 

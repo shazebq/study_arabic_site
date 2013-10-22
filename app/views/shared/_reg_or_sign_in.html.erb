@@ -1,19 +1,24 @@
 <div class="custom_alert">
-  <div class="row">
-    <div class="span3">
-      <span class="middle"><strong>Already have an account?</strong></span>
-    </div>
-    <div class="span2">
-      <span class="middle"><%= button_to("Sign In", new_user_session_path, class: "btn middle") %></span>
-    </div>
+  <div class="margin_bottom_medium">
+    <a class="btn no_underline sign_in_button" href="<%= user_omniauth_authorize_path(:facebook) %>">
+      <i class="icon-facebook-sign icon-large"></i> Sign In With Facebook
+    </a>
   </div>
-                                                                                          
-  <div class="row">
-    <div class="span3">
-      <span class="middle"><strong>Don't have an account yet?</strong></span>
-    </div>
-    <div class="span2">
-      <%= button_to("Register", new_student_profile_path, method: "get", class: "btn") %>
-    </div>
+
+  <div class="margin_bottom_medium">
+      <a class="btn no_underline sign_in_button" href="<%= user_omniauth_authorize_path(:google_oauth2) %>">
+        <i class="icon-google-plus-sign icon-large"></i> Sign In With Google
+      </a>
   </div>
+
+  <div class="margin_bottom_medium">
+      <a class="btn no_underline sign_in_button" href="<%= new_user_session_path %>">
+        <i class="icon-envelope-alt icon-large"></i> Sign In With Your Email
+      </a>
+  </div>
+
+  <div class="bold">Or <%= link_to("register", new_student_profile_path) %> for the first time</div>
+
 </div>
+
+

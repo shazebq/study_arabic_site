@@ -1,11 +1,18 @@
 <div>
     <div class="margin_bottom_small">
-      <span class="<%= title_class %>"><%= link_to(student.user.username, student.user) %></span>
+      <span class="<%= title_class %>"><%= link_to(student.user.display_name, student.user) %></span>
     </div>
     <div class="margin_bottom_small">
       <span class="bold">
-        <%= "#{student.user.country.name} | #{student.level.title} Student" %>
-        | <span class="red_badge"><%= pluralize(student.user.reputation, "point") %></span>
+
+        <% unless student.user.country.blank? %>
+            <%= "#{student.user.country.name} |" %>
+        <% end %>
+        <% unless student.level.blank? %>
+            <%= "#{student.level.title} Student |" %>
+        <% end %>
+
+        <span class="red_badge"><%= pluralize(student.user.reputation, "point") %></span>
       </span>
-    </div><!--country, age, gender, rep points-->
+    </div><!--country, rep points-->
 </div>

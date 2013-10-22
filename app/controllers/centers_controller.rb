@@ -4,7 +4,7 @@ class CentersController < ApplicationController
   before_filter :limit_user_content, only: [:new, :create]
   include MiscTasks
 
-  def index  
+  def index
     @countries = Country.joins(:addresses => :center).uniq  # all the countries that centers are located in (unique)
     if params[:ratings_option] == "order_by_reviews"
       @centers = Center.includes(:images).only_approved.order_by_reviews.country_option(params[:country_option]).paginate(page: params[:page], per_page: PER_PAGE)
