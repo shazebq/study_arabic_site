@@ -8,4 +8,12 @@ module UserPagesHelper
       "<i class='icon-question-sign icon-large'></i>".html_safe
     end
   end
+
+  def provider_name(given_name)
+    if given_name == :google_oauth2
+      "Google"
+    else
+      given_name.to_s.titleize
+    end
+  end
 end

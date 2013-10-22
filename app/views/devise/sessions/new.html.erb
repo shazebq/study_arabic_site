@@ -1,5 +1,5 @@
 <% provide :title, "Sign In" %>
-<div class="subtitle_large_color margin_bottom">Sign In</div>
+<%= render partial: "shared/page_title", locals: { title: "Sign In" } %>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
