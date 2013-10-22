@@ -1,6 +1,8 @@
 <%= provide :title, "About StudyArab.com" %>
 <%= render partial: "shared/page_title", locals: { title: "About" } %>
 
+<%= current_user.first_name %>
+
 <p>
 StudyArabic.com is a free, community driven and supported portal that offers students and teachers
 a place to share and exchange information, advice, and resources related to learning

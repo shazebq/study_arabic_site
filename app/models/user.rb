@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   # only an admin can change the admin attribute
   attr_accessible :admin, as: :admin
 
+  # virtual attribute
   attr_accessor :has_teacher_profile
 
   validates :first_name, presence: true, length: { maximum: 30 }
@@ -47,6 +48,7 @@ class User < ActiveRecord::Base
   #validates :username, presence: true, length: { maximum: 30 }, uniqueness: true 
   validates :country_id, numericality: { integer: true }, reduce: true, :if => :is_teacher?
   validates :bio, length: { maximum: 1000 }, :if => :is_teacher?
+  validates :bio, length: { maximum: 1000 }, :allow_blank => :true, :if => :is_student?
 
   scope :teachers, where(profile_type: "TeacherProfile")
   scope :students, where(profile_type: "StudentProfile")
@@ -57,6 +59,10 @@ class User < ActiveRecord::Base
 
   def is_teacher?
     self.has_teacher_profile
+  end
+
+  def is_student?
+    true if self.has_teacher_profile != true
   end
 
   def send_on_create_confirmation_instructions
@@ -147,7 +153,11 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    self.username || "#{self.first_name.capitalize} #{self.last_name[0].capitalize}"
+    if self.username.blank?
+      "#{self.first_name.capitalize} #{self.last_name[0].capitalize}"
+    else
+      self.username
+    end
   end
 
   private
