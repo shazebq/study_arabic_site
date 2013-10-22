@@ -119,13 +119,9 @@ class User < ActiveRecord::Base
                           email:auth.info.email,
                           password:Devise.friendly_token[0,20]
                         )
-      if user.persisted?
-        # create student profile
-        student_profile = StudentProfile.new
-        student_profile.user = user
-        student_profile.save!
-      end
+
     end
+    add_student_profile_to_new_user(user)
     user
   end 
 
@@ -141,7 +137,17 @@ class User < ActiveRecord::Base
                            password: Devise.friendly_token[0,20]
                           )
     end
+    add_student_profile_to_new_user(user)
     user
+  end
+
+  def self.add_student_profile_to_new_user(user)
+    if user.persisted?
+        # create student profile
+        student_profile = StudentProfile.new
+        student_profile.user = user
+        student_profile.save!
+    end
   end
 
   def confirmation_required?

@@ -11,6 +11,10 @@ class StaticPagesController < ApplicationController
   end
 
   def register
+    if user_signed_in?
+      flash[:notice] = "You have been signed in!"
+      redirect_to root_path
+    end
   end
 
   # just redirects to the appropriate controller, passing the query along
