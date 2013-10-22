@@ -128,7 +128,7 @@ class User < ActiveRecord::Base
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
         user = User.create(first_name: data["first_name"],
-                           last_name: data["first_name"],
+                           last_name: data["last_name"],
                            provider: auth.provider,
                            uid: auth.uid,
                            email: data["email"],
