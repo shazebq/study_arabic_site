@@ -24,14 +24,16 @@ input, textarea, select
   border-radius: 5px;
 }
 
-input:focus, textarea:focus, select:focus
-{
-  -webkit-appearance:none !important;
-  outline:0px !important;
-  box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-}
+//input:focus note, you need that in order for the input boxes not to light up when you select them
+//this was caused a problem with my checkboxes so need for this now
+//textarea:focus, select:focus
+//{
+//  -webkit-appearance:none !important;
+//  outline:0px !important;
+//  box-shadow: none !important;
+//  -moz-box-shadow: none !important;
+//  -webkit-box-shadow: none !important;
+//}
 
 
 .search_box
