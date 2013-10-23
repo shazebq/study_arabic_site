@@ -21,7 +21,7 @@ body {
   #pause-button-cell
   {
     //background: blue;
-    //width: 55px;
+    width: 65px;
     text-align: right;
     border: none;
   }
@@ -29,7 +29,7 @@ body {
   #keyboard-button-cell
   {
     @extend #pause-button-cell;
-    width: 300px;
+    width: 275px;
   }
 
   #difficulty-level-div
