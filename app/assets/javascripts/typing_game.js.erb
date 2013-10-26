@@ -162,7 +162,7 @@ $(document).ready(function() {
         }
 
         this.getNextLevel = function() {
-            // including the current level
+            // including the current level, which this.completedLevels does not yet include
             var allCompletedLevels = (this.completedLevels.concat(this.currentLevel)).sort(sortFunction);
             if (this.allLevels.sort(sortFunction).join(",") === allCompletedLevels.join(","))
             {
@@ -170,16 +170,18 @@ $(document).ready(function() {
             }
             else
             {
+                // make a shallow copy of the the allLevels array
                 var incompleteLevels = this.allLevels.slice();
-                for (var i = 0; i < this.completedLevels.length; i++)
+                for (var i = 0; i < allCompletedLevels.length; i++)
                 {
-                    var level = this.completedLevels[i];
-                    var indexToRemove = this.allLevels.indexOf(level);
+                    var level = allCompletedLevels[i];
+                    var indexToRemove = incompleteLevels.indexOf(level);
                     incompleteLevels.splice(indexToRemove, 1);
                 }
+                console.log("incomplete levels: " + incompleteLevels);
                 // go to the next possible level
-                var currentIndex = incompleteLevels.indexOf(this.currentLevel)
-                var nextLevel = incompleteLevels[currentIndex + 1]
+                var nextLevelIndex = incompleteLevels.indexOf(this.currentLevel + 1)
+                var nextLevel = incompleteLevels[nextLevelIndex]
                 // if there is no larger level, loop back to the beginning of the array
                 if (nextLevel === undefined)
                 {
