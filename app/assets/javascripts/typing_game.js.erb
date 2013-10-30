@@ -178,7 +178,6 @@ $(document).ready(function() {
                     var indexToRemove = incompleteLevels.indexOf(level);
                     incompleteLevels.splice(indexToRemove, 1);
                 }
-                console.log("incomplete levels: " + incompleteLevels);
                 // go to the next possible level
                 var nextLevelIndex = incompleteLevels.indexOf(this.currentLevel + 1)
                 var nextLevel = incompleteLevels[nextLevelIndex]
@@ -261,14 +260,16 @@ $(document).ready(function() {
         }
 
         this.displayMessage = function(message, buttonMessage) {
+            var _this = this;
             startButton.hide();
             stopButton.hide();
-            var message = message + '<br /><br /><button class="btn_custom" type="button" id="proceed">' + buttonMessage + '</button>'
+            var message = message + '<br /><br /><button class="btn_custom" type="button" id="okay">' + buttonMessage + '</button>'
             this.alertDiv.html(message);
             this.alertDiv.css("z-index", 2);
             gameElements.game.pauseGame();
             clickableLevels = false;
-            $("#proceed").on("click", function() {
+            $("#okay").on("mouseup", function() {
+                // why is this being triggered in chrome? That's basically the issue here!!!
                 _this.moveAlertBack();
             })
         }
