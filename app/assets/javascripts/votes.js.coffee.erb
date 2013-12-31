@@ -12,6 +12,8 @@ $(document).ready ->
     else if type == "Article"
       url = "/articles/#{$(this).attr("data-article_id")}/vote"
 
+    # rememeber that even if user isn't sign in, the success callback will because the error page is
+    # successfully returned so in order to deal with that, add a conditional data.votes? under success
     if url
         $.ajax
           url: url
@@ -19,18 +21,21 @@ $(document).ready ->
           data:
             type: $(this).attr("data-type")
             voteable_type: $(this).attr("data-voteable_type")
-          dataType: "text"
+          dataType: "json"
           success: (data, textStatus) =>
             #change color of arrow
-            $(this).parent().find(".vote").removeClass("selected_arrow selected_arrow_answer")
-            $(this).addClass("selected_arrow selected_arrow_answer")
-            # change the number of votes displayed
-            if type == "Answer"
-                ($(this).parent().parent()).find(".vote_count_answer").html(data)
+            if (data.votes?)
+                $(this).parent().find(".vote").removeClass("selected_arrow selected_arrow_answer")
+                $(this).addClass("selected_arrow selected_arrow_answer")
+                # change the number of votes displayed
+                if type == "Answer"
+                    ($(this).parent().parent()).find(".vote_count_answer").html(data.votes)
+                else
+                    $(".vote_count").html(data.votes)
             else
-                $(".vote_count").html(data)
-          error: (data, textStatus) =>
-            alert("Sign in or register to vote!")
+                alert("Please sign in or register to vote!")
 
+          error: (data, textStatus) =>
+              alert("Please sign in or register to vote!")
   )
 

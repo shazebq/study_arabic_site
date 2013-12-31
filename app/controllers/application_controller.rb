@@ -39,9 +39,7 @@ class ApplicationController < ActionController::Base
   def vote
     item = params[:voteable_type].constantize.find(params[:id])
     vote_count = item.count_vote(params[:id], params[:voteable_type], current_user.id, params[:type])
-    respond_to do |format|
-      format.json { render :json => pluralize(vote_count, 'vote') }
-    end
+    render :json => { votes: pluralize(vote_count, 'vote') }
   end
 
   def check_if_signed_in

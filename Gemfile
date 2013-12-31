@@ -54,6 +54,8 @@ gem 'gmaps4rails'
 
 gem "bullet", :group => "development"
 
+gem "twitter"
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec'
