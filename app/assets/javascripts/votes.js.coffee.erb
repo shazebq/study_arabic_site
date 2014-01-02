@@ -4,9 +4,9 @@ $(document).ready ->
     type = $(this).attr("data-voteable_type")
 
     if type == "Answer"
-      url = "/forum_posts/#{$(this).attr("data-post_id")}/answers/#{$(this).attr("data-answer_id")}/vote"
+      url = "/arabic-questions-answers/#{$(this).attr("data-post_id")}/answers/#{$(this).attr("data-answer_id")}/vote"
     else if type == "ForumPost"
-      url = "/forum_posts/#{$(this).attr("data-forum_post_id")}/vote"
+      url = "/arabic-questions-answers/#{$(this).attr("data-forum_post_id")}/vote"
     else if type == "Resource"
       url = "/resources/#{$(this).attr("data-resource_id")}/vote"
     else if type == "Article"
@@ -33,9 +33,11 @@ $(document).ready ->
                 else
                     $(".vote_count").html(data.votes)
             else
+                console.log("no data.votes found")
                 alert("Please sign in or register to vote!")
 
           error: (data, textStatus) =>
+              console.log("there was an error")
               alert("Please sign in or register to vote!")
   )
 
